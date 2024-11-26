@@ -40,10 +40,10 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
+        pass = new javax.swing.JLabel();
+        cpass = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -87,29 +87,29 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
         jLabel3.setText("Address:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 490, 170, 90));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Username:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 88, 210, 80));
+        username.setBackground(new java.awt.Color(255, 255, 255));
+        username.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        username.setForeground(new java.awt.Color(255, 255, 255));
+        username.setText("Username:");
+        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 88, 210, 80));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Password:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 168, 180, 60));
+        pass.setBackground(new java.awt.Color(255, 255, 255));
+        pass.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        pass.setForeground(new java.awt.Color(255, 255, 255));
+        pass.setText("Password:");
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 168, 180, 60));
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Confirm Password:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 320, 100));
+        cpass.setBackground(new java.awt.Color(255, 255, 255));
+        cpass.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        cpass.setForeground(new java.awt.Color(255, 255, 255));
+        cpass.setText("Confirm Password:");
+        jPanel1.add(cpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 320, 100));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Name:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 120, 80));
+        Name.setBackground(new java.awt.Color(255, 255, 255));
+        Name.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        Name.setForeground(new java.awt.Color(255, 255, 255));
+        Name.setText("Name:");
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 120, 80));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -208,7 +208,6 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 1250, 710));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled design.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -309,7 +308,9 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BACKACTION;
+    private javax.swing.JLabel Name;
     private javax.swing.JButton SIGNUP;
+    private javax.swing.JLabel cpass;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
@@ -317,10 +318,6 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -336,5 +333,7 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel pass;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
