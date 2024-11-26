@@ -50,11 +50,11 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jPasswordField2 = new javax.swing.JPasswordField();
         jPasswordField3 = new javax.swing.JPasswordField();
         jPasswordField4 = new javax.swing.JPasswordField();
         BACKACTION = new javax.swing.JButton();
         SIGNUP = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jFormattedTextField1.setText("jFormattedTextField1");
@@ -154,12 +154,6 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
         jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 340, 50));
         jTextField8.getAccessibleContext().setAccessibleDescription("");
 
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 340, 50));
         jPanel1.add(jPasswordField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 340, 50));
         jPanel1.add(jPasswordField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 340, 50));
 
@@ -204,6 +198,8 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
             }
         });
         jPanel1.add(SIGNUP, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 600, 210, 80));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 340, 50));
+        jTextField2.getAccessibleContext().setAccessibleDescription("");
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 1250, 710));
 
@@ -229,10 +225,6 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     private void BACKACTIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACKACTIONActionPerformed
         // TODO add your handling code here:
@@ -321,13 +313,13 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JPasswordField jPasswordField4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField8;
