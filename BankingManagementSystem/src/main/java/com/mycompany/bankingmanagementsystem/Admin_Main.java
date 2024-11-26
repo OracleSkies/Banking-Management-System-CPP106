@@ -59,7 +59,16 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         Transactions = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
         AuditAndReport = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -75,6 +84,7 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel2.setText("QuPAL BANKING ADMINISTRATOR");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 810, 60));
 
+        AccManagebutton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         AccManagebutton.setForeground(new java.awt.Color(255, 255, 255));
         AccManagebutton.setText("ACCOUNT MANAGEMENT");
         AccManagebutton.setBorderPainted(false);
@@ -94,6 +104,7 @@ public class Admin_Main extends javax.swing.JFrame {
         });
         getContentPane().add(AccManagebutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 290, 80));
 
+        Transactionsbutton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Transactionsbutton.setForeground(new java.awt.Color(255, 255, 255));
         Transactionsbutton.setText("TRANSACTIONS");
         Transactionsbutton.setBorderPainted(false);
@@ -113,6 +124,7 @@ public class Admin_Main extends javax.swing.JFrame {
         });
         getContentPane().add(Transactionsbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 290, 80));
 
+        Dashboardbutton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Dashboardbutton.setForeground(new java.awt.Color(255, 255, 255));
         Dashboardbutton.setText("DASHBOARD");
         Dashboardbutton.setBorderPainted(false);
@@ -136,6 +148,7 @@ public class Admin_Main extends javax.swing.JFrame {
         });
         getContentPane().add(Dashboardbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 290, 80));
 
+        AudRepbutton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         AudRepbutton.setForeground(new java.awt.Color(255, 255, 255));
         AudRepbutton.setText("AUDIT AND REPORT");
         AudRepbutton.setBorderPainted(false);
@@ -165,6 +178,7 @@ public class Admin_Main extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
 
+        Create.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Create.setForeground(new java.awt.Color(255, 255, 255));
         Create.setText("CREATE NEW ADMIN ACCOUNT");
         Create.setBorderPainted(false);
@@ -296,6 +310,7 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel6.setText("Active Accounts Management");
 
         jButton3.setBackground(new java.awt.Color(0, 0, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("CREATE NEW ACCOUNT");
 
@@ -327,7 +342,7 @@ public class Admin_Main extends javax.swing.JFrame {
             AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccountManagementLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,37 +352,110 @@ public class Admin_Main extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         Transactions.setBackground(new java.awt.Color(255, 0, 0));
+        Transactions.setForeground(new java.awt.Color(255, 255, 255));
         Transactions.setOpaque(false);
+        Transactions.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout TransactionsLayout = new javax.swing.GroupLayout(Transactions);
-        Transactions.setLayout(TransactionsLayout);
-        TransactionsLayout.setHorizontalGroup(
-            TransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
-        );
-        TransactionsLayout.setVerticalGroup(
-            TransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
-        );
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("TRANSACTION MONITORING");
+        Transactions.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 6, 682, 51));
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Timestamp", "Name", "Amount", "Title 4", "Title 5"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable5);
+
+        Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 63, 1170, 490));
+
+        jButton5.setBackground(new java.awt.Color(0, 0, 204));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("GENERATE REPORT");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        Transactions.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 302, 59));
 
         AuditAndReport.setBackground(new java.awt.Color(51, 255, 51));
         AuditAndReport.setOpaque(false);
+        AuditAndReport.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout AuditAndReportLayout = new javax.swing.GroupLayout(AuditAndReport);
-        AuditAndReport.setLayout(AuditAndReportLayout);
-        AuditAndReportLayout.setHorizontalGroup(
-            AuditAndReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("AUDIT AND REPORT");
+        AuditAndReport.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 6, 469, -1));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("BANK RESERVE");
+        jLabel9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1158, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        AuditAndReport.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 1170, 230));
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1170, Short.MAX_VALUE)
         );
-        AuditAndReportLayout.setVerticalGroup(
-            AuditAndReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 230, Short.MAX_VALUE)
         );
+
+        AuditAndReport.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1170, 230));
+
+        jButton6.setBackground(new java.awt.Color(0, 0, 204));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("GENERATE REPORT");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        AuditAndReport.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 302, 59));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -520,6 +608,14 @@ public class Admin_Main extends javax.swing.JFrame {
         Create.setForeground(Color.white);
     }//GEN-LAST:event_CreateMouseExited
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -569,23 +665,32 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
     // End of variables declaration//GEN-END:variables
 }
