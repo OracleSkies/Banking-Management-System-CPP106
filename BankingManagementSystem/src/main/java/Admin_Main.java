@@ -1,3 +1,6 @@
+
+import java.awt.Color;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,6 +17,7 @@ public class Admin_Main extends javax.swing.JFrame {
      */
     public Admin_Main() {
         initComponents();
+        Dashboard.setVisible(true);
     }
 
     /**
@@ -33,6 +37,15 @@ public class Admin_Main extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        Dashboard = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        AccountManagement = new javax.swing.JPanel();
+        Transactions = new javax.swing.JPanel();
+        AuditAndReport = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,22 +61,54 @@ public class Admin_Main extends javax.swing.JFrame {
         AccManagebutton.setText("ACCOUNT MANAGEMENT");
         AccManagebutton.setBorderPainted(false);
         AccManagebutton.setContentAreaFilled(false);
+        AccManagebutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AccManagebuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AccManagebuttonMouseExited(evt);
+            }
+        });
+        AccManagebutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccManagebuttonActionPerformed(evt);
+            }
+        });
         getContentPane().add(AccManagebutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 290, 80));
 
         Transactionsbutton.setForeground(new java.awt.Color(255, 255, 255));
         Transactionsbutton.setText("TRANSACTIONS");
         Transactionsbutton.setBorderPainted(false);
         Transactionsbutton.setContentAreaFilled(false);
+        Transactionsbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                TransactionsbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                TransactionsbuttonMouseExited(evt);
+            }
+        });
+        Transactionsbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TransactionsbuttonActionPerformed(evt);
+            }
+        });
         getContentPane().add(Transactionsbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 290, 80));
 
         Dashboardbutton.setForeground(new java.awt.Color(255, 255, 255));
         Dashboardbutton.setText("DASHBOARD");
         Dashboardbutton.setBorderPainted(false);
         Dashboardbutton.setContentAreaFilled(false);
-        Dashboardbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Dashboardbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Dashboardbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DashboardbuttonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 DashboardbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DashboardbuttonMouseExited(evt);
             }
         });
         Dashboardbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +123,19 @@ public class Admin_Main extends javax.swing.JFrame {
         AudRepbutton.setBorderPainted(false);
         AudRepbutton.setContentAreaFilled(false);
         AudRepbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AudRepbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AudRepbuttonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AudRepbuttonMouseExited(evt);
+            }
+        });
+        AudRepbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AudRepbuttonActionPerformed(evt);
+            }
+        });
         getContentPane().add(AudRepbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 290, 80));
 
         jButton4.setText("DASHBOARD");
@@ -102,15 +160,114 @@ public class Admin_Main extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 310, 630));
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
+
+        Dashboard.setBackground(new java.awt.Color(51, 51, 255));
+        Dashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Timestamp", "Name", "Amount", "Type of Transactions", "Description"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1150, 268));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Name", "Action"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        Dashboard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 290, 340));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 850, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+
+        Dashboard.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 850, 340));
+
+        AccountManagement.setBackground(new java.awt.Color(255, 51, 255));
+
+        javax.swing.GroupLayout AccountManagementLayout = new javax.swing.GroupLayout(AccountManagement);
+        AccountManagement.setLayout(AccountManagementLayout);
+        AccountManagementLayout.setHorizontalGroup(
+            AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1170, Short.MAX_VALUE)
+        );
+        AccountManagementLayout.setVerticalGroup(
+            AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 630, Short.MAX_VALUE)
+        );
+
+        Transactions.setBackground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout TransactionsLayout = new javax.swing.GroupLayout(Transactions);
+        Transactions.setLayout(TransactionsLayout);
+        TransactionsLayout.setHorizontalGroup(
+            TransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1170, Short.MAX_VALUE)
+        );
+        TransactionsLayout.setVerticalGroup(
+            TransactionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 630, Short.MAX_VALUE)
+        );
+
+        AuditAndReport.setBackground(new java.awt.Color(51, 255, 51));
+
+        javax.swing.GroupLayout AuditAndReportLayout = new javax.swing.GroupLayout(AuditAndReport);
+        AuditAndReport.setLayout(AuditAndReportLayout);
+        AuditAndReportLayout.setHorizontalGroup(
+            AuditAndReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1170, Short.MAX_VALUE)
+        );
+        AuditAndReportLayout.setVerticalGroup(
+            AuditAndReportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 630, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
+            .addComponent(Dashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(AccountManagement, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Transactions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(AuditAndReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 630, Short.MAX_VALUE)
+            .addComponent(Dashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(AccountManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(Transactions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(AuditAndReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 1170, 630));
@@ -124,12 +281,91 @@ public class Admin_Main extends javax.swing.JFrame {
 
     private void DashboardbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardbuttonActionPerformed
         // TODO add your handling code here:
+        Dashboard.setVisible(true);
+        AccountManagement.setVisible(false);
+        Transactions.setVisible(false);
+        AuditAndReport.setVisible(false);
     }//GEN-LAST:event_DashboardbuttonActionPerformed
 
     private void DashboardbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardbuttonMouseEntered
         // TODO add your handling code here:
         Dashboardbutton.setContentAreaFilled(true);
+        Dashboardbutton.setBackground(Color.cyan);
+        Dashboardbutton.setForeground(Color.black);
     }//GEN-LAST:event_DashboardbuttonMouseEntered
+
+    private void DashboardbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardbuttonMouseExited
+        // TODO add your handling code here:
+        Dashboardbutton.setContentAreaFilled(false);
+        Dashboardbutton.setForeground(Color.white);
+    }//GEN-LAST:event_DashboardbuttonMouseExited
+
+    private void DashboardbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DashboardbuttonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DashboardbuttonMouseClicked
+
+    private void AccManagebuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccManagebuttonMouseEntered
+        // TODO add your handling code here:
+        AccManagebutton.setContentAreaFilled(true);
+        AccManagebutton.setBackground(Color.cyan);
+        AccManagebutton.setForeground(Color.black);
+    }//GEN-LAST:event_AccManagebuttonMouseEntered
+
+    private void AccManagebuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccManagebuttonMouseExited
+        // TODO add your handling code here:
+        AccManagebutton.setContentAreaFilled(false);
+        AccManagebutton.setForeground(Color.white);
+    }//GEN-LAST:event_AccManagebuttonMouseExited
+
+    private void TransactionsbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TransactionsbuttonMouseEntered
+        // TODO add your handling code here:
+        Transactionsbutton.setContentAreaFilled(true);
+        Transactionsbutton.setBackground(Color.cyan);
+        Transactionsbutton.setForeground(Color.black);
+    }//GEN-LAST:event_TransactionsbuttonMouseEntered
+
+    private void TransactionsbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TransactionsbuttonMouseExited
+        // TODO add your handling code here:
+        Transactionsbutton.setContentAreaFilled(false);
+        Transactionsbutton.setForeground(Color.white);
+    }//GEN-LAST:event_TransactionsbuttonMouseExited
+
+    private void AudRepbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AudRepbuttonMouseEntered
+        // TODO add your handling code here:
+        AudRepbutton.setContentAreaFilled(true);
+        AudRepbutton.setBackground(Color.cyan);
+        AudRepbutton.setForeground(Color.black);
+    }//GEN-LAST:event_AudRepbuttonMouseEntered
+
+    private void AudRepbuttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AudRepbuttonMouseExited
+        // TODO add your handling code here:
+        AudRepbutton.setContentAreaFilled(false);
+        AudRepbutton.setForeground(Color.white);
+    }//GEN-LAST:event_AudRepbuttonMouseExited
+
+    private void AccManagebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccManagebuttonActionPerformed
+        // TODO add your handling code here:
+        Dashboard.setVisible(false);
+        AccountManagement.setVisible(true);
+        Transactions.setVisible(false);
+        AuditAndReport.setVisible(false);
+    }//GEN-LAST:event_AccManagebuttonActionPerformed
+
+    private void TransactionsbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransactionsbuttonActionPerformed
+        // TODO add your handling code here:
+        Dashboard.setVisible(false);
+        AccountManagement.setVisible(false);
+        Transactions.setVisible(true);
+        AuditAndReport.setVisible(false);
+    }//GEN-LAST:event_TransactionsbuttonActionPerformed
+
+    private void AudRepbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AudRepbuttonActionPerformed
+        // TODO add your handling code here:
+        Dashboard.setVisible(false);
+        AccountManagement.setVisible(false);
+        Transactions.setVisible(false);
+        AuditAndReport.setVisible(true);
+    }//GEN-LAST:event_AudRepbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,13 +404,22 @@ public class Admin_Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccManagebutton;
+    private javax.swing.JPanel AccountManagement;
     private javax.swing.JButton AudRepbutton;
+    private javax.swing.JPanel AuditAndReport;
+    private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Dashboardbutton;
+    private javax.swing.JPanel Transactions;
     private javax.swing.JButton Transactionsbutton;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
