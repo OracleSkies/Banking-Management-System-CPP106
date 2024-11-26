@@ -169,7 +169,6 @@ public class Admin_Main extends javax.swing.JFrame {
         });
         getContentPane().add(AudRepbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 290, 80));
 
-        jButton4.setText("DASHBOARD");
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
