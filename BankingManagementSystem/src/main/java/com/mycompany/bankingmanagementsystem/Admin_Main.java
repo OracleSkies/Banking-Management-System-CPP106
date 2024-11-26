@@ -1,3 +1,5 @@
+package com.mycompany.bankingmanagementsystem;
+
 
 import java.awt.Color;
 
@@ -178,7 +180,7 @@ public class Admin_Main extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1150, 268));
+        Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 268));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,20 +195,20 @@ public class Admin_Main extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        Dashboard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 290, 340));
+        Dashboard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 310, 360));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 340, Short.MAX_VALUE)
+            .addGap(0, 360, Short.MAX_VALUE)
         );
 
-        Dashboard.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 850, 340));
+        Dashboard.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 860, 360));
 
         AccountManagement.setBackground(new java.awt.Color(255, 51, 255));
 
