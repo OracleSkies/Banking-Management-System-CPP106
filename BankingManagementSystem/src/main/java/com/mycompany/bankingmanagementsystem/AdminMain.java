@@ -574,9 +574,18 @@ public class AdminMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Timestamp", "Name", "Amount", "Type of Transaction", "Description"
+                "Timestamp", "Name", "Account Number", "Amount", "Type of Transaction", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TransactionTable.setRowHeight(40);
         jScrollPane5.setViewportView(TransactionTable);
 
         Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 63, 1170, 490));

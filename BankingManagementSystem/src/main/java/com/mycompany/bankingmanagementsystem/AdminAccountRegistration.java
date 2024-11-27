@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Laurence
  */
-public class UserAccountRegistration extends javax.swing.JFrame {
+public class AdminAccountRegistration extends javax.swing.JFrame {
 
     /**
      * Creates new form USERACCOUNTADMINISTRATION
      */
-    public UserAccountRegistration() {
+    public AdminAccountRegistration() {
         initComponents();
     }
 
@@ -77,8 +77,8 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("User Account Registration");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 440, -1));
+        jLabel8.setText("Administrator Account Registration");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 610, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setOpaque(false);
@@ -89,7 +89,7 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Address:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 170, 90));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 510, 170, 90));
 
         username.setBackground(new java.awt.Color(255, 255, 255));
         username.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -113,7 +113,7 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         Name.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
         Name.setText("Name:");
-        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 120, 80));
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 120, 80));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -262,8 +262,8 @@ public class UserAccountRegistration extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonMouseExited
 
     private void accountRegistration(String username, String password, String name, String birthdate, String phoneNumber, String address) {
-        try (var writer = new BufferedWriter(new FileWriter("AccountApplications.csv", true))){
-            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address);
+        try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address + "," + "admin");
             writer.newLine();
 
             JOptionPane.showMessageDialog(this, "Account created successfully!");
@@ -289,21 +289,23 @@ public class UserAccountRegistration extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserAccountRegistration().setVisible(true);
+                new AdminAccountRegistration().setVisible(true);
             }
         });
     }
