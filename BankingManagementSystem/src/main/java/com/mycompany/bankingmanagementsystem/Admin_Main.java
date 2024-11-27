@@ -38,6 +38,34 @@ public class Admin_Main extends javax.swing.JFrame {
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
         transactionTableDash.setShowGrid(false);
+        
+        accApplicationTableDash.setOpaque(false);
+        accApplicationTableDash.setBackground(new java.awt.Color(204, 204, 204, 80));
+        ((DefaultTableCellRenderer)accApplicationTableDash.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
+        jScrollPane2.setOpaque(false);
+        jScrollPane2.getViewport().setOpaque(false);
+        accApplicationTableDash.setShowGrid(false);
+        
+        AccountApplicationTable.setOpaque(false);
+        AccountApplicationTable.setBackground(new java.awt.Color(204, 204, 204, 80));
+        ((DefaultTableCellRenderer)AccountApplicationTable.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
+        jScrollPane3.setOpaque(false);
+        jScrollPane3.getViewport().setOpaque(false);
+        AccountApplicationTable.setShowGrid(false);
+        
+        ActiveAccountsTable.setOpaque(false);
+        ActiveAccountsTable.setBackground(new java.awt.Color(204, 204, 204, 80));
+        ((DefaultTableCellRenderer)ActiveAccountsTable.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
+        jScrollPane4.setOpaque(false);
+        jScrollPane4.getViewport().setOpaque(false);
+        ActiveAccountsTable.setShowGrid(false);
+        
+        TransactionTable.setOpaque(false);
+        TransactionTable.setBackground(new java.awt.Color(204, 204, 204, 80));
+        ((DefaultTableCellRenderer)TransactionTable.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
+        jScrollPane5.setOpaque(false);
+        jScrollPane5.getViewport().setOpaque(false);
+        TransactionTable.setShowGrid(false);
     }
 
     /**
@@ -241,6 +269,9 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ACCOUNT MANAGEMENT");
 
+        jScrollPane3.setBorder(null);
+
+        AccountApplicationTable.setForeground(new java.awt.Color(255, 255, 255));
         AccountApplicationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -251,6 +282,9 @@ public class Admin_Main extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(AccountApplicationTable);
 
+        jScrollPane4.setBorder(null);
+
+        ActiveAccountsTable.setForeground(new java.awt.Color(255, 255, 255));
         ActiveAccountsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -326,7 +360,6 @@ public class Admin_Main extends javax.swing.JFrame {
         jScrollPane1.setBorder(null);
         jScrollPane1.setOpaque(false);
 
-        transactionTableDash.setBackground(new java.awt.Color(204, 204, 204));
         transactionTableDash.setForeground(new java.awt.Color(255, 255, 255));
         transactionTableDash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -342,6 +375,12 @@ public class Admin_Main extends javax.swing.JFrame {
 
         Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 210));
 
+        jPanel3.setOpaque(false);
+
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setOpaque(false);
+
+        accApplicationTableDash.setForeground(new java.awt.Color(255, 255, 255));
         accApplicationTableDash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -350,6 +389,8 @@ public class Admin_Main extends javax.swing.JFrame {
                 "Name", "Action"
             }
         ));
+        accApplicationTableDash.setGridColor(new java.awt.Color(255, 255, 255));
+        accApplicationTableDash.setOpaque(false);
         jScrollPane2.setViewportView(accApplicationTableDash);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -451,6 +492,9 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel7.setText("TRANSACTION MONITORING");
         Transactions.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 6, 682, 51));
 
+        jScrollPane5.setBorder(null);
+
+        TransactionTable.setForeground(new java.awt.Color(255, 255, 255));
         TransactionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
