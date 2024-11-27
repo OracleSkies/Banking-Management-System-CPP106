@@ -49,12 +49,6 @@ public class Admin_Main extends javax.swing.JFrame {
         createNewAdminPanel = new javax.swing.JPanel();
         Create = new javax.swing.JButton();
         MasterPanel = new javax.swing.JPanel();
-        Dashboard = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        transactionTableDash = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        accApplicationTableDash = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
         AccountManagement = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -64,6 +58,20 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        Dashboard = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        transactionTableDash = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        accApplicationTableDash = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel12 = new javax.swing.JLabel();
         Transactions = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -217,47 +225,6 @@ public class Admin_Main extends javax.swing.JFrame {
         MasterPanel.setBackground(new java.awt.Color(51, 51, 255));
         MasterPanel.setOpaque(false);
 
-        Dashboard.setBackground(new java.awt.Color(51, 51, 255));
-        Dashboard.setOpaque(false);
-        Dashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        transactionTableDash.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Timestamp", "Name", "Amount", "Type of Transaction", "Description"
-            }
-        ));
-        jScrollPane1.setViewportView(transactionTableDash);
-
-        Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 268));
-
-        accApplicationTableDash.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Action"
-            }
-        ));
-        jScrollPane2.setViewportView(accApplicationTableDash);
-
-        Dashboard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 310, 360));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 860, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
-        );
-
-        Dashboard.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 860, 360));
-
         AccountManagement.setBackground(new java.awt.Color(255, 51, 255));
         AccountManagement.setOpaque(false);
 
@@ -343,6 +310,120 @@ public class Admin_Main extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        Dashboard.setBackground(new java.awt.Color(51, 51, 255));
+        Dashboard.setOpaque(false);
+        Dashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        transactionTableDash.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Timestamp", "Name", "Amount", "Type of Transaction", "Description"
+            }
+        ));
+        jScrollPane1.setViewportView(transactionTableDash);
+
+        Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 210));
+
+        accApplicationTableDash.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Action"
+            }
+        ));
+        jScrollPane2.setViewportView(accApplicationTableDash);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        Dashboard.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, 410, 210));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("DASHBOARD");
+        Dashboard.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 300, 40));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 850, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        Dashboard.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 850, 300));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Recent Transaction");
+        Dashboard.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, -1));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Account Application");
+        Dashboard.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 390, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204, 80));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Bank Reserve");
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jLabel11)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(292, Short.MAX_VALUE))
+        );
+
+        Dashboard.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 50, 300, 340));
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Cash Flow");
+        Dashboard.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, 30));
 
         Transactions.setBackground(new java.awt.Color(255, 0, 0));
         Transactions.setForeground(new java.awt.Color(255, 255, 255));
@@ -712,12 +793,19 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -727,6 +815,7 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton notificationButton;
     private javax.swing.JTable transactionTableDash;
     // End of variables declaration//GEN-END:variables
