@@ -10,12 +10,12 @@ import java.awt.Color;
  *
  * @author Laurence
  */
-public class USERACCOUNTAPPLICATION_ADMIN___ extends javax.swing.JFrame {
+public class UserAccountApplication extends javax.swing.JFrame {
 
     /**
      * Creates new form USERACCOUNTAPPLICATION_ADMIN___
      */
-    public USERACCOUNTAPPLICATION_ADMIN___() {
+    public UserAccountApplication() {
         initComponents();
     }
 
@@ -78,7 +78,6 @@ public class USERACCOUNTAPPLICATION_ADMIN___ extends javax.swing.JFrame {
         jLabel10.setText("Phone Number:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 270, 60));
 
-        DECLINE.setBackground(new java.awt.Color(255, 255, 255));
         DECLINE.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         DECLINE.setForeground(new java.awt.Color(255, 255, 255));
         DECLINE.setText("DECLINE");
@@ -99,7 +98,6 @@ public class USERACCOUNTAPPLICATION_ADMIN___ extends javax.swing.JFrame {
         });
         jPanel2.add(DECLINE, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 560, 210, 80));
 
-        APPROVE.setBackground(new java.awt.Color(255, 255, 255));
         APPROVE.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         APPROVE.setForeground(new java.awt.Color(255, 255, 255));
         APPROVE.setText("APPROVE");
@@ -238,20 +236,21 @@ public class USERACCOUNTAPPLICATION_ADMIN___ extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTAPPLICATION_ADMIN___.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTAPPLICATION_ADMIN___.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTAPPLICATION_ADMIN___.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTAPPLICATION_ADMIN___.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new USERACCOUNTAPPLICATION_ADMIN___().setVisible(true);
+                new UserAccountApplication().setVisible(true);
             }
         });
     }

@@ -10,12 +10,12 @@ import java.awt.Color;
  *
  * @author Laurence
  */
-public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
+public class UserAccountRegistration extends javax.swing.JFrame {
 
     /**
      * Creates new form USERACCOUNTADMINISTRATION
      */
-    public USERACCOUNTADMINISTRATION() {
+    public UserAccountRegistration() {
         initComponents();
     }
 
@@ -157,7 +157,6 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
         jPanel1.add(jPasswordField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 340, 50));
         jPanel1.add(jPasswordField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 340, 50));
 
-        BACKACTION.setBackground(new java.awt.Color(255, 255, 255));
         BACKACTION.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         BACKACTION.setForeground(new java.awt.Color(255, 255, 255));
         BACKACTION.setText("BACK");
@@ -178,7 +177,6 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
         });
         jPanel1.add(BACKACTION, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 210, 80));
 
-        SIGNUP.setBackground(new java.awt.Color(255, 255, 255));
         SIGNUP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         SIGNUP.setForeground(new java.awt.Color(255, 255, 255));
         SIGNUP.setText("SIGN-UP");
@@ -280,20 +278,21 @@ public class USERACCOUNTADMINISTRATION extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTADMINISTRATION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTADMINISTRATION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTADMINISTRATION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(USERACCOUNTADMINISTRATION.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new USERACCOUNTADMINISTRATION().setVisible(true);
+                new UserAccountRegistration().setVisible(true);
             }
         });
     }

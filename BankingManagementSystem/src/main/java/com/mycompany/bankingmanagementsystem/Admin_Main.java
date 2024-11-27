@@ -2,6 +2,10 @@ package com.mycompany.bankingmanagementsystem;
 
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -23,6 +27,7 @@ public class Admin_Main extends javax.swing.JFrame {
         AccountManagement.setVisible(false);
         Transactions.setVisible(false);
         AuditAndReport.setVisible(false);
+        loadTransactionDataForDashboard("Transactions.csv");
     }
 
     /**
@@ -34,20 +39,19 @@ public class Admin_Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        Title = new javax.swing.JLabel();
         AccManagebutton = new javax.swing.JButton();
         Transactionsbutton = new javax.swing.JButton();
         Dashboardbutton = new javax.swing.JButton();
         AudRepbutton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        createNewAdminPanel = new javax.swing.JPanel();
         Create = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        MasterPanel = new javax.swing.JPanel();
         Dashboard = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        transactionTableDash = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        accApplicationTableDash = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         AccountManagement = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -61,7 +65,7 @@ public class Admin_Main extends javax.swing.JFrame {
         Transactions = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        TransactionTable = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         AuditAndReport = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -69,20 +73,20 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        SubTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        notificationButton = new javax.swing.JButton();
+        accountButton = new javax.swing.JButton();
+        BackgroundImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("QuPAL BANKING ADMINISTRATOR");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 810, 60));
+        Title.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        Title.setForeground(new java.awt.Color(255, 255, 255));
+        Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Title.setText("QuPAL BANKING ADMINISTRATOR");
+        getContentPane().add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, 810, 60));
 
         AccManagebutton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         AccManagebutton.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,13 +173,7 @@ public class Admin_Main extends javax.swing.JFrame {
         });
         getContentPane().add(AudRepbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 290, 80));
 
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 290, 80));
-
-        jPanel2.setOpaque(false);
+        createNewAdminPanel.setOpaque(false);
 
         Create.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Create.setForeground(new java.awt.Color(255, 255, 255));
@@ -196,58 +194,52 @@ public class Admin_Main extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout createNewAdminPanelLayout = new javax.swing.GroupLayout(createNewAdminPanel);
+        createNewAdminPanel.setLayout(createNewAdminPanelLayout);
+        createNewAdminPanelLayout.setHorizontalGroup(
+            createNewAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createNewAdminPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Create, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        createNewAdminPanelLayout.setVerticalGroup(
+            createNewAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createNewAdminPanelLayout.createSequentialGroup()
                 .addGap(0, 568, Short.MAX_VALUE)
                 .addComponent(Create, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 310, 630));
+        getContentPane().add(createNewAdminPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 310, 630));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
-        jPanel1.setOpaque(false);
+        MasterPanel.setBackground(new java.awt.Color(51, 51, 255));
+        MasterPanel.setOpaque(false);
 
         Dashboard.setBackground(new java.awt.Color(51, 51, 255));
         Dashboard.setOpaque(false);
         Dashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        transactionTableDash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Timestamp", "Name", "Amount", "Type of Transactions", "Description"
+                "Timestamp", "Name", "Amount", "Type of Transaction", "Description"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(transactionTableDash);
 
         Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 268));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        accApplicationTableDash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Name", "Action"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(accApplicationTableDash);
 
         Dashboard.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 310, 360));
 
@@ -366,18 +358,15 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel7.setText("TRANSACTION MONITORING");
         Transactions.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 6, 682, 51));
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        TransactionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Timestamp", "Name", "Amount", "Title 4", "Title 5"
+                "Timestamp", "Name", "Amount", "Type of Transaction", "Description"
             }
         ));
-        jScrollPane5.setViewportView(jTable5);
+        jScrollPane5.setViewportView(TransactionTable);
 
         Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 63, 1170, 490));
 
@@ -456,47 +445,47 @@ public class Admin_Main extends javax.swing.JFrame {
         });
         AuditAndReport.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 302, 59));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout MasterPanelLayout = new javax.swing.GroupLayout(MasterPanel);
+        MasterPanel.setLayout(MasterPanelLayout);
+        MasterPanelLayout.setHorizontalGroup(
+            MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Dashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(AccountManagement, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Transactions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(AuditAndReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        MasterPanelLayout.setVerticalGroup(
+            MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Dashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(AccountManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(Transactions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MasterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(AuditAndReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 1170, 630));
+        getContentPane().add(MasterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 1170, 630));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("\"Bank Smarter with Qupal.\"");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, 190, 20));
+        SubTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        SubTitle.setForeground(new java.awt.Color(255, 255, 255));
+        SubTitle.setText("\"Bank Smarter with Qupal.\"");
+        getContentPane().add(SubTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 110, 190, 20));
 
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 40));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 810, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 47));
+        notificationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
+        getContentPane().add(notificationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 47));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/acc.png"))); // NOI18N
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 20, 50, 47));
+        accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/acc.png"))); // NOI18N
+        getContentPane().add(accountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 20, 50, 47));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.png"))); // NOI18N
+        getContentPane().add(BackgroundImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -580,6 +569,7 @@ public class Admin_Main extends javax.swing.JFrame {
         AccountManagement.setVisible(false);
         Transactions.setVisible(true);
         AuditAndReport.setVisible(false);
+        loadTransactionDataForTransaction("Transactions.csv");
     }//GEN-LAST:event_TransactionsbuttonActionPerformed
 
     private void AudRepbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AudRepbuttonActionPerformed
@@ -615,6 +605,36 @@ public class Admin_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void loadTransactionDataForDashboard(String filePath){
+        //Loads all data from Transaction.csv to transaction table in dashboard. 
+        //Creates a dynamic table that add rows depending on the number of rows in Transaction.csv
+        //Displays information from Transaction.csv row by row
+        DefaultTableModel model = (DefaultTableModel) transactionTableDash.getModel();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                model.addRow(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadTransactionDataForTransaction(String filePath){
+        //Loads all data from Transaction.csv to transaction table in transaction panel. 
+        //Creates a dynamic table that add rows depending on the number of rows in Transaction.csv
+        //Displays information from Transaction.csv row by row
+        DefaultTableModel model = (DefaultTableModel) TransactionTable.getModel();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                model.addRow(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -655,28 +675,28 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JPanel AccountManagement;
     private javax.swing.JButton AudRepbutton;
     private javax.swing.JPanel AuditAndReport;
+    private javax.swing.JLabel BackgroundImage;
     private javax.swing.JButton Create;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Dashboardbutton;
+    private javax.swing.JPanel MasterPanel;
+    private javax.swing.JLabel SubTitle;
+    private javax.swing.JLabel Title;
+    private javax.swing.JTable TransactionTable;
     private javax.swing.JPanel Transactions;
     private javax.swing.JButton Transactionsbutton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable accApplicationTableDash;
+    private javax.swing.JButton accountButton;
+    private javax.swing.JPanel createNewAdminPanel;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -686,10 +706,9 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
+    private javax.swing.JButton notificationButton;
+    private javax.swing.JTable transactionTableDash;
     // End of variables declaration//GEN-END:variables
 }
