@@ -24,6 +24,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import javax.swing.text.DocumentFilter.FilterBypass;
 import javax.swing.text.PlainDocument;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -46,6 +47,13 @@ public class UserInterface extends javax.swing.JFrame {
         Withdraw.setVisible(false);
         TransCash.setVisible(false);
         AccReg.setVisible(false);
+        
+        Transhis.setOpaque(false);
+        Transhis.setBackground(new java.awt.Color(204, 204, 204, 80));
+        ((DefaultTableCellRenderer)Transhis.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.getViewport().setOpaque(false);
+        Transhis.setShowGrid(false);
     }
 
     /**
@@ -484,8 +492,10 @@ public class UserInterface extends javax.swing.JFrame {
         TransacHis.setOpaque(false);
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255, 80));
+        jScrollPane1.setBorder(null);
 
         Transhis.setBackground(new java.awt.Color(255, 255, 255, 80));
+        Transhis.setForeground(new java.awt.Color(255, 255, 255));
         Transhis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -502,6 +512,7 @@ public class UserInterface extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Transhis.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(Transhis);
         if (Transhis.getColumnModel().getColumnCount() > 0) {
             Transhis.getColumnModel().getColumn(0).setResizable(false);
