@@ -1,6 +1,10 @@
 package com.mycompany.bankingmanagementsystem;
 
 
+import cellAction.PanelAction;
+import cellAction.TableActionCellEditor;
+import cellAction.TableActionCellRenderer;
+import cellAction.TableActionEvent;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,6 +38,28 @@ public class AdminMain extends javax.swing.JFrame {
         loadAccountsForAccManagement("Accounts.csv");
         loadAccountsForAccApplication("AccountApplications.csv");
         loadAccountsApplicationForDashboard("AccountApplications.csv");
+        
+        TableActionEvent event = new TableActionEvent(){
+            @Override 
+            public void onEdit(int row){
+                System.out.println("Edit Row:" + row);
+            }
+            @Override 
+            public void onView(int row){
+                System.out.println("View Row:" + row);
+            }
+            @Override 
+            public void onDelete(int row){
+                System.out.println("Delete Row:" + row);
+            }
+        };
+        
+        accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRenderer());
+        accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditor(event));
+        
+        AccountApplicationTable.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRenderer());
+        AccountApplicationTable.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditor(event));
+        
         
         transactionTableDash.setOpaque(false);
         transactionTableDash.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -285,7 +311,16 @@ public class AdminMain extends javax.swing.JFrame {
             new String [] {
                 "Name", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        AccountApplicationTable.setRowHeight(40);
         AccountApplication.setViewportView(AccountApplicationTable);
 
         ActiveAccounts.setBorder(null);
@@ -298,7 +333,16 @@ public class AdminMain extends javax.swing.JFrame {
             new String [] {
                 "Name", "Type", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        ActiveAccountsTable.setRowHeight(40);
         ActiveAccounts.setViewportView(ActiveAccountsTable);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -378,11 +422,20 @@ public class AdminMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Timestamp", "Name", "Amount", "Type of Transaction", "Description"
+                "Timestamp", "Name", "Account Number", "Amount", "Type of Transaction", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         transactionTableDash.setGridColor(new java.awt.Color(255, 255, 255));
         transactionTableDash.setOpaque(false);
+        transactionTableDash.setRowHeight(40);
         transactionTable.setViewportView(transactionTableDash);
 
         Dashboard.add(transactionTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 210));
@@ -400,9 +453,18 @@ public class AdminMain extends javax.swing.JFrame {
             new String [] {
                 "Name", "Action"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         accApplicationTableDash.setGridColor(new java.awt.Color(255, 255, 255));
         accApplicationTableDash.setOpaque(false);
+        accApplicationTableDash.setRowHeight(40);
         jScrollPane2.setViewportView(accApplicationTableDash);
 
         javax.swing.GroupLayout accApplicationLayout = new javax.swing.GroupLayout(accApplication);
@@ -772,7 +834,12 @@ public class AdminMain extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) transactionTableDash.getModel();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
+            boolean isFirstRow = true;
             while ((line = br.readLine()) != null) {
+                if (isFirstRow){
+                    isFirstRow = false;
+                    continue;
+                }
                 String[] data = line.split(",");
                 model.addRow(data);
             }
@@ -787,7 +854,12 @@ public class AdminMain extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TransactionTable.getModel();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
+            boolean isFirstRow = true;
             while ((line = br.readLine()) != null) {
+                if (isFirstRow){
+                    isFirstRow = false;
+                    continue;
+                }
                 String[] data = line.split(",");
                 model.addRow(data);
             }
