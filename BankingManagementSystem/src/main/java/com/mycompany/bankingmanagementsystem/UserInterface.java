@@ -308,6 +308,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -714,7 +715,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PhoneNumDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Hist.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -1134,7 +1135,17 @@ public class UserInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
-        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(
+            this, // Parent component (current frame)
+            "Are you sure you want to log out?", // Message
+            "Confirm Logout", // Title of the dialog
+            JOptionPane.YES_NO_OPTION, // Option type
+            JOptionPane.QUESTION_MESSAGE // Icon type
+        );
+
+        if (response == JOptionPane.YES_OPTION) {
+            this.dispose(); // Close the current window
+        }
     }//GEN-LAST:event_ProfileActionPerformed
 
     private void WithdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdActionPerformed
