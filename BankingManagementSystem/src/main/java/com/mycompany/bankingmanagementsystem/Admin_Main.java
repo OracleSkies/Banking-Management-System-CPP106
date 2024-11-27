@@ -93,7 +93,7 @@ public class Admin_Main extends javax.swing.JFrame {
         ActiveAccountsTable = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        newUserAccountButton = new javax.swing.JButton();
         Dashboard = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transactionTableDash = new javax.swing.JTable();
@@ -139,6 +139,7 @@ public class Admin_Main extends javax.swing.JFrame {
         AccManagebutton.setText("ACCOUNT MANAGEMENT");
         AccManagebutton.setBorderPainted(false);
         AccManagebutton.setContentAreaFilled(false);
+        AccManagebutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AccManagebutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AccManagebuttonMouseEntered(evt);
@@ -159,6 +160,7 @@ public class Admin_Main extends javax.swing.JFrame {
         Transactionsbutton.setText("TRANSACTIONS");
         Transactionsbutton.setBorderPainted(false);
         Transactionsbutton.setContentAreaFilled(false);
+        Transactionsbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Transactionsbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 TransactionsbuttonMouseEntered(evt);
@@ -203,7 +205,7 @@ public class Admin_Main extends javax.swing.JFrame {
         AudRepbutton.setText("AUDIT AND REPORT");
         AudRepbutton.setBorderPainted(false);
         AudRepbutton.setContentAreaFilled(false);
-        AudRepbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        AudRepbutton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AudRepbutton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AudRepbuttonMouseEntered(evt);
@@ -226,6 +228,7 @@ public class Admin_Main extends javax.swing.JFrame {
         Create.setText("CREATE NEW ADMIN ACCOUNT");
         Create.setBorderPainted(false);
         Create.setContentAreaFilled(false);
+        Create.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Create.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CreateMouseEntered(evt);
@@ -305,10 +308,16 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Active Accounts Management");
 
-        jButton3.setBackground(new java.awt.Color(0, 0, 204));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CREATE NEW USER ACCOUNT");
+        newUserAccountButton.setBackground(new java.awt.Color(0, 0, 204));
+        newUserAccountButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        newUserAccountButton.setForeground(new java.awt.Color(255, 255, 255));
+        newUserAccountButton.setText("CREATE NEW USER ACCOUNT");
+        newUserAccountButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        newUserAccountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newUserAccountButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout AccountManagementLayout = new javax.swing.GroupLayout(AccountManagement);
         AccountManagement.setLayout(AccountManagementLayout);
@@ -332,7 +341,7 @@ public class Admin_Main extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(AccountManagementLayout.createSequentialGroup()
                         .addGap(406, 406, 406)
-                        .addComponent(jButton3)))
+                        .addComponent(newUserAccountButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AccountManagementLayout.setVerticalGroup(
@@ -349,7 +358,7 @@ public class Admin_Main extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addComponent(newUserAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -511,6 +520,7 @@ public class Admin_Main extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("GENERATE REPORT");
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -575,6 +585,7 @@ public class Admin_Main extends javax.swing.JFrame {
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("GENERATE REPORT");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -743,6 +754,13 @@ public class Admin_Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void newUserAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserAccountButtonActionPerformed
+        // TODO add your handling code here:
+        UserAccountRegistration registration = new UserAccountRegistration();
+        registration.setVisible(true);
+    }//GEN-LAST:event_newUserAccountButtonActionPerformed
+
+    
     private void loadTransactionDataForDashboard(String filePath){
         //Loads all data from Transaction.csv to transaction table in dashboard. 
         //Creates a dynamic table that add rows depending on the number of rows in Transaction.csv
@@ -849,7 +867,6 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JTable accApplicationTableDash;
     private javax.swing.JButton accountButton;
     private javax.swing.JPanel createNewAdminPanel;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
@@ -875,6 +892,7 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JButton newUserAccountButton;
     private javax.swing.JButton notificationButton;
     private javax.swing.JTable transactionTableDash;
     // End of variables declaration//GEN-END:variables

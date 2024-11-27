@@ -5,6 +5,7 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,15 +47,15 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         Name = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jPasswordField4 = new javax.swing.JPasswordField();
-        BACKACTION = new javax.swing.JButton();
+        addressField = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
+        birthdateField = new javax.swing.JTextField();
+        phoneNumField = new javax.swing.JTextField();
+        confirmPassField = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
+        backButton = new javax.swing.JButton();
         SIGNUP = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         jFormattedTextField1.setText("jFormattedTextField1");
@@ -123,59 +124,59 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         jLabel10.setText("Phone Number:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 440, 270, 60));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        addressField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                addressFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 340, 50));
-        jTextField1.getAccessibleContext().setAccessibleDescription("");
+        jPanel1.add(addressField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 520, 340, 50));
+        addressField.getAccessibleContext().setAccessibleDescription("");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                nameFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 340, 50));
-        jTextField4.getAccessibleContext().setAccessibleDescription("");
+        jPanel1.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, 340, 50));
+        nameField.getAccessibleContext().setAccessibleDescription("");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        birthdateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                birthdateFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 340, 50));
+        jPanel1.add(birthdateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 380, 340, 50));
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        phoneNumField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                phoneNumFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 340, 50));
-        jTextField8.getAccessibleContext().setAccessibleDescription("");
+        jPanel1.add(phoneNumField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, 340, 50));
+        phoneNumField.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel1.add(jPasswordField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 340, 50));
-        jPanel1.add(jPasswordField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 340, 50));
+        jPanel1.add(confirmPassField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, 340, 50));
+        jPanel1.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 340, 50));
 
-        BACKACTION.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        BACKACTION.setForeground(new java.awt.Color(255, 255, 255));
-        BACKACTION.setText("BACK");
-        BACKACTION.setBorderPainted(false);
-        BACKACTION.setContentAreaFilled(false);
-        BACKACTION.addMouseListener(new java.awt.event.MouseAdapter() {
+        backButton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("BACK");
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BACKACTIONMouseEntered(evt);
+                backButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                BACKACTIONMouseExited(evt);
+                backButtonMouseExited(evt);
             }
         });
-        BACKACTION.addActionListener(new java.awt.event.ActionListener() {
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BACKACTIONActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(BACKACTION, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 210, 80));
+        jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 210, 80));
 
         SIGNUP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         SIGNUP.setForeground(new java.awt.Color(255, 255, 255));
@@ -196,8 +197,8 @@ public class UserAccountRegistration extends javax.swing.JFrame {
             }
         });
         jPanel1.add(SIGNUP, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 600, 210, 80));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 340, 50));
-        jTextField2.getAccessibleContext().setAccessibleDescription("");
+        jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 340, 50));
+        usernameField.getAccessibleContext().setAccessibleDescription("");
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 1250, 710));
 
@@ -208,28 +209,51 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void addressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_addressFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_nameFieldActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void phoneNumFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_phoneNumFieldActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void birthdateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_birthdateFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_birthdateFieldActionPerformed
 
-    private void BACKACTIONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACKACTIONActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BACKACTIONActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void SIGNUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIGNUPActionPerformed
         // TODO add your handling code here:
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String confirmPassword = confirmPassField.getText();
+        String name = nameField.getText();
+        String birthdate = birthdateField.getText();
+        String phoneNumber = phoneNumField.getText();
+        String address = addressField.getText();
+        
+        if (!password.equals(confirmPassword)){
+            JOptionPane.showMessageDialog(this,"Passwords don't match","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (phoneNumber.matches(".*[a-zA-Z].*")){
+            JOptionPane.showMessageDialog(this,"Invalid Phone Number","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (phoneNumber.matches("\\d+")){
+            JOptionPane.showMessageDialog(this, "Account created successfully!");
+            return;
+        } else{
+            JOptionPane.showMessageDialog(this,"Error: Phone number must only contain numbers.","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_SIGNUPActionPerformed
 
     private void SIGNUPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SIGNUPMouseEntered
@@ -247,19 +271,19 @@ public class UserAccountRegistration extends javax.swing.JFrame {
       
     }//GEN-LAST:event_SIGNUPMouseExited
 
-    private void BACKACTIONMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BACKACTIONMouseEntered
+    private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
         // TODO add your handling code here:
-        BACKACTION.setContentAreaFilled(true);
-        BACKACTION.setForeground(Color.black);
-        BACKACTION.setBackground(Color.cyan);
-    }//GEN-LAST:event_BACKACTIONMouseEntered
+        backButton.setContentAreaFilled(true);
+        backButton.setForeground(Color.black);
+        backButton.setBackground(Color.cyan);
+    }//GEN-LAST:event_backButtonMouseEntered
 
-    private void BACKACTIONMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BACKACTIONMouseExited
+    private void backButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseExited
         // TODO add your handling code here:
-        BACKACTION.setContentAreaFilled(false);
-        BACKACTION.setForeground(Color.white);
+        backButton.setContentAreaFilled(false);
+        backButton.setForeground(Color.white);
         
-    }//GEN-LAST:event_BACKACTIONMouseExited
+    }//GEN-LAST:event_backButtonMouseExited
 
     /**
      * @param args the command line arguments
@@ -298,9 +322,12 @@ public class UserAccountRegistration extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BACKACTION;
     private javax.swing.JLabel Name;
     private javax.swing.JButton SIGNUP;
+    private javax.swing.JTextField addressField;
+    private javax.swing.JButton backButton;
+    private javax.swing.JTextField birthdateField;
+    private javax.swing.JPasswordField confirmPassField;
     private javax.swing.JLabel cpass;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -312,19 +339,16 @@ public class UserAccountRegistration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField3;
-    private javax.swing.JPasswordField jPasswordField4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField nameField;
     private javax.swing.JLabel pass;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField phoneNumField;
     private javax.swing.JLabel username;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
