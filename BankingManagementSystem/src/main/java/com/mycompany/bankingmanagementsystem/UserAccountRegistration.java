@@ -5,6 +5,9 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -227,6 +230,8 @@ public class UserAccountRegistration extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
+        AdminMain main = new AdminMain();
+        main.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -240,6 +245,12 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         String phoneNumber = phoneNumField.getText();
         String address = addressField.getText();
         
+        
+        //Registration Error Handling
+        if (username.isEmpty()|| password.isEmpty()|| confirmPassword.isEmpty()|| name.isEmpty()|| birthdate.isEmpty()|| phoneNumber.isEmpty()|| address.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this,"Please fill all the required information.","Input Error",javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if (!password.equals(confirmPassword)){
             JOptionPane.showMessageDialog(this,"Passwords don't match","Error",JOptionPane.ERROR_MESSAGE);
             return;
@@ -248,12 +259,15 @@ public class UserAccountRegistration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Invalid Phone Number","Error",JOptionPane.ERROR_MESSAGE);
             return;
         } else if (phoneNumber.matches("\\d+")){
-            JOptionPane.showMessageDialog(this, "Account created successfully!");
-            return;
+            accountRegistration(username,password,name,birthdate,phoneNumber,address);
+            AdminMain main = new AdminMain();
+            main.setVisible(true);
+            setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Error: Phone number must only contain numbers.","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
     }//GEN-LAST:event_SIGNUPActionPerformed
 
     private void SIGNUPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SIGNUPMouseEntered
@@ -285,6 +299,17 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backButtonMouseExited
 
+    private void accountRegistration(String username, String password, String name, String birthdate, String phoneNumber, String address) {
+        try (var writer = new BufferedWriter(new FileWriter("AccountApplications.csv", true))){
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address);
+            writer.newLine();
+
+            JOptionPane.showMessageDialog(this, "Account created successfully!");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
