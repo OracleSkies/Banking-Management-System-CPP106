@@ -62,8 +62,11 @@ public class AdminMain extends javax.swing.JFrame {
         accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRendererView());
         accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditorView(event));
         
-        AccountApplicationTable.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRenderer());
-        AccountApplicationTable.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditor(event));
+        AccountApplicationTable.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRendererView());
+        AccountApplicationTable.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditorView(event));
+        
+        ActiveAccountsTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRenderer());
+        ActiveAccountsTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
         
         
         transactionTableDash.setOpaque(false);
@@ -900,7 +903,7 @@ public class AdminMain extends javax.swing.JFrame {
                 }
                 String[] data = line.split(",");
                 String name = data[2];
-                String type = data[3];
+                String type = data[6];
                 
                 // Create a new array with only 'name' and 'type' to add to the table
                 Object[] rowData = {name,type};
