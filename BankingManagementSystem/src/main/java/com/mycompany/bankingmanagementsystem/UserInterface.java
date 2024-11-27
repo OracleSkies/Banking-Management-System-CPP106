@@ -113,7 +113,7 @@ public class UserInterface extends javax.swing.JFrame {
                     if (action.equalsIgnoreCase("Deposited")) {
                         totalDeposits += money;
                     } else if (action.equalsIgnoreCase("Withdraw")) {
-                        totalWithdrawals += money;
+                        totalWithdrawals -= money;  
                     }
                 } catch (NumberFormatException e) {
                     // Handle invalid number formats gracefully
