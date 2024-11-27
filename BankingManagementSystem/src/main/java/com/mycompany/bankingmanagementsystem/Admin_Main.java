@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -30,6 +31,13 @@ public class Admin_Main extends javax.swing.JFrame {
         loadTransactionDataForDashboard("Transactions.csv");
         loadTransactionDataForTransaction("Transactions.csv");
         loadAccountsForAccManagement("Accounts.csv");
+        
+        transactionTableDash.setOpaque(false);
+        transactionTableDash.setBackground(new java.awt.Color(204, 204, 204, 80));
+        ((DefaultTableCellRenderer)transactionTableDash.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
+        jScrollPane1.setOpaque(false);
+        jScrollPane1.getViewport().setOpaque(false);
+        transactionTableDash.setShowGrid(false);
     }
 
     /**
@@ -315,6 +323,11 @@ public class Admin_Main extends javax.swing.JFrame {
         Dashboard.setOpaque(false);
         Dashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setOpaque(false);
+
+        transactionTableDash.setBackground(new java.awt.Color(204, 204, 204));
+        transactionTableDash.setForeground(new java.awt.Color(255, 255, 255));
         transactionTableDash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -323,6 +336,8 @@ public class Admin_Main extends javax.swing.JFrame {
                 "Timestamp", "Name", "Amount", "Type of Transaction", "Description"
             }
         ));
+        transactionTableDash.setGridColor(new java.awt.Color(255, 255, 255));
+        transactionTableDash.setOpaque(false);
         jScrollPane1.setViewportView(transactionTableDash);
 
         Dashboard.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 210));
@@ -341,7 +356,7 @@ public class Admin_Main extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
