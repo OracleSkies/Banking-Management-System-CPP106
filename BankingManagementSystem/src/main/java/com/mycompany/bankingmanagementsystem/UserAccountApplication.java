@@ -5,6 +5,12 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -15,8 +21,13 @@ public class UserAccountApplication extends javax.swing.JFrame {
     /**
      * Creates new form USERACCOUNTAPPLICATION_ADMIN___
      */
-    public UserAccountApplication() {
+    
+    public UserAccountApplication(String name, String birthdate, String phoneNumber, String address) {
         initComponents();
+        nameLabel.setText(name);
+        birthLabel.setText(birthdate);
+        phoneLabel.setText(phoneNumber);
+        addressLabel.setText(address);
     }
 
     /**
@@ -30,20 +41,18 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         DECLINE = new javax.swing.JButton();
         APPROVE = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        birthLabel = new javax.swing.JLabel();
+        phoneLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,12 +62,6 @@ public class UserAccountApplication extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, -1));
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ACCOUNT NUMBER: ");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 360, 90));
 
         Name.setBackground(new java.awt.Color(255, 255, 255));
         Name.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -133,29 +136,23 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("EMPTY");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 350, 50));
+        nameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nameLabel.setText("EMPTY");
+        jPanel2.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 350, 50));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("EMPTY");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 350, 50));
+        birthLabel.setBackground(new java.awt.Color(255, 255, 255));
+        birthLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        birthLabel.setForeground(new java.awt.Color(255, 255, 255));
+        birthLabel.setText("EMPTY");
+        jPanel2.add(birthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 350, 50));
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("EMPTY");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 350, 50));
-
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("EMPTY");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 350, 50));
+        phoneLabel.setBackground(new java.awt.Color(255, 255, 255));
+        phoneLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        phoneLabel.setForeground(new java.awt.Color(255, 255, 255));
+        phoneLabel.setText("EMPTY");
+        jPanel2.add(phoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 350, 50));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -169,11 +166,11 @@ public class UserAccountApplication extends javax.swing.JFrame {
         jLabel11.setText("Address:");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 170, 90));
 
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("EMPTY");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 350, 50));
+        addressLabel.setBackground(new java.awt.Color(255, 255, 255));
+        addressLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        addressLabel.setForeground(new java.awt.Color(255, 255, 255));
+        addressLabel.setText("EMPTY");
+        jPanel2.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 350, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 1250, 710));
 
@@ -181,6 +178,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void DECLINEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DECLINEMouseEntered
@@ -219,6 +217,11 @@ public class UserAccountApplication extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_APPROVEActionPerformed
 
+    
+
+    public void updateLabel(String name, String birthdate, String phoneNumber, String address){
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -248,30 +251,29 @@ public class UserAccountApplication extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserAccountApplication().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UserAccountApplication().setVisible(true);
+//            }
+//        });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton APPROVE;
     private javax.swing.JButton DECLINE;
     private javax.swing.JLabel Name;
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JLabel birthLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel phoneLabel;
     // End of variables declaration//GEN-END:variables
 }

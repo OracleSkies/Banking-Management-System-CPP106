@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -29,8 +30,14 @@ public class AdminMain extends javax.swing.JFrame {
     /**
      * Creates new form Admin_Main
      */
+    private String name;
+    private String birthdate;
+    private String phoneNumber;
+    private String address;
+    
     public AdminMain() {
         initComponents();
+        
         Dashboard.setVisible(true);
         AccountManagement.setVisible(false);
         Transactions.setVisible(false);
@@ -41,6 +48,7 @@ public class AdminMain extends javax.swing.JFrame {
         loadAccountsForAccApplication("AccountApplications.csv");
         loadAccountsApplicationForDashboard("AccountApplications.csv");
         
+        
         TableActionEvent event = new TableActionEvent(){
             @Override 
             public void onEdit(int row){
@@ -48,16 +56,13 @@ public class AdminMain extends javax.swing.JFrame {
             }
             @Override 
             public void onView(int row){
-                System.out.println("View Row:" + row);
+                showUserInfo(row);
             }
             @Override 
             public void onDelete(int row){
                 System.out.println("Delete Row:" + row);
             }
         };
-        
-//        accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRenderer());
-//        accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditor(event));
         
         accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRendererView());
         accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditorView(event));
@@ -962,6 +967,53 @@ public class AdminMain extends javax.swing.JFrame {
         }
     }
     
+    private void showUserInfo(int row){
+        name = "";
+        birthdate = "";
+        phoneNumber = "";
+        address = "";
+        
+        File file = new File("AccountApplications.csv");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            int currentRow = 0;
+            int rowNumber = row+1;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(currentRow);
+                if (currentRow == rowNumber) {
+                    System.out.println(currentRow);
+                    String[] data = line.split(",");
+                    name = data[2];
+                    birthdate = data[3];
+                    phoneNumber = data[4];
+                    address = data[5];
+                    System.out.println(name);
+                    // Output all elements for the found name
+                    break;
+                }
+                currentRow++;
+            }
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new UserAccountApplication(name, birthdate, phoneNumber, address).setVisible(true);
+                }
+            });
+            this.setVisible(false);
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+    }
+//    private void runSearchInfo(String title, String author, String bookNumber, String category, String availability){
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//                public void run() {
+//                    new SearchInformation(title, author, bookNumber, category, availability).setVisible(true);
+////                    bookTitle, author, bookNumber, category
+//                }
+//            });
+//        this.setVisible(false); 
+//    
+//    }
     /**
      * @param args the command line arguments
      */
