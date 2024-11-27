@@ -5,6 +5,25 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
+import java.awt.Frame;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.DocumentFilter.FilterBypass;
+import javax.swing.text.PlainDocument;
 
 /**
  *
@@ -17,6 +36,10 @@ public class UserInterface extends javax.swing.JFrame {
      */
     public UserInterface() {
         initComponents();
+        restrictInputToNumbersOnly(AmountLabel);//To restrict the text field for only number 
+        restrictInputToNumbersOnly2(DepositText);//To restrict the text field for only number 
+        restrictInputToNumbersOnly3(AmountLabel2);//To restrict the text field for only number 
+        loadCSV(); // Automatically load the CSV file when the JFrame is created
         Dashboard.setVisible(true);
         TransacHis.setVisible(false);
         Deposit.setVisible(false);
@@ -34,9 +57,9 @@ public class UserInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
+        Profile = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Notifs = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         Trans = new javax.swing.JButton();
         Depos = new javax.swing.JButton();
@@ -46,21 +69,23 @@ public class UserInterface extends javax.swing.JFrame {
         Accreg = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         Dashboard = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        RecentTrans = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        Balance = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jPanel3 = new javax.swing.JPanel();
+        BalDis = new javax.swing.JLabel();
+        BalanceLabel = new javax.swing.JLabel();
+        AccDEts = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jPanel4 = new javax.swing.JPanel();
+        Hist = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         TransacHis = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Transhis = new javax.swing.JTable();
         Deposit = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -68,31 +93,31 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        DepositText = new javax.swing.JTextField();
+        DepositButton = new javax.swing.JButton();
         Withdraw = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        AmountLabel = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        FiveKyawButton = new javax.swing.JButton();
+        FiveHundoButton = new javax.swing.JButton();
+        OnehundoButton = new javax.swing.JButton();
+        TenKyawButton = new javax.swing.JButton();
+        OnekyawButton = new javax.swing.JButton();
+        Withdrawbutton = new javax.swing.JButton();
         TransCash = new javax.swing.JPanel();
         Withdraw1 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        AccountNumber = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        jButton15 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
+        TransferButton = new javax.swing.JButton();
+        AmountLabel2 = new javax.swing.JTextField();
         AccReg = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -101,13 +126,13 @@ public class UserInterface extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/acc.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/acc.png"))); // NOI18N
+        Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ProfileActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 20, 50, 50));
+        getContentPane().add(Profile, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 20, 50, 50));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -115,8 +140,13 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel6.setText("QuPAL Banking System");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 530, 70));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 50));
+        Notifs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
+        Notifs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotifsActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Notifs, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 50));
 
         jPanel11.setOpaque(false);
 
@@ -272,30 +302,33 @@ public class UserInterface extends javax.swing.JFrame {
         jPanel9.setOpaque(false);
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Dashboard.setBackground(new java.awt.Color(255, 102, 102));
+        Dashboard.setBackground(new java.awt.Color(204, 204, 204, 80));
         Dashboard.setOpaque(false);
+
+        RecentTrans.setBackground(new java.awt.Color(204, 204, 204, 80));
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("RECENT TRANSACTION");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout RecentTransLayout = new javax.swing.GroupLayout(RecentTrans);
+        RecentTrans.setLayout(RecentTransLayout);
+        RecentTransLayout.setHorizontalGroup(
+            RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RecentTransLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RecentTransLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(61, 61, 61))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        RecentTransLayout.setVerticalGroup(
+            RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RecentTransLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -303,55 +336,81 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGap(0, 252, Short.MAX_VALUE))
         );
 
+        Balance.setBackground(new java.awt.Color(204, 204, 204, 80));
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("BALANCE");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator2)
+        BalDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        BalanceLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BalanceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        BalanceLabel.setText("BALANCE:");
+
+        javax.swing.GroupLayout BalanceLayout = new javax.swing.GroupLayout(Balance);
+        Balance.setLayout(BalanceLayout);
+        BalanceLayout.setHorizontalGroup(
+            BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BalanceLayout.createSequentialGroup()
+                .addGroup(BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BalanceLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2))
+                    .addGroup(BalanceLayout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jLabel3)
+            .addGroup(BalanceLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BalanceLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        BalanceLayout.setVerticalGroup(
+            BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BalanceLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
+        AccDEts.setBackground(new java.awt.Color(204, 204, 204, 80));
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("ACCOUNT DETAILS");
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout AccDEtsLayout = new javax.swing.GroupLayout(AccDEts);
+        AccDEts.setLayout(AccDEtsLayout);
+        AccDEtsLayout.setHorizontalGroup(
+            AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jLabel5)
-                .addContainerGap(77, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE))
+            .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator4)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        AccDEtsLayout.setVerticalGroup(
+            AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -359,27 +418,30 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Hist.setBackground(new java.awt.Color(204, 204, 204, 80));
+
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("HISTORY");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout HistLayout = new javax.swing.GroupLayout(Hist);
+        Hist.setLayout(HistLayout);
+        HistLayout.setHorizontalGroup(
+            HistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(142, 142, 142))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        HistLayout.setVerticalGroup(
+            HistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -394,12 +456,12 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(DashboardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RecentTrans, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AccDEts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Hist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         DashboardLayout.setVerticalGroup(
@@ -407,31 +469,45 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(DashboardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AccDEts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(DashboardLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(RecentTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Hist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel9.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
+        TransacHis.setBackground(new java.awt.Color(204, 204, 204, 80));
         TransacHis.setOpaque(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255, 80));
+
+        Transhis.setBackground(new java.awt.Color(255, 255, 255, 80));
+        Transhis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Date", "Action", "Amount", "Description"
+                "Action", "Date", "Amount", "Description"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Transhis);
+        if (Transhis.getColumnModel().getColumnCount() > 0) {
+            Transhis.getColumnModel().getColumn(0).setResizable(false);
+            Transhis.getColumnModel().getColumn(1).setResizable(false);
+            Transhis.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout TransacHisLayout = new javax.swing.GroupLayout(TransacHis);
         TransacHis.setLayout(TransacHisLayout);
@@ -474,12 +550,22 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Current Balance:");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        DepositText.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        DepositText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DepositTextActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("DEPOSIT");
+        DepositButton.setBackground(new java.awt.Color(0, 0, 204));
+        DepositButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        DepositButton.setForeground(new java.awt.Color(255, 255, 255));
+        DepositButton.setText("DEPOSIT");
+        DepositButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DepositButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DepositLayout = new javax.swing.GroupLayout(Deposit);
         Deposit.setLayout(DepositLayout);
@@ -505,10 +591,10 @@ public class UserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DepositLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(DepositText, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(DepositLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DepositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
         );
         DepositLayout.setVerticalGroup(
@@ -529,9 +615,9 @@ public class UserInterface extends javax.swing.JFrame {
                         .addGap(113, 113, 113)
                         .addGroup(DepositLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1))
+                            .addComponent(DepositText))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DepositButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DepositLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)))
@@ -560,54 +646,84 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel17.setText("Enter Amount:");
         Withdraw.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 240, 45));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        Withdraw.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 240, 400, 45));
+        AmountLabel.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        AmountLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AmountLabelActionPerformed(evt);
+            }
+        });
+        Withdraw.add(AmountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 240, 400, 45));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Select Amount:");
         Withdraw.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 320, -1, 40));
 
-        jButton4.setBackground(new java.awt.Color(51, 102, 255));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("₱5,000");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        FiveKyawButton.setBackground(new java.awt.Color(51, 102, 255));
+        FiveKyawButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        FiveKyawButton.setForeground(new java.awt.Color(255, 255, 255));
+        FiveKyawButton.setText("₱5,000");
+        FiveKyawButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                FiveKyawButtonActionPerformed(evt);
             }
         });
-        Withdraw.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 130, 52));
+        Withdraw.add(FiveKyawButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 130, 52));
 
-        jButton5.setBackground(new java.awt.Color(51, 204, 255));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("₱500");
-        Withdraw.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 310, 130, 52));
+        FiveHundoButton.setBackground(new java.awt.Color(51, 204, 255));
+        FiveHundoButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        FiveHundoButton.setForeground(new java.awt.Color(255, 255, 255));
+        FiveHundoButton.setText("₱500");
+        FiveHundoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FiveHundoButtonActionPerformed(evt);
+            }
+        });
+        Withdraw.add(FiveHundoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 310, 130, 52));
 
-        jButton6.setBackground(new java.awt.Color(51, 255, 255));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("₱100");
-        Withdraw.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 310, 130, 52));
+        OnehundoButton.setBackground(new java.awt.Color(51, 255, 255));
+        OnehundoButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        OnehundoButton.setForeground(new java.awt.Color(255, 255, 255));
+        OnehundoButton.setText("₱100");
+        OnehundoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OnehundoButtonActionPerformed(evt);
+            }
+        });
+        Withdraw.add(OnehundoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 310, 130, 52));
 
-        jButton7.setBackground(new java.awt.Color(51, 51, 255));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("₱10,000");
-        Withdraw.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 380, 120, 52));
+        TenKyawButton.setBackground(new java.awt.Color(51, 51, 255));
+        TenKyawButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        TenKyawButton.setForeground(new java.awt.Color(255, 255, 255));
+        TenKyawButton.setText("₱10,000");
+        TenKyawButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TenKyawButtonActionPerformed(evt);
+            }
+        });
+        Withdraw.add(TenKyawButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 380, 120, 52));
 
-        jButton8.setBackground(new java.awt.Color(51, 153, 255));
-        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("₱1,000");
-        Withdraw.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 310, 120, 52));
+        OnekyawButton.setBackground(new java.awt.Color(51, 153, 255));
+        OnekyawButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        OnekyawButton.setForeground(new java.awt.Color(255, 255, 255));
+        OnekyawButton.setText("₱1,000");
+        OnekyawButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OnekyawButtonActionPerformed(evt);
+            }
+        });
+        Withdraw.add(OnekyawButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 310, 120, 52));
 
-        jButton9.setBackground(new java.awt.Color(0, 0, 204));
-        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("WITHDRAW");
-        Withdraw.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 470, 180, 71));
+        Withdrawbutton.setBackground(new java.awt.Color(0, 0, 204));
+        Withdrawbutton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Withdrawbutton.setForeground(new java.awt.Color(255, 255, 255));
+        Withdrawbutton.setText("WITHDRAW");
+        Withdrawbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WithdrawbuttonActionPerformed(evt);
+            }
+        });
+        Withdraw.add(Withdrawbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 470, 180, 71));
 
         jPanel9.add(Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
@@ -633,27 +749,32 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel23.setText("Enter Amount:");
         Withdraw1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 240, 45));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        Withdraw1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, 670, 45));
+        AccountNumber.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        Withdraw1.add(AccountNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, 670, 45));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Enter Account Number:");
         Withdraw1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 400, 40));
 
-        jButton15.setBackground(new java.awt.Color(0, 0, 204));
-        jButton15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setText("TRANSFER");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        TransferButton.setBackground(new java.awt.Color(0, 0, 204));
+        TransferButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        TransferButton.setForeground(new java.awt.Color(255, 255, 255));
+        TransferButton.setText("TRANSFER");
+        TransferButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                TransferButtonActionPerformed(evt);
             }
         });
-        Withdraw1.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 460, 180, 71));
+        Withdraw1.add(TransferButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 460, 180, 71));
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        Withdraw1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 420, 45));
+        AmountLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        AmountLabel2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AmountLabel2ActionPerformed(evt);
+            }
+        });
+        Withdraw1.add(AmountLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 420, 45));
 
         javax.swing.GroupLayout TransCashLayout = new javax.swing.GroupLayout(TransCash);
         TransCash.setLayout(TransCashLayout);
@@ -701,9 +822,9 @@ public class UserInterface extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_ProfileActionPerformed
 
     private void WithdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdActionPerformed
         // TODO add your handling code here:
@@ -740,7 +861,52 @@ public class UserInterface extends javax.swing.JFrame {
         Trans.setContentAreaFilled(false);
         Trans.setForeground(Color.white);
     }//GEN-LAST:event_TransMouseExited
+    
+    private void loadCSV() {
+        // Specify the path to the CSV file (you can change this to your file's path)
+        String filePath = "Transaction.csv";  // Update this to your actual file path
 
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line;
+            ArrayList<String[]> data = new ArrayList<>();
+
+            // Skip the first line (headers) since we already defined them in the JTable
+            br.readLine();
+
+            // Read the rest of the data
+            while ((line = br.readLine()) != null) {
+                // Split each line by comma and store the values in the data list
+                data.add(line.split(","));
+            }
+
+            // Create a DefaultTableModel to hold the data
+            DefaultTableModel model = new DefaultTableModel() {
+                // Override isCellEditable to make cells non-editable
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;  // Make all cells non-editable
+                }
+            };
+
+            model.addColumn("Action");
+            model.addColumn("Date");
+            model.addColumn("Amount");
+            model.addColumn("Description");
+
+            // Add data rows to the model
+            for (String[] row : data) {
+                model.addRow(row);
+            }
+
+            // Set the model to the JTable
+            Transhis.setModel(model);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
+        }
+    }
+    
     private void DeposMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeposMouseEntered
         // TODO add your handling code here:
         Depos.setContentAreaFilled(true);
@@ -844,14 +1010,235 @@ public class UserInterface extends javax.swing.JFrame {
         AccReg.setVisible(true);
     }//GEN-LAST:event_AccregActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void FiveKyawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiveKyawButtonActionPerformed
+        AmountLabel.setText("5000");
+    }//GEN-LAST:event_FiveKyawButtonActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void TransferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_TransferButtonActionPerformed
 
+    private void FiveHundoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiveHundoButtonActionPerformed
+        AmountLabel.setText("500");
+    }//GEN-LAST:event_FiveHundoButtonActionPerformed
+
+    private void OnehundoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnehundoButtonActionPerformed
+        AmountLabel.setText("100");
+    }//GEN-LAST:event_OnehundoButtonActionPerformed
+
+    private void WithdrawbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawbuttonActionPerformed
+         // Clear any previous error message
+        // AmountLabel.setText("");  // Assuming AmountLabel is a JTextField, not a JLabel
+
+        // Get the amount entered by the user
+        String amountText = AmountLabel.getText();  // Get text from the JTextField
+
+        // Check if the input is a valid number
+        if (isValidAmount(amountText)) {
+            // Get the current timestamp
+            LocalDateTime now = LocalDateTime.now();
+            String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+            // Save the data to a CSV file
+            saveToCSV("Withdraw", timestamp, amountText);  // Pass the amountText to the method
+
+            // Optionally, pop up a window showing the button action details
+            popUpWindow1("Withdraw", timestamp, amountText);  // Pass the amountText here
+
+        } else {
+            // Show an error message if the input is not a valid number
+            AmountLabel.setText("Please enter a valid number.");
+        }
+    }//GEN-LAST:event_WithdrawbuttonActionPerformed
+
+    // Helper method to check if the input is a valid numeric amount
+    private boolean isValidAmount(String str) {
+        try {
+            // Ensure the value is a valid decimal number (including decimals)
+            Double.parseDouble(str);  // Attempt to parse the input as a number
+            return str.matches("\\d+(\\.\\d{1,2})?");  // Validate format (optional decimal)
+        } catch (NumberFormatException e) {
+            return false;  // It is not a valid number
+        }
+    }
+
+    private void saveToCSV(String buttonText, String timestamp, String amount) {
+    FileWriter writer = null;
+    try {
+        // Open the CSV file in append mode (true)
+        writer = new FileWriter("Transaction.csv", true);
+
+        // Log the data being written to the file for debugging
+        System.out.println("Saving to CSV: " + buttonText + ", " + timestamp + ", " + amount);
+
+        // Append the data to the file
+        writer.append(buttonText)
+              .append(",")
+              .append(timestamp)
+              .append(",")
+              .append(amount)  // Add the amount to the CSV
+              .append("\n");
+    } catch (IOException e) {
+        // Log the error if there is an issue
+        System.err.println("Error saving to CSV: " + e.getMessage());
+        JOptionPane.showMessageDialog(this, "Error saving to CSV: " + e.getMessage(),
+                                      "Error", JOptionPane.ERROR_MESSAGE);
+    } finally {
+        try {
+            if (writer != null) {
+                writer.close();  // Ensure the writer is closed properly
+            }
+        } catch (IOException e) {
+            System.err.println("Error closing writer: " + e.getMessage());
+        }
+    }
+    System.out.println("Current working directory: " + System.getProperty("user.dir"));
+
+}
+
+    private void popUpWindow1(String buttonText, String timestamp, String amount) {
+        // Create a new JFrame for the popup window
+        JFrame popup = new JFrame("Withdraw Click Details");
+        popup.setSize(325, 325);
+        popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Center the popup window on the screen
+        popup.setLocationRelativeTo(null);
+
+        // Add a label with the button click information
+        JLabel label = new JLabel("<html>Details: " + buttonText + "<br>Time: " + timestamp + "<br>Amount: " + amount + "</html>", SwingConstants.CENTER);
+
+        popup.add(label);
+
+        // Display the popup
+        popup.setVisible(true);
+    }
+
+
+    // Restrict JTextField to numbers only (including decimals)
+    private void restrictInputToNumbersOnly(JTextField textField) {
+        PlainDocument doc = (PlainDocument) textField.getDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+    }
+    
+    private void AmountLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AmountLabelActionPerformed
+
+    private void TenKyawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenKyawButtonActionPerformed
+        AmountLabel.setText("10000");
+    }//GEN-LAST:event_TenKyawButtonActionPerformed
+
+    private void OnekyawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnekyawButtonActionPerformed
+       AmountLabel.setText("1000");
+    }//GEN-LAST:event_OnekyawButtonActionPerformed
+
+    private void NotifsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotifsActionPerformed
+        
+    }//GEN-LAST:event_NotifsActionPerformed
+
+    private void DepositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositButtonActionPerformed
+        // Get the amount entered by the user
+        String amountText = DepositText.getText();  // Get text from the JTextField
+
+        // Check if the input is a valid number
+        if (isValidAmount(amountText)) {
+            // Get the current timestamp
+            LocalDateTime now = LocalDateTime.now();
+            String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+            // Save the data to a CSV file
+            saveToCSV("Deposited", timestamp, amountText);  // Pass the amountText to the method
+
+            // Optionally, pop up a window showing the button action details
+            popUpWindow2("Deposited", timestamp, amountText);  // Pass the amountText here
+
+        } else {
+            // Show an error message if the input is not a valid number
+            DepositText.setText("Please enter a valid number.");
+        }
+    }//GEN-LAST:event_DepositButtonActionPerformed
+
+    private void AmountLabel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountLabel2ActionPerformed
+        
+    }//GEN-LAST:event_AmountLabel2ActionPerformed
+    
+    private void restrictInputToNumbersOnly3(JTextField textField) {
+        PlainDocument doc = (PlainDocument) textField.getDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+    }
+    
+    private void DepositTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DepositTextActionPerformed
+    
+    private void popUpWindow2(String buttonText, String timestamp, String amount) {
+        // Create a new JFrame for the popup window
+        JFrame popup = new JFrame("Deposited Click Details");
+        popup.setSize(325, 325);
+        popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        // Center the popup window on the screen
+        popup.setLocationRelativeTo(null);
+
+        // Add a label with the button click information
+        JLabel label = new JLabel("<html>Details: " + buttonText + "<br>Time: " + timestamp + "<br>Amount: " + amount + "</html>", SwingConstants.CENTER);
+
+        popup.add(label);
+
+        // Display the popup
+        popup.setVisible(true);
+    }
+    
+    private void restrictInputToNumbersOnly2(JTextField textField) {
+        PlainDocument doc = (PlainDocument) textField.getDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (string.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (text.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -888,29 +1275,40 @@ public class UserInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AccDEts;
     private javax.swing.JPanel AccReg;
+    private javax.swing.JTextField AccountNumber;
     private javax.swing.JButton Accreg;
+    private javax.swing.JTextField AmountLabel;
+    private javax.swing.JTextField AmountLabel2;
+    private javax.swing.JLabel BalDis;
+    private javax.swing.JPanel Balance;
+    private javax.swing.JLabel BalanceLabel;
     private javax.swing.JButton Dashb;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Depos;
     private javax.swing.JPanel Deposit;
+    private javax.swing.JButton DepositButton;
+    private javax.swing.JTextField DepositText;
+    private javax.swing.JButton FiveHundoButton;
+    private javax.swing.JButton FiveKyawButton;
+    private javax.swing.JPanel Hist;
+    private javax.swing.JButton Notifs;
+    private javax.swing.JButton OnehundoButton;
+    private javax.swing.JButton OnekyawButton;
+    private javax.swing.JButton Profile;
+    private javax.swing.JPanel RecentTrans;
+    private javax.swing.JButton TenKyawButton;
     private javax.swing.JButton Trans;
     private javax.swing.JPanel TransCash;
     private javax.swing.JPanel TransacHis;
     private javax.swing.JButton Transc;
+    private javax.swing.JButton TransferButton;
+    private javax.swing.JTable Transhis;
     private javax.swing.JButton Withd;
     private javax.swing.JPanel Withdraw;
     private javax.swing.JPanel Withdraw1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton Withdrawbutton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -934,11 +1332,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -946,10 +1340,5 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
