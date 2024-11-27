@@ -812,6 +812,9 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         // TODO add your handling code here:
+        AdminAccountRegistration adminAcc = new AdminAccountRegistration();
+        adminAcc.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_CreateActionPerformed
 
     private void CreateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateMouseExited
