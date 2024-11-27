@@ -73,69 +73,84 @@ public class UserInterface extends javax.swing.JFrame {
     }
         
     public void computeMoneyAndUpdateLabels(String filePath) {
-        double totalDeposits = 0.0;
-        double totalWithdrawals = 0.0;
+    double totalDeposits = 0.0;
+    double totalWithdrawals = 0.0;
 
-        // Create a DecimalFormat for formatting the money values
-        DecimalFormat df = new DecimalFormat("#.00");
+    // Create a DecimalFormat for formatting money values
+    DecimalFormat df = new DecimalFormat("#");
 
-        // Validate the file path before proceeding
-        if (filePath == null || filePath.isEmpty()) {
-            System.out.println("Invalid file path.");
-            return;
-        }
+    // Validate the file path
+    if (filePath == null || filePath.isEmpty()) {
+        System.out.println("Invalid file path.");
+        return;
+    }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            boolean isFirstLine = true;
+    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        String line;
+        boolean isFirstLine = true;
 
-            // Read each line of the CSV file
-            while ((line = br.readLine()) != null) {
-                if (isFirstLine) {
-                    // Skip the header if present
-                    isFirstLine = false;
-                    continue;
-                }
+        // Display the file content in the console or GUI
+        System.out.println("Reading CSV file:");
+        System.out.printf("%-15s %-15s %-10s %-30s%n", "Action", "Date", "Amount", "Description");
 
-                // Split the line by comma, assuming the columns are Action, Date, Amount, Description
-                String[] values = line.split(",");
-                if (values.length < 3) {
-                    System.out.println("Skipping invalid line: " + line);
-                    continue;
-                }
-
-                try {
-                    // Parse the money value (assuming it is in the third column, index 2)
-                    double money = Double.parseDouble(values[2].trim());
-                    String action = values[0].trim(); // Action in the first column
-
-                    // Check if it's a "Deposit" or "Withdrawal" and update the totals accordingly
-                    if (action.equalsIgnoreCase("Deposited")) {
-                        totalDeposits += money;
-                    } else if (action.equalsIgnoreCase("Withdraw")) {
-                        totalWithdrawals -= money;  
-                    }
-                } catch (NumberFormatException e) {
-                    // Handle invalid number formats gracefully
-                    System.out.println("Skipping invalid money value: " + values[2]);
-                }
+        while ((line = br.readLine()) != null) {
+            if (isFirstLine) {
+                // Skip the header if present
+                isFirstLine = false;
+                continue;
             }
 
-            // Compute and format the totals
-            String formattedDeposits = "$" + df.format(totalDeposits);
-            String formattedWithdrawals = "$" + df.format(totalWithdrawals);
-            String formattedBalance = "$" + df.format(totalDeposits - totalWithdrawals);
+            // Split the line by commas (columns: Action, Date, Amount, Description)
+            String[] values = line.split(",");
+            if (values.length < 4) {
+                System.out.println("Skipping invalid line: " + line);
+                continue;
+            }
 
-            // Update the JLabels (replace with your actual label names)
-            CurrentBal.setText(formattedBalance);
-            BalDis.setText(formattedBalance);
+            String action = values[0].trim();
+            String date = values[1].trim();
+            String amountStr = values[2].trim();
+            String description = values[3].trim();
 
-        } catch (IOException e) {
-            // Handle file reading errors
-            System.out.println("Error reading the file: " + filePath);
-            e.printStackTrace();
+            // Display the row data
+            System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
+
+            try {
+                // Parse the amount
+                double money = Double.parseDouble(amountStr);
+
+                // Add deposits and withdrawals to their respective totals
+                if (action.equalsIgnoreCase("Deposited")) {
+                    totalDeposits += money;
+                } else if (action.equalsIgnoreCase("Withdraw")) {
+                    totalWithdrawals += money; // Withdrawals are added positively
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Skipping invalid money value: " + amountStr);
+            }
         }
+
+        // Calculate the total balance (sum of deposits and withdrawals)
+        double totalBalance = totalDeposits + totalWithdrawals;
+
+        // Format totals
+        String formattedDeposits = "$" + df.format(totalDeposits);
+        String formattedWithdrawals = "$" + df.format(totalWithdrawals);
+        String formattedBalance = "$" + df.format(totalBalance);
+
+        // Update the JLabels (replace with your actual JLabel names)
+        CurrentBal.setText(formattedBalance);
+        BalDis.setText(formattedBalance);
+
+
+    } catch (IOException e) {
+        System.out.println("Error reading the file: " + filePath);
+        e.printStackTrace();
     }
+}
+
+
+
 
 
     public void displayLastRow(String filePath, JLabel ActionDis, JLabel DateDis, JLabel Amountdis, JLabel DescrDis) {
@@ -172,15 +187,15 @@ public class UserInterface extends javax.swing.JFrame {
                     ActionDis.setText(action.isEmpty() ? "N/A" : action);
 
                     // Set DateDis
-                    String date = lastRow[1].trim();
+                    String date = lastRow[4].trim();
                     DateDis.setText(date.isEmpty() ? "N/A" : date);
 
                     // Set Amountdis
-                    String amount = lastRow[2].trim();
+                    String amount = lastRow[3].trim();
                     Amountdis.setText(amount.isEmpty() ? "N/A" : amount);
 
                     // Set DescrDis (for description, handle empty strings)
-                    String description = lastRow[3].trim();
+                    String description = lastRow[5].trim();
                     DescrDis.setText(description.isEmpty() ? "No description" : description);
                 } else {
                     JOptionPane.showMessageDialog(null, "Row does not have enough columns.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -237,6 +252,16 @@ public class UserInterface extends javax.swing.JFrame {
         AccDEts = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        NameDis = new javax.swing.JLabel();
+        PhoneNumDis = new javax.swing.JLabel();
+        BdayLabel = new javax.swing.JLabel();
+        NameLabel1 = new javax.swing.JLabel();
+        PhoneNumLabel = new javax.swing.JLabel();
+        BdayDis1 = new javax.swing.JLabel();
+        AddressLabel = new javax.swing.JLabel();
+        AddressDis = new javax.swing.JLabel();
+        BankAccNumLabel = new javax.swing.JLabel();
+        PhoneNumDis1 = new javax.swing.JLabel();
         Hist = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
@@ -611,18 +636,56 @@ public class UserInterface extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
+        NameDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        PhoneNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        BdayLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BdayLabel.setText("Birthday:");
+
+        NameLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NameLabel1.setText("Name:");
+
+        PhoneNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        PhoneNumLabel.setText("PhoneNumer:");
+
+        BdayDis1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        AddressLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AddressLabel.setText("Address:");
+
+        AddressDis.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
+        BankAccNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BankAccNumLabel.setText("Bank Account Number:");
+
+        PhoneNumDis1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
         javax.swing.GroupLayout AccDEtsLayout = new javax.swing.GroupLayout(AccDEts);
         AccDEts.setLayout(AccDEtsLayout);
         AccDEtsLayout.setHorizontalGroup(
             AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                .addGroup(AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(AddressDis, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(BdayDis1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(PhoneNumDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NameDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(AccDEtsLayout.createSequentialGroup()
+                        .addGroup(AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(AccDEtsLayout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabel5))
+                            .addComponent(BdayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PhoneNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(PhoneNumDis1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(AccDEtsLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AccDEtsLayout.setVerticalGroup(
             AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -631,7 +694,27 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(NameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NameDis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(BdayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BdayDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PhoneNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PhoneNumDis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddressDis, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PhoneNumDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         Hist.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -1607,6 +1690,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton Accreg;
     private javax.swing.JLabel ActionDis;
     private javax.swing.JLabel ActionLabel1;
+    private javax.swing.JLabel AddressDis;
+    private javax.swing.JLabel AddressLabel;
     private javax.swing.JTextField AmountLabel;
     private javax.swing.JLabel AmountLabel1;
     private javax.swing.JTextField AmountLabel2;
@@ -1615,6 +1700,9 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
     private javax.swing.JLabel BalanceLabel;
+    private javax.swing.JLabel BankAccNumLabel;
+    private javax.swing.JLabel BdayDis1;
+    private javax.swing.JLabel BdayLabel;
     private javax.swing.JLabel CurrentBal;
     private javax.swing.JTable DashHis;
     private javax.swing.JButton Dashb;
@@ -1629,9 +1717,14 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton FiveHundoButton;
     private javax.swing.JButton FiveKyawButton;
     private javax.swing.JPanel Hist;
+    private javax.swing.JLabel NameDis;
+    private javax.swing.JLabel NameLabel1;
     private javax.swing.JButton Notifs;
     private javax.swing.JButton OnehundoButton;
     private javax.swing.JButton OnekyawButton;
+    private javax.swing.JLabel PhoneNumDis;
+    private javax.swing.JLabel PhoneNumDis1;
+    private javax.swing.JLabel PhoneNumLabel;
     private javax.swing.JButton Profile;
     private javax.swing.JPanel RecentTrans;
     private javax.swing.JButton TenKyawButton;
