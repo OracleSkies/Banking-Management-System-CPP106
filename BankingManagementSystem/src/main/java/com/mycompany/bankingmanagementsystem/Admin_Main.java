@@ -28,6 +28,8 @@ public class Admin_Main extends javax.swing.JFrame {
         Transactions.setVisible(false);
         AuditAndReport.setVisible(false);
         loadTransactionDataForDashboard("Transactions.csv");
+        loadTransactionDataForTransaction("Transactions.csv");
+        loadAccountsForAccManagement("Accounts.csv");
     }
 
     /**
@@ -56,9 +58,9 @@ public class Admin_Main extends javax.swing.JFrame {
         AccountManagement = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        AccountApplicationTable = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        ActiveAccountsTable = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
@@ -264,31 +266,25 @@ public class Admin_Main extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ACCOUNT MANAGEMENT");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        AccountApplicationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Name", "Action"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable3);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
             },
             new String [] {
                 "Name", "Action"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane3.setViewportView(AccountApplicationTable);
+
+        ActiveAccountsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Type", "Action"
+            }
+        ));
+        jScrollPane4.setViewportView(ActiveAccountsTable);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,7 +299,7 @@ public class Admin_Main extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(0, 0, 204));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CREATE NEW ACCOUNT");
+        jButton3.setText("CREATE NEW USER ACCOUNT");
 
         javax.swing.GroupLayout AccountManagementLayout = new javax.swing.GroupLayout(AccountManagement);
         AccountManagement.setLayout(AccountManagementLayout);
@@ -320,13 +316,14 @@ public class Admin_Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AccountManagementLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(434, 434, 434))
             .addGroup(AccountManagementLayout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(jLabel4)
+                .addGroup(AccountManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AccountManagementLayout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addComponent(jLabel4))
+                    .addGroup(AccountManagementLayout.createSequentialGroup()
+                        .addGap(406, 406, 406)
+                        .addComponent(jButton3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AccountManagementLayout.setVerticalGroup(
@@ -561,6 +558,7 @@ public class Admin_Main extends javax.swing.JFrame {
         AccountManagement.setVisible(true);
         Transactions.setVisible(false);
         AuditAndReport.setVisible(false);
+        
     }//GEN-LAST:event_AccManagebuttonActionPerformed
 
     private void TransactionsbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransactionsbuttonActionPerformed
@@ -569,7 +567,7 @@ public class Admin_Main extends javax.swing.JFrame {
         AccountManagement.setVisible(false);
         Transactions.setVisible(true);
         AuditAndReport.setVisible(false);
-        loadTransactionDataForTransaction("Transactions.csv");
+        
     }//GEN-LAST:event_TransactionsbuttonActionPerformed
 
     private void AudRepbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AudRepbuttonActionPerformed
@@ -635,6 +633,27 @@ public class Admin_Main extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    private void loadAccountsForAccManagement(String filePath){
+        //Loads all data from Accounts.csv to transaction table in account management panel. 
+        //Creates a dynamic table that add rows depending on the number of rows in Accounts.csv
+        //Displays only the name and the type of account per row
+        DefaultTableModel model = (DefaultTableModel) ActiveAccountsTable.getModel();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                String name = data[2];
+                String type = data[3];
+                
+                // Create a new array with only 'name' and 'type' to add to the table
+                Object[] rowData = {name,type};
+                model.addRow(rowData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -672,7 +691,9 @@ public class Admin_Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccManagebutton;
+    private javax.swing.JTable AccountApplicationTable;
     private javax.swing.JPanel AccountManagement;
+    private javax.swing.JTable ActiveAccountsTable;
     private javax.swing.JButton AudRepbutton;
     private javax.swing.JPanel AuditAndReport;
     private javax.swing.JLabel BackgroundImage;
@@ -706,8 +727,6 @@ public class Admin_Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JButton notificationButton;
     private javax.swing.JTable transactionTableDash;
     // End of variables declaration//GEN-END:variables
