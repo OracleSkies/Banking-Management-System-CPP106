@@ -11,6 +11,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardWatchEventKinds;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -42,6 +50,8 @@ public class UserInterface extends javax.swing.JFrame {
         restrictInputToNumbersOnly2(DepositText);//To restrict the text field for only number 
         restrictInputToNumbersOnly3(AmountLabel2);//To restrict the text field for only number 
         loadCSV(); // Automatically load the CSV file when the JFrame is created
+        String filePath = "Transaction.csv";
+        computeMoneyAndUpdateLabels(filePath);
         Dashboard.setVisible(true);
         TransacHis.setVisible(false);
         Deposit.setVisible(false);
@@ -56,7 +66,89 @@ public class UserInterface extends javax.swing.JFrame {
         jScrollPane1.getViewport().setOpaque(false);
         Transhis.setShowGrid(false);
     }
+       
+    public void computeMoneyAndUpdateLabels(String filePath) {
+        double totalDeposits = 0.0;
+        double totalWithdrawals = 0.0;
 
+        // Create a DecimalFormat for formatting the money values
+        DecimalFormat df = new DecimalFormat("#.00");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+
+            // Skip the header line if there is one
+            br.readLine(); // Assuming the first line is the header; if no header, remove this line
+
+            // Read each line of the CSV file
+            while ((line = br.readLine()) != null) {
+                // Split the line by comma, assuming the columns are Action, Date, Amount, Description
+                String[] values = line.split(",");
+
+                try {
+                    // Parse the money value (assuming it is in the third column, index 2)
+                    double money = Double.parseDouble(values[2].trim());
+                    String action = values[0].trim(); // Action in the first column
+
+                    // Check if it's a "Deposit" or "Withdrawal" and update the totals accordingly
+                    if (action.equalsIgnoreCase("Deposited")) {
+                        totalDeposits += money; // Add to the total deposits
+                    } else if (action.equalsIgnoreCase("Withdraw")) {
+                        totalWithdrawals += money; // Add to the total withdrawals
+                    }
+                } catch (NumberFormatException e) {
+                    // Handle invalid number formats gracefully
+                    System.out.println("Skipping invalid money value: " + values[2]);
+                }
+            }
+
+            // Format the totals and update the JLabels
+            BalDis.setText("$" + df.format(totalDeposits));
+            CurrentBal.setText("$" + df.format(totalWithdrawals));
+        } catch (IOException e) {
+            // Print stack trace for file reading errors
+            e.printStackTrace();
+        }
+    }
+
+    
+     // Method to watch the file for modifications and reload the display
+    public void watchFileForChanges(String filePath) {
+        Path path = Paths.get(filePath).getParent();  // Get the directory containing the file
+        try {
+            WatchService watchService = FileSystems.getDefault().newWatchService();
+            path.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
+
+            // Create a thread to monitor the file for changes
+            new Thread(() -> {
+                while (true) {
+                    try {
+                        WatchKey key = watchService.take(); // wait for a change
+
+                        for (WatchEvent<?> event : key.pollEvents()) {
+                            if (event.kind() == StandardWatchEventKinds.ENTRY_MODIFY) {
+                                // Check if the modified file is the one we're watching
+                                if (event.context().toString().equals(Paths.get(filePath).getFileName().toString())) {
+                                    // File was modified, reload the balance
+                                    computeMoneyAndUpdateLabels(filePath);
+                                }
+                            }
+                        }
+
+                        // Reset the key to continue watching
+                        key.reset();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,6 +184,8 @@ public class UserInterface extends javax.swing.JFrame {
         Hist = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        DashHis = new javax.swing.JTable();
         TransacHis = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Transhis = new javax.swing.JTable();
@@ -100,7 +194,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        CurrentBal = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         DepositText = new javax.swing.JTextField();
         DepositButton = new javax.swing.JButton();
@@ -133,6 +227,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/acc.png"))); // NOI18N
@@ -353,7 +448,9 @@ public class UserInterface extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
+        BalDis.setBackground(new java.awt.Color(255, 255, 255));
         BalDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BalDis.setForeground(new java.awt.Color(255, 255, 255));
 
         BalanceLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         BalanceLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -374,12 +471,10 @@ public class UserInterface extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(BalanceLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(24, 24, 24)
                 .addGroup(BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BalanceLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BalanceLayout.setVerticalGroup(
@@ -411,7 +506,7 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addComponent(jLabel5)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
             .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator4)
@@ -428,35 +523,45 @@ public class UserInterface extends javax.swing.JFrame {
         );
 
         Hist.setBackground(new java.awt.Color(204, 204, 204, 80));
+        Hist.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        Hist.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 42, 350, 10));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("HISTORY");
+        Hist.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 12, -1, 24));
 
-        javax.swing.GroupLayout HistLayout = new javax.swing.GroupLayout(Hist);
-        Hist.setLayout(HistLayout);
-        HistLayout.setHorizontalGroup(
-            HistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(142, 142, 142))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        HistLayout.setVerticalGroup(
-            HistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HistLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
+
+        DashHis.setBackground(new java.awt.Color(255, 255, 255, 80));
+        DashHis.setForeground(new java.awt.Color(255, 255, 255));
+        DashHis.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Action", "Date", "Amount", "Description"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(DashHis);
+        if (DashHis.getColumnModel().getColumnCount() > 0) {
+            DashHis.getColumnModel().getColumn(0).setResizable(false);
+            DashHis.getColumnModel().getColumn(1).setResizable(false);
+            DashHis.getColumnModel().getColumn(2).setResizable(false);
+            DashHis.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        Hist.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 520));
 
         javax.swing.GroupLayout DashboardLayout = new javax.swing.GroupLayout(Dashboard);
         Dashboard.setLayout(DashboardLayout);
@@ -470,8 +575,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(AccDEts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Hist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(Hist, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         DashboardLayout.setVerticalGroup(
             DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,9 +658,8 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Enter Amount:");
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("$1,000,000");
+        CurrentBal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        CurrentBal.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -602,7 +705,7 @@ public class UserInterface extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DepositLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CurrentBal, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DepositText, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(DepositLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -622,7 +725,7 @@ public class UserInterface extends javax.swing.JFrame {
                     .addGroup(DepositLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(DepositLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CurrentBal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(113, 113, 113)
                         .addGroup(DepositLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -913,6 +1016,7 @@ public class UserInterface extends javax.swing.JFrame {
 
             // Set the model to the JTable
             Transhis.setModel(model);
+            DashHis.setModel(model);
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
@@ -1035,9 +1139,9 @@ public class UserInterface extends javax.swing.JFrame {
         
         // Show the result in a message dialog
         if (found) {
-            JOptionPane.showMessageDialog(this, "User found in Database!");
+            JOptionPane.showMessageDialog(this, "Succesfully Transfered");
         } else {
-            JOptionPane.showMessageDialog(this, "user not found.");
+            JOptionPane.showMessageDialog(this, "User not found.");
         }
     }//GEN-LAST:event_TransferButtonActionPerformed
     
@@ -1074,12 +1178,10 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_OnehundoButtonActionPerformed
 
     private void WithdrawbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawbuttonActionPerformed
-         // Clear any previous error message
-        // AmountLabel.setText("");  // Assuming AmountLabel is a JTextField, not a JLabel
-
+         
         // Get the amount entered by the user
         String amountText = AmountLabel.getText();  // Get text from the JTextField
-
+        AmountLabel.setText("");// Clear any previous error message
         // Check if the input is a valid number
         if (isValidAmount(amountText)) {
             // Get the current timestamp
@@ -1186,6 +1288,8 @@ public class UserInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AmountLabelActionPerformed
 
+    
+    
     private void TenKyawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenKyawButtonActionPerformed
         AmountLabel.setText("10000");
     }//GEN-LAST:event_TenKyawButtonActionPerformed
@@ -1201,25 +1305,29 @@ public class UserInterface extends javax.swing.JFrame {
     private void DepositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositButtonActionPerformed
         // Get the amount entered by the user
         String amountText = DepositText.getText();  // Get text from the JTextField
+        DepositText.setText("");
 
         // Check if the input is a valid number
         if (isValidAmount(amountText)) {
             // Get the current timestamp
             LocalDateTime now = LocalDateTime.now();
             String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            
 
             // Save the data to a CSV file
             saveToCSV("Deposited", timestamp, amountText);  // Pass the amountText to the method
 
             // Optionally, pop up a window showing the button action details
             popUpWindow2("Deposited", timestamp, amountText);  // Pass the amountText here
-
+            
         } else {
             // Show an error message if the input is not a valid number
             DepositText.setText("Please enter a valid number.");
+            
         }
+        
     }//GEN-LAST:event_DepositButtonActionPerformed
-
+    
     private void AmountLabel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountLabel2ActionPerformed
         
     }//GEN-LAST:event_AmountLabel2ActionPerformed
@@ -1331,6 +1439,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
     private javax.swing.JLabel BalanceLabel;
+    private javax.swing.JLabel CurrentBal;
+    private javax.swing.JTable DashHis;
     private javax.swing.JButton Dashb;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Depos;
@@ -1359,7 +1469,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1382,6 +1491,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
