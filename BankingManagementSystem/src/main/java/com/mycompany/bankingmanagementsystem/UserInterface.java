@@ -6,12 +6,10 @@ package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -73,86 +72,81 @@ public class UserInterface extends javax.swing.JFrame {
     }
         
     public void computeMoneyAndUpdateLabels(String filePath) {
-    double totalDeposits = 0.0;
-    double totalWithdrawals = 0.0;
+        double totalDeposits = 0.0;
+        double totalWithdrawals = 0.0;
 
-    // Create a DecimalFormat for formatting money values
-    DecimalFormat df = new DecimalFormat("#");
+        // Create a DecimalFormat for formatting money values
+        DecimalFormat df = new DecimalFormat("#");
 
-    // Validate the file path
-    if (filePath == null || filePath.isEmpty()) {
-        System.out.println("Invalid file path.");
-        return;
-    }
-
-    try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-        String line;
-        boolean isFirstLine = true;
-
-        // Display the file content in the console or GUI
-        System.out.println("Reading CSV file:");
-        System.out.printf("%-15s %-15s %-10s %-30s%n", "Action", "Date", "Amount", "Description");
-
-        while ((line = br.readLine()) != null) {
-            if (isFirstLine) {
-                // Skip the header if present
-                isFirstLine = false;
-                continue;
-            }
-
-            // Split the line by commas (columns: Action, Date, Amount, Description)
-            String[] values = line.split(",");
-            if (values.length < 4) {
-                System.out.println("Skipping invalid line: " + line);
-                continue;
-            }
-
-            String action = values[0].trim();
-            String date = values[1].trim();
-            String amountStr = values[2].trim();
-            String description = values[3].trim();
-
-            // Display the row data
-            System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
-
-            try {
-                // Parse the amount
-                double money = Double.parseDouble(amountStr);
-
-                // Add deposits and withdrawals to their respective totals
-                if (action.equalsIgnoreCase("Deposited")) {
-                    totalDeposits += money;
-                } else if (action.equalsIgnoreCase("Withdraw")) {
-                    totalWithdrawals += money; // Withdrawals are added positively
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Skipping invalid money value: " + amountStr);
-            }
+        // Validate the file path
+        if (filePath == null || filePath.isEmpty()) {
+            System.out.println("Invalid file path.");
+            return;
         }
 
-        // Calculate the total balance (sum of deposits and withdrawals)
-        double totalBalance = totalDeposits + totalWithdrawals;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            boolean isFirstLine = true;
 
-        // Format totals
-        String formattedDeposits = "$" + df.format(totalDeposits);
-        String formattedWithdrawals = "$" + df.format(totalWithdrawals);
-        String formattedBalance = "$" + df.format(totalBalance);
+            // Display the file content in the console or GUI
+            System.out.println("Reading CSV file:");
+            System.out.printf("%-15s %-15s %-10s %-30s%n", "Action", "Date", "Amount", "Description");
 
-        // Update the JLabels (replace with your actual JLabel names)
-        CurrentBal.setText(formattedBalance);
-        BalDis.setText(formattedBalance);
+            while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    // Skip the header if present
+                    isFirstLine = false;
+                    continue;
+                }
+
+                // Split the line by commas (columns: Action, Date, Amount, Description)
+                String[] values = line.split(",");
+                if (values.length < 4) {
+                    System.out.println("Skipping invalid line: " + line);
+                    continue;
+                }
+
+                String action = values[0].trim();
+                String date = values[1].trim();
+                String amountStr = values[2].trim();
+                String description = values[3].trim();
+
+                // Display the row data
+                System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
+
+                try {
+                    // Parse the amount
+                    double money = Double.parseDouble(amountStr);
+
+                    // Add deposits and withdrawals to their respective totals
+                    if (action.equalsIgnoreCase("Deposited")) {
+                        totalDeposits += money;
+                    } else if (action.equalsIgnoreCase("Withdraw")) {
+                        totalWithdrawals += money; // Withdrawals are added positively
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Skipping invalid money value: " + amountStr);
+                }
+            }
+
+            // Calculate the total balance (sum of deposits and withdrawals)
+            double totalBalance = totalDeposits + totalWithdrawals;
+
+            // Format totals
+            String formattedDeposits = "$" + df.format(totalDeposits);
+            String formattedWithdrawals = "$" + df.format(totalWithdrawals);
+            String formattedBalance = "$" + df.format(totalBalance);
+
+            // Update the JLabels (replace with your actual JLabel names)
+            CurrentBal.setText(formattedBalance);
+            BalDis.setText(formattedBalance);
 
 
-    } catch (IOException e) {
-        System.out.println("Error reading the file: " + filePath);
-        e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Error reading the file: " + filePath);
+            e.printStackTrace();
+        }
     }
-}
-
-
-
-
-
     public void displayLastRow(String filePath, JLabel ActionDis, JLabel DateDis, JLabel Amountdis, JLabel DescrDis) {
         File file = new File(filePath);
 
@@ -206,12 +200,11 @@ public class UserInterface extends javax.swing.JFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    } 
 
 
 
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
