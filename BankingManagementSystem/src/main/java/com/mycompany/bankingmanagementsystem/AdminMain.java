@@ -717,6 +717,11 @@ public class AdminMain extends javax.swing.JFrame {
         getContentPane().add(notificationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 47));
 
         accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/acc.png"))); // NOI18N
+        accountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(accountButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 20, 50, 47));
 
         BackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.png"))); // NOI18N
@@ -850,6 +855,21 @@ public class AdminMain extends javax.swing.JFrame {
         registration.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_newUserAccountButtonActionPerformed
+
+    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(
+            this, // Parent component (current frame)
+            "Are you sure you want to log out?", // Message
+            "Confirm Logout", // Title of the dialog
+            JOptionPane.YES_NO_OPTION, // Option type
+            JOptionPane.QUESTION_MESSAGE // Icon type
+        );
+
+        if (response == JOptionPane.YES_OPTION) {
+            this.dispose(); // Close the current window
+        }
+    }//GEN-LAST:event_accountButtonActionPerformed
 
     
     private void loadTransactionDataForDashboard(String filePath){

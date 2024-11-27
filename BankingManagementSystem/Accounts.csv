@@ -1,2 +1,3 @@
 username,password,name,birthdate,phone number,address,Account Number,type
-username,password,namee,bsdf,123123,asdfsdaf,00000,admin
+admin,pass,ADMIN NAME,JUNE,123123,CABUYAO,00000,admin
+user,pass,namee,JANUARY,1121221212,CABUYAO,55464,user
