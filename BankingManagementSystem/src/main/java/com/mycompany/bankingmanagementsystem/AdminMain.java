@@ -998,7 +998,7 @@ public class AdminMain extends javax.swing.JFrame {
                     new UserAccountApplication(name, birthdate, phoneNumber, address).setVisible(true);
                 }
             });
-            this.setVisible(false);
+            //this.setVisible(false);
             
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

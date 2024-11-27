@@ -46,6 +46,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         DECLINE = new javax.swing.JButton();
         APPROVE = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
         birthLabel = new javax.swing.JLabel();
@@ -99,7 +100,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
                 DECLINEActionPerformed(evt);
             }
         });
-        jPanel2.add(DECLINE, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 560, 210, 80));
+        jPanel2.add(DECLINE, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 210, 80));
 
         APPROVE.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         APPROVE.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,7 +120,27 @@ public class UserAccountApplication extends javax.swing.JFrame {
                 APPROVEActionPerformed(evt);
             }
         });
-        jPanel2.add(APPROVE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, 210, 80));
+        jPanel2.add(APPROVE, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 210, 80));
+
+        backButton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("BACK");
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backButtonMouseExited(evt);
+            }
+        });
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 210, 80));
 
         jPanel1.setOpaque(false);
 
@@ -139,19 +160,16 @@ public class UserAccountApplication extends javax.swing.JFrame {
         nameLabel.setBackground(new java.awt.Color(255, 255, 255));
         nameLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        nameLabel.setText("EMPTY");
         jPanel2.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 350, 50));
 
         birthLabel.setBackground(new java.awt.Color(255, 255, 255));
         birthLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         birthLabel.setForeground(new java.awt.Color(255, 255, 255));
-        birthLabel.setText("EMPTY");
         jPanel2.add(birthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 350, 50));
 
         phoneLabel.setBackground(new java.awt.Color(255, 255, 255));
         phoneLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         phoneLabel.setForeground(new java.awt.Color(255, 255, 255));
-        phoneLabel.setText("EMPTY");
         jPanel2.add(phoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 350, 50));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -169,7 +187,6 @@ public class UserAccountApplication extends javax.swing.JFrame {
         addressLabel.setBackground(new java.awt.Color(255, 255, 255));
         addressLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         addressLabel.setForeground(new java.awt.Color(255, 255, 255));
-        addressLabel.setText("EMPTY");
         jPanel2.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 350, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 1250, 710));
@@ -216,6 +233,26 @@ public class UserAccountApplication extends javax.swing.JFrame {
     private void APPROVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_APPROVEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_APPROVEActionPerformed
+
+    private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
+        // TODO add your handling code here:
+        backButton.setContentAreaFilled(true);
+        backButton.setForeground(Color.black);
+        backButton.setBackground(Color.cyan);
+    }//GEN-LAST:event_backButtonMouseEntered
+
+    private void backButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseExited
+        // TODO add your handling code here:
+        backButton.setContentAreaFilled(false);
+        backButton.setForeground(Color.white);
+    }//GEN-LAST:event_backButtonMouseExited
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+//        AdminMain main = new AdminMain();
+//        main.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_backButtonActionPerformed
 
     
 
@@ -264,6 +301,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
     private javax.swing.JButton DECLINE;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel addressLabel;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel birthLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
