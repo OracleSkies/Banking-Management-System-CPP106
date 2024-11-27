@@ -60,7 +60,6 @@ public class AdminMain extends javax.swing.JFrame {
             }
             @Override 
             public void onDelete(int row){
-                System.out.println("delete check"+row);
                 int response = JOptionPane.showConfirmDialog(
                     null, // Parent component (current frame)
                     "Are you sure you want to deactivate account?", // Message
