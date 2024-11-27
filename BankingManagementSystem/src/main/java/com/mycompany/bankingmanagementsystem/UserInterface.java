@@ -7,6 +7,7 @@ package com.mycompany.bankingmanagementsystem;
 import java.awt.Color;
 import java.awt.Frame;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -1026,9 +1027,44 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_FiveKyawButtonActionPerformed
 
     private void TransferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferButtonActionPerformed
-        // TODO add your handling code here:
+        // Get the text from the JTextField
+        String inputText = AccountNumber.getText();
+        
+        // Check if the text exists in the CSV file
+        boolean found = checkInCSV(inputText);
+        
+        // Show the result in a message dialog
+        if (found) {
+            JOptionPane.showMessageDialog(this, "User found in Database!");
+        } else {
+            JOptionPane.showMessageDialog(this, "user not found.");
+        }
     }//GEN-LAST:event_TransferButtonActionPerformed
+    
+     // Method to check if text exists in a CSV file
+    public boolean checkInCSV(String text) {
+        File csvFile = new File("Accounts.csv");  // Path to your CSV file
+        if (!csvFile.exists()) {
+            return false;  // File does not exist
+        }
 
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] columns = line.split(",");
+                for (String column : columns) {
+                    if (column.trim().equalsIgnoreCase(text.trim())) {
+                        return true;  // Text found
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return false;  // Text not found
+    }
+    
     private void FiveHundoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiveHundoButtonActionPerformed
         AmountLabel.setText("500");
     }//GEN-LAST:event_FiveHundoButtonActionPerformed
