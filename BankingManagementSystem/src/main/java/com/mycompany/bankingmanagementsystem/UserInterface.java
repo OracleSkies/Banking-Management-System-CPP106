@@ -65,6 +65,13 @@ public class UserInterface extends javax.swing.JFrame {
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
         Transhis.setShowGrid(false);
+        
+        DashHis.setOpaque(false);
+        DashHis.setBackground(new java.awt.Color(204, 204, 204, 80));
+        ((DefaultTableCellRenderer)DashHis.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
+        jScrollPane2.setOpaque(false);
+        jScrollPane2.getViewport().setOpaque(false);
+        DashHis.setShowGrid(false);
     }
        
     public void computeMoneyAndUpdateLabels(String filePath) {
@@ -533,6 +540,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel7.setText("HISTORY");
         Hist.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 12, -1, 24));
 
+        jScrollPane2.setBorder(null);
         jScrollPane2.setForeground(new java.awt.Color(255, 255, 255));
 
         DashHis.setBackground(new java.awt.Color(255, 255, 255, 80));
