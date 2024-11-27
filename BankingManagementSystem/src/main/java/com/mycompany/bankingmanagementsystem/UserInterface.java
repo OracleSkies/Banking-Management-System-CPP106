@@ -44,10 +44,10 @@ public class UserInterface extends javax.swing.JFrame {
         restrictInputToNumbersOnly2(DepositText);//To restrict the text field for only number 
         restrictInputToNumbersOnly3(AmountLabel2);//To restrict the text field for only number 
         loadCSV(); // Automatically load the CSV file when the JFrame is created
-        String filePath = "Transaction.csv";
+        String filePath = "Transactions.csv";
         computeMoneyAndUpdateLabels(filePath);
         // Example usage of displayLastRow
-        displayLastRow("Transaction.csv", ActionDis, DateDis, Amountdis, DescrDis);
+        displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
 
         Dashboard.setVisible(true);
         TransacHis.setVisible(false);
@@ -1179,7 +1179,7 @@ public class UserInterface extends javax.swing.JFrame {
     
     private void loadCSV() {
         // Specify the path to the CSV file (you can change this to your file's path)
-        String filePath = "Transaction.csv";  // Update this to your actual file path
+        String filePath = "Transactions.csv";  // Update this to your actual file path
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -1334,12 +1334,15 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void AccregActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccregActionPerformed
         // TODO add your handling code here:
-        Dashboard.setVisible(false);
-        TransacHis.setVisible(false);
-        Deposit.setVisible(false);
-        Withdraw.setVisible(false);
-        TransCash.setVisible(false);
-        AccReg.setVisible(true);
+//        Dashboard.setVisible(false);
+//        TransacHis.setVisible(false);
+//        Deposit.setVisible(false);
+//        Withdraw.setVisible(false);
+//        TransCash.setVisible(false);
+//        AccReg.setVisible(true);
+        
+        UserAccountRegistration register = new UserAccountRegistration();
+        register.setVisible(true);
     }//GEN-LAST:event_AccregActionPerformed
 
     private void FiveKyawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiveKyawButtonActionPerformed
@@ -1392,7 +1395,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void saveToCSV(String buttonText, String timestamp, String amount) {
         FileWriter writer = null;
         try {
-            File file = new File("Transaction.csv");
+            File file = new File("Transactions.csv");
             boolean isNewFile = !file.exists();
 
             // Open the file in append mode

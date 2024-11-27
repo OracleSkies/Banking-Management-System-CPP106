@@ -192,8 +192,6 @@ public class UserAccountRegistration extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        AdminMain main = new AdminMain();
-        main.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -222,8 +220,6 @@ public class UserAccountRegistration extends javax.swing.JFrame {
             return;
         } else if (phoneNumber.matches("\\d+")){
             accountRegistration(username,password,name,birthdate,phoneNumber,address);
-            AdminMain main = new AdminMain();
-            main.setVisible(true);
             setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Error: Phone number must only contain numbers.","Error",JOptionPane.ERROR_MESSAGE);

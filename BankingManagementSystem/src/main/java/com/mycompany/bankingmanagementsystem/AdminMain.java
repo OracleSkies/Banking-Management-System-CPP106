@@ -853,7 +853,6 @@ public class AdminMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         UserAccountRegistration registration = new UserAccountRegistration();
         registration.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_newUserAccountButtonActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
