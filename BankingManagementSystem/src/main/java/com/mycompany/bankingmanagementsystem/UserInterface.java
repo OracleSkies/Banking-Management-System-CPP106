@@ -5,23 +5,18 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
-import java.awt.Frame;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -52,6 +47,9 @@ public class UserInterface extends javax.swing.JFrame {
         loadCSV(); // Automatically load the CSV file when the JFrame is created
         String filePath = "Transaction.csv";
         computeMoneyAndUpdateLabels(filePath);
+        // Example usage of displayLastRow
+        displayLastRow("Transaction.csv", ActionDis, DateDis, Amountdis, DescrDis);
+
         Dashboard.setVisible(true);
         TransacHis.setVisible(false);
         Deposit.setVisible(false);
@@ -73,7 +71,7 @@ public class UserInterface extends javax.swing.JFrame {
         jScrollPane2.getViewport().setOpaque(false);
         DashHis.setShowGrid(false);
     }
-       
+        
     public void computeMoneyAndUpdateLabels(String filePath) {
         double totalDeposits = 0.0;
         double totalWithdrawals = 0.0;
@@ -81,16 +79,30 @@ public class UserInterface extends javax.swing.JFrame {
         // Create a DecimalFormat for formatting the money values
         DecimalFormat df = new DecimalFormat("#.00");
 
+        // Validate the file path before proceeding
+        if (filePath == null || filePath.isEmpty()) {
+            System.out.println("Invalid file path.");
+            return;
+        }
+
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-
-            // Skip the header line if there is one
-            br.readLine(); // Assuming the first line is the header; if no header, remove this line
+            boolean isFirstLine = true;
 
             // Read each line of the CSV file
             while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    // Skip the header if present
+                    isFirstLine = false;
+                    continue;
+                }
+
                 // Split the line by comma, assuming the columns are Action, Date, Amount, Description
                 String[] values = line.split(",");
+                if (values.length < 3) {
+                    System.out.println("Skipping invalid line: " + line);
+                    continue;
+                }
 
                 try {
                     // Parse the money value (assuming it is in the third column, index 2)
@@ -99,9 +111,9 @@ public class UserInterface extends javax.swing.JFrame {
 
                     // Check if it's a "Deposit" or "Withdrawal" and update the totals accordingly
                     if (action.equalsIgnoreCase("Deposited")) {
-                        totalDeposits += money; // Add to the total deposits
+                        totalDeposits += money;
                     } else if (action.equalsIgnoreCase("Withdraw")) {
-                        totalWithdrawals += money; // Add to the total withdrawals
+                        totalWithdrawals += money;
                     }
                 } catch (NumberFormatException e) {
                     // Handle invalid number formats gracefully
@@ -109,50 +121,79 @@ public class UserInterface extends javax.swing.JFrame {
                 }
             }
 
-            // Format the totals and update the JLabels
-            BalDis.setText("$" + df.format(totalDeposits));
-            CurrentBal.setText("$" + df.format(totalWithdrawals));
+            // Compute and format the totals
+            String formattedDeposits = "$" + df.format(totalDeposits);
+            String formattedWithdrawals = "$" + df.format(totalWithdrawals);
+            String formattedBalance = "$" + df.format(totalDeposits - totalWithdrawals);
+
+            // Update the JLabels (replace with your actual label names)
+            CurrentBal.setText(formattedBalance);
+            BalDis.setText(formattedBalance);
+
         } catch (IOException e) {
-            // Print stack trace for file reading errors
+            // Handle file reading errors
+            System.out.println("Error reading the file: " + filePath);
             e.printStackTrace();
         }
     }
 
-    
-     // Method to watch the file for modifications and reload the display
-    public void watchFileForChanges(String filePath) {
-        Path path = Paths.get(filePath).getParent();  // Get the directory containing the file
-        try {
-            WatchService watchService = FileSystems.getDefault().newWatchService();
-            path.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
 
-            // Create a thread to monitor the file for changes
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        WatchKey key = watchService.take(); // wait for a change
+    public void displayLastRow(String filePath, JLabel ActionDis, JLabel DateDis, JLabel Amountdis, JLabel DescrDis) {
+        File file = new File(filePath);
 
-                        for (WatchEvent<?> event : key.pollEvents()) {
-                            if (event.kind() == StandardWatchEventKinds.ENTRY_MODIFY) {
-                                // Check if the modified file is the one we're watching
-                                if (event.context().toString().equals(Paths.get(filePath).getFileName().toString())) {
-                                    // File was modified, reload the balance
-                                    computeMoneyAndUpdateLabels(filePath);
-                                }
-                            }
-                        }
+        // Check if the file exists and is a valid file
+        if (!file.exists() || !file.isFile()) {
+            JOptionPane.showMessageDialog(null, "File does not exist or is not a valid file.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-                        // Reset the key to continue watching
-                        key.reset();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        List<String[]> rows = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+
+            // Read all rows and store them in a list
+            while ((line = br.readLine()) != null) {
+                // Skip empty lines
+                if (!line.trim().isEmpty()) {
+                    rows.add(line.split(","));
                 }
-            }).start();
+            }
+
+            // Check if the file has at least one row
+            if (rows.size() > 0) {
+                // Get the last row
+                String[] lastRow = rows.get(rows.size() - 1);
+
+                // Ensure that the row has at least 4 columns
+                if (lastRow.length >= 4) {
+                    // Set ActionDis
+                    String action = lastRow[0].trim();
+                    ActionDis.setText(action.isEmpty() ? "N/A" : action);
+
+                    // Set DateDis
+                    String date = lastRow[1].trim();
+                    DateDis.setText(date.isEmpty() ? "N/A" : date);
+
+                    // Set Amountdis
+                    String amount = lastRow[2].trim();
+                    Amountdis.setText(amount.isEmpty() ? "N/A" : amount);
+
+                    // Set DescrDis (for description, handle empty strings)
+                    String description = lastRow[3].trim();
+                    DescrDis.setText(description.isEmpty() ? "No description" : description);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Row does not have enough columns.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "CSV file is empty.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
 
     
     
@@ -180,6 +221,14 @@ public class UserInterface extends javax.swing.JFrame {
         RecentTrans = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
+        DateLabel = new javax.swing.JLabel();
+        ActionLabel1 = new javax.swing.JLabel();
+        AmountLabel1 = new javax.swing.JLabel();
+        AmountLabel3 = new javax.swing.JLabel();
+        DateDis = new javax.swing.JLabel();
+        ActionDis = new javax.swing.JLabel();
+        DescrDis = new javax.swing.JLabel();
+        Amountdis = new javax.swing.JLabel();
         Balance = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -424,18 +473,55 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("RECENT TRANSACTION");
 
+        DateLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DateLabel.setText("DATE:");
+
+        ActionLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ActionLabel1.setText("ACTION:");
+
+        AmountLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AmountLabel1.setText("DESCRIPTION:");
+
+        AmountLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AmountLabel3.setText("AMOUNT:");
+
+        DateDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        ActionDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        DescrDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        Amountdis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
         javax.swing.GroupLayout RecentTransLayout = new javax.swing.GroupLayout(RecentTrans);
         RecentTrans.setLayout(RecentTransLayout);
         RecentTransLayout.setHorizontalGroup(
             RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RecentTransLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RecentTransLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(61, 61, 61))
+            .addGroup(RecentTransLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addGroup(RecentTransLayout.createSequentialGroup()
+                        .addGroup(RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(AmountLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AmountLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ActionLabel1)
+                            .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DescrDis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(RecentTransLayout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Amountdis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(DateDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ActionDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(9, 9, 9)))
+                .addContainerGap())
         );
         RecentTransLayout.setVerticalGroup(
             RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,7 +530,26 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 252, Short.MAX_VALUE))
+                .addGroup(RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(RecentTransLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(ActionDis, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DateDis, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(Amountdis, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addComponent(DescrDis, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(RecentTransLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(DateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ActionLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(AmountLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(AmountLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34))
         );
 
         Balance.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -495,7 +600,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         AccDEts.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -511,13 +616,13 @@ public class UserInterface extends javax.swing.JFrame {
         AccDEtsLayout.setHorizontalGroup(
             AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccDEtsLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel5)
-                .addContainerGap(76, Short.MAX_VALUE))
-            .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator4)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(AccDEtsLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AccDEtsLayout.setVerticalGroup(
             AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,7 +655,7 @@ public class UserInterface extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Action", "Date", "Amount", "Description"
+                "TimeStamp", "Aciotn", "Amount", "Description"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -614,7 +719,7 @@ public class UserInterface extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Action", "Date", "Amount", "Description"
+                "Timestamp", "Action", "Amount", "Description"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -999,8 +1104,20 @@ public class UserInterface extends javax.swing.JFrame {
 
             // Read the rest of the data
             while ((line = br.readLine()) != null) {
-                // Split each line by comma and store the values in the data list
-                data.add(line.split(","));
+                // Split each line by comma
+                String[] columns = line.split(",");
+
+                // Ensure we have enough columns to avoid ArrayIndexOutOfBoundsException
+                if (columns.length >= 6) {
+                    // Extract only the needed columns: Timestamp, Amount, Action, Description
+                    String timestamp = columns[0];       // Timestamp
+                    String amount = columns[3];          // Amount
+                    String action = columns[4];          // Action
+                    String description = columns[5];     // Description
+
+                    // Add the filtered data row to the list
+                    data.add(new String[]{timestamp, amount, action, description});
+                }
             }
 
             // Create a DefaultTableModel to hold the data
@@ -1012,9 +1129,10 @@ public class UserInterface extends javax.swing.JFrame {
                 }
             };
 
-            model.addColumn("Action");
-            model.addColumn("Date");
+            // Add the required columns to the model
+            model.addColumn("Timestamp");
             model.addColumn("Amount");
+            model.addColumn("Action");
             model.addColumn("Description");
 
             // Add data rows to the model
@@ -1030,6 +1148,9 @@ public class UserInterface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
         }
     }
+
+
+
     
     private void DeposMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeposMouseEntered
         // TODO add your handling code here:
@@ -1140,24 +1261,27 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void TransferButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferButtonActionPerformed
         // Get the text from the JTextField
-        String inputText = AccountNumber.getText();
-        
-        // Check if the text exists in the CSV file
-        boolean found = checkInCSV(inputText);
-        
+        String accountNumber = AccountNumber.getText();
+
+        // Check if the account number exists in the CSV file
+        boolean found = checkInCSV(accountNumber);
+
         // Show the result in a message dialog
         if (found) {
-            JOptionPane.showMessageDialog(this, "Succesfully Transfered");
+            String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+            String amount = AmountLabel2.getText(); // Assuming you have a JTextField for amount
+            saveToCSV("Transfer", timestamp, amount); // Save the transfer details
+
+            JOptionPane.showMessageDialog(this, "Successfully Transferred");
         } else {
             JOptionPane.showMessageDialog(this, "User not found.");
         }
     }//GEN-LAST:event_TransferButtonActionPerformed
     
-     // Method to check if text exists in a CSV file
     public boolean checkInCSV(String text) {
-        File csvFile = new File("Accounts.csv");  // Path to your CSV file
+        File csvFile = new File("Accounts.csv"); // Path to your CSV file
         if (!csvFile.exists()) {
-            return false;  // File does not exist
+            return false; // File does not exist
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -1166,16 +1290,58 @@ public class UserInterface extends javax.swing.JFrame {
                 String[] columns = line.split(",");
                 for (String column : columns) {
                     if (column.trim().equalsIgnoreCase(text.trim())) {
-                        return true;  // Text found
+                        return true; // Text found
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        return false;  // Text not found
+
+        return false; // Text not found
     }
+
+    
+    private void saveToCSV(String buttonText, String timestamp, String amount) {
+        FileWriter writer = null;
+        try {
+            File file = new File("Transaction.csv");
+            boolean isNewFile = !file.exists();
+
+            // Open the file in append mode
+            writer = new FileWriter(file, true);
+
+            // Write header if the file is new
+            if (isNewFile) {
+                writer.append("Timestamp,User,Type,Amount,Button,Description\n");
+            }
+
+            // Append the transaction details
+            writer.append(timestamp)
+                  .append(",USER,BAN,")
+                  .append(amount)
+                  .append(",")
+                  .append(buttonText)
+                  .append(",No Description\n");
+
+        } catch (IOException e) {
+            // Log and notify the user of the error
+            System.err.println("Error saving to CSV: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error saving to CSV: " + e.getMessage(),
+                                          "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                System.err.println("Error closing writer: " + e.getMessage());
+            }
+        }
+        System.out.println("Current working directory: " + System.getProperty("user.dir"));
+    }
+
+ 
     
     private void FiveHundoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiveHundoButtonActionPerformed
         AmountLabel.setText("500");
@@ -1186,12 +1352,24 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_OnehundoButtonActionPerformed
 
     private void WithdrawbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawbuttonActionPerformed
-         
         // Get the amount entered by the user
         String amountText = AmountLabel.getText();  // Get text from the JTextField
-        AmountLabel.setText("");// Clear any previous error message
+        AmountLabel.setText(""); // Clear any previous error message
+
         // Check if the input is a valid number
         if (isValidAmount(amountText)) {
+            double amount = Double.parseDouble(amountText); // Parse the amount as a double
+            double currentBalance = getCurrentBalance(); // Fetch the current balance (assumes a method for this)
+
+            // Ensure the balance after withdrawal remains at least $100
+            if (currentBalance - amount < 100) {
+                JOptionPane.showMessageDialog(this, 
+                    "Cannot withdraw. Balance must remain at least $100 after withdrawal.", 
+                    "Insufficient Balance", 
+                    JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             // Get the current timestamp
             LocalDateTime now = LocalDateTime.now();
             String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -1202,12 +1380,27 @@ public class UserInterface extends javax.swing.JFrame {
             // Optionally, pop up a window showing the button action details
             popUpWindow1("Withdraw", timestamp, amountText);  // Pass the amountText here
 
+            // Update the balance (assumes a method to update the balance)
+            updateBalance(currentBalance - amount);
         } else {
             // Show an error message if the input is not a valid number
             AmountLabel.setText("Please enter a valid number.");
         }
     }//GEN-LAST:event_WithdrawbuttonActionPerformed
+    
+    // Method to fetch the current balance (this should be connected to your application's logic)
+    private double getCurrentBalance() {
+        // Example logic, replace this with your actual implementation
+        String balanceText = CurrentBal.getText().replace("$", ""); // Assuming CurrentBal holds the balance in "$123.45" format
+        return Double.parseDouble(balanceText);
+    }
 
+    // Method to update the balance (e.g., display new balance in the UI)
+    private void updateBalance(double newBalance) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        CurrentBal.setText("$" + df.format(newBalance));
+        BalDis.setText("$" + df.format(newBalance));
+    }
     // Helper method to check if the input is a valid numeric amount
     private boolean isValidAmount(String str) {
         try {
@@ -1218,41 +1411,7 @@ public class UserInterface extends javax.swing.JFrame {
             return false;  // It is not a valid number
         }
     }
-
-    private void saveToCSV(String buttonText, String timestamp, String amount) {
-    FileWriter writer = null;
-    try {
-        // Open the CSV file in append mode (true)
-        writer = new FileWriter("Transaction.csv", true);
-
-        // Log the data being written to the file for debugging
-        System.out.println("Saving to CSV: " + buttonText + ", " + timestamp + ", " + amount);
-
-        // Append the data to the file
-        writer.append(buttonText)
-              .append(",")
-              .append(timestamp)
-              .append(",")
-              .append(amount)  // Add the amount to the CSV
-              .append("\n");
-    } catch (IOException e) {
-        // Log the error if there is an issue
-        System.err.println("Error saving to CSV: " + e.getMessage());
-        JOptionPane.showMessageDialog(this, "Error saving to CSV: " + e.getMessage(),
-                                      "Error", JOptionPane.ERROR_MESSAGE);
-    } finally {
-        try {
-            if (writer != null) {
-                writer.close();  // Ensure the writer is closed properly
-            }
-        } catch (IOException e) {
-            System.err.println("Error closing writer: " + e.getMessage());
-        }
-    }
-    System.out.println("Current working directory: " + System.getProperty("user.dir"));
-
-}
-
+    
     private void popUpWindow1(String buttonText, String timestamp, String amount) {
         // Create a new JFrame for the popup window
         JFrame popup = new JFrame("Withdraw Click Details");
@@ -1263,7 +1422,7 @@ public class UserInterface extends javax.swing.JFrame {
         popup.setLocationRelativeTo(null);
 
         // Add a label with the button click information
-        JLabel label = new JLabel("<html>Details: " + buttonText + "<br>Time: " + timestamp + "<br>Amount: " + amount + "</html>", SwingConstants.CENTER);
+        JLabel label = new JLabel("<html>Details: " + timestamp + "<br>Time: " + amount  + "<br>Amount: " + buttonText + "</html>", SwingConstants.CENTER);
 
         popup.add(label);
 
@@ -1296,8 +1455,6 @@ public class UserInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AmountLabelActionPerformed
 
-    
-    
     private void TenKyawButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenKyawButtonActionPerformed
         AmountLabel.setText("10000");
     }//GEN-LAST:event_TenKyawButtonActionPerformed
@@ -1311,30 +1468,36 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_NotifsActionPerformed
 
     private void DepositButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DepositButtonActionPerformed
-        // Get the amount entered by the user
+         // Get the amount entered by the user
         String amountText = DepositText.getText();  // Get text from the JTextField
-        DepositText.setText("");
+        DepositText.setText("");  // Clear the text field
 
         // Check if the input is a valid number
         if (isValidAmount(amountText)) {
+            // Convert the string to a double
+            double depositAmount = Double.parseDouble(amountText);
+
             // Get the current timestamp
             LocalDateTime now = LocalDateTime.now();
             String timestamp = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            
 
             // Save the data to a CSV file
-            saveToCSV("Deposited", timestamp, amountText);  // Pass the amountText to the method
+            saveToCSV("Deposited", timestamp, amountText);
 
             // Optionally, pop up a window showing the button action details
-            popUpWindow2("Deposited", timestamp, amountText);  // Pass the amountText here
-            
+            popUpWindow2("Deposited", timestamp, amountText);
+
+            // Update the balance after deposit
+            double currentBalance = getCurrentBalance();
+            double newBalance = currentBalance + depositAmount;
+            updateBalance(newBalance);  // Update the displayed balance
+
         } else {
             // Show an error message if the input is not a valid number
             DepositText.setText("Please enter a valid number.");
-            
-        }
-        
+        }       
     }//GEN-LAST:event_DepositButtonActionPerformed
+    
     
     private void AmountLabel2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountLabel2ActionPerformed
         
@@ -1442,8 +1605,13 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel AccReg;
     private javax.swing.JTextField AccountNumber;
     private javax.swing.JButton Accreg;
+    private javax.swing.JLabel ActionDis;
+    private javax.swing.JLabel ActionLabel1;
     private javax.swing.JTextField AmountLabel;
+    private javax.swing.JLabel AmountLabel1;
     private javax.swing.JTextField AmountLabel2;
+    private javax.swing.JLabel AmountLabel3;
+    private javax.swing.JLabel Amountdis;
     private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
     private javax.swing.JLabel BalanceLabel;
@@ -1451,10 +1619,13 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JTable DashHis;
     private javax.swing.JButton Dashb;
     private javax.swing.JPanel Dashboard;
+    private javax.swing.JLabel DateDis;
+    private javax.swing.JLabel DateLabel;
     private javax.swing.JButton Depos;
     private javax.swing.JPanel Deposit;
     private javax.swing.JButton DepositButton;
     private javax.swing.JTextField DepositText;
+    private javax.swing.JLabel DescrDis;
     private javax.swing.JButton FiveHundoButton;
     private javax.swing.JButton FiveKyawButton;
     private javax.swing.JPanel Hist;
