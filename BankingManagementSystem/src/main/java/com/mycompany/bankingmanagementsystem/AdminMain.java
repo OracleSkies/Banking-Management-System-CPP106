@@ -3,7 +3,9 @@ package com.mycompany.bankingmanagementsystem;
 
 import cellAction.PanelAction;
 import cellAction.TableActionCellEditor;
+import cellAction.TableActionCellEditorView;
 import cellAction.TableActionCellRenderer;
+import cellAction.TableActionCellRendererView;
 import cellAction.TableActionEvent;
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -54,8 +56,11 @@ public class AdminMain extends javax.swing.JFrame {
             }
         };
         
-        accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRenderer());
-        accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditor(event));
+//        accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRenderer());
+//        accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditor(event));
+        
+        accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRendererView());
+        accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditorView(event));
         
         AccountApplicationTable.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRenderer());
         AccountApplicationTable.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditor(event));
