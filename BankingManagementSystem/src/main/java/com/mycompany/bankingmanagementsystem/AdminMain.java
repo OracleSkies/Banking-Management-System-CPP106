@@ -60,7 +60,23 @@ public class AdminMain extends javax.swing.JFrame {
             }
             @Override 
             public void onDelete(int row){
-                System.out.println("Delete Row:" + row);
+                System.out.println("delete check"+row);
+                int response = JOptionPane.showConfirmDialog(
+                    null, // Parent component (current frame)
+                    "Are you sure you want to deactivate account?", // Message
+                    "Account Deactivate", // Title of the dialog
+                    JOptionPane.YES_NO_OPTION, // Option type
+                    JOptionPane.QUESTION_MESSAGE // Icon type
+                );
+
+                if (response == JOptionPane.YES_OPTION) {
+                    if (ActiveAccountsTable.isEditing()){
+                        ActiveAccountsTable.getCellEditor().stopCellEditing();
+                    }
+                    DefaultTableModel model = (DefaultTableModel) ActiveAccountsTable.getModel();
+                    model.removeRow(row);
+
+                }
             }
         };
         
@@ -348,7 +364,7 @@ public class AdminMain extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -927,7 +943,7 @@ public class AdminMain extends javax.swing.JFrame {
                 }
                 String[] data = line.split(",");
                 String name = data[2];
-                String type = data[6];
+                String type = data[7];
                 
                 // Create a new array with only 'name' and 'type' to add to the table
                 Object[] rowData = {name,type};
@@ -998,15 +1014,12 @@ public class AdminMain extends javax.swing.JFrame {
             int currentRow = 0;
             int rowNumber = row+1;
             while ((line = reader.readLine()) != null) {
-                System.out.println(currentRow);
                 if (currentRow == rowNumber) {
-                    System.out.println(currentRow);
                     String[] data = line.split(",");
                     name = data[2];
                     birthdate = data[3];
                     phoneNumber = data[4];
                     address = data[5];
-                    System.out.println(name);
                     // Output all elements for the found name
                     break;
                 }
