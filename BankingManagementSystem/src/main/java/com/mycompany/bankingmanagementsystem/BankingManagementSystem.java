@@ -4,6 +4,8 @@
 
 package com.mycompany.bankingmanagementsystem;
 
+import LoginBranch.Login;
+
 /**
  *
  * @author Jayjay
