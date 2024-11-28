@@ -2,9 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package AdminBranchPackage;
-
-import LoginBranchPackage.Login;
+package com.mycompany.bankingmanagementsystem;
 
 /**
  *

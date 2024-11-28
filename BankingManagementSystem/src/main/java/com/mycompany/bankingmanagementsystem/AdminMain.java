@@ -1,4 +1,4 @@
-package AdminBranchPackage;
+package com.mycompany.bankingmanagementsystem;
 
 
 import cellAction.PanelAction;
