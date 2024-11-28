@@ -34,10 +34,11 @@ public class AdminMain extends javax.swing.JFrame {
     private String birthdate;
     private String phoneNumber;
     private String address;
+    private int rowNum;
     
     public AdminMain() {
+       
         initComponents();
-        
         Dashboard.setVisible(true);
         AccountManagement.setVisible(false);
         Transactions.setVisible(false);
@@ -79,6 +80,7 @@ public class AdminMain extends javax.swing.JFrame {
             }
         };
         
+        // <editor-fold defaultstate="collapsed" desc="GUI Modifications">
         accApplicationTableDash.getColumnModel().getColumn(1).setCellRenderer(new TableActionCellRendererView());
         accApplicationTableDash.getColumnModel().getColumn(1).setCellEditor(new TableActionCellEditorView(event));
         
@@ -124,6 +126,7 @@ public class AdminMain extends javax.swing.JFrame {
         jScrollPane5.getViewport().setOpaque(false);
         TransactionTable.setShowGrid(false);
     }
+    // </editor-fold>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -746,6 +749,7 @@ public class AdminMain extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="EVENTS">
     private void DashboardbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashboardbuttonActionPerformed
         // TODO add your handling code here:
         Dashboard.setVisible(true);
@@ -885,7 +889,9 @@ public class AdminMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_accountButtonActionPerformed
 
+    // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
     private void loadTransactionDataForDashboard(String filePath){
         //Loads all data from Transaction.csv to transaction table in dashboard. 
         //Creates a dynamic table that add rows depending on the number of rows in Transaction.csv
@@ -906,6 +912,7 @@ public class AdminMain extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
     private void loadTransactionDataForTransaction(String filePath){
         //Loads all data from Transaction.csv to transaction table in transaction panel. 
         //Creates a dynamic table that add rows depending on the number of rows in Transaction.csv
@@ -926,6 +933,7 @@ public class AdminMain extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
     private void loadAccountsForAccManagement(String filePath){
         //Loads all data from Accounts.csv to transaction table in account management panel. 
         //Creates a dynamic table that add rows depending on the number of rows in Accounts.csv
@@ -952,11 +960,13 @@ public class AdminMain extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    private void loadAccountsForAccApplication(String filePath){
+    
+    public void loadAccountsForAccApplication(String filePath){
         //Loads all data from Accounts.csv to transaction table in account management panel. 
         //Creates a dynamic table that add rows depending on the number of rows in Accounts.csv
         //Displays only the name and the type of account per row
         DefaultTableModel model = (DefaultTableModel) AccountApplicationTable.getModel();
+        model.setRowCount(0);
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             
             String line;
@@ -977,6 +987,7 @@ public class AdminMain extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
     private void loadAccountsApplicationForDashboard(String filePath){
         //Loads all data from Accounts.csv to transaction table in account management panel. 
         //Creates a dynamic table that add rows depending on the number of rows in Accounts.csv
@@ -1006,6 +1017,7 @@ public class AdminMain extends javax.swing.JFrame {
         birthdate = "";
         phoneNumber = "";
         address = "";
+        rowNum = 0;
         
         File file = new File("AccountApplications.csv");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -1019,6 +1031,7 @@ public class AdminMain extends javax.swing.JFrame {
                     birthdate = data[3];
                     phoneNumber = data[4];
                     address = data[5];
+                    rowNum = currentRow;
                     // Output all elements for the found name
                     break;
                 }
@@ -1026,25 +1039,19 @@ public class AdminMain extends javax.swing.JFrame {
             }
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new UserAccountApplication(name, birthdate, phoneNumber, address).setVisible(true);
+                    new UserAccountApplication(name, birthdate, phoneNumber, address, rowNum).setVisible(true);
                 }
             });
-            //this.setVisible(false);
+            this.setVisible(false);
             
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } 
     }
-//    private void runSearchInfo(String title, String author, String bookNumber, String category, String availability){
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//                public void run() {
-//                    new SearchInformation(title, author, bookNumber, category, availability).setVisible(true);
-////                    bookTitle, author, bookNumber, category
-//                }
-//            });
-//        this.setVisible(false); 
-//    
-//    }
+    
+    
+    // </editor-fold>
+
     /**
      * @param args the command line arguments
      */
@@ -1084,7 +1091,7 @@ public class AdminMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccManagebutton;
     private javax.swing.JScrollPane AccountApplication;
-    private javax.swing.JTable AccountApplicationTable;
+    public javax.swing.JTable AccountApplicationTable;
     private javax.swing.JPanel AccountManagement;
     private javax.swing.JScrollPane ActiveAccounts;
     private javax.swing.JTable ActiveAccountsTable;

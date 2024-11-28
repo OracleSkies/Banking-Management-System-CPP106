@@ -6,11 +6,15 @@ package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,13 +25,15 @@ public class UserAccountApplication extends javax.swing.JFrame {
     /**
      * Creates new form USERACCOUNTAPPLICATION_ADMIN___
      */
+    private int row;
     
-    public UserAccountApplication(String name, String birthdate, String phoneNumber, String address) {
+    public UserAccountApplication(String name, String birthdate, String phoneNumber, String address, int row) {
         initComponents();
         nameLabel.setText(name);
         birthLabel.setText(birthdate);
         phoneLabel.setText(phoneNumber);
         addressLabel.setText(address);
+        this.row = row;
     }
 
     /**
@@ -198,6 +204,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="EVENTS">
     private void DECLINEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DECLINEMouseEntered
         // TODO add your handling code here:
         DECLINE.setContentAreaFilled(true);
@@ -214,6 +221,21 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void DECLINEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DECLINEActionPerformed
         // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(
+            this, // Parent component (current frame)
+            "Are you sure you want to decline this account application?", // Message
+            "Confirm Account Decline", // Title of the dialog
+            JOptionPane.YES_NO_OPTION, // Option type
+            JOptionPane.QUESTION_MESSAGE // Icon type
+        );
+
+        if (response == JOptionPane.YES_OPTION) {
+            declineAccount(this.row);
+            JOptionPane.showMessageDialog(this, "Account application declined!");
+            refreshAccountTables();
+            this.dispose(); // Close the current window
+        }
+        
     }//GEN-LAST:event_DECLINEActionPerformed
 
     private void APPROVEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_APPROVEMouseEntered
@@ -249,15 +271,50 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        AdminMain main = new AdminMain();
-//        main.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    // </editor-fold>
     
+    private void declineAccount(int row){
+        //THIS METHOD DECLINES THE APPLICATION OF THE USER. IT REMOVES ITS INFORMATION IN THE CSV
+        String filePath = "AccountApplications.csv";  // Change to your CSV file path
+        int rowToDelete = row; // Index of the row to delete (0-based index)
 
-    public void updateLabel(String name, String birthdate, String phoneNumber, String address){
-        
+        // Read the CSV file into a List of Strings (rows)
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);  // Add each line to the list
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Remove the specific row (if it exists)
+        if (rowToDelete >= 0 && rowToDelete < lines.size()) {
+            lines.remove(rowToDelete); // Remove the row at the specified index
+        } else {
+            System.out.println("Row index is out of bounds.");
+            return;
+        }
+
+        // Write the updated content back to the CSV file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            for (String line : lines) {
+                bw.write(line);
+                bw.newLine();  // Write each line back into the file
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void refreshAccountTables(){
+        AdminMain admin = new AdminMain();
+        admin.loadAccountsForAccApplication("AccountApplications.csv");
+        admin.setVisible(true);
     }
     /**
      * @param args the command line arguments
