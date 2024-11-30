@@ -172,10 +172,10 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         TransactionTable = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         AuditAndReport = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -622,36 +622,36 @@ public class AdminMain extends javax.swing.JFrame {
         TransactionTable.setRowHeight(40);
         jScrollPane5.setViewportView(TransactionTable);
 
-        Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1180, 480));
-
-        jButton5.setBackground(new java.awt.Color(0, 0, 204));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("GENERATE REPORT");
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        Transactions.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 590, 430, 30));
+        Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1160, 450));
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jComboBox1.setMaximumRowCount(4);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Account Num", "Type of transaction", "Description" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Account Number", "Type of transaction", "Description" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        Transactions.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 200, 40));
+        Transactions.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 270, 40));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        Transactions.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 410, 40));
+        Transactions.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 500, 40));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Filter");
-        Transactions.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 50, 210, 40));
+        Transactions.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 50, 210, 40));
+
+        jButton7.setBackground(new java.awt.Color(0, 0, 204));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("GENERATE REPORT");
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        Transactions.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, 302, 59));
 
         AuditAndReport.setBackground(new java.awt.Color(51, 255, 51));
         AuditAndReport.setOpaque(false);
@@ -905,13 +905,13 @@ public class AdminMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     // </editor-fold>
     
@@ -1136,8 +1136,8 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton accountButton;
     private javax.swing.JPanel createNewAdminPanel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
