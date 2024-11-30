@@ -50,7 +50,8 @@ public class UserInterface extends javax.swing.JFrame {
         // Example usage of displayLastRow
         displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
         
-        jPanel1.setVisible(false);
+        cards.setVisible(false);
+        payments.setVisible(false);
 
         Dashboard.setVisible(true);
         TransacHis.setVisible(false);
@@ -58,6 +59,8 @@ public class UserInterface extends javax.swing.JFrame {
         Withdraw.setVisible(false);
         TransCash.setVisible(false);
         AccReg.setVisible(false);
+        CheckCardY.setVisible(false);
+        CheckCardN.setVisible(false);
         
         Transhis.setOpaque(false);
         Transhis.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -292,7 +295,25 @@ public class UserInterface extends javax.swing.JFrame {
         TransferButton = new javax.swing.JButton();
         AmountLabel2 = new javax.swing.JTextField();
         AccReg = new javax.swing.JPanel();
+        CheckCardY = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        CheckCardN = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        bills = new javax.swing.JPanel();
+        shopping = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
+        payments = new javax.swing.JPanel();
+        Shopping = new javax.swing.JButton();
+        Bills = new javax.swing.JButton();
+        cards = new javax.swing.JPanel();
+        application = new javax.swing.JButton();
+        checkcard = new javax.swing.JButton();
         Trans = new javax.swing.JButton();
         Dashb = new javax.swing.JButton();
         Accreg = new javax.swing.JButton();
@@ -301,12 +322,6 @@ public class UserInterface extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        payments = new javax.swing.JPanel();
-        Bills = new javax.swing.JButton();
-        Shopping = new javax.swing.JButton();
-        cards = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -381,7 +396,7 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(RecentTransLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addComponent(jSeparator3)
                     .addGroup(RecentTransLayout.createSequentialGroup()
                         .addGroup(RecentTransLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(AmountLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,7 +479,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         BalanceLayout.setVerticalGroup(
             BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +492,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         AccDEts.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -520,9 +535,9 @@ public class UserInterface extends javax.swing.JFrame {
             .addGroup(AccDEtsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                    .addComponent(AddressDis, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-                    .addComponent(BdayDis1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                    .addComponent(jSeparator4)
+                    .addComponent(AddressDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BdayDis1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PhoneNumDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(NameDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(AccDEtsLayout.createSequentialGroup()
@@ -535,7 +550,7 @@ public class UserInterface extends javax.swing.JFrame {
                             .addComponent(PhoneNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 58, Short.MAX_VALUE))
                     .addComponent(PhoneNumDis1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -566,7 +581,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PhoneNumDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         Hist.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -616,27 +631,26 @@ public class UserInterface extends javax.swing.JFrame {
         DashboardLayout.setHorizontalGroup(
             DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(6, 6, 6)
+                .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(RecentTrans, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(AccDEts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(Hist, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         DashboardLayout.setVerticalGroup(
             DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DashboardLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(DashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccDEts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(DashboardLayout.createSequentialGroup()
                         .addComponent(Balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addComponent(RecentTrans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Hist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(AccDEts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Hist, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel9.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
@@ -969,10 +983,138 @@ public class UserInterface extends javax.swing.JFrame {
 
         jPanel9.add(AccReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
+        CheckCardY.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chip.png"))); // NOI18N
+        CheckCardY.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, 100));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("Account Number");
+        CheckCardY.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 200, 30));
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Name");
+        CheckCardY.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 90, 30));
+
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QP.png"))); // NOI18N
+        CheckCardY.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 390, 140, 93));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Card.png"))); // NOI18N
+        CheckCardY.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 89, -1, -1));
+
+        jPanel9.add(CheckCardY, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+
+        CheckCardN.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("NO CARD APPLICATION");
+        CheckCardN.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 680, 70));
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("FOR THIS ACCOUNT");
+        CheckCardN.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, -1, -1));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Card.png"))); // NOI18N
+        CheckCardN.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 794, 423));
+
+        jPanel9.add(CheckCardN, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+
+        javax.swing.GroupLayout billsLayout = new javax.swing.GroupLayout(bills);
+        bills.setLayout(billsLayout);
+        billsLayout.setHorizontalGroup(
+            billsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1170, Short.MAX_VALUE)
+        );
+        billsLayout.setVerticalGroup(
+            billsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+
+        jPanel9.add(bills, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+
+        javax.swing.GroupLayout shoppingLayout = new javax.swing.GroupLayout(shopping);
+        shopping.setLayout(shoppingLayout);
+        shoppingLayout.setHorizontalGroup(
+            shoppingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1170, Short.MAX_VALUE)
+        );
+        shoppingLayout.setVerticalGroup(
+            shoppingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+
+        jPanel9.add(shopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+
         getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 1170, 600));
 
         jPanel11.setOpaque(false);
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        payments.setBackground(new java.awt.Color(5, 22, 80));
+        payments.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Shopping.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Shopping.setForeground(new java.awt.Color(255, 255, 255));
+        Shopping.setText("SHOPPING");
+        Shopping.setBorderPainted(false);
+        Shopping.setContentAreaFilled(false);
+        Shopping.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShoppingActionPerformed(evt);
+            }
+        });
+        payments.add(Shopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 278, 74));
+
+        Bills.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        Bills.setForeground(new java.awt.Color(255, 255, 255));
+        Bills.setText("BILLS");
+        Bills.setBorderPainted(false);
+        Bills.setContentAreaFilled(false);
+        Bills.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BillsActionPerformed(evt);
+            }
+        });
+        payments.add(Bills, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 278, 74));
+
+        jPanel11.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+
+        cards.setBackground(new java.awt.Color(5, 22, 80));
+        cards.setForeground(new java.awt.Color(255, 255, 255));
+        cards.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        application.setBackground(new java.awt.Color(0, 0, 204));
+        application.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        application.setForeground(new java.awt.Color(255, 255, 255));
+        application.setText("APPLICATION");
+        application.setBorderPainted(false);
+        application.setContentAreaFilled(false);
+        application.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applicationActionPerformed(evt);
+            }
+        });
+        cards.add(application, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 278, 74));
+
+        checkcard.setBackground(new java.awt.Color(0, 0, 204));
+        checkcard.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        checkcard.setForeground(new java.awt.Color(255, 255, 255));
+        checkcard.setText("CHECK CARD");
+        checkcard.setBorderPainted(false);
+        checkcard.setContentAreaFilled(false);
+        checkcard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkcardActionPerformed(evt);
+            }
+        });
+        cards.add(checkcard, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 278, 74));
+
+        jPanel11.add(cards, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         Trans.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Trans.setForeground(new java.awt.Color(255, 255, 255));
@@ -1036,7 +1178,7 @@ public class UserInterface extends javax.swing.JFrame {
 
         Payments.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Payments.setForeground(new java.awt.Color(255, 255, 255));
-        Payments.setText("PAYMENTS");
+        Payments.setText("PAYMENTS    >");
         Payments.setContentAreaFilled(false);
         Payments.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1055,7 +1197,7 @@ public class UserInterface extends javax.swing.JFrame {
 
         CARD.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         CARD.setForeground(new java.awt.Color(255, 255, 255));
-        CARD.setText("CARD");
+        CARD.setText("CARD       >");
         CARD.setContentAreaFilled(false);
         CARD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1083,96 +1225,6 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Design 2.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 800));
-
-        payments.setBackground(new java.awt.Color(102, 255, 204));
-
-        Bills.setBackground(new java.awt.Color(102, 255, 204));
-        Bills.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Bills.setText("BILLS");
-        Bills.setBorderPainted(false);
-        Bills.setContentAreaFilled(false);
-        Bills.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BillsActionPerformed(evt);
-            }
-        });
-
-        Shopping.setBackground(new java.awt.Color(102, 255, 204));
-        Shopping.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Shopping.setText("SHOPPING");
-        Shopping.setBorderPainted(false);
-        Shopping.setContentAreaFilled(false);
-        Shopping.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ShoppingActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout paymentsLayout = new javax.swing.GroupLayout(payments);
-        payments.setLayout(paymentsLayout);
-        paymentsLayout.setHorizontalGroup(
-            paymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paymentsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(paymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Bills, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Shopping, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        paymentsLayout.setVerticalGroup(
-            paymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paymentsLayout.createSequentialGroup()
-                .addComponent(Bills, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Shopping, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        getContentPane().add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
-
-        cards.setBackground(new java.awt.Color(102, 255, 204));
-
-        jButton1.setBackground(new java.awt.Color(102, 255, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("APPLICATION");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setBackground(new java.awt.Color(102, 255, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("CHECK CARD");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout cardsLayout = new javax.swing.GroupLayout(cards);
-        cards.setLayout(cardsLayout);
-        cardsLayout.setHorizontalGroup(
-            cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        cardsLayout.setVerticalGroup(
-            cardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardsLayout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        getContentPane().add(cards, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -1598,19 +1650,20 @@ public class UserInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DepositTextActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void applicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_applicationActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void checkcardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkcardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_checkcardActionPerformed
 
     private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
         // TODO add your handling code here:
         if (CARD.isSelected()){
             cards.setVisible(true);
-            CARD.setText("CARD       ");
+            CARD.setText("CARD       v");
         } else {
             cards.setVisible(false);
             CARD.setText("CARD       >");
@@ -1633,32 +1686,37 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void PaymentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentsMouseEntered
         // TODO add your handling code here:
+        Payments.setContentAreaFilled(true);
+        Payments.setBackground(Color.cyan);
+        Payments.setForeground(Color.black);
     }//GEN-LAST:event_PaymentsMouseEntered
 
     private void PaymentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PaymentsMouseExited
         // TODO add your handling code here:
+        Payments.setContentAreaFilled(false);
+        Payments.setForeground(Color.white);
     }//GEN-LAST:event_PaymentsMouseExited
 
     private void PaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentsActionPerformed
         // TODO add your handling code here:
         if (Payments.isSelected()){
             payments.setVisible(true);
-            Payments.setText("CARD       ");
+            Payments.setText("PAYMENTS    v");
         } else {
             payments.setVisible(false);
-            Payments.setText("CARD       >");
-        }
+            Payments.setText("PAYMENTS    >");
         
-    }     
+        }
+         
     }//GEN-LAST:event_PaymentsActionPerformed
-
-    private void BillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BillsActionPerformed
 
     private void ShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShoppingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ShoppingActionPerformed
+
+    private void BillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BillsActionPerformed
     
     private void popUpWindow2(String buttonText, String timestamp, String amount) {
         // Create a new JFrame for the popup window
@@ -1756,6 +1814,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel BdayLabel;
     private javax.swing.JButton Bills;
     private javax.swing.JToggleButton CARD;
+    private javax.swing.JPanel CheckCardN;
+    private javax.swing.JPanel CheckCardY;
     private javax.swing.JLabel CurrentBal;
     private javax.swing.JTable DashHis;
     private javax.swing.JButton Dashb;
@@ -1790,25 +1850,34 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel Withdraw;
     private javax.swing.JPanel Withdraw1;
     private javax.swing.JButton Withdrawbutton;
+    private javax.swing.JButton application;
+    private javax.swing.JPanel bills;
     private javax.swing.JPanel cards;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton checkcard;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1825,5 +1894,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JPanel payments;
+    private javax.swing.JPanel shopping;
     // End of variables declaration//GEN-END:variables
 }
