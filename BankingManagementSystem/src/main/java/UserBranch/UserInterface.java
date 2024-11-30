@@ -41,9 +41,9 @@ public class UserInterface extends javax.swing.JFrame {
      */
     public UserInterface() {
         initComponents();
-        restrictInputToNumbersOnly(AmountLabel);//To restrict the text field for only number 
-        restrictInputToNumbersOnly2(DepositText);//To restrict the text field for only number 
-        restrictInputToNumbersOnly3(AmountLabel2);//To restrict the text field for only number 
+//        restrictInputToNumbersOnly(AmountLabel);//To restrict the text field for only number 
+//        restrictInputToNumbersOnly2(DepositText);//To restrict the text field for only number 
+//        restrictInputToNumbersOnly3(AmountLabel2);//To restrict the text field for only number 
         loadCSV(); // Automatically load the CSV file when the JFrame is created
         String filePath = "Transactions.csv";
         computeMoneyAndUpdateLabels(filePath);
@@ -144,7 +144,7 @@ public class UserInterface extends javax.swing.JFrame {
             String formattedBalance = "$" + df.format(totalBalance);
 
             // Update the JLabels (replace with your actual JLabel names)
-            CurrentBal.setText(formattedBalance);
+//            CurrentBal.setText(formattedBalance);
             BalDis.setText(formattedBalance);
 
 
@@ -1278,16 +1278,16 @@ public class UserInterface extends javax.swing.JFrame {
  
         
     // Method to fetch the current balance (this should be connected to your application's logic)
-    private double getCurrentBalance() {
-        // Example logic, replace this with your actual implementation
-        String balanceText = CurrentBal.getText().replace("$", ""); // Assuming CurrentBal holds the balance in "$123.45" format
-        return Double.parseDouble(balanceText);
-    }
+//    private double getCurrentBalance() {
+//        // Example logic, replace this with your actual implementation
+////        String balanceText = CurrentBal.getText().replace("$", ""); // Assuming CurrentBal holds the balance in "$123.45" format
+////        return Double.parseDouble(balanceText);
+//    }
 
     // Method to update the balance (e.g., display new balance in the UI)
     private void updateBalance(double newBalance) {
         DecimalFormat df = new DecimalFormat("#.00");
-        CurrentBal.setText("$" + df.format(newBalance));
+//        CurrentBal.setText("$" + df.format(newBalance));
         BalDis.setText("$" + df.format(newBalance));
     }
     // Helper method to check if the input is a valid numeric amount
