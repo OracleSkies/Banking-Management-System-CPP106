@@ -92,6 +92,7 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel112.setForeground(new java.awt.Color(255, 255, 255));
         jLabel112.setText("0");
 
+        Confirm.setBackground(new java.awt.Color(255, 255, 255));
         Confirm.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Confirm.setForeground(new java.awt.Color(255, 255, 255));
         Confirm.setText("CONFIRM");
@@ -187,38 +188,40 @@ public class AuditReport extends javax.swing.JFrame {
                                 .addComponent(jLabel107))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel123)
-                                    .addComponent(jLabel125)
-                                    .addComponent(jLabel108)
-                                    .addComponent(jLabel122)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel123)
+                                            .addComponent(jLabel125)
+                                            .addComponent(jLabel108)
+                                            .addComponent(jLabel122))
+                                        .addGap(93, 93, 93)
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel112)
+                                            .addComponent(jLabel116)
+                                            .addComponent(jLabel114)
+                                            .addComponent(jLabel115)))
                                     .addComponent(jLabel132))
-                                .addGap(56, 56, 56)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel112)
-                                    .addComponent(jLabel116)
-                                    .addComponent(jLabel114)
-                                    .addComponent(jLabel115))
                                 .addGap(311, 311, 311)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel118)
                                     .addComponent(jLabel121)
                                     .addComponent(jLabel120)
                                     .addComponent(jLabel119)
-                                    .addComponent(jLabel117)
-                                    .addComponent(jLabel118)))))
+                                    .addComponent(jLabel117)))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(393, 393, 393)
+                        .addGap(382, 382, 382)
                         .addComponent(jLabel105))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(416, 416, 416)
+                        .addGap(426, 426, 426)
                         .addComponent(Confirm)))
                 .addContainerGap(418, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel105)
-                .addGap(57, 57, 57)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel106)
                     .addComponent(jLabel107))
@@ -245,16 +248,16 @@ public class AuditReport extends javax.swing.JFrame {
                     .addComponent(jLabel123)
                     .addComponent(jLabel115)
                     .addComponent(jLabel121))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel132)
                     .addComponent(jLabel118))
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(Confirm)
-                .addGap(260, 260, 260))
+                .addGap(343, 343, 343))
         );
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 1200, 960));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 1200, 960));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -266,10 +269,11 @@ public class AuditReport extends javax.swing.JFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1460, 10));
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1460, 5));
+        jPanel8.getAccessibleContext().setAccessibleName("");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -282,10 +286,10 @@ public class AuditReport extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 1460, 10));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 1460, 5));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled design.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, -1, -1));

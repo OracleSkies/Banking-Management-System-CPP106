@@ -173,6 +173,9 @@ public class AdminMain extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         TransactionTable = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         AuditAndReport = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -595,7 +598,7 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("TRANSACTION MONITORING");
-        Transactions.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 6, 682, 51));
+        Transactions.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, -10, 682, 51));
 
         jScrollPane5.setBorder(null);
 
@@ -619,10 +622,10 @@ public class AdminMain extends javax.swing.JFrame {
         TransactionTable.setRowHeight(40);
         jScrollPane5.setViewportView(TransactionTable);
 
-        Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 63, 1170, 490));
+        Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1180, 480));
 
         jButton5.setBackground(new java.awt.Color(0, 0, 204));
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("GENERATE REPORT");
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -631,7 +634,24 @@ public class AdminMain extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        Transactions.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 302, 59));
+        Transactions.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 590, 430, 30));
+
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jComboBox1.setMaximumRowCount(4);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Account Num", "Type of transaction", "Description" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        Transactions.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 200, 40));
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Transactions.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 410, 40));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setText("Filter");
+        Transactions.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 50, 210, 40));
 
         AuditAndReport.setBackground(new java.awt.Color(51, 255, 51));
         AuditAndReport.setOpaque(false);
@@ -889,6 +909,10 @@ public class AdminMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
@@ -1111,8 +1135,10 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JTable accApplicationTableDash;
     private javax.swing.JButton accountButton;
     private javax.swing.JPanel createNewAdminPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1132,6 +1158,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton newUserAccountButton;
     private javax.swing.JButton notificationButton;
     private javax.swing.JScrollPane transactionTable;
