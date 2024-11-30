@@ -34,10 +34,13 @@ public class AdminMain extends javax.swing.JFrame {
     /**
      * Creates new form Admin_Main
      */
+    private String username;
+    private String password;
     private String name;
     private String birthdate;
     private String phoneNumber;
     private String address;
+    private String type;
     private int rowNum;
     
     public AdminMain() {
@@ -57,7 +60,7 @@ public class AdminMain extends javax.swing.JFrame {
         TableActionEvent event = new TableActionEvent(){
             @Override 
             public void onEdit(int row){
-                System.out.println("Edit Row:" + row);
+                editUserInfo(row);
             }
             @Override 
             public void onView(int row){
@@ -1070,6 +1073,48 @@ public class AdminMain extends javax.swing.JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void editUserInfo(int row){
+        username = "";
+        password = "";
+        name = "";
+        birthdate = "";
+        phoneNumber = "";
+        address = "";
+        type = "";
+        rowNum = 0;
+        
+        File file = new File("Accounts.csv");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            int currentRow = 0;
+            int rowNumber = row+1;
+            while ((line = reader.readLine()) != null) {
+                if (currentRow == rowNumber) {
+                    String[] data = line.split(",");
+                    username = data[0];
+                    password = data[1];
+                    name = data[2];
+                    birthdate = data[3];
+                    phoneNumber = data[4];
+                    address = data[5];
+                    type = data[7];
+                    rowNum = currentRow;
+                    // Output all elements for the found name
+                    break;
+                }
+                currentRow++;
+            }
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new AccountEdit(username, password, name, birthdate, phoneNumber,address,type,rowNum).setVisible(true);
+                }
+            });
+            this.setVisible(false);
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } 
     }
     
     private void viewUserInfo(int row){
