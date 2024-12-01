@@ -34,20 +34,20 @@ public class BankStatement extends javax.swing.JFrame {
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
+        WidDis = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
         jLabel122 = new javax.swing.JLabel();
         jLabel123 = new javax.swing.JLabel();
         jLabel125 = new javax.swing.JLabel();
         jLabel132 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jLabel117 = new javax.swing.JLabel();
+        DepDis = new javax.swing.JLabel();
+        ExpDis = new javax.swing.JLabel();
+        BillDis = new javax.swing.JLabel();
+        WidTotal1 = new javax.swing.JLabel();
         jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
+        BillTotal1 = new javax.swing.JLabel();
+        DepTotal1 = new javax.swing.JLabel();
+        ExpTotal1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -82,12 +82,11 @@ public class BankStatement extends javax.swing.JFrame {
         jLabel108.setForeground(new java.awt.Color(255, 255, 255));
         jLabel108.setText("Deposits");
 
-        jLabel112.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel112.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel112.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel112.setText("0");
+        WidDis.setBackground(new java.awt.Color(255, 255, 255));
+        WidDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        WidDis.setForeground(new java.awt.Color(255, 255, 255));
+        WidDis.setText("0");
 
-        Confirm.setBackground(new java.awt.Color(255, 255, 255));
         Confirm.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Confirm.setForeground(new java.awt.Color(255, 255, 255));
         Confirm.setText("CONFIRM");
@@ -127,45 +126,45 @@ public class BankStatement extends javax.swing.JFrame {
         jLabel132.setForeground(new java.awt.Color(255, 255, 255));
         jLabel132.setText("Ending Balance");
 
-        jLabel114.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel114.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel114.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel114.setText("0");
+        DepDis.setBackground(new java.awt.Color(255, 255, 255));
+        DepDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        DepDis.setForeground(new java.awt.Color(255, 255, 255));
+        DepDis.setText("0");
 
-        jLabel115.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel115.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel115.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel115.setText("0");
+        ExpDis.setBackground(new java.awt.Color(255, 255, 255));
+        ExpDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        ExpDis.setForeground(new java.awt.Color(255, 255, 255));
+        ExpDis.setText("0");
 
-        jLabel116.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel116.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel116.setText("0");
+        BillDis.setBackground(new java.awt.Color(255, 255, 255));
+        BillDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        BillDis.setForeground(new java.awt.Color(255, 255, 255));
+        BillDis.setText("0");
 
-        jLabel117.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel117.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel117.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel117.setText("0");
+        WidTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        WidTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        WidTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        WidTotal1.setText("0");
 
         jLabel118.setBackground(new java.awt.Color(255, 255, 255));
         jLabel118.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel118.setForeground(new java.awt.Color(255, 255, 255));
         jLabel118.setText("0");
 
-        jLabel119.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel119.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel119.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel119.setText("0");
+        BillTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        BillTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        BillTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        BillTotal1.setText("0");
 
-        jLabel120.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel120.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel120.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel120.setText("0");
+        DepTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        DepTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        DepTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        DepTotal1.setText("0");
 
-        jLabel121.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel121.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel121.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel121.setText("0");
+        ExpTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        ExpTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        ExpTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        ExpTotal1.setText("0");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -209,18 +208,18 @@ public class BankStatement extends javax.swing.JFrame {
                                             .addComponent(jLabel5))
                                         .addGap(93, 93, 93)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel112)
-                                            .addComponent(jLabel116)
-                                            .addComponent(jLabel114)
-                                            .addComponent(jLabel115)))
+                                            .addComponent(WidDis)
+                                            .addComponent(BillDis)
+                                            .addComponent(DepDis)
+                                            .addComponent(ExpDis)))
                                     .addComponent(jLabel132))
                                 .addGap(311, 311, 311)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel118)
-                                    .addComponent(jLabel121)
-                                    .addComponent(jLabel120)
-                                    .addComponent(jLabel119)
-                                    .addComponent(jLabel117)))))
+                                    .addComponent(ExpTotal1)
+                                    .addComponent(DepTotal1)
+                                    .addComponent(BillTotal1)
+                                    .addComponent(WidTotal1)))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(404, 404, 404)
                         .addComponent(Confirm)))
@@ -237,20 +236,20 @@ public class BankStatement extends javax.swing.JFrame {
                             .addComponent(jLabel107))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel114)
-                            .addComponent(jLabel120))
+                            .addComponent(DepDis)
+                            .addComponent(DepTotal1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel112)
-                            .addComponent(jLabel117))
+                            .addComponent(WidDis)
+                            .addComponent(WidTotal1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel116)
-                            .addComponent(jLabel119))
+                            .addComponent(BillDis)
+                            .addComponent(BillTotal1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel115)
-                            .addComponent(jLabel121))
+                            .addComponent(ExpDis)
+                            .addComponent(ExpTotal1))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel118)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -377,22 +376,22 @@ public class BankStatement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BillDis;
+    private javax.swing.JLabel BillTotal1;
     private javax.swing.JButton Confirm;
+    private javax.swing.JLabel DepDis;
+    private javax.swing.JLabel DepTotal1;
+    private javax.swing.JLabel ExpDis;
+    private javax.swing.JLabel ExpTotal1;
+    private javax.swing.JLabel WidDis;
+    private javax.swing.JLabel WidTotal1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel125;

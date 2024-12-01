@@ -90,10 +90,10 @@
                                               </Group>
                                               <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabel112" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel116" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel114" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel115" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="WidDis" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="BillDis" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="DepDis" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="ExpDis" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jLabel132" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -101,10 +101,10 @@
                                       <EmptySpace min="-2" pref="311" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel118" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel121" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel120" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel119" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel117" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ExpTotal1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="DepTotal1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="BillTotal1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="WidTotal1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -130,23 +130,23 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel114" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel120" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DepDis" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DepTotal1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel112" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel117" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="WidDis" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="WidTotal1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel116" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel119" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BillDis" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BillTotal1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel115" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel121" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ExpDis" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ExpTotal1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel118" min="-2" max="-2" attributes="0"/>
@@ -220,7 +220,7 @@
                 <Property name="text" type="java.lang.String" value="Deposits"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel112">
+            <Component class="javax.swing.JLabel" name="WidDis">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -308,7 +308,7 @@
                 <Property name="text" type="java.lang.String" value="Ending Balance"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel114">
+            <Component class="javax.swing.JLabel" name="DepDis">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -322,7 +322,7 @@
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel115">
+            <Component class="javax.swing.JLabel" name="ExpDis">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -336,7 +336,7 @@
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel116">
+            <Component class="javax.swing.JLabel" name="BillDis">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -350,7 +350,7 @@
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel117">
+            <Component class="javax.swing.JLabel" name="WidTotal1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -378,7 +378,7 @@
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel119">
+            <Component class="javax.swing.JLabel" name="BillTotal1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -392,7 +392,7 @@
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel120">
+            <Component class="javax.swing.JLabel" name="DepTotal1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -406,7 +406,7 @@
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel121">
+            <Component class="javax.swing.JLabel" name="ExpTotal1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
