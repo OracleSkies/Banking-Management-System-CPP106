@@ -4,6 +4,14 @@
  */
 package ATMSystemBranch;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author yan
@@ -554,6 +562,11 @@ public class ATMWindow extends javax.swing.JFrame {
 
         depKeyOK.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         depKeyOK.setText("OK");
+        depKeyOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depKeyOKActionPerformed(evt);
+            }
+        });
         depositKeypad.add(depKeyOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 225, 75, 50));
 
         DepositCash.add(depositKeypad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 282, 300));
@@ -821,12 +834,17 @@ public class ATMWindow extends javax.swing.JFrame {
     private void depKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depKeyXActionPerformed
         // TODO add your handling code here:
         if ("".equals(depositNumber)){
-            return;
+            
         }else{
             depositNumber = depositNumber.substring(0, depositNumber.length() - 1);
             depositField.setText(depositNumber);
         }
     }//GEN-LAST:event_depKeyXActionPerformed
+
+    private void depKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depKeyOKActionPerformed
+        // TODO add your handling code here:
+        deposit(acctNum,balance);
+    }//GEN-LAST:event_depKeyOKActionPerformed
 
     // </editor-fold>   
     
@@ -835,8 +853,43 @@ public class ATMWindow extends javax.swing.JFrame {
         String balanceDisplay = Integer.toString(balance);
         DisplayBalance.setText(balanceDisplay);
     }
-    private void deposit(int balance){
+    private void deposit(String accNum,int balance){
+        int depToInt = Integer.parseInt(depositNumber);
+        balance = depToInt + depToInt;
+        String balToString = Integer.toString(balance);
         
+        List<String> updatedLines = new ArrayList<>();
+        
+        try (BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"))) {
+            String line;
+            
+            // Read the CSV file line by line
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                
+                // Assuming the CSV format is: Name, Age, Number
+                if (values.length == 10 && values[6].trim().equals(accNum)) {
+                    // If name matches, update the number
+                    values[10] = balToString;
+                }
+                
+                // Rebuild the line and add it to the list
+                updatedLines.add(String.join(",", values));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // Write the updated data back to the file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Accounts.csv"))) {
+            for (String updatedLine : updatedLines) {
+                bw.write(updatedLine);
+                bw.newLine();
+            }
+            System.out.println("CSV file updated successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     private void returnToPin(){
         PinWindow pin = new PinWindow();
