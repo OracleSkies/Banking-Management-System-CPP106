@@ -51,7 +51,7 @@ public class AccountInformationView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        overallPanel = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
         birhtDateLabel = new javax.swing.JLabel();
         phoneNumberLabel = new javax.swing.JLabel();
@@ -66,33 +66,39 @@ public class AccountInformationView extends javax.swing.JFrame {
         addressLabel = new javax.swing.JLabel();
         nameDisplay = new javax.swing.JLabel();
         addressDisplay = new javax.swing.JLabel();
+        cardAvailLabel = new javax.swing.JLabel();
+        typeDisplay1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         BGLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1500, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        overallPanel.setBackground(new java.awt.Color(0, 102, 153));
+        overallPanel.setOpaque(false);
+        overallPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nameLabel.setBackground(new java.awt.Color(255, 255, 255));
         nameLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
         nameLabel.setText("Name:");
         nameLabel.setPreferredSize(new java.awt.Dimension(112, 50));
-        jPanel2.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 120, 50));
+        overallPanel.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 120, 50));
 
         birhtDateLabel.setBackground(new java.awt.Color(255, 255, 255));
         birhtDateLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         birhtDateLabel.setForeground(new java.awt.Color(255, 255, 255));
         birhtDateLabel.setText("Birth Date:");
         birhtDateLabel.setPreferredSize(new java.awt.Dimension(175, 50));
-        jPanel2.add(birhtDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 190, 50));
+        overallPanel.add(birhtDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 190, 50));
 
         phoneNumberLabel.setBackground(new java.awt.Color(255, 255, 255));
         phoneNumberLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         phoneNumberLabel.setForeground(new java.awt.Color(255, 255, 255));
         phoneNumberLabel.setText("Phone Number:");
-        jPanel2.add(phoneNumberLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 270, 60));
+        overallPanel.add(phoneNumberLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 270, 60));
 
         backButton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         backButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,72 +118,86 @@ public class AccountInformationView extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 620, 210, 80));
+        overallPanel.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, 210, 80));
 
         accNumDisplay.setBackground(new java.awt.Color(255, 255, 255));
         accNumDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         accNumDisplay.setForeground(new java.awt.Color(255, 255, 255));
         accNumDisplay.setText("accnum");
-        jPanel2.add(accNumDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 550, 140, 50));
+        overallPanel.add(accNumDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 380, 140, 50));
 
         birthdayDisplay.setBackground(new java.awt.Color(255, 255, 255));
         birthdayDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         birthdayDisplay.setForeground(new java.awt.Color(255, 255, 255));
         birthdayDisplay.setText("birthday");
-        jPanel2.add(birthdayDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 350, 50));
+        overallPanel.add(birthdayDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 180, 290, 50));
 
         phoneDisplay.setBackground(new java.awt.Color(255, 255, 255));
         phoneDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         phoneDisplay.setForeground(new java.awt.Color(255, 255, 255));
         phoneDisplay.setText("phone");
-        jPanel2.add(phoneDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, 350, 50));
+        overallPanel.add(phoneDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 240, 290, 50));
 
         windowTitleLabel.setBackground(new java.awt.Color(255, 255, 255));
         windowTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         windowTitleLabel.setForeground(new java.awt.Color(255, 255, 255));
         windowTitleLabel.setText("Account Information");
-        jPanel2.add(windowTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 440, -1));
+        overallPanel.add(windowTitleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 440, -1));
 
         accNumLabel.setBackground(new java.awt.Color(255, 255, 255));
         accNumLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         accNumLabel.setForeground(new java.awt.Color(255, 255, 255));
         accNumLabel.setText("Bank Account Number:");
-        jPanel2.add(accNumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 550, 410, 50));
+        overallPanel.add(accNumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 410, 50));
 
         typeDisplay.setBackground(new java.awt.Color(255, 255, 255));
         typeDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         typeDisplay.setForeground(new java.awt.Color(255, 255, 255));
         typeDisplay.setText("type");
-        jPanel2.add(typeDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 420, 350, 50));
+        overallPanel.add(typeDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 440, 220, 50));
 
         typeLabel.setBackground(new java.awt.Color(255, 255, 255));
         typeLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         typeLabel.setForeground(new java.awt.Color(255, 255, 255));
         typeLabel.setText("Type of account:");
-        jPanel2.add(typeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, 290, 50));
+        overallPanel.add(typeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 290, 50));
 
         addressLabel.setBackground(new java.awt.Color(255, 255, 255));
         addressLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         addressLabel.setForeground(new java.awt.Color(255, 255, 255));
         addressLabel.setText("Address:");
-        jPanel2.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 150, 50));
+        overallPanel.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 150, 50));
 
         nameDisplay.setBackground(new java.awt.Color(255, 255, 255));
         nameDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         nameDisplay.setForeground(new java.awt.Color(255, 255, 255));
         nameDisplay.setText("name");
-        jPanel2.add(nameDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, 350, 50));
+        overallPanel.add(nameDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, 290, 50));
 
         addressDisplay.setBackground(new java.awt.Color(255, 255, 255));
         addressDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         addressDisplay.setForeground(new java.awt.Color(255, 255, 255));
         addressDisplay.setText("address");
-        jPanel2.add(addressDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 350, 40));
+        overallPanel.add(addressDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 300, 350, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 1300, 710));
+        cardAvailLabel.setBackground(new java.awt.Color(255, 255, 255));
+        cardAvailLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        cardAvailLabel.setForeground(new java.awt.Color(255, 255, 255));
+        cardAvailLabel.setText("Card Availability:");
+        overallPanel.add(cardAvailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 300, 50));
+
+        typeDisplay1.setBackground(new java.awt.Color(255, 255, 255));
+        typeDisplay1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        typeDisplay1.setForeground(new java.awt.Color(255, 255, 255));
+        typeDisplay1.setText("Available/Not Available");
+        overallPanel.add(typeDisplay1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, 290, 50));
+        overallPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 1470, 10));
+        overallPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1470, 10));
+
+        getContentPane().add(overallPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 1390, 710));
 
         BGLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled design.png"))); // NOI18N
-        getContentPane().add(BGLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(BGLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -322,12 +342,16 @@ public class AccountInformationView extends javax.swing.JFrame {
     private javax.swing.JButton backButton;
     private javax.swing.JLabel birhtDateLabel;
     private javax.swing.JLabel birthdayDisplay;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel cardAvailLabel;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel nameDisplay;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JPanel overallPanel;
     private javax.swing.JLabel phoneDisplay;
     private javax.swing.JLabel phoneNumberLabel;
     private javax.swing.JLabel typeDisplay;
+    private javax.swing.JLabel typeDisplay1;
     private javax.swing.JLabel typeLabel;
     private javax.swing.JLabel windowTitleLabel;
     // End of variables declaration//GEN-END:variables

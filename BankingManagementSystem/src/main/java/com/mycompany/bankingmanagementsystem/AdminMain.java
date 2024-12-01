@@ -1164,6 +1164,7 @@ public class AdminMain extends javax.swing.JFrame {
     }
     
     private void viewAccountInformation(){
+        setVisible(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AccountInformationView().setVisible(true);
