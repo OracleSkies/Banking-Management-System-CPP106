@@ -5,17 +5,7 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -26,20 +16,19 @@ public class AccountInformationView extends javax.swing.JFrame {
     /**
      * Creates new form USERACCOUNTAPPLICATION_ADMIN___
      */
-    private String username;
-    private String password;
-    private int row;
+//    private String username;
+//    private String password;
+//    private int row;
     
-    public AccountInformationView() {
-//        String username, String password,String name,String birthdate,String phoneNumber,String address,int row
+    public AccountInformationView(String name,String birthdate,String phoneNumber,String address,String accNumber,String type,String card,int row) {
         initComponents();
-//        this.username = username;
-//        this.password = password;
-//        nameLabel.setText(name);
-//        birthLabel.setText(birthdate);
-//        phoneLabel.setText(phoneNumber);
-//        addressLabel.setText(address);
-//        this.row = row;
+        nameDisplay.setText(name);
+        birthdayDisplay.setText(birthdate);
+        phoneDisplay.setText(phoneNumber);
+        addressDisplay.setText(address);
+        accNumDisplay.setText(accNumber);
+        typeDisplay.setText(typeDisplayDecision(type));
+        cardDisplay.setText(cardDisplayDecision(card));
     }
 
     /**
@@ -67,7 +56,7 @@ public class AccountInformationView extends javax.swing.JFrame {
         nameDisplay = new javax.swing.JLabel();
         addressDisplay = new javax.swing.JLabel();
         cardAvailLabel = new javax.swing.JLabel();
-        typeDisplay1 = new javax.swing.JLabel();
+        cardDisplay = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         BGLabel = new javax.swing.JLabel();
@@ -124,19 +113,19 @@ public class AccountInformationView extends javax.swing.JFrame {
         accNumDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         accNumDisplay.setForeground(new java.awt.Color(255, 255, 255));
         accNumDisplay.setText("accnum");
-        overallPanel.add(accNumDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 380, 140, 50));
+        overallPanel.add(accNumDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 380, 540, 50));
 
         birthdayDisplay.setBackground(new java.awt.Color(255, 255, 255));
         birthdayDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         birthdayDisplay.setForeground(new java.awt.Color(255, 255, 255));
         birthdayDisplay.setText("birthday");
-        overallPanel.add(birthdayDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 180, 290, 50));
+        overallPanel.add(birthdayDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 180, 580, 50));
 
         phoneDisplay.setBackground(new java.awt.Color(255, 255, 255));
         phoneDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         phoneDisplay.setForeground(new java.awt.Color(255, 255, 255));
         phoneDisplay.setText("phone");
-        overallPanel.add(phoneDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 240, 290, 50));
+        overallPanel.add(phoneDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 240, 590, 50));
 
         windowTitleLabel.setBackground(new java.awt.Color(255, 255, 255));
         windowTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -154,7 +143,7 @@ public class AccountInformationView extends javax.swing.JFrame {
         typeDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         typeDisplay.setForeground(new java.awt.Color(255, 255, 255));
         typeDisplay.setText("type");
-        overallPanel.add(typeDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 440, 220, 50));
+        overallPanel.add(typeDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 440, 590, 50));
 
         typeLabel.setBackground(new java.awt.Color(255, 255, 255));
         typeLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -172,13 +161,13 @@ public class AccountInformationView extends javax.swing.JFrame {
         nameDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         nameDisplay.setForeground(new java.awt.Color(255, 255, 255));
         nameDisplay.setText("name");
-        overallPanel.add(nameDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, 290, 50));
+        overallPanel.add(nameDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, 590, 50));
 
         addressDisplay.setBackground(new java.awt.Color(255, 255, 255));
         addressDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         addressDisplay.setForeground(new java.awt.Color(255, 255, 255));
         addressDisplay.setText("address");
-        overallPanel.add(addressDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 300, 350, 40));
+        overallPanel.add(addressDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 300, 590, 40));
 
         cardAvailLabel.setBackground(new java.awt.Color(255, 255, 255));
         cardAvailLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -186,11 +175,11 @@ public class AccountInformationView extends javax.swing.JFrame {
         cardAvailLabel.setText("Card Availability:");
         overallPanel.add(cardAvailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 500, 300, 50));
 
-        typeDisplay1.setBackground(new java.awt.Color(255, 255, 255));
-        typeDisplay1.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        typeDisplay1.setForeground(new java.awt.Color(255, 255, 255));
-        typeDisplay1.setText("Available/Not Available");
-        overallPanel.add(typeDisplay1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, 290, 50));
+        cardDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        cardDisplay.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        cardDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        cardDisplay.setText("Available/Not Available");
+        overallPanel.add(cardDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 500, 520, 50));
         overallPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 1470, 10));
         overallPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1470, 10));
 
@@ -224,64 +213,26 @@ public class AccountInformationView extends javax.swing.JFrame {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
-    private void deleteAccountFromFile(int row){
-        //THIS METHOD DECLINES THE APPLICATION OF THE USER. IT REMOVES ITS INFORMATION IN THE CSV
-        String filePath = "AccountApplications.csv";  // Change to your CSV file path
-        int rowToDelete = row; // Index of the row to delete (0-based index)
-
-        // Read the CSV file into a List of Strings (rows)
-        List<String> lines = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                lines.add(line);  // Add each line to the list
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Remove the specific row (if it exists)
-        if (rowToDelete >= 0 && rowToDelete < lines.size()) {
-            lines.remove(rowToDelete); // Remove the row at the specified index
-        } else {
-            System.out.println("Row index is out of bounds.");
-            return;
-        }
-
-        // Write the updated content back to the CSV file
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
-            for (String line : lines) {
-                bw.write(line);
-                bw.newLine();  // Write each line back into the file
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    
+    private String typeDisplayDecision(String type){
+        if("user".equals(type)){
+            return "Personal Account";
+        } else if ("admin".equals(type)){
+            return "Administrator Account";
+        }else{
+            return "";
         }
     }
     
-    private void refreshAccountTables(){
-        AdminMain admin = new AdminMain();
-        admin.setVisible(true);
-        admin.loadAccountsForAccApplication("AccountApplications.csv");
-    }
-    
-    private void accountApplicationWriteOnFile(String username,String password,String name,String birthdate,String phoneNumber,String address){
-        //ADDS THE ACCOUNT TO ACCOUNT DATABASE
-        try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
-            int accountNumber = RNGforAccountNumber();
-            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accountNumber + "," + "user" + "," + "no");
-            writer.newLine();
-
-            JOptionPane.showMessageDialog(this, "Account Verified!");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+    private String cardDisplayDecision(String card){
+        System.out.println(card);
+        if("yes".equals(card.toLowerCase())){
+            return "Card Available";
+        } else if ("no".equals(card.toLowerCase())){
+            return "Card Not Available";
+        }else{
+            return "";
         }
-    }
-    private int RNGforAccountNumber(){
-        Random random = new Random();
-        // Generate a random 7-digit number
-        int randomNumber = 10000000 + random.nextInt(90000); // Ensures the number is always 7 digits
-        return randomNumber;
     }
     
     private void returnToAdmin(){
@@ -343,6 +294,7 @@ public class AccountInformationView extends javax.swing.JFrame {
     private javax.swing.JLabel birhtDateLabel;
     private javax.swing.JLabel birthdayDisplay;
     private javax.swing.JLabel cardAvailLabel;
+    private javax.swing.JLabel cardDisplay;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel nameDisplay;
@@ -351,7 +303,6 @@ public class AccountInformationView extends javax.swing.JFrame {
     private javax.swing.JLabel phoneDisplay;
     private javax.swing.JLabel phoneNumberLabel;
     private javax.swing.JLabel typeDisplay;
-    private javax.swing.JLabel typeDisplay1;
     private javax.swing.JLabel typeLabel;
     private javax.swing.JLabel windowTitleLabel;
     // End of variables declaration//GEN-END:variables

@@ -40,7 +40,9 @@ public class AdminMain extends javax.swing.JFrame {
     private String birthdate;
     private String phoneNumber;
     private String address;
+    private String accNumber;
     private String type;
+    private String card;
     private int rowNum;
     
     public AdminMain() {
@@ -90,7 +92,7 @@ public class AdminMain extends javax.swing.JFrame {
             @Override
             public void accOnView(int row) {
                 System.out.println("BUTTON CHECK");
-                viewAccountInformation();
+                viewAccountInformation(row);
             }
         };
         
@@ -1082,14 +1084,14 @@ public class AdminMain extends javax.swing.JFrame {
         }
     }
     private void editUserInfo(int row){
-        username = "";
-        password = "";
-        name = "";
-        birthdate = "";
-        phoneNumber = "";
-        address = "";
-        type = "";
-        rowNum = 0;
+//        username = "";
+//        password = "";
+//        name = "";
+//        birthdate = "";
+//        phoneNumber = "";
+//        address = "";
+//        type = "";
+//        rowNum = 0;
         
         File file = new File("Accounts.csv");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -1105,7 +1107,9 @@ public class AdminMain extends javax.swing.JFrame {
                     birthdate = data[3];
                     phoneNumber = data[4];
                     address = data[5];
+                    accNumber = data[6];
                     type = data[7];
+                    card = data[8];
                     rowNum = currentRow;
                     // Output all elements for the found name
                     break;
@@ -1114,7 +1118,7 @@ public class AdminMain extends javax.swing.JFrame {
             }
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new AccountEdit(username, password, name, birthdate, phoneNumber,address,type,rowNum).setVisible(true);
+                    new AccountEdit(username, password, name, birthdate, phoneNumber,address,accNumber,type,card,rowNum).setVisible(true);
                 }
             });
             this.setVisible(false);
@@ -1163,13 +1167,58 @@ public class AdminMain extends javax.swing.JFrame {
         } 
     }
     
-    private void viewAccountInformation(){
-        setVisible(false);
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AccountInformationView().setVisible(true);
+    private void viewAccountInformation(int row){
+       
+//        username = "";
+//        password = "";
+//        name = "";
+//        birthdate = "";
+//        phoneNumber = "";
+//        address = "";
+//        accNumber = "";
+//        type = "";
+//        
+//        rowNum = 0;
+        
+        File file = new File("Accounts.csv");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            int currentRow = 0;
+            int rowNumber = row+1;
+            while ((line = reader.readLine()) != null) {
+                if (currentRow == rowNumber) {
+                    String[] data = line.split(",");
+                    name = data[2];
+                    birthdate = data[3];
+                    phoneNumber = data[4];
+                    address = data[5];
+                    accNumber = data[6];
+                    type = data[7];
+                    card = data[8];
+                    rowNum = currentRow;
+                    // Output all elements for the found name
+                    break;
+                }
+                currentRow++;
             }
-        });
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new AccountInformationView(name, birthdate, phoneNumber,address,accNumber,type,card,rowNum).setVisible(true);
+                }
+            });
+            this.setVisible(false);
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+//        setVisible(false);
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AccountInformationView().setVisible(true);
+//            }
+//        });
     }
     
     private void deleteAccount(int row){

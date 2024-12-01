@@ -27,7 +27,9 @@ public class AccountEdit extends javax.swing.JFrame {
      */
     private int row;
     private String type;
-    public AccountEdit(String username, String password,String name,String birthdate,String phoneNumber,String address,String type,int row) {
+    private String accNumber;
+    private String card;
+    public AccountEdit(String username, String password,String name,String birthdate,String phoneNumber,String address,String accNumber,String type,String card,int row) {
         initComponents();
         usernameField.setText(username);
         passwordField.setText(password);
@@ -35,7 +37,9 @@ public class AccountEdit extends javax.swing.JFrame {
         birthdateField.setText(birthdate);
         phoneNumField.setText(phoneNumber);
         addressField.setText(address);
+        this.accNumber = accNumber;
         this.type = type;
+        this.card = card;
         this.row = row;
     }
 
@@ -237,7 +241,7 @@ public class AccountEdit extends javax.swing.JFrame {
             return;
         } else if (phoneNumber.matches("\\d+")){
             deleteAccount(row);
-            accountEditWriteOnFile(username,password,name,birthdate,phoneNumber,address,type);
+            accountEditWriteOnFile(username,password,name,birthdate,phoneNumber,address,accNumber,type,card);
             AdminMain admin = new AdminMain();
             admin.setVisible(true);
             setVisible(false);
@@ -281,9 +285,9 @@ public class AccountEdit extends javax.swing.JFrame {
     //</editor-fold>
     
     //=================== Naka EME pa ang acct number, Ayusin yon
-    private void accountEditWriteOnFile(String username, String password, String name, String birthdate, String phoneNumber, String address, String type) {
+    private void accountEditWriteOnFile(String username, String password, String name, String birthdate, String phoneNumber, String address, String accNumber, String type, String card) {
         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
-            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + "eme acct number"+ "," + type);
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + type + "," + card);
             writer.newLine();
 
             JOptionPane.showMessageDialog(this, "Account edited successfully!");
