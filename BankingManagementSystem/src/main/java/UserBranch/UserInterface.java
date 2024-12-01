@@ -2854,135 +2854,12 @@ public class UserInterface extends javax.swing.JFrame {
         return false; // Text not found
     }
 
-    
-    private void saveToCSV(String buttonText, String timestamp, String amount) {
-        FileWriter writer = null;
-        try {
-            File file = new File("Transactions.csv");
-            boolean isNewFile = !file.exists();
-
-            // Open the file in append mode
-            writer = new FileWriter(file, true);
-
-            // Write header if the file is new
-            if (isNewFile) {
-                writer.append("Timestamp,User,Type,Amount,Button,Description\n");
-            }
-
-            // Append the transaction details
-            writer.append(timestamp)
-                  .append(",USER,BAN,")
-                  .append(amount)
-                  .append(",")
-                  .append(buttonText)
-                  .append(",No Description\n");
-
-        } catch (IOException e) {
-            // Log and notify the user of the error
-            System.err.println("Error saving to CSV: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "Error saving to CSV: " + e.getMessage(),
-                                          "Error", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                System.err.println("Error closing writer: " + e.getMessage());
-            }
-        }
-        System.out.println("Current working directory: " + System.getProperty("user.dir"));
-    }
-
+  
  
-        
-    // Method to fetch the current balance (this should be connected to your application's logic)
-//    private double getCurrentBalance() {
-//        // Example logic, replace this with your actual implementation
-////        String balanceText = CurrentBal.getText().replace("$", ""); // Assuming CurrentBal holds the balance in "$123.45" format
-////        return Double.parseDouble(balanceText);
-//    }
-
-    // Method to update the balance (e.g., display new balance in the UI)
-    private void updateBalance(double newBalance) {
-        DecimalFormat df = new DecimalFormat("#.00");
-//        CurrentBal.setText("$" + df.format(newBalance));
-        BalDis.setText("$" + df.format(newBalance));
-    }
-    // Helper method to check if the input is a valid numeric amount
-    private boolean isValidAmount(String str) {
-        try {
-            // Ensure the value is a valid decimal number (including decimals)
-            Double.parseDouble(str);  // Attempt to parse the input as a number
-            return str.matches("\\d+(\\.\\d{1,2})?");  // Validate format (optional decimal)
-        } catch (NumberFormatException e) {
-            return false;  // It is not a valid number
-        }
-    }
-    
-    private void popUpWindow1(String buttonText, String timestamp, String amount) {
-        // Create a new JFrame for the popup window
-        JFrame popup = new JFrame("Withdraw Click Details");
-        popup.setSize(325, 325);
-        popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        // Center the popup window on the screen
-        popup.setLocationRelativeTo(null);
-
-        // Add a label with the button click information
-        JLabel label = new JLabel("<html>Details: " + timestamp + "<br>Time: " + amount  + "<br>Amount: " + buttonText + "</html>", SwingConstants.CENTER);
-
-        popup.add(label);
-
-        // Display the popup
-        popup.setVisible(true);
-    }
-
-
-    // Restrict JTextField to numbers only (including decimals)
-    private void restrictInputToNumbersOnly(JTextField textField) {
-        PlainDocument doc = (PlainDocument) textField.getDocument();
-        doc.setDocumentFilter(new DocumentFilter() {
-            @Override
-            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-                if (string.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
-                    super.insertString(fb, offset, string, attr);
-                }
-            }
-
-            @Override
-            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-                if (text.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
-                    super.replace(fb, offset, length, text, attrs);
-                }
-            }
-        });
-    }
-    
     private void NotifsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotifsActionPerformed
         
     }//GEN-LAST:event_NotifsActionPerformed
-    
-        
-    private void restrictInputToNumbersOnly3(JTextField textField) {
-        PlainDocument doc = (PlainDocument) textField.getDocument();
-        doc.setDocumentFilter(new DocumentFilter() {
-            @Override
-            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-                if (string.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
-                    super.insertString(fb, offset, string, attr);
-                }
-            }
-
-            @Override
-            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-                if (text.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
-                    super.replace(fb, offset, length, text, attrs);
-                }
-            }
-        });
-    }
-    
+       
     private void applicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applicationActionPerformed
         // TODO add your handling code here:
         Application.setVisible(true);
@@ -3335,46 +3212,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void GenRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRepActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GenRepActionPerformed
-    
-    private void popUpWindow2(String buttonText, String timestamp, String amount) {
-        // Create a new JFrame for the popup window
-        JFrame popup = new JFrame("Deposited Click Details");
-        popup.setSize(325, 325);
-        popup.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Center the popup window on the screen
-        popup.setLocationRelativeTo(null);
-
-        // Add a label with the button click information
-        JLabel label = new JLabel("<html>Details: " + buttonText + "<br>Time: " + timestamp + "<br>Amount: " + amount + "</html>", SwingConstants.CENTER);
-
-        popup.add(label);
-
-        // Display the popup
-        popup.setVisible(true);
-    }
-    
-    private void restrictInputToNumbersOnly2(JTextField textField) {
-        PlainDocument doc = (PlainDocument) textField.getDocument();
-        doc.setDocumentFilter(new DocumentFilter() {
-            @Override
-            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-                if (string.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
-                    super.insertString(fb, offset, string, attr);
-                }
-            }
-
-            @Override
-            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
-                if (text.matches("[0-9]*\\.?[0-9]*")) {  // Allow digits and a single decimal point
-                    super.replace(fb, offset, length, text, attrs);
-                }
-            }
-        });
-    }
-    
-    
-    
     /**
      * @param args the command line arguments
      */
