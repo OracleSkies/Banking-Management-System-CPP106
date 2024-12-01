@@ -282,6 +282,7 @@ public class UserInterface extends javax.swing.JFrame {
         TransacHis = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Transhis = new javax.swing.JTable();
+        GenRep = new javax.swing.JButton();
         AccReg = new javax.swing.JPanel();
         CheckCardY = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -947,20 +948,34 @@ public class UserInterface extends javax.swing.JFrame {
             Transhis.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        GenRep.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        GenRep.setText("Genrate Report");
+        GenRep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenRepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout TransacHisLayout = new javax.swing.GroupLayout(TransacHis);
         TransacHis.setLayout(TransacHisLayout);
         TransacHisLayout.setHorizontalGroup(
             TransacHisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TransacHisLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1158, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransacHisLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GenRep)
+                .addGap(504, 504, 504))
         );
         TransacHisLayout.setVerticalGroup(
             TransacHisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TransacHisLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(GenRep, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3316,6 +3331,10 @@ public class UserInterface extends javax.swing.JFrame {
         CartGUI1 cart = new CartGUI1();
         cart.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void GenRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GenRepActionPerformed
     
     private void popUpWindow2(String buttonText, String timestamp, String amount) {
         // Create a new JFrame for the popup window
@@ -3426,6 +3445,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel DescrDis;
     private javax.swing.JScrollPane FoodScroll;
     private javax.swing.JPanel Foods;
+    private javax.swing.JButton GenRep;
     private javax.swing.JPanel Hist;
     private javax.swing.JLabel NameDis;
     private javax.swing.JLabel NameLabel1;
