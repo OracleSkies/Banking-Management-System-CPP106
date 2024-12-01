@@ -64,7 +64,7 @@ public class AdminMain extends javax.swing.JFrame {
             }
             @Override 
             public void onView(int row){
-                viewUserInfo(row);
+                viewUserAccountApplication(row);
             }
             @Override 
             public void onDelete(int row){
@@ -85,6 +85,12 @@ public class AdminMain extends javax.swing.JFrame {
                     model.removeRow(row);
 
                 }
+            }
+
+            @Override
+            public void accOnView(int row) {
+                System.out.println("BUTTON CHECK");
+                viewAccountInformation();
             }
         };
         
@@ -1118,7 +1124,7 @@ public class AdminMain extends javax.swing.JFrame {
         } 
     }
     
-    private void viewUserInfo(int row){
+    private void viewUserAccountApplication(int row){
         name = "";
         birthdate = "";
         phoneNumber = "";
@@ -1155,6 +1161,14 @@ public class AdminMain extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } 
+    }
+    
+    private void viewAccountInformation(){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AccountInformationView().setVisible(true);
+            }
+        });
     }
     
     private void deleteAccount(int row){
@@ -1230,6 +1244,7 @@ public class AdminMain extends javax.swing.JFrame {
         });
     }
 
+    // <editor-fold defaultstate="collapsed" desc="VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane AccAppDashScrPane;
     private javax.swing.JButton AccManagebutton;
@@ -1285,4 +1300,5 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton notificationButton;
     private javax.swing.JTable transactionTableDash;
     // End of variables declaration//GEN-END:variables
+    //</editor-fold>
 }
