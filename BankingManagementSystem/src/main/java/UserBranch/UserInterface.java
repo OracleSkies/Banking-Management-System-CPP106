@@ -3177,8 +3177,10 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void GenRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRepActionPerformed
-        BankStatement banks = new BankStatement();
+        BankStatement banks = new BankStatement();       
         banks.setVisible(true);
+        setVisible(false);
+        
     }//GEN-LAST:event_GenRepActionPerformed
 
     /**
