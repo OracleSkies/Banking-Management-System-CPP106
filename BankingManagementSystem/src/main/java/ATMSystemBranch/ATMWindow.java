@@ -135,6 +135,7 @@ public class ATMWindow extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
