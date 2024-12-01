@@ -5,6 +5,12 @@
 package UserBranch;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,8 +23,54 @@ public class BankStatement extends javax.swing.JFrame {
      */
     public BankStatement() {
         initComponents();
+        loadDataFromCSVFiles(); // Call the method to load data
+    }
+    
+    // Method to load and count word occurrences from CSV files
+    private void loadDataFromCSVFiles() {
+        // Define the list of CSV file paths
+        String[] csvFiles = {"Transactions.csv", "Accounts.csv", "AccountApplications.csv"}; 
+
+        // Define a map to store word counts
+        Map<String, Integer> wordCountMap = new HashMap<>();
+
+        // Loop through each CSV file
+        for (String csvFile : csvFiles) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] words = line.split(","); // Assuming CSV is comma-separated
+                    for (String word : words) {
+                        word = word.trim(); // Remove any extra spaces
+                        wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+                    }
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error reading file: " + csvFile);
+            }
+        }
+
+        // Now display the results in the labels
+        displayResults(wordCountMap);
     }
 
+    // Method to update the JLabel components with the total count of words
+    private void displayResults(Map<String, Integer> wordCountMap) {
+        // Example: Display word counts in specific JLabels
+        DepDis.setText(String.valueOf(wordCountMap.getOrDefault("Deposit", 0)));
+        WidDis.setText(String.valueOf(wordCountMap.getOrDefault("Withdraw", 0)));
+        BillDis.setText(String.valueOf(wordCountMap.getOrDefault("Bill", 0)));
+        ExpDis.setText(String.valueOf(wordCountMap.getOrDefault("Expense", 0)));
+        TotalBal.setText(String.valueOf(calculateTotalBalance(wordCountMap)));
+    }
+
+    // Calculate the total balance from word counts (Example calculation)
+    private int calculateTotalBalance(Map<String, Integer> wordCountMap) {
+        // Just an example: you can implement actual logic based on your requirements
+        return wordCountMap.getOrDefault("Deposit", 0) - wordCountMap.getOrDefault("Withdraw", 0);
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,13 +96,13 @@ public class BankStatement extends javax.swing.JFrame {
         ExpDis = new javax.swing.JLabel();
         BillDis = new javax.swing.JLabel();
         WidTotal1 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
+        TotalBal = new javax.swing.JLabel();
         BillTotal1 = new javax.swing.JLabel();
         DepTotal1 = new javax.swing.JLabel();
         ExpTotal1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel105 = new javax.swing.JLabel();
@@ -146,10 +198,10 @@ public class BankStatement extends javax.swing.JFrame {
         WidTotal1.setForeground(new java.awt.Color(255, 255, 255));
         WidTotal1.setText("0");
 
-        jLabel118.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel118.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel118.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel118.setText("0");
+        TotalBal.setBackground(new java.awt.Color(255, 255, 255));
+        TotalBal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        TotalBal.setForeground(new java.awt.Color(255, 255, 255));
+        TotalBal.setText("0");
 
         BillTotal1.setBackground(new java.awt.Color(255, 255, 255));
         BillTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -176,10 +228,10 @@ public class BankStatement extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Account Number");
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Name");
+        Name.setBackground(new java.awt.Color(255, 255, 255));
+        Name.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Name.setForeground(new java.awt.Color(255, 255, 255));
+        Name.setText("Name");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -205,7 +257,7 @@ public class BankStatement extends javax.swing.JFrame {
                                             .addComponent(jLabel4)
                                             .addComponent(jLabel108)
                                             .addComponent(jLabel3)
-                                            .addComponent(jLabel5))
+                                            .addComponent(Name))
                                         .addGap(93, 93, 93)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(WidDis)
@@ -215,7 +267,7 @@ public class BankStatement extends javax.swing.JFrame {
                                     .addComponent(jLabel132))
                                 .addGap(311, 311, 311)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel118)
+                                    .addComponent(TotalBal)
                                     .addComponent(ExpTotal1)
                                     .addComponent(DepTotal1)
                                     .addComponent(BillTotal1)
@@ -251,12 +303,12 @@ public class BankStatement extends javax.swing.JFrame {
                             .addComponent(ExpDis)
                             .addComponent(ExpTotal1))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel118)
+                        .addComponent(TotalBal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Confirm))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel5)
+                        .addComponent(Name)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -338,6 +390,7 @@ public class BankStatement extends javax.swing.JFrame {
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         UserInterface user = new UserInterface();
         user.setVisible(true);
+        setVisible(false);
 
     }//GEN-LAST:event_ConfirmActionPerformed
 
@@ -345,11 +398,13 @@ public class BankStatement extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -384,6 +439,8 @@ public class BankStatement extends javax.swing.JFrame {
     private javax.swing.JLabel DepTotal1;
     private javax.swing.JLabel ExpDis;
     private javax.swing.JLabel ExpTotal1;
+    private javax.swing.JLabel Name;
+    private javax.swing.JLabel TotalBal;
     private javax.swing.JLabel WidDis;
     private javax.swing.JLabel WidTotal1;
     private javax.swing.JLabel jLabel1;
@@ -392,14 +449,12 @@ public class BankStatement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel132;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
