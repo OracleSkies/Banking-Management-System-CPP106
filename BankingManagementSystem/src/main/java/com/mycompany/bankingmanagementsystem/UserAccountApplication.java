@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,10 +26,14 @@ public class UserAccountApplication extends javax.swing.JFrame {
     /**
      * Creates new form USERACCOUNTAPPLICATION_ADMIN___
      */
+    private String username;
+    private String password;
     private int row;
     
-    public UserAccountApplication(String name, String birthdate, String phoneNumber, String address, int row) {
+    public UserAccountApplication(String username, String password,String name,String birthdate,String phoneNumber,String address,int row) {
         initComponents();
+        this.username = username;
+        this.password = password;
         nameLabel.setText(name);
         birthLabel.setText(birthdate);
         phoneLabel.setText(phoneNumber);
@@ -230,7 +235,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
         );
 
         if (response == JOptionPane.YES_OPTION) {
-            declineAccount(this.row);
+            deleteAccountFromFile(row);
             JOptionPane.showMessageDialog(this, "Account application declined!");
             refreshAccountTables();
             this.dispose(); // Close the current window
@@ -254,6 +259,19 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void APPROVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_APPROVEActionPerformed
         // TODO add your handling code here:
+        String usernameVar;
+        String passwordVar;
+        usernameVar = this.username;
+        passwordVar = this.password;
+        String name = nameLabel.getText();
+        String birthdate = birthLabel.getText();
+        String phoneNumber = phoneLabel.getText();
+        String address = addressLabel.getText();
+//        String type = this.type;
+        RNGforAccountNumber();
+        accountApplicationWriteOnFile(usernameVar,passwordVar,name,birthdate,phoneNumber,address);
+        deleteAccountFromFile(row);
+        returnToAdmin();
     }//GEN-LAST:event_APPROVEActionPerformed
 
     private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
@@ -271,14 +289,13 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        AdminMain admin = new AdminMain();
-        admin.setVisible(true);
-        setVisible(false);
+        returnToAdmin();
     }//GEN-LAST:event_backButtonActionPerformed
 
     // </editor-fold>
     
-    private void declineAccount(int row){
+    // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
+    private void deleteAccountFromFile(int row){
         //THIS METHOD DECLINES THE APPLICATION OF THE USER. IT REMOVES ITS INFORMATION IN THE CSV
         String filePath = "AccountApplications.csv";  // Change to your CSV file path
         int rowToDelete = row; // Index of the row to delete (0-based index)
@@ -318,9 +335,39 @@ public class UserAccountApplication extends javax.swing.JFrame {
         admin.loadAccountsForAccApplication("AccountApplications.csv");
         admin.setVisible(true);
     }
+    
+    private void accountApplicationWriteOnFile(String username,String password,String name,String birthdate,String phoneNumber,String address){
+        //ADDS THE ACCOUNT TO ACCOUNT DATABASE
+        try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
+            int accountNumber = RNGforAccountNumber();
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accountNumber + "," + "user" + "," + "no");
+            writer.newLine();
+
+            JOptionPane.showMessageDialog(this, "Account Verified!");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private int RNGforAccountNumber(){
+        Random random = new Random();
+        // Generate a random 7-digit number
+        int randomNumber = 10000000 + random.nextInt(90000); // Ensures the number is always 7 digits
+        return randomNumber;
+    }
+    
+    private void returnToAdmin(){
+        AdminMain admin = new AdminMain();
+        admin.setVisible(true);
+        setVisible(false);
+    }
+    
+    //</editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="MAIN(Nonfunctional)">
     /**
      * @param args the command line arguments
      */
+    
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -344,7 +391,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
 //            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
-//        //</editor-fold>
+//        
 //
 //        /* Create and display the form */
 ////        java.awt.EventQueue.invokeLater(new Runnable() {
@@ -354,7 +401,9 @@ public class UserAccountApplication extends javax.swing.JFrame {
 ////        });
 //
 //    }
-
+    //</editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="WIDGET VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton APPROVE;
     private javax.swing.JButton DECLINE;
@@ -374,3 +423,4 @@ public class UserAccountApplication extends javax.swing.JFrame {
     private javax.swing.JLabel phoneLabel;
     // End of variables declaration//GEN-END:variables
 }
+//</editor-fold>

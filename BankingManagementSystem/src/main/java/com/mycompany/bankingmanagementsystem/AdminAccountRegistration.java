@@ -263,10 +263,10 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
 
     private void accountRegistration(String username, String password, String name, String birthdate, String phoneNumber, String address) {
         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
-            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address + "," + "admin");
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address + "," + "-----" + "," + "admin" + "," + "no");
             writer.newLine();
 
-            JOptionPane.showMessageDialog(this, "Account created successfully!");
+            JOptionPane.showMessageDialog(this, "Administrator account created successfully!");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
         }

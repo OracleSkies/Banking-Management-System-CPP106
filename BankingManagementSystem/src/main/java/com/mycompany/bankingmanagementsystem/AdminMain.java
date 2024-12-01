@@ -1132,6 +1132,8 @@ public class AdminMain extends javax.swing.JFrame {
             while ((line = reader.readLine()) != null) {
                 if (currentRow == rowNumber) {
                     String[] data = line.split(",");
+                    username = data[0];
+                    password = data[1];
                     name = data[2];
                     birthdate = data[3];
                     phoneNumber = data[4];
@@ -1144,7 +1146,7 @@ public class AdminMain extends javax.swing.JFrame {
             }
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new UserAccountApplication(name, birthdate, phoneNumber, address, rowNum).setVisible(true);
+                    new UserAccountApplication(username,password, name, birthdate, phoneNumber, address, rowNum).setVisible(true);
                 }
             });
             this.setVisible(false);
