@@ -55,7 +55,20 @@ public class UserInterface extends javax.swing.JFrame {
         
         BillsScroll.setOpaque(false);
         BillsScroll.getViewport().setOpaque(false);
-
+           
+        FoodScroll.setOpaque(false);
+        FoodScroll.getViewport().setOpaque(false);
+        
+        ClothingsScroll.setOpaque(false);
+        ClothingsScroll.getViewport().setOpaque(false);
+        
+        AppliancesScroll.setOpaque(false);
+        AppliancesScroll.getViewport().setOpaque(false);
+        
+        shoppingTab.setOpaque(false);
+        shoppingTab.setBackground(new java.awt.Color(204, 204, 204, 80));
+        shoppingTab.setForeground(Color.white);
+        
         Dashboard.setVisible(true);
         TransacHis.setVisible(false);
         AccReg.setVisible(false);
@@ -223,6 +236,10 @@ public class UserInterface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton14 = new javax.swing.JToggleButton();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jToggleButton15 = new javax.swing.JToggleButton();
         Profile = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         Notifs = new javax.swing.JButton();
@@ -321,6 +338,214 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         PayB = new javax.swing.JButton();
         shopping = new javax.swing.JPanel();
+        shoppingTab = new javax.swing.JTabbedPane();
+        FoodScroll = new javax.swing.JScrollPane();
+        Foods = new javax.swing.JPanel();
+        jToggleButton19 = new javax.swing.JToggleButton();
+        jToggleButton22 = new javax.swing.JToggleButton();
+        jToggleButton23 = new javax.swing.JToggleButton();
+        jToggleButton24 = new javax.swing.JToggleButton();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jToggleButton25 = new javax.swing.JToggleButton();
+        jToggleButton26 = new javax.swing.JToggleButton();
+        jToggleButton27 = new javax.swing.JToggleButton();
+        jToggleButton28 = new javax.swing.JToggleButton();
+        jToggleButton29 = new javax.swing.JToggleButton();
+        jToggleButton30 = new javax.swing.JToggleButton();
+        jToggleButton31 = new javax.swing.JToggleButton();
+        jToggleButton32 = new javax.swing.JToggleButton();
+        jLabel75 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel129 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel131 = new javax.swing.JLabel();
+        jLabel132 = new javax.swing.JLabel();
+        jLabel133 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel134 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel135 = new javax.swing.JLabel();
+        jLabel136 = new javax.swing.JLabel();
+        jLabel137 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jLabel138 = new javax.swing.JLabel();
+        jLabel139 = new javax.swing.JLabel();
+        jLabel140 = new javax.swing.JLabel();
+        jLabel141 = new javax.swing.JLabel();
+        jLabel142 = new javax.swing.JLabel();
+        jLabel143 = new javax.swing.JLabel();
+        jLabel144 = new javax.swing.JLabel();
+        jLabel145 = new javax.swing.JLabel();
+        jLabel146 = new javax.swing.JLabel();
+        jLabel147 = new javax.swing.JLabel();
+        jLabel148 = new javax.swing.JLabel();
+        jLabel149 = new javax.swing.JLabel();
+        jLabel150 = new javax.swing.JLabel();
+        jLabel151 = new javax.swing.JLabel();
+        jLabel152 = new javax.swing.JLabel();
+        jLabel153 = new javax.swing.JLabel();
+        jLabel154 = new javax.swing.JLabel();
+        jLabel155 = new javax.swing.JLabel();
+        jLabel156 = new javax.swing.JLabel();
+        jLabel157 = new javax.swing.JLabel();
+        jLabel158 = new javax.swing.JLabel();
+        jLabel159 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jTextField14 = new javax.swing.JTextField();
+        jTextField15 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        ClothingsScroll = new javax.swing.JScrollPane();
+        Clothings = new javax.swing.JPanel();
+        jToggleButton69 = new javax.swing.JToggleButton();
+        jToggleButton70 = new javax.swing.JToggleButton();
+        jToggleButton71 = new javax.swing.JToggleButton();
+        jToggleButton72 = new javax.swing.JToggleButton();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jToggleButton73 = new javax.swing.JToggleButton();
+        jToggleButton74 = new javax.swing.JToggleButton();
+        jToggleButton75 = new javax.swing.JToggleButton();
+        jToggleButton76 = new javax.swing.JToggleButton();
+        jToggleButton77 = new javax.swing.JToggleButton();
+        jToggleButton78 = new javax.swing.JToggleButton();
+        jToggleButton79 = new javax.swing.JToggleButton();
+        jToggleButton80 = new javax.swing.JToggleButton();
+        jLabel193 = new javax.swing.JLabel();
+        jTextField30 = new javax.swing.JTextField();
+        jLabel194 = new javax.swing.JLabel();
+        jLabel195 = new javax.swing.JLabel();
+        jTextField31 = new javax.swing.JTextField();
+        jLabel196 = new javax.swing.JLabel();
+        jLabel197 = new javax.swing.JLabel();
+        jLabel198 = new javax.swing.JLabel();
+        jTextField32 = new javax.swing.JTextField();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel199 = new javax.swing.JLabel();
+        jTextField33 = new javax.swing.JTextField();
+        jLabel200 = new javax.swing.JLabel();
+        jLabel201 = new javax.swing.JLabel();
+        jLabel202 = new javax.swing.JLabel();
+        jTextField34 = new javax.swing.JTextField();
+        jLabel203 = new javax.swing.JLabel();
+        jLabel204 = new javax.swing.JLabel();
+        jLabel205 = new javax.swing.JLabel();
+        jLabel206 = new javax.swing.JLabel();
+        jLabel207 = new javax.swing.JLabel();
+        jLabel208 = new javax.swing.JLabel();
+        jLabel209 = new javax.swing.JLabel();
+        jLabel210 = new javax.swing.JLabel();
+        jLabel211 = new javax.swing.JLabel();
+        jLabel212 = new javax.swing.JLabel();
+        jLabel213 = new javax.swing.JLabel();
+        jLabel214 = new javax.swing.JLabel();
+        jLabel215 = new javax.swing.JLabel();
+        jLabel216 = new javax.swing.JLabel();
+        jLabel217 = new javax.swing.JLabel();
+        jLabel218 = new javax.swing.JLabel();
+        jLabel219 = new javax.swing.JLabel();
+        jLabel220 = new javax.swing.JLabel();
+        jLabel221 = new javax.swing.JLabel();
+        jLabel222 = new javax.swing.JLabel();
+        jLabel223 = new javax.swing.JLabel();
+        jLabel224 = new javax.swing.JLabel();
+        jTextField35 = new javax.swing.JTextField();
+        jTextField36 = new javax.swing.JTextField();
+        jTextField37 = new javax.swing.JTextField();
+        jTextField38 = new javax.swing.JTextField();
+        jTextField39 = new javax.swing.JTextField();
+        jTextField40 = new javax.swing.JTextField();
+        jTextField41 = new javax.swing.JTextField();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel225 = new javax.swing.JLabel();
+        jLabel226 = new javax.swing.JLabel();
+        jLabel227 = new javax.swing.JLabel();
+        jLabel228 = new javax.swing.JLabel();
+        jLabel229 = new javax.swing.JLabel();
+        jLabel230 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel231 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel232 = new javax.swing.JLabel();
+        jLabel233 = new javax.swing.JLabel();
+        jLabel234 = new javax.swing.JLabel();
+        jLabel235 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel236 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        AppliancesScroll = new javax.swing.JScrollPane();
+        Appliances = new javax.swing.JPanel();
+        jToggleButton33 = new javax.swing.JToggleButton();
+        jToggleButton58 = new javax.swing.JToggleButton();
+        jToggleButton59 = new javax.swing.JToggleButton();
+        jToggleButton60 = new javax.swing.JToggleButton();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jToggleButton61 = new javax.swing.JToggleButton();
+        jToggleButton62 = new javax.swing.JToggleButton();
+        jToggleButton63 = new javax.swing.JToggleButton();
+        jToggleButton64 = new javax.swing.JToggleButton();
+        jToggleButton65 = new javax.swing.JToggleButton();
+        jToggleButton66 = new javax.swing.JToggleButton();
+        jToggleButton67 = new javax.swing.JToggleButton();
+        jToggleButton68 = new javax.swing.JToggleButton();
+        jLabel160 = new javax.swing.JLabel();
+        jTextField18 = new javax.swing.JTextField();
+        jLabel161 = new javax.swing.JLabel();
+        jLabel162 = new javax.swing.JLabel();
+        jTextField19 = new javax.swing.JTextField();
+        jLabel163 = new javax.swing.JLabel();
+        jLabel164 = new javax.swing.JLabel();
+        jLabel165 = new javax.swing.JLabel();
+        jTextField20 = new javax.swing.JTextField();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel166 = new javax.swing.JLabel();
+        jTextField21 = new javax.swing.JTextField();
+        jLabel167 = new javax.swing.JLabel();
+        jLabel168 = new javax.swing.JLabel();
+        jLabel169 = new javax.swing.JLabel();
+        jTextField22 = new javax.swing.JTextField();
+        jLabel170 = new javax.swing.JLabel();
+        jLabel171 = new javax.swing.JLabel();
+        jLabel172 = new javax.swing.JLabel();
+        jLabel173 = new javax.swing.JLabel();
+        jLabel174 = new javax.swing.JLabel();
+        jLabel175 = new javax.swing.JLabel();
+        jLabel176 = new javax.swing.JLabel();
+        jLabel177 = new javax.swing.JLabel();
+        jLabel178 = new javax.swing.JLabel();
+        jLabel179 = new javax.swing.JLabel();
+        jLabel180 = new javax.swing.JLabel();
+        jLabel181 = new javax.swing.JLabel();
+        jLabel182 = new javax.swing.JLabel();
+        jLabel183 = new javax.swing.JLabel();
+        jLabel184 = new javax.swing.JLabel();
+        jLabel185 = new javax.swing.JLabel();
+        jLabel186 = new javax.swing.JLabel();
+        jLabel187 = new javax.swing.JLabel();
+        jLabel188 = new javax.swing.JLabel();
+        jLabel189 = new javax.swing.JLabel();
+        jLabel190 = new javax.swing.JLabel();
+        jLabel191 = new javax.swing.JLabel();
+        jTextField23 = new javax.swing.JTextField();
+        jTextField24 = new javax.swing.JTextField();
+        jTextField25 = new javax.swing.JTextField();
+        jTextField26 = new javax.swing.JTextField();
+        jTextField27 = new javax.swing.JTextField();
+        jTextField28 = new javax.swing.JTextField();
+        jTextField29 = new javax.swing.JTextField();
+        jLabel49 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         Application = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -349,6 +574,14 @@ public class UserInterface extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        jToggleButton14.setText("jToggleButton14");
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("jMenu2");
+
+        jToggleButton15.setText("jToggleButton15");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1110,9 +1343,7 @@ public class UserInterface extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1137,9 +1368,7 @@ public class UserInterface extends javax.swing.JFrame {
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jToggleButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1154,12 +1383,9 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jToggleButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 244, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
@@ -1218,17 +1444,871 @@ public class UserInterface extends javax.swing.JFrame {
 
         jPanel9.add(bills, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
+        shopping.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         shopping.setOpaque(false);
+
+        shoppingTab.setBackground(new java.awt.Color(255, 255, 255));
+        shoppingTab.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        shoppingTab.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        FoodScroll.setBorder(null);
+        FoodScroll.setDoubleBuffered(true);
+        FoodScroll.setOpaque(false);
+
+        Foods.setPreferredSize(new java.awt.Dimension(1170, 873));
+        Foods.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jToggleButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/c2.jpg"))); // NOI18N
+        Foods.add(jToggleButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 269, 223));
+
+        jToggleButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chocolitos.jpg"))); // NOI18N
+        Foods.add(jToggleButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 269, 223));
+
+        jToggleButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/milo.jpg"))); // NOI18N
+        jToggleButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton23ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 269, 220));
+
+        jToggleButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Noodles.jpg"))); // NOI18N
+        jToggleButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton24ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 269, 223));
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel51.setText("Pancit Canton pack");
+        Foods.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 230, -1, 28));
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel52.setText(" ₱ 65");
+        Foods.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 240, 60, 40));
+
+        jToggleButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ligosardines.jpg"))); // NOI18N
+        jToggleButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton25ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 269, 213));
+
+        jToggleButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/luncheon meat.jpg"))); // NOI18N
+        Foods.add(jToggleButton26, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, 269, 213));
+
+        jToggleButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/gummy.jpg"))); // NOI18N
+        jToggleButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton27ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton27, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 269, 213));
+
+        jToggleButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pancitchili.jpg"))); // NOI18N
+        jToggleButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton28ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton28, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 269, 220));
+
+        jToggleButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/century tuna.jpg"))); // NOI18N
+        jToggleButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton29ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 269, 230));
+
+        jToggleButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/presto.jpg"))); // NOI18N
+        jToggleButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton30ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton30, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 580, 269, 230));
+
+        jToggleButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ramen.jpg"))); // NOI18N
+        jToggleButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton31ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton31, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 580, 269, 230));
+
+        jToggleButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/meatloaf.jpg"))); // NOI18N
+        jToggleButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton32ActionPerformed(evt);
+            }
+        });
+        Foods.add(jToggleButton32, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 580, 269, 230));
+
+        jLabel75.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel75.setText("Quantity:");
+        Foods.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, -1, 28));
+        Foods.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 260, 50, 28));
+
+        jLabel76.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel76.setText(" ₱ 27");
+        Foods.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 60, 40));
+
+        jLabel129.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel129.setText("Gummy");
+        Foods.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, -1, 28));
+        Foods.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 50, 28));
+
+        jLabel131.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel131.setText(" ₱ 80");
+        Foods.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 60, 40));
+
+        jLabel132.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel132.setText("C2 Baon Pack x6");
+        Foods.add(jLabel132, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, -1, 28));
+
+        jLabel133.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel133.setText("Quantity:");
+        Foods.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, 28));
+        Foods.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 50, 28));
+
+        jLabel53.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel53.setText(" ₱ 45");
+        Foods.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 60, 40));
+
+        jLabel54.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel54.setText("Chocolitos");
+        Foods.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, 28));
+
+        jLabel134.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel134.setText("Quantity:");
+        Foods.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, -1, 28));
+        Foods.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 50, 28));
+
+        jLabel135.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel135.setText(" ₱ 50");
+        Foods.add(jLabel135, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 60, 40));
+
+        jLabel136.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel136.setText("Noodles 6/Packs");
+        Foods.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, 28));
+
+        jLabel137.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel137.setText("Quantity:");
+        Foods.add(jLabel137, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 28));
+        Foods.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 50, 28));
+
+        jLabel138.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel138.setText("Milo Pack");
+        Foods.add(jLabel138, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 520, -1, 28));
+
+        jLabel139.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel139.setText("Luncheon Meat");
+        Foods.add(jLabel139, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, -1, 28));
+
+        jLabel140.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel140.setText("Century Tuna x3");
+        Foods.add(jLabel140, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 810, -1, 28));
+
+        jLabel141.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel141.setText("Presto 10/Pack");
+        Foods.add(jLabel141, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 810, -1, 28));
+
+        jLabel142.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel142.setText("Nissin Ramen x5");
+        Foods.add(jLabel142, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 810, -1, 28));
+
+        jLabel143.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel143.setText("Meatloaf x3");
+        Foods.add(jLabel143, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 810, -1, 28));
+
+        jLabel144.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel144.setText("Ligo Sardines x3");
+        Foods.add(jLabel144, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 510, -1, 28));
+
+        jLabel145.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel145.setText(" ₱ 115");
+        Foods.add(jLabel145, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 530, -1, 40));
+
+        jLabel146.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel146.setText(" ₱ 106");
+        Foods.add(jLabel146, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 520, 80, 40));
+
+        jLabel147.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel147.setText(" ₱ 95");
+        Foods.add(jLabel147, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 810, 60, 40));
+
+        jLabel148.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel148.setText(" ₱ 50");
+        Foods.add(jLabel148, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 810, 60, 40));
+
+        jLabel149.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel149.setText(" ₱ 40");
+        Foods.add(jLabel149, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 810, 60, 40));
+
+        jLabel150.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel150.setText(" ₱ 82");
+        Foods.add(jLabel150, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 810, 60, 40));
+
+        jLabel151.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel151.setText(" ₱ 80");
+        Foods.add(jLabel151, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 60, 40));
+
+        jLabel152.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel152.setText("Quantity:");
+        Foods.add(jLabel152, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 550, -1, 28));
+
+        jLabel153.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel153.setText("Quantity:");
+        Foods.add(jLabel153, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 540, -1, 28));
+
+        jLabel154.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel154.setText("Quantity:");
+        Foods.add(jLabel154, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 840, -1, 28));
+
+        jLabel155.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel155.setText("Quantity:");
+        Foods.add(jLabel155, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 840, -1, 28));
+
+        jLabel156.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel156.setText("Quantity:");
+        Foods.add(jLabel156, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 840, -1, 28));
+
+        jLabel157.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel157.setText("Quantity:");
+        Foods.add(jLabel157, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 840, -1, 28));
+
+        jLabel158.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel158.setText("Quantity:");
+        Foods.add(jLabel158, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, 28));
+
+        jLabel159.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel159.setText("Quantity:");
+        Foods.add(jLabel159, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, -1, 28));
+        Foods.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 550, 50, 28));
+        Foods.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 540, 50, 28));
+        Foods.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 840, 50, 28));
+        Foods.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 840, 50, 28));
+        Foods.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 840, 50, 28));
+        Foods.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 840, 50, 28));
+        Foods.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 50, 28));
+
+        FoodScroll.setViewportView(Foods);
+
+        shoppingTab.addTab("Foods", FoodScroll);
+
+        ClothingsScroll.setBorder(null);
+        ClothingsScroll.setOpaque(false);
+
+        Clothings.setPreferredSize(new java.awt.Dimension(1170, 873));
+        Clothings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jToggleButton69.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/b1t1.jpg"))); // NOI18N
+        Clothings.add(jToggleButton69, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 269, 223));
+
+        jToggleButton70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bloods.jpg"))); // NOI18N
+        Clothings.add(jToggleButton70, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 269, 223));
+
+        jToggleButton71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Make money.jpg"))); // NOI18N
+        jToggleButton71.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton71ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton71, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 269, 220));
+
+        jToggleButton72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Blouse.jpg"))); // NOI18N
+        jToggleButton72.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton72ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton72, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 269, 223));
+
+        jLabel59.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel59.setText("Sleeveless Dress");
+        Clothings.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 230, -1, 28));
+
+        jLabel60.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel60.setText(" ₱ 225");
+        Clothings.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 80, 40));
+
+        jToggleButton73.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Trendy Tshirt.jpg"))); // NOI18N
+        jToggleButton73.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton73ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton73, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 269, 213));
+
+        jToggleButton74.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3in1 Suit.jpg"))); // NOI18N
+        jToggleButton74.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton74ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton74, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, 269, 213));
+
+        jToggleButton75.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/waffle shorts.jpg"))); // NOI18N
+        jToggleButton75.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton75ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton75, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 269, 213));
+
+        jToggleButton76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sleevelessdress.jpg"))); // NOI18N
+        jToggleButton76.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton76ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton76, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 269, 220));
+
+        jToggleButton77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/DoubleLiningDress.jpg"))); // NOI18N
+        jToggleButton77.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton77ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton77, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 269, 230));
+
+        jToggleButton78.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Bossing.jpg"))); // NOI18N
+        jToggleButton78.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton78ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton78, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 580, 269, 230));
+
+        jToggleButton79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ThugLife.jpg"))); // NOI18N
+        jToggleButton79.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton79ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton79, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 580, 269, 230));
+
+        jToggleButton80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/butterfly dress.jpg"))); // NOI18N
+        jToggleButton80.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton80ActionPerformed(evt);
+            }
+        });
+        Clothings.add(jToggleButton80, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 580, 269, 230));
+
+        jLabel193.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel193.setText("Quantity:");
+        Clothings.add(jLabel193, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, -1, 28));
+        Clothings.add(jTextField30, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 260, 50, 28));
+
+        jLabel194.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel194.setText(" ₱ 49");
+        Clothings.add(jLabel194, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 60, 40));
+
+        jLabel195.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel195.setText("Waffle Shorts");
+        Clothings.add(jLabel195, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, -1, 28));
+        Clothings.add(jTextField31, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 50, 28));
+
+        jLabel196.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel196.setText(" ₱ 75");
+        Clothings.add(jLabel196, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 60, 40));
+
+        jLabel197.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel197.setText("B1 T1 Tshirt");
+        Clothings.add(jLabel197, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, -1, 28));
+
+        jLabel198.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel198.setText("Quantity:");
+        Clothings.add(jLabel198, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, 28));
+        Clothings.add(jTextField32, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 50, 28));
+
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel61.setText(" ₱ 87");
+        Clothings.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 60, 40));
+
+        jLabel62.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel62.setText("Bloods Tshirt");
+        Clothings.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, 28));
+
+        jLabel199.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel199.setText("Quantity:");
+        Clothings.add(jLabel199, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, -1, 28));
+        Clothings.add(jTextField33, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 50, 28));
+
+        jLabel200.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel200.setText(" ₱ 167");
+        Clothings.add(jLabel200, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 80, 40));
+
+        jLabel201.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel201.setText("Blouse");
+        Clothings.add(jLabel201, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, 28));
+
+        jLabel202.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel202.setText("Quantity:");
+        Clothings.add(jLabel202, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 28));
+        Clothings.add(jTextField34, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 50, 28));
+
+        jLabel203.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel203.setText("Money Tshirt");
+        Clothings.add(jLabel203, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 520, -1, 28));
+
+        jLabel204.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel204.setText("3in1 Suit");
+        Clothings.add(jLabel204, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, -1, 28));
+
+        jLabel205.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel205.setText("Double Lining Dress");
+        Clothings.add(jLabel205, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 810, -1, 28));
+
+        jLabel206.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel206.setText("Bossing Tshirt");
+        Clothings.add(jLabel206, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 810, -1, 28));
+
+        jLabel207.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel207.setText("Thug Life Tshirt");
+        Clothings.add(jLabel207, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 810, -1, 28));
+
+        jLabel208.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel208.setText("Butterfly Dress");
+        Clothings.add(jLabel208, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 810, -1, 28));
+
+        jLabel209.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel209.setText("Trendy Tshirt");
+        Clothings.add(jLabel209, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 510, -1, 28));
+
+        jLabel210.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel210.setText(" ₱ 115");
+        Clothings.add(jLabel210, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 530, -1, 40));
+
+        jLabel211.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel211.setText(" ₱ 195");
+        Clothings.add(jLabel211, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 520, 80, 40));
+
+        jLabel212.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel212.setText(" ₱ 92");
+        Clothings.add(jLabel212, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 810, 60, 40));
+
+        jLabel213.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel213.setText(" ₱ 115");
+        Clothings.add(jLabel213, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 810, 80, 40));
+
+        jLabel214.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel214.setText(" ₱ 156");
+        Clothings.add(jLabel214, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 810, 80, 40));
+
+        jLabel215.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel215.setText(" ₱ 99");
+        Clothings.add(jLabel215, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 810, 60, 40));
+
+        jLabel216.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel216.setText(" ₱ 54");
+        Clothings.add(jLabel216, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 60, 40));
+
+        jLabel217.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel217.setText("Quantity:");
+        Clothings.add(jLabel217, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 550, -1, 28));
+
+        jLabel218.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel218.setText("Quantity:");
+        Clothings.add(jLabel218, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 540, -1, 28));
+
+        jLabel219.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel219.setText("Quantity:");
+        Clothings.add(jLabel219, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 840, -1, 28));
+
+        jLabel220.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel220.setText("Quantity:");
+        Clothings.add(jLabel220, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 840, -1, 28));
+
+        jLabel221.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel221.setText("Quantity:");
+        Clothings.add(jLabel221, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 840, -1, 28));
+
+        jLabel222.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel222.setText("Quantity:");
+        Clothings.add(jLabel222, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 840, -1, 28));
+
+        jLabel223.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel223.setText("Quantity:");
+        Clothings.add(jLabel223, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, 28));
+
+        jLabel224.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel224.setText("Quantity:");
+        Clothings.add(jLabel224, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, -1, 28));
+        Clothings.add(jTextField35, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 550, 50, 28));
+        Clothings.add(jTextField36, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 540, 50, 28));
+        Clothings.add(jTextField37, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 840, 50, 28));
+        Clothings.add(jTextField38, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 840, 50, 28));
+        Clothings.add(jTextField39, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 840, 50, 28));
+        Clothings.add(jTextField40, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 840, 50, 28));
+        Clothings.add(jTextField41, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 50, 28));
+
+        jLabel63.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel63.setText(" ₱ 225");
+        Clothings.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 80, 40));
+
+        jLabel64.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel64.setText("Sleeveless Dress");
+        Clothings.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 230, -1, 28));
+
+        jLabel225.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel225.setText("Waffle Shorts");
+        Clothings.add(jLabel225, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, -1, 28));
+
+        jLabel226.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel226.setText("Quantity:");
+        Clothings.add(jLabel226, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, -1, 28));
+
+        jLabel227.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel227.setText(" ₱ 49");
+        Clothings.add(jLabel227, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 60, 40));
+
+        jLabel228.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel228.setText("B1 T1 Tshirt");
+        Clothings.add(jLabel228, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, -1, 28));
+
+        jLabel229.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel229.setText(" ₱ 75");
+        Clothings.add(jLabel229, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 60, 40));
+
+        jLabel230.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel230.setText("Quantity:");
+        Clothings.add(jLabel230, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, 28));
+
+        jLabel65.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel65.setText(" ₱ 87");
+        Clothings.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 60, 40));
+
+        jLabel231.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel231.setText(" ₱ 75");
+        Clothings.add(jLabel231, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 60, 40));
+
+        jLabel66.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel66.setText("Sleeveless Dress");
+        Clothings.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 230, -1, 28));
+
+        jLabel232.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel232.setText("Quantity:");
+        Clothings.add(jLabel232, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, -1, 28));
+
+        jLabel233.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel233.setText("Waffle Shorts");
+        Clothings.add(jLabel233, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, -1, 28));
+
+        jLabel234.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel234.setText("B1 T1 Tshirt");
+        Clothings.add(jLabel234, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, -1, 28));
+
+        jLabel235.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel235.setText(" ₱ 49");
+        Clothings.add(jLabel235, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 60, 40));
+
+        jLabel67.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel67.setText(" ₱ 225");
+        Clothings.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 80, 40));
+
+        jLabel68.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel68.setText(" ₱ 87");
+        Clothings.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 60, 40));
+
+        jLabel236.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel236.setText("Quantity:");
+        Clothings.add(jLabel236, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, 28));
+
+        jLabel69.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel69.setText("Bloods Tshirt");
+        Clothings.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, 28));
+
+        ClothingsScroll.setViewportView(Clothings);
+
+        shoppingTab.addTab("Clothing", ClothingsScroll);
+
+        AppliancesScroll.setBorder(null);
+        AppliancesScroll.setOpaque(false);
+
+        Appliances.setPreferredSize(new java.awt.Dimension(1170, 873));
+        Appliances.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jToggleButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/b1t1 Standfan.jpg"))); // NOI18N
+        Appliances.add(jToggleButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 269, 223));
+
+        jToggleButton58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/MeatShredder.jpg"))); // NOI18N
+        Appliances.add(jToggleButton58, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, 269, 223));
+
+        jToggleButton59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/StainlessSteamer.jpg"))); // NOI18N
+        jToggleButton59.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton59ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton59, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, 269, 213));
+
+        jToggleButton60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Mini Water dispenser.jpg"))); // NOI18N
+        jToggleButton60.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton60ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton60, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 269, 223));
+
+        jLabel55.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel55.setText("Electric Kettle");
+        Appliances.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 230, -1, 28));
+
+        jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel56.setText(" ₱ 157");
+        Appliances.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 80, 40));
+
+        jToggleButton61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Clipfan.jpg"))); // NOI18N
+        jToggleButton61.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton61ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton61, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 269, 213));
+
+        jToggleButton62.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Whisks Hand Mixer.jpg"))); // NOI18N
+        Appliances.add(jToggleButton62, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 300, 269, 213));
+
+        jToggleButton63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Electric cooker.jpg"))); // NOI18N
+        jToggleButton63.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton63ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton63, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 269, 213));
+
+        jToggleButton64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/electric kettle.jpg"))); // NOI18N
+        jToggleButton64.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton64ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton64, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 269, 220));
+
+        jToggleButton65.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Baking Mixer.jpg"))); // NOI18N
+        jToggleButton65.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton65ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton65, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 269, 230));
+
+        jToggleButton66.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Wall Fan.jpg"))); // NOI18N
+        jToggleButton66.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton66ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton66, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 580, 269, 230));
+
+        jToggleButton67.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Air Fryer.jpg"))); // NOI18N
+        jToggleButton67.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton67ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton67, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 580, 269, 230));
+
+        jToggleButton68.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/food processor.jpg"))); // NOI18N
+        jToggleButton68.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton68ActionPerformed(evt);
+            }
+        });
+        Appliances.add(jToggleButton68, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 580, 269, 230));
+
+        jLabel160.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel160.setText("Quantity:");
+        Appliances.add(jLabel160, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, -1, 28));
+        Appliances.add(jTextField18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 260, 50, 28));
+
+        jLabel161.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel161.setText(" ₱ 527");
+        Appliances.add(jLabel161, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 520, 80, 40));
+
+        jLabel162.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel162.setText("Electric Cooker");
+        Appliances.add(jLabel162, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, -1, 28));
+        Appliances.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, 50, 28));
+
+        jLabel163.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel163.setText(" ₱ 201");
+        Appliances.add(jLabel163, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 240, -1, 40));
+
+        jLabel164.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel164.setText("B1T1 StandFan");
+        Appliances.add(jLabel164, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, -1, 28));
+
+        jLabel165.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel165.setText("Quantity:");
+        Appliances.add(jLabel165, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, 28));
+        Appliances.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 50, 28));
+
+        jLabel57.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel57.setText(" ₱ 85");
+        Appliances.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 60, 40));
+
+        jLabel58.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel58.setText("Meat Shredder");
+        Appliances.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 230, -1, 28));
+
+        jLabel166.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel166.setText("Quantity:");
+        Appliances.add(jLabel166, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 260, -1, 28));
+        Appliances.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 50, 28));
+
+        jLabel167.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel167.setText(" ₱ 87");
+        Appliances.add(jLabel167, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 60, 40));
+
+        jLabel168.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel168.setText("Mini Water Dispenser");
+        Appliances.add(jLabel168, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, 28));
+
+        jLabel169.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel169.setText("Quantity:");
+        Appliances.add(jLabel169, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, 28));
+        Appliances.add(jTextField22, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 50, 28));
+
+        jLabel170.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel170.setText("Stainless Steamer");
+        Appliances.add(jLabel170, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 520, -1, 28));
+
+        jLabel171.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel171.setText("Whisks Hand Mixer");
+        Appliances.add(jLabel171, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 510, -1, 28));
+
+        jLabel172.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel172.setText("Baking Mixer");
+        Appliances.add(jLabel172, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 810, -1, 28));
+
+        jLabel173.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel173.setText("Wall Fan");
+        Appliances.add(jLabel173, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 810, -1, 28));
+
+        jLabel174.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel174.setText("Air Fryer");
+        Appliances.add(jLabel174, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 810, -1, 28));
+
+        jLabel175.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel175.setText("Food Processor");
+        Appliances.add(jLabel175, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 810, -1, 28));
+
+        jLabel176.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel176.setText("Clip Fan");
+        Appliances.add(jLabel176, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 510, -1, 28));
+
+        jLabel177.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel177.setText(" ₱ 225");
+        Appliances.add(jLabel177, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 530, -1, 40));
+
+        jLabel178.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel178.setText(" ₱ 175");
+        Appliances.add(jLabel178, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 520, 80, 40));
+
+        jLabel179.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel179.setText(" ₱ 438");
+        Appliances.add(jLabel179, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 810, 80, 40));
+
+        jLabel180.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel180.setText(" ₱ 454");
+        Appliances.add(jLabel180, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 810, 80, 40));
+
+        jLabel181.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel181.setText(" ₱ 119");
+        Appliances.add(jLabel181, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 810, 80, 40));
+
+        jLabel182.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel182.setText(" ₱ 123");
+        Appliances.add(jLabel182, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 810, 80, 40));
+
+        jLabel183.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel183.setText(" ₱ 128");
+        Appliances.add(jLabel183, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 80, 40));
+
+        jLabel184.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel184.setText("Quantity:");
+        Appliances.add(jLabel184, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 550, -1, 28));
+
+        jLabel185.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel185.setText("Quantity:");
+        Appliances.add(jLabel185, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 540, -1, 28));
+
+        jLabel186.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel186.setText("Quantity:");
+        Appliances.add(jLabel186, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 840, -1, 28));
+
+        jLabel187.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel187.setText("Quantity:");
+        Appliances.add(jLabel187, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 840, -1, 28));
+
+        jLabel188.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel188.setText("Quantity:");
+        Appliances.add(jLabel188, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 840, -1, 28));
+
+        jLabel189.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel189.setText("Quantity:");
+        Appliances.add(jLabel189, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 840, -1, 28));
+
+        jLabel190.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel190.setText("Quantity:");
+        Appliances.add(jLabel190, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, -1, 28));
+
+        jLabel191.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel191.setText("Quantity:");
+        Appliances.add(jLabel191, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 540, -1, 28));
+        Appliances.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 550, 50, 28));
+        Appliances.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 540, 50, 28));
+        Appliances.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 840, 50, 28));
+        Appliances.add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 840, 50, 28));
+        Appliances.add(jTextField27, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 840, 50, 28));
+        Appliances.add(jTextField28, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 840, 50, 28));
+        Appliances.add(jTextField29, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 50, 28));
+
+        AppliancesScroll.setViewportView(Appliances);
+
+        shoppingTab.addTab("Appliances", AppliancesScroll);
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel49.setText("SHOPPING");
+
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cart.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout shoppingLayout = new javax.swing.GroupLayout(shopping);
         shopping.setLayout(shoppingLayout);
         shoppingLayout.setHorizontalGroup(
             shoppingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
+            .addComponent(shoppingTab)
+            .addGroup(shoppingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel49)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
         shoppingLayout.setVerticalGroup(
             shoppingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, shoppingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(shoppingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(shoppingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
         );
 
         jPanel9.add(shopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
@@ -1962,6 +3042,14 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void ShoppingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShoppingActionPerformed
         // TODO add your handling code here:
+        Application.setVisible(false);
+        Dashboard.setVisible(false);
+        TransacHis.setVisible(false);
+        AccReg.setVisible(false);
+        CheckCardY.setVisible(false);
+        CheckCardN.setVisible(false);
+        bills.setVisible(false);
+        shopping.setVisible(true);  
     }//GEN-LAST:event_ShoppingActionPerformed
 
     private void BillsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillsActionPerformed
@@ -2104,7 +3192,127 @@ public class UserInterface extends javax.swing.JFrame {
 
     private void PayBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayBActionPerformed
         // TODO add your handling code here:
+        BillsGUI billsGUI = new BillsGUI();
+        billsGUI.setVisible(true);
     }//GEN-LAST:event_PayBActionPerformed
+
+    private void jToggleButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton32ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton32ActionPerformed
+
+    private void jToggleButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton31ActionPerformed
+
+    private void jToggleButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton30ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton30ActionPerformed
+
+    private void jToggleButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton29ActionPerformed
+
+    private void jToggleButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton28ActionPerformed
+
+    private void jToggleButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton27ActionPerformed
+
+    private void jToggleButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton25ActionPerformed
+
+    private void jToggleButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton24ActionPerformed
+
+    private void jToggleButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton23ActionPerformed
+
+    private void jToggleButton59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton59ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton59ActionPerformed
+
+    private void jToggleButton60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton60ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton60ActionPerformed
+
+    private void jToggleButton61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton61ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton61ActionPerformed
+
+    private void jToggleButton63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton63ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton63ActionPerformed
+
+    private void jToggleButton64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton64ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton64ActionPerformed
+
+    private void jToggleButton65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton65ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton65ActionPerformed
+
+    private void jToggleButton66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton66ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton66ActionPerformed
+
+    private void jToggleButton67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton67ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton67ActionPerformed
+
+    private void jToggleButton68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton68ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton68ActionPerformed
+
+    private void jToggleButton71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton71ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton71ActionPerformed
+
+    private void jToggleButton72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton72ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton72ActionPerformed
+
+    private void jToggleButton73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton73ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton73ActionPerformed
+
+    private void jToggleButton75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton75ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton75ActionPerformed
+
+    private void jToggleButton76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton76ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton76ActionPerformed
+
+    private void jToggleButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton77ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton77ActionPerformed
+
+    private void jToggleButton78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton78ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton78ActionPerformed
+
+    private void jToggleButton79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton79ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton79ActionPerformed
+
+    private void jToggleButton80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton80ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton80ActionPerformed
+
+    private void jToggleButton74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton74ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton74ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        CartGUI1 cart = new CartGUI1();
+        cart.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     private void popUpWindow2(String buttonText, String timestamp, String amount) {
         // Create a new JFrame for the popup window
@@ -2191,6 +3399,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel AmountLabel1;
     private javax.swing.JLabel AmountLabel3;
     private javax.swing.JLabel Amountdis;
+    private javax.swing.JPanel Appliances;
+    private javax.swing.JScrollPane AppliancesScroll;
     private javax.swing.JPanel Application;
     private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
@@ -2203,12 +3413,16 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JToggleButton CARD;
     private javax.swing.JPanel CheckCardN;
     private javax.swing.JPanel CheckCardY;
+    private javax.swing.JPanel Clothings;
+    private javax.swing.JScrollPane ClothingsScroll;
     private javax.swing.JTable DashHis;
     private javax.swing.JButton Dashb;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JLabel DateDis;
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DescrDis;
+    private javax.swing.JScrollPane FoodScroll;
+    private javax.swing.JPanel Foods;
     private javax.swing.JPanel Hist;
     private javax.swing.JLabel NameDis;
     private javax.swing.JLabel NameLabel1;
@@ -2229,22 +3443,129 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel cards;
     private javax.swing.JButton checkcard;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel131;
+    private javax.swing.JLabel jLabel132;
+    private javax.swing.JLabel jLabel133;
+    private javax.swing.JLabel jLabel134;
+    private javax.swing.JLabel jLabel135;
+    private javax.swing.JLabel jLabel136;
+    private javax.swing.JLabel jLabel137;
+    private javax.swing.JLabel jLabel138;
+    private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel140;
+    private javax.swing.JLabel jLabel141;
+    private javax.swing.JLabel jLabel142;
+    private javax.swing.JLabel jLabel143;
+    private javax.swing.JLabel jLabel144;
+    private javax.swing.JLabel jLabel145;
+    private javax.swing.JLabel jLabel146;
+    private javax.swing.JLabel jLabel147;
+    private javax.swing.JLabel jLabel148;
+    private javax.swing.JLabel jLabel149;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel150;
+    private javax.swing.JLabel jLabel151;
+    private javax.swing.JLabel jLabel152;
+    private javax.swing.JLabel jLabel153;
+    private javax.swing.JLabel jLabel154;
+    private javax.swing.JLabel jLabel155;
+    private javax.swing.JLabel jLabel156;
+    private javax.swing.JLabel jLabel157;
+    private javax.swing.JLabel jLabel158;
+    private javax.swing.JLabel jLabel159;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel160;
+    private javax.swing.JLabel jLabel161;
+    private javax.swing.JLabel jLabel162;
+    private javax.swing.JLabel jLabel163;
+    private javax.swing.JLabel jLabel164;
+    private javax.swing.JLabel jLabel165;
+    private javax.swing.JLabel jLabel166;
+    private javax.swing.JLabel jLabel167;
+    private javax.swing.JLabel jLabel168;
+    private javax.swing.JLabel jLabel169;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel170;
+    private javax.swing.JLabel jLabel171;
+    private javax.swing.JLabel jLabel172;
+    private javax.swing.JLabel jLabel173;
+    private javax.swing.JLabel jLabel174;
+    private javax.swing.JLabel jLabel175;
+    private javax.swing.JLabel jLabel176;
+    private javax.swing.JLabel jLabel177;
+    private javax.swing.JLabel jLabel178;
+    private javax.swing.JLabel jLabel179;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel180;
+    private javax.swing.JLabel jLabel181;
+    private javax.swing.JLabel jLabel182;
+    private javax.swing.JLabel jLabel183;
+    private javax.swing.JLabel jLabel184;
+    private javax.swing.JLabel jLabel185;
+    private javax.swing.JLabel jLabel186;
+    private javax.swing.JLabel jLabel187;
+    private javax.swing.JLabel jLabel188;
+    private javax.swing.JLabel jLabel189;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel190;
+    private javax.swing.JLabel jLabel191;
+    private javax.swing.JLabel jLabel193;
+    private javax.swing.JLabel jLabel194;
+    private javax.swing.JLabel jLabel195;
+    private javax.swing.JLabel jLabel196;
+    private javax.swing.JLabel jLabel197;
+    private javax.swing.JLabel jLabel198;
+    private javax.swing.JLabel jLabel199;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel200;
+    private javax.swing.JLabel jLabel201;
+    private javax.swing.JLabel jLabel202;
+    private javax.swing.JLabel jLabel203;
+    private javax.swing.JLabel jLabel204;
+    private javax.swing.JLabel jLabel205;
+    private javax.swing.JLabel jLabel206;
+    private javax.swing.JLabel jLabel207;
+    private javax.swing.JLabel jLabel208;
+    private javax.swing.JLabel jLabel209;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel210;
+    private javax.swing.JLabel jLabel211;
+    private javax.swing.JLabel jLabel212;
+    private javax.swing.JLabel jLabel213;
+    private javax.swing.JLabel jLabel214;
+    private javax.swing.JLabel jLabel215;
+    private javax.swing.JLabel jLabel216;
+    private javax.swing.JLabel jLabel217;
+    private javax.swing.JLabel jLabel218;
+    private javax.swing.JLabel jLabel219;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel220;
+    private javax.swing.JLabel jLabel221;
+    private javax.swing.JLabel jLabel222;
+    private javax.swing.JLabel jLabel223;
+    private javax.swing.JLabel jLabel224;
+    private javax.swing.JLabel jLabel225;
+    private javax.swing.JLabel jLabel226;
+    private javax.swing.JLabel jLabel227;
+    private javax.swing.JLabel jLabel228;
+    private javax.swing.JLabel jLabel229;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel230;
+    private javax.swing.JLabel jLabel231;
+    private javax.swing.JLabel jLabel232;
+    private javax.swing.JLabel jLabel233;
+    private javax.swing.JLabel jLabel234;
+    private javax.swing.JLabel jLabel235;
+    private javax.swing.JLabel jLabel236;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -2272,11 +3593,35 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel9;
@@ -2288,24 +3633,99 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField21;
+    private javax.swing.JTextField jTextField22;
+    private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField25;
+    private javax.swing.JTextField jTextField26;
+    private javax.swing.JTextField jTextField27;
+    private javax.swing.JTextField jTextField28;
+    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField30;
+    private javax.swing.JTextField jTextField31;
+    private javax.swing.JTextField jTextField32;
+    private javax.swing.JTextField jTextField33;
+    private javax.swing.JTextField jTextField34;
+    private javax.swing.JTextField jTextField35;
+    private javax.swing.JTextField jTextField36;
+    private javax.swing.JTextField jTextField37;
+    private javax.swing.JTextField jTextField38;
+    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField40;
+    private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
     private javax.swing.JToggleButton jToggleButton11;
     private javax.swing.JToggleButton jToggleButton12;
     private javax.swing.JToggleButton jToggleButton13;
+    private javax.swing.JToggleButton jToggleButton14;
+    private javax.swing.JToggleButton jToggleButton15;
+    private javax.swing.JToggleButton jToggleButton19;
     private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton22;
+    private javax.swing.JToggleButton jToggleButton23;
+    private javax.swing.JToggleButton jToggleButton24;
+    private javax.swing.JToggleButton jToggleButton25;
+    private javax.swing.JToggleButton jToggleButton26;
+    private javax.swing.JToggleButton jToggleButton27;
+    private javax.swing.JToggleButton jToggleButton28;
+    private javax.swing.JToggleButton jToggleButton29;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton30;
+    private javax.swing.JToggleButton jToggleButton31;
+    private javax.swing.JToggleButton jToggleButton32;
+    private javax.swing.JToggleButton jToggleButton33;
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButton58;
+    private javax.swing.JToggleButton jToggleButton59;
     private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JToggleButton jToggleButton60;
+    private javax.swing.JToggleButton jToggleButton61;
+    private javax.swing.JToggleButton jToggleButton62;
+    private javax.swing.JToggleButton jToggleButton63;
+    private javax.swing.JToggleButton jToggleButton64;
+    private javax.swing.JToggleButton jToggleButton65;
+    private javax.swing.JToggleButton jToggleButton66;
+    private javax.swing.JToggleButton jToggleButton67;
+    private javax.swing.JToggleButton jToggleButton68;
+    private javax.swing.JToggleButton jToggleButton69;
     private javax.swing.JToggleButton jToggleButton7;
+    private javax.swing.JToggleButton jToggleButton70;
+    private javax.swing.JToggleButton jToggleButton71;
+    private javax.swing.JToggleButton jToggleButton72;
+    private javax.swing.JToggleButton jToggleButton73;
+    private javax.swing.JToggleButton jToggleButton74;
+    private javax.swing.JToggleButton jToggleButton75;
+    private javax.swing.JToggleButton jToggleButton76;
+    private javax.swing.JToggleButton jToggleButton77;
+    private javax.swing.JToggleButton jToggleButton78;
+    private javax.swing.JToggleButton jToggleButton79;
     private javax.swing.JToggleButton jToggleButton8;
+    private javax.swing.JToggleButton jToggleButton80;
     private javax.swing.JToggleButton jToggleButton9;
     private javax.swing.JPanel payments;
     private javax.swing.JPanel shopping;
+    private javax.swing.JTabbedPane shoppingTab;
     // End of variables declaration//GEN-END:variables
 }

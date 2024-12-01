@@ -11,12 +11,12 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author User
  */
-public class BillsGUI extends javax.swing.JFrame {
+public class CartGUI1 extends javax.swing.JFrame {
 
     /**
      * Creates new form BillsGUI
      */
-    public BillsGUI() {
+    public CartGUI1() {
         initComponents();
         
         BillsTable.setOpaque(false);
@@ -57,7 +57,7 @@ public class BillsGUI extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Bills", "Amount"
+                "Item", "Amount"
             }
         ));
         jScrollPane1.setViewportView(BillsTable);
@@ -106,8 +106,8 @@ public class BillsGUI extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Pay Bills");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+        jLabel2.setText("Cart");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,20 +178,21 @@ public class BillsGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CartGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CartGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CartGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CartGUI1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BillsGUI().setVisible(true);
+                new CartGUI1().setVisible(true);
             }
         });
     }
