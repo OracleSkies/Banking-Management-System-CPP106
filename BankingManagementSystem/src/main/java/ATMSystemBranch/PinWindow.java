@@ -8,13 +8,17 @@ package ATMSystemBranch;
  *
  * @author yan
  */
+
 public class PinWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form PinWindow
      */
+    private String number = "";
     public PinWindow() {
         initComponents();
+        AccountNumberPanel.setVisible(true);
+        PinPanel.setVisible(false);
     }
 
     /**
@@ -26,134 +30,530 @@ public class PinWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        AccountNumberPanel = new javax.swing.JPanel();
+        ATMSystemLabel = new javax.swing.JLabel();
+        accNumberLabel = new javax.swing.JLabel();
+        accNumberField = new javax.swing.JTextField();
+        accKeypad = new javax.swing.JPanel();
+        accKey1 = new javax.swing.JButton();
+        accKey2 = new javax.swing.JButton();
+        accKey3 = new javax.swing.JButton();
+        accKey4 = new javax.swing.JButton();
+        accKey5 = new javax.swing.JButton();
+        accKey6 = new javax.swing.JButton();
+        accKey7 = new javax.swing.JButton();
+        accKey8 = new javax.swing.JButton();
+        accKey9 = new javax.swing.JButton();
+        accKeyX = new javax.swing.JButton();
+        accKey0 = new javax.swing.JButton();
+        accKeyOK = new javax.swing.JButton();
+        backLabel = new javax.swing.JLabel();
+        accBackButton = new javax.swing.JButton();
+        PinPanel = new javax.swing.JPanel();
+        pinNumberField = new javax.swing.JTextField();
+        pinPanel = new javax.swing.JPanel();
+        pinKey1 = new javax.swing.JButton();
+        pinKey2 = new javax.swing.JButton();
+        pinKey3 = new javax.swing.JButton();
+        pinKey4 = new javax.swing.JButton();
+        pinKey5 = new javax.swing.JButton();
+        pinKey6 = new javax.swing.JButton();
+        pinKey7 = new javax.swing.JButton();
+        pinKey8 = new javax.swing.JButton();
+        pinKey9 = new javax.swing.JButton();
+        pinKeyX = new javax.swing.JButton();
+        pinKey0 = new javax.swing.JButton();
+        pinKeyOK = new javax.swing.JButton();
+        ATMSystemLabel1 = new javax.swing.JLabel();
+        accNumberLabel1 = new javax.swing.JLabel();
+        backLabel1 = new javax.swing.JLabel();
+        pinBackButton = new javax.swing.JButton();
+        BGLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        AccountNumberPanel.setOpaque(false);
+        AccountNumberPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 54)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QuPAL BANKING");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, -1, -1));
+        ATMSystemLabel.setFont(new java.awt.Font("Segoe UI", 1, 54)); // NOI18N
+        ATMSystemLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ATMSystemLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ATMSystemLabel.setText("ATM SYSTEM");
+        AccountNumberPanel.add(ATMSystemLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Enter Account Number");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 219, 257, -1));
+        accNumberLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accNumberLabel.setForeground(new java.awt.Color(255, 255, 255));
+        accNumberLabel.setText("Enter Account Number");
+        AccountNumberPanel.add(accNumberLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 257, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 257, 257, -1));
+        accNumberField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        AccountNumberPanel.add(accNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 257, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Enter PIN");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 313, 257, -1));
+        accKeypad.setOpaque(false);
+        accKeypad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 351, 257, -1));
+        accKey1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey1.setText("1");
+        accKey1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey1ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 19, 75, 50));
 
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        accKey2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey2.setText("2");
+        accKey2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey2ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey2, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 19, 75, 50));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("1");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 19, 75, 50));
+        accKey3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey3.setText("3");
+        accKey3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey3ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 19, 75, 50));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("2");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 19, 75, 50));
+        accKey4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey4.setText("4");
+        accKey4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey4ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 81, 75, 50));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton3.setText("3");
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 19, 75, 50));
+        accKey5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey5.setText("5");
+        accKey5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey5ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey5, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 81, 75, 50));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton4.setText("4");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 81, 75, 50));
+        accKey6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey6.setText("6");
+        accKey6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey6ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey6, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 81, 75, 50));
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton5.setText("5");
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 81, 75, 50));
+        accKey7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey7.setText("7");
+        accKey7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey7ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 143, 75, 50));
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton6.setText("6");
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 81, 75, 50));
+        accKey8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey8.setText("8");
+        accKey8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey8ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey8, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 143, 75, 50));
 
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton7.setText("7");
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 143, 75, 50));
+        accKey9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey9.setText("9");
+        accKey9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey9ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey9, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 143, 75, 50));
 
-        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton8.setText("8");
-        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 143, 75, 50));
+        accKeyX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKeyX.setText("<--");
+        accKeyX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKeyXActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKeyX, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 205, 75, 50));
 
-        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton9.setText("9");
-        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 143, 75, 50));
+        accKey0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKey0.setText("0");
+        accKey0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKey0ActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKey0, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 205, 75, 50));
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton10.setText("X");
-        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 205, 75, 50));
+        accKeyOK.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accKeyOK.setText("OK");
+        accKeyOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accKeyOKActionPerformed(evt);
+            }
+        });
+        accKeypad.add(accKeyOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 205, 75, 50));
 
-        jButton11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton11.setText("0");
-        jPanel2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 205, 75, 50));
+        AccountNumberPanel.add(accKeypad, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 257, 290));
 
-        jButton12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton12.setText("OK");
-        jPanel2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 205, 75, 50));
+        backLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        backLabel.setForeground(new java.awt.Color(51, 204, 255));
+        backLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backLabel.setText("Back");
+        backLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        AccountNumberPanel.add(backLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 641, 100, 50));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 417, 257, 290));
+        accBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accBackButtonActionPerformed(evt);
+            }
+        });
+        AccountNumberPanel.add(accBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 641, 75, 50));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Back");
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 641, 100, 50));
-        jPanel1.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 641, 75, 50));
+        PinPanel.setBackground(new java.awt.Color(0, 0, 204));
+        PinPanel.setOpaque(false);
+        PinPanel.setPreferredSize(new java.awt.Dimension(800, 800));
+        PinPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATM Main.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 800));
+        pinNumberField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PinPanel.add(pinNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 257, -1));
+
+        pinPanel.setOpaque(false);
+        pinPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pinKey1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey1.setText("1");
+        pinKey1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey1ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 19, 75, 50));
+
+        pinKey2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey2.setText("2");
+        pinKey2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey2ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey2, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 19, 75, 50));
+
+        pinKey3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey3.setText("3");
+        pinKey3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey3ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 19, 75, 50));
+
+        pinKey4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey4.setText("4");
+        pinKey4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey4ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 81, 75, 50));
+
+        pinKey5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey5.setText("5");
+        pinKey5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey5ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey5, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 81, 75, 50));
+
+        pinKey6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey6.setText("6");
+        pinKey6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey6ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey6, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 81, 75, 50));
+
+        pinKey7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey7.setText("7");
+        pinKey7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey7ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 143, 75, 50));
+
+        pinKey8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey8.setText("8");
+        pinKey8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey8ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey8, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 143, 75, 50));
+
+        pinKey9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey9.setText("9");
+        pinKey9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey9ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey9, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 143, 75, 50));
+
+        pinKeyX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKeyX.setText("<--");
+        pinKeyX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKeyXActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKeyX, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 205, 75, 50));
+
+        pinKey0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKey0.setText("0");
+        pinKey0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKey0ActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKey0, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 205, 75, 50));
+
+        pinKeyOK.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        pinKeyOK.setText("OK");
+        pinKeyOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinKeyOKActionPerformed(evt);
+            }
+        });
+        pinPanel.add(pinKeyOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 205, 75, 50));
+
+        PinPanel.add(pinPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 257, 290));
+
+        ATMSystemLabel1.setFont(new java.awt.Font("Segoe UI", 1, 54)); // NOI18N
+        ATMSystemLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        ATMSystemLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ATMSystemLabel1.setText("ATM SYSTEM");
+        PinPanel.add(ATMSystemLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+
+        accNumberLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        accNumberLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        accNumberLabel1.setText("Enter PIN Number");
+        PinPanel.add(accNumberLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 257, -1));
+
+        backLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        backLabel1.setForeground(new java.awt.Color(51, 204, 255));
+        backLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backLabel1.setText("Back");
+        backLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        PinPanel.add(backLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 641, 100, 50));
+
+        pinBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pinBackButtonActionPerformed(evt);
+            }
+        });
+        PinPanel.add(pinBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 641, 75, 50));
+
+        BGLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATM Main.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AccountNumberPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(BGLabel)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(AccountNumberPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(BGLabel)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void accKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey1ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "1";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey1ActionPerformed
+
+    private void accKey2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey2ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "2";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey2ActionPerformed
+
+    private void accKey3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey3ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "3";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey3ActionPerformed
+
+    private void accKey4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey4ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "4";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey4ActionPerformed
+
+    private void accKey5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey5ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "5";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey5ActionPerformed
+
+    private void accKey6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey6ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "6";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey6ActionPerformed
+
+    private void accKey7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey7ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "7";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey7ActionPerformed
+
+    private void accKey8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey8ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "8";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey8ActionPerformed
+
+    private void accKey9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey9ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "9";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey9ActionPerformed
+
+    private void accKey0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey0ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "0";
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKey0ActionPerformed
+
+    private void accKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKeyXActionPerformed
+        // TODO add your handling code here:
+        number = number.substring(0, number.length() - 1);
+        accNumberField.setText(number);
+    }//GEN-LAST:event_accKeyXActionPerformed
+
+    private void accKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKeyOKActionPerformed
+        // TODO add your handling code here:
+        AccountNumberPanel.setVisible(false);
+        PinPanel.setVisible(true);
+    }//GEN-LAST:event_accKeyOKActionPerformed
+
+    private void pinKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey1ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "0";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey1ActionPerformed
+
+    private void pinKey2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey2ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "2";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey2ActionPerformed
+
+    private void pinKey3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey3ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "3";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey3ActionPerformed
+
+    private void pinKey4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey4ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "4";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey4ActionPerformed
+
+    private void pinKey5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey5ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "5";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey5ActionPerformed
+
+    private void pinKey6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey6ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "6";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey6ActionPerformed
+
+    private void pinKey7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey7ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "7";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey7ActionPerformed
+
+    private void pinKey8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey8ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "8";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey8ActionPerformed
+
+    private void pinKey9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey9ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "9";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey9ActionPerformed
+
+    private void pinKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKeyXActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pinKeyXActionPerformed
+
+    private void pinKey0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey0ActionPerformed
+        // TODO add your handling code here:
+        number = number+ "0";
+        pinNumberField.setText(number);
+    }//GEN-LAST:event_pinKey0ActionPerformed
+
+    private void pinKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKeyOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pinKeyOKActionPerformed
+
+    private void accBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accBackButtonActionPerformed
+        // TODO add your handling code here:
+//        AccountNumberPanel.setVisible(false);
+//        PinPanel.setVisible(true);
+    }//GEN-LAST:event_accBackButtonActionPerformed
+
+    private void pinBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinBackButtonActionPerformed
+        // TODO add your handling code here:
+        AccountNumberPanel.setVisible(true);
+        PinPanel.setVisible(false);
+    }//GEN-LAST:event_pinBackButtonActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -180,6 +580,9 @@ public class PinWindow extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PinWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -189,28 +592,47 @@ public class PinWindow extends javax.swing.JFrame {
         });
     }
 
+    // <editor-fold defaultstate="collapsed" desc="VARIABLES">  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel ATMSystemLabel;
+    private javax.swing.JLabel ATMSystemLabel1;
+    private javax.swing.JPanel AccountNumberPanel;
+    private javax.swing.JLabel BGLabel;
+    private javax.swing.JPanel PinPanel;
+    private javax.swing.JButton accBackButton;
+    private javax.swing.JButton accKey0;
+    private javax.swing.JButton accKey1;
+    private javax.swing.JButton accKey2;
+    private javax.swing.JButton accKey3;
+    private javax.swing.JButton accKey4;
+    private javax.swing.JButton accKey5;
+    private javax.swing.JButton accKey6;
+    private javax.swing.JButton accKey7;
+    private javax.swing.JButton accKey8;
+    private javax.swing.JButton accKey9;
+    private javax.swing.JButton accKeyOK;
+    private javax.swing.JButton accKeyX;
+    private javax.swing.JPanel accKeypad;
+    private javax.swing.JTextField accNumberField;
+    private javax.swing.JLabel accNumberLabel;
+    private javax.swing.JLabel accNumberLabel1;
+    private javax.swing.JLabel backLabel;
+    private javax.swing.JLabel backLabel1;
+    private javax.swing.JButton pinBackButton;
+    private javax.swing.JButton pinKey0;
+    private javax.swing.JButton pinKey1;
+    private javax.swing.JButton pinKey2;
+    private javax.swing.JButton pinKey3;
+    private javax.swing.JButton pinKey4;
+    private javax.swing.JButton pinKey5;
+    private javax.swing.JButton pinKey6;
+    private javax.swing.JButton pinKey7;
+    private javax.swing.JButton pinKey8;
+    private javax.swing.JButton pinKey9;
+    private javax.swing.JButton pinKeyOK;
+    private javax.swing.JButton pinKeyX;
+    private javax.swing.JTextField pinNumberField;
+    private javax.swing.JPanel pinPanel;
     // End of variables declaration//GEN-END:variables
+//</editor-fold>
 }

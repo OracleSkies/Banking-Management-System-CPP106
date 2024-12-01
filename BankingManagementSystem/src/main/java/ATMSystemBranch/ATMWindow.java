@@ -35,25 +35,25 @@ public class ATMWindow extends javax.swing.JFrame {
         WithdrawCash = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        withdrawField = new javax.swing.JTextField();
+        keypadPanel = new javax.swing.JPanel();
+        keyButton1 = new javax.swing.JButton();
+        keyButton2 = new javax.swing.JButton();
+        keyButton3 = new javax.swing.JButton();
+        keyButton4 = new javax.swing.JButton();
+        keyButton5 = new javax.swing.JButton();
+        keyButton6 = new javax.swing.JButton();
+        keyButton7 = new javax.swing.JButton();
+        keyButton8 = new javax.swing.JButton();
+        keyButton9 = new javax.swing.JButton();
+        keyButtonX = new javax.swing.JButton();
+        keyButton0 = new javax.swing.JButton();
+        keyButtonOK = new javax.swing.JButton();
+        backLabel = new javax.swing.JLabel();
         BackWithdraw = new javax.swing.JButton();
         WithdrawBG = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        headerPanel = new javax.swing.JPanel();
+        headerLabel = new javax.swing.JLabel();
         TransferCash = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -135,74 +135,79 @@ public class ATMWindow extends javax.swing.JFrame {
         jLabel7.setText("Enter Amount");
         WithdrawCash.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 311, -1));
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        WithdrawCash.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 310, -1));
+        withdrawField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        WithdrawCash.add(withdrawField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 310, -1));
 
-        jPanel4.setOpaque(false);
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        keypadPanel.setOpaque(false);
+        keypadPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton14.setText("1");
-        jPanel4.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 17, 75, 50));
+        keyButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton1.setText("1");
+        keypadPanel.add(keyButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 17, 75, 50));
 
-        jButton15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton15.setText("2");
-        jPanel4.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 17, 75, 50));
+        keyButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton2.setText("2");
+        keypadPanel.add(keyButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 17, 75, 50));
 
-        jButton16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton16.setText("3");
-        jPanel4.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 17, 75, 50));
+        keyButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton3.setText("3");
+        keypadPanel.add(keyButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 17, 75, 50));
 
-        jButton17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton17.setText("4");
-        jPanel4.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 85, 75, 50));
+        keyButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton4.setText("4");
+        keypadPanel.add(keyButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 85, 75, 50));
 
-        jButton18.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton18.setText("5");
-        jPanel4.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 85, 75, 50));
+        keyButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton5.setText("5");
+        keypadPanel.add(keyButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 85, 75, 50));
 
-        jButton19.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton19.setText("6");
-        jPanel4.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 85, 75, 50));
+        keyButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton6.setText("6");
+        keypadPanel.add(keyButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 85, 75, 50));
 
-        jButton20.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton20.setText("7");
-        jPanel4.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 153, 75, 50));
+        keyButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton7.setText("7");
+        keypadPanel.add(keyButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 153, 75, 50));
 
-        jButton21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton21.setText("8");
-        jPanel4.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 153, 75, 50));
+        keyButton8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton8.setText("8");
+        keypadPanel.add(keyButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 153, 75, 50));
 
-        jButton22.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton22.setText("9");
-        jPanel4.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 153, 75, 50));
+        keyButton9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton9.setText("9");
+        keypadPanel.add(keyButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 153, 75, 50));
 
-        jButton23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton23.setText("X");
-        jPanel4.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 221, 75, 50));
+        keyButtonX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButtonX.setText("X");
+        keypadPanel.add(keyButtonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 221, 75, 50));
 
-        jButton24.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton24.setText("0");
-        jPanel4.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 221, 75, 50));
+        keyButton0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButton0.setText("0");
+        keypadPanel.add(keyButton0, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 221, 75, 50));
 
-        jButton25.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton25.setText("OK");
-        jPanel4.add(jButton25, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 221, 75, 50));
+        keyButtonOK.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        keyButtonOK.setText("OK");
+        keypadPanel.add(keyButtonOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 221, 75, 50));
 
-        WithdrawCash.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 311, 300));
+        WithdrawCash.add(keypadPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 311, 300));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 204, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Back");
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        WithdrawCash.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 100, 50));
+        backLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        backLabel.setForeground(new java.awt.Color(51, 204, 255));
+        backLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backLabel.setText("Back");
+        backLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        WithdrawCash.add(backLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, 100, 50));
 
         BackWithdraw.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         BackWithdraw.setText("1");
         BackWithdraw.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BackWithdrawMouseClicked(evt);
+            }
+        });
+        BackWithdraw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackWithdrawActionPerformed(evt);
             }
         });
         WithdrawCash.add(BackWithdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 510, 75, 50));
@@ -212,25 +217,25 @@ public class ATMWindow extends javax.swing.JFrame {
 
         jPanel1.add(WithdrawCash, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 800, 680));
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        headerPanel.setBackground(new java.awt.Color(204, 255, 204));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QuPAL BANKING Title.png"))); // NOI18N
+        headerLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        headerLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QuPAL BANKING Title.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
+        headerPanel.setLayout(headerPanelLayout);
+        headerPanelLayout.setHorizontalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel5)
+        headerPanelLayout.setVerticalGroup(
+            headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addComponent(headerLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 120));
+        jPanel1.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 120));
 
         TransferCash.setBackground(new java.awt.Color(255, 102, 102));
         TransferCash.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -648,6 +653,16 @@ public class ATMWindow extends javax.swing.JFrame {
         TransferCash.setVisible(false);
     }//GEN-LAST:event_jButton13MouseClicked
 
+    private void BackWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackWithdrawActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BackWithdrawActionPerformed
+
+    private void returnToPin(){
+        PinWindow pin = new PinWindow();
+        pin.setVisible(true);
+        setVisible(false);
+    }
     /**
      * @param args the command line arguments
      */
@@ -702,24 +717,15 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JPanel TransferCash;
     private javax.swing.JLabel WithdrawBG;
     private javax.swing.JPanel WithdrawCash;
+    private javax.swing.JLabel backLabel;
+    private javax.swing.JLabel headerLabel;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
@@ -755,19 +761,28 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton keyButton0;
+    private javax.swing.JButton keyButton1;
+    private javax.swing.JButton keyButton2;
+    private javax.swing.JButton keyButton3;
+    private javax.swing.JButton keyButton4;
+    private javax.swing.JButton keyButton5;
+    private javax.swing.JButton keyButton6;
+    private javax.swing.JButton keyButton7;
+    private javax.swing.JButton keyButton8;
+    private javax.swing.JButton keyButton9;
+    private javax.swing.JButton keyButtonOK;
+    private javax.swing.JButton keyButtonX;
+    private javax.swing.JPanel keypadPanel;
+    private javax.swing.JTextField withdrawField;
     // End of variables declaration//GEN-END:variables
 }

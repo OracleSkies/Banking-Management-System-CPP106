@@ -4,6 +4,8 @@
  */
 package ATMSystemBranch;
 
+import LoginBranch.Login;
+
 /**
  *
  * @author yan
@@ -29,8 +31,8 @@ public class StartingWindow extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bankingButton = new javax.swing.JButton();
+        ATMButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,16 +48,21 @@ public class StartingWindow extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LOGO.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 720, -1, 75));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Banking System BG.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bankingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Banking System BG.png"))); // NOI18N
+        bankingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bankingButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 270, 270));
+        jPanel1.add(bankingButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 270, 270));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATM System BG.png"))); // NOI18N
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 270, 270));
+        ATMButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATM System BG.png"))); // NOI18N
+        ATMButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ATMButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ATMButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, 270, 270));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATM Main.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 800));
@@ -75,9 +82,19 @@ public class StartingWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bankingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankingButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_bankingButtonActionPerformed
+
+    private void ATMButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ATMButtonActionPerformed
+        // TODO add your handling code here:
+        PinWindow pin = new PinWindow();
+        pin.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_ATMButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,8 +132,8 @@ public class StartingWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton ATMButton;
+    private javax.swing.JButton bankingButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
