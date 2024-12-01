@@ -220,7 +220,9 @@ public class UserAccountRegistration extends javax.swing.JFrame {
             return;
         } else if (phoneNumber.matches("\\d+")){
             userAccountRegistration(username,password,name,birthdate,phoneNumber,address);
-            refreshAccountTables();
+            returnToAdmin();
+//            refreshAccountTables();
+
             setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Error: Phone number must only contain numbers.","Error",JOptionPane.ERROR_MESSAGE);
