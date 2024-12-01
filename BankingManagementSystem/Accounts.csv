@@ -1,4 +1,4 @@
 username,password,name,birthdate,phone number,address,Account Number,type,card,pin,balance
-admin,pass,ADMIN NAME,JUNE,123123,CABUYAO,00000,admin,,,
-jayjay,123,ADMIN NAME,JUNE,123,PULO,12111,user,,,
-user,word,namee,JANUARY,1121221212,CABUYAO,55464,user,,,
+admin,pass,ADMIN NAME,JUNE,123123,CABUYAO,00000,admin,no,*,1
+jayjay,123,ADMIN NAME,JUNE,123,PULO,12111,user,yes,4321,2
+user,word,namee,JANUARY,1121221212,CABUYAO,5555,user,yes,1234,3

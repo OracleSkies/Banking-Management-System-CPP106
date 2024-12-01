@@ -4,6 +4,13 @@
  */
 package ATMSystemBranch;
 
+import UserBranch.UserInterface;
+import com.mycompany.bankingmanagementsystem.AdminMain;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yan
@@ -14,7 +21,12 @@ public class PinWindow extends javax.swing.JFrame {
     /**
      * Creates new form PinWindow
      */
-    private String number = "";
+    private String accNumber = "";
+    private String pinNumber = "";
+    
+    private String getBalance = "";
+    private int balance;
+    
     public PinWindow() {
         initComponents();
         AccountNumberPanel.setVisible(true);
@@ -50,7 +62,6 @@ public class PinWindow extends javax.swing.JFrame {
         backLabel = new javax.swing.JLabel();
         accBackButton = new javax.swing.JButton();
         PinPanel = new javax.swing.JPanel();
-        pinNumberField = new javax.swing.JTextField();
         pinPanel = new javax.swing.JPanel();
         pinKey1 = new javax.swing.JButton();
         pinKey2 = new javax.swing.JButton();
@@ -68,6 +79,7 @@ public class PinWindow extends javax.swing.JFrame {
         accNumberLabel1 = new javax.swing.JLabel();
         backLabel1 = new javax.swing.JLabel();
         pinBackButton = new javax.swing.JButton();
+        pinNumberField = new javax.swing.JPasswordField();
         BGLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -222,9 +234,6 @@ public class PinWindow extends javax.swing.JFrame {
         PinPanel.setPreferredSize(new java.awt.Dimension(800, 800));
         PinPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pinNumberField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        PinPanel.add(pinNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 257, -1));
-
         pinPanel.setOpaque(false);
         pinPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -363,6 +372,9 @@ public class PinWindow extends javax.swing.JFrame {
         });
         PinPanel.add(pinBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 641, 75, 50));
 
+        pinNumberField.setPreferredSize(new java.awt.Dimension(64, 38));
+        PinPanel.add(pinNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 260, 40));
+
         BGLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATM Main.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -400,145 +412,157 @@ public class PinWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="EVENTS"> 
     private void accKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey1ActionPerformed
         // TODO add your handling code here:
-        number = number+ "1";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "1";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey1ActionPerformed
 
     private void accKey2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey2ActionPerformed
         // TODO add your handling code here:
-        number = number+ "2";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "2";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey2ActionPerformed
 
     private void accKey3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey3ActionPerformed
         // TODO add your handling code here:
-        number = number+ "3";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "3";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey3ActionPerformed
 
     private void accKey4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey4ActionPerformed
         // TODO add your handling code here:
-        number = number+ "4";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "4";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey4ActionPerformed
 
     private void accKey5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey5ActionPerformed
         // TODO add your handling code here:
-        number = number+ "5";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "5";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey5ActionPerformed
 
     private void accKey6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey6ActionPerformed
         // TODO add your handling code here:
-        number = number+ "6";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "6";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey6ActionPerformed
 
     private void accKey7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey7ActionPerformed
         // TODO add your handling code here:
-        number = number+ "7";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "7";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey7ActionPerformed
 
     private void accKey8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey8ActionPerformed
         // TODO add your handling code here:
-        number = number+ "8";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "8";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey8ActionPerformed
 
     private void accKey9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey9ActionPerformed
         // TODO add your handling code here:
-        number = number+ "9";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "9";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey9ActionPerformed
 
     private void accKey0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKey0ActionPerformed
         // TODO add your handling code here:
-        number = number+ "0";
-        accNumberField.setText(number);
+        accNumber = accNumber+ "0";
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_accKey0ActionPerformed
 
     private void accKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKeyXActionPerformed
         // TODO add your handling code here:
-        number = number.substring(0, number.length() - 1);
-        accNumberField.setText(number);
+        if ("".equals(accNumber)){
+            return;
+        }else{
+            accNumber = accNumber.substring(0, accNumber.length() - 1);
+            accNumberField.setText(accNumber);
+        }
     }//GEN-LAST:event_accKeyXActionPerformed
 
     private void accKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accKeyOKActionPerformed
         // TODO add your handling code here:
         AccountNumberPanel.setVisible(false);
         PinPanel.setVisible(true);
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_accKeyOKActionPerformed
 
     private void pinKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey1ActionPerformed
         // TODO add your handling code here:
-        number = number+ "0";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "1";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey1ActionPerformed
 
     private void pinKey2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey2ActionPerformed
         // TODO add your handling code here:
-        number = number+ "2";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "2";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey2ActionPerformed
 
     private void pinKey3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey3ActionPerformed
         // TODO add your handling code here:
-        number = number+ "3";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "3";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey3ActionPerformed
 
     private void pinKey4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey4ActionPerformed
         // TODO add your handling code here:
-        number = number+ "4";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "4";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey4ActionPerformed
 
     private void pinKey5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey5ActionPerformed
         // TODO add your handling code here:
-        number = number+ "5";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "5";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey5ActionPerformed
 
     private void pinKey6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey6ActionPerformed
         // TODO add your handling code here:
-        number = number+ "6";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "6";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey6ActionPerformed
 
     private void pinKey7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey7ActionPerformed
         // TODO add your handling code here:
-        number = number+ "7";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "7";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey7ActionPerformed
 
     private void pinKey8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey8ActionPerformed
         // TODO add your handling code here:
-        number = number+ "8";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "8";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey8ActionPerformed
 
     private void pinKey9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey9ActionPerformed
         // TODO add your handling code here:
-        number = number+ "9";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "9";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey9ActionPerformed
 
     private void pinKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKeyXActionPerformed
         // TODO add your handling code here:
-        
+        if ("".equals(pinNumber)){
+            return;
+        }else{
+            pinNumber = pinNumber.substring(0, pinNumber.length() - 1);
+            pinNumberField.setText(pinNumber);
+        }
     }//GEN-LAST:event_pinKeyXActionPerformed
 
     private void pinKey0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKey0ActionPerformed
         // TODO add your handling code here:
-        number = number+ "0";
-        pinNumberField.setText(number);
+        pinNumber = pinNumber+ "0";
+        pinNumberField.setText(pinNumber);
     }//GEN-LAST:event_pinKey0ActionPerformed
 
     private void pinKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinKeyOKActionPerformed
         // TODO add your handling code here:
+        ATMLogin(accNumber,pinNumber);
     }//GEN-LAST:event_pinKeyOKActionPerformed
 
     private void accBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accBackButtonActionPerformed
@@ -551,8 +575,39 @@ public class PinWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         AccountNumberPanel.setVisible(true);
         PinPanel.setVisible(false);
+        accNumberField.setText(accNumber);
     }//GEN-LAST:event_pinBackButtonActionPerformed
 
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="FUNCTIONS"> 
+    private void ATMLogin(String acctNum, String pin){
+          try (BufferedReader reader = new BufferedReader(new FileReader("Accounts.csv"))){
+              String line;
+              boolean accountFound = false;
+              while ((line = reader.readLine()) != null){
+                  String[] parts = line.split(",");
+                  if(parts[6].equals(acctNum) && parts[9].equals(pin)){
+                      accountFound = true;
+                      getBalance = parts[10];
+                      balance = Integer.parseInt(getBalance);
+                      java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            new ATMWindow(acctNum,pin,balance).setVisible(true);
+                        }
+                    });
+                      setVisible(false);
+                     break;
+                    }
+                }
+              if (!accountFound){
+                JOptionPane.showMessageDialog(this, "Invalid Account", "Error", JOptionPane.ERROR_MESSAGE);
+              }
+          } catch (IOException e) {
+              JOptionPane.showMessageDialog(this, "System Error", "Error", JOptionPane.ERROR_MESSAGE);
+          }
+    }
+    // </editor-fold> 
     
     /**
      * @param args the command line arguments
@@ -631,7 +686,7 @@ public class PinWindow extends javax.swing.JFrame {
     private javax.swing.JButton pinKey9;
     private javax.swing.JButton pinKeyOK;
     private javax.swing.JButton pinKeyX;
-    private javax.swing.JTextField pinNumberField;
+    private javax.swing.JPasswordField pinNumberField;
     private javax.swing.JPanel pinPanel;
     // End of variables declaration//GEN-END:variables
 //</editor-fold>
