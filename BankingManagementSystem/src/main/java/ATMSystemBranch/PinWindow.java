@@ -607,6 +607,7 @@ public class PinWindow extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(this, "System Error", "Error", JOptionPane.ERROR_MESSAGE);
           }
     }
+    
     // </editor-fold> 
     
     /**

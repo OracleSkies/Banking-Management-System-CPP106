@@ -536,6 +536,11 @@ public class ATMWindow extends javax.swing.JFrame {
 
         depKeyX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         depKeyX.setText("<--");
+        depKeyX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depKeyXActionPerformed(evt);
+            }
+        });
         depositKeypad.add(depKeyX, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 225, 75, 50));
 
         depKey0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -699,6 +704,8 @@ public class ATMWindow extends javax.swing.JFrame {
         DepositCash.setVisible(true);
         WithdrawCash.setVisible(false);
         TransferCash.setVisible(false);
+        depositNumber = "";
+        depositField.setText(depositNumber);
     }//GEN-LAST:event_ButtonDepositActionPerformed
 
     private void ButtonWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonWithdrawActionPerformed
@@ -810,6 +817,16 @@ public class ATMWindow extends javax.swing.JFrame {
         depositNumber = depositNumber+ "0";
         depositField.setText(depositNumber);
     }//GEN-LAST:event_depKey0ActionPerformed
+
+    private void depKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depKeyXActionPerformed
+        // TODO add your handling code here:
+        if ("".equals(depositNumber)){
+            return;
+        }else{
+            depositNumber = depositNumber.substring(0, depositNumber.length() - 1);
+            depositField.setText(depositNumber);
+        }
+    }//GEN-LAST:event_depKeyXActionPerformed
 
     // </editor-fold>   
     
