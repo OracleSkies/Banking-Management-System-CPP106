@@ -158,7 +158,7 @@ public class AdminMain extends javax.swing.JFrame {
         Dashboardbutton = new javax.swing.JButton();
         AudRepbutton = new javax.swing.JButton();
         createNewAdminPanel = new javax.swing.JPanel();
-        Create = new javax.swing.JButton();
+        createNewAdminAccButton = new javax.swing.JButton();
         MasterPanel = new javax.swing.JPanel();
         AccountManagement = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -304,23 +304,23 @@ public class AdminMain extends javax.swing.JFrame {
 
         createNewAdminPanel.setOpaque(false);
 
-        Create.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Create.setForeground(new java.awt.Color(255, 255, 255));
-        Create.setText("CREATE NEW ADMIN ACCOUNT");
-        Create.setBorderPainted(false);
-        Create.setContentAreaFilled(false);
-        Create.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Create.addMouseListener(new java.awt.event.MouseAdapter() {
+        createNewAdminAccButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        createNewAdminAccButton.setForeground(new java.awt.Color(255, 255, 255));
+        createNewAdminAccButton.setText("CREATE NEW ADMIN ACCOUNT");
+        createNewAdminAccButton.setBorderPainted(false);
+        createNewAdminAccButton.setContentAreaFilled(false);
+        createNewAdminAccButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createNewAdminAccButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CreateMouseEntered(evt);
+                createNewAdminAccButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                CreateMouseExited(evt);
+                createNewAdminAccButtonMouseExited(evt);
             }
         });
-        Create.addActionListener(new java.awt.event.ActionListener() {
+        createNewAdminAccButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateActionPerformed(evt);
+                createNewAdminAccButtonActionPerformed(evt);
             }
         });
 
@@ -330,14 +330,14 @@ public class AdminMain extends javax.swing.JFrame {
             createNewAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createNewAdminPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Create, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(createNewAdminAccButton, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addContainerGap())
         );
         createNewAdminPanelLayout.setVerticalGroup(
             createNewAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createNewAdminPanelLayout.createSequentialGroup()
                 .addGap(0, 568, Short.MAX_VALUE)
-                .addComponent(Create, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(createNewAdminAccButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(createNewAdminPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 310, 630));
@@ -906,30 +906,31 @@ public class AdminMain extends javax.swing.JFrame {
         AuditAndReport.setVisible(true);
     }//GEN-LAST:event_AudRepbuttonActionPerformed
 
-    private void CreateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateMouseEntered
+    private void createNewAdminAccButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createNewAdminAccButtonMouseEntered
         // TODO add your handling code here:
-        Create.setContentAreaFilled(true);
-        Create.setBackground(Color.cyan);
-        Create.setForeground(Color.black);
-    }//GEN-LAST:event_CreateMouseEntered
+        createNewAdminAccButton.setContentAreaFilled(true);
+        createNewAdminAccButton.setBackground(Color.cyan);
+        createNewAdminAccButton.setForeground(Color.black);
+    }//GEN-LAST:event_createNewAdminAccButtonMouseEntered
 
-    private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
+    private void createNewAdminAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewAdminAccButtonActionPerformed
         // TODO add your handling code here:
         AdminAccountRegistration adminAcc = new AdminAccountRegistration();
         adminAcc.setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_CreateActionPerformed
+    }//GEN-LAST:event_createNewAdminAccButtonActionPerformed
 
-    private void CreateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateMouseExited
+    private void createNewAdminAccButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createNewAdminAccButtonMouseExited
         // TODO add your handling code here:
-        Create.setContentAreaFilled(false);
-        Create.setForeground(Color.white);
-    }//GEN-LAST:event_CreateMouseExited
+        createNewAdminAccButton.setContentAreaFilled(false);
+        createNewAdminAccButton.setForeground(Color.white);
+    }//GEN-LAST:event_createNewAdminAccButtonMouseExited
 
     private void newUserAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserAccountButtonActionPerformed
         // TODO add your handling code here:
         UserAccountRegistration registration = new UserAccountRegistration();
         registration.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_newUserAccountButtonActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
@@ -1243,7 +1244,6 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel BackgroundImage;
     private javax.swing.JScrollPane CardAppScrPane;
     public javax.swing.JTable CardApplicationTable;
-    private javax.swing.JButton Create;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Dashboardbutton;
     private javax.swing.JPanel MasterPanel;
@@ -1255,6 +1255,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton Transactionsbutton;
     private javax.swing.JTable accApplicationTableDash;
     private javax.swing.JButton accountButton;
+    private javax.swing.JButton createNewAdminAccButton;
     private javax.swing.JPanel createNewAdminPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;

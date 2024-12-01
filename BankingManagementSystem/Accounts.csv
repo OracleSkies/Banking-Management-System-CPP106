@@ -1,6 +1,3 @@
 username,password,name,birthdate,phone number,address,Account Number,type,Card
 admin,pass,DONT DELETE,111,113,12312,11111,admin,NO
 user,pass,DONT DELETE,birthdate,PHONE 123,ADDRESS,ACC11111,user,YES
-DELETE,DELETE,DELETE,DELETE,3333,DELETE,eme acct number,user,NO
-SAMPLE,SAMPLE,NAMESAMPLE,JUNE,113213,CABUYAO,10056949,user,no
-ADMIN,PASSWORD,ADMIN NAME,HHSSHSH,00911,sdfsdf,-----,admin,no

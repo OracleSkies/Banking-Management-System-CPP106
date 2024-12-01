@@ -220,10 +220,11 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         if (phoneNumber.matches(".*[a-zA-Z].*")){
             JOptionPane.showMessageDialog(this,"Invalid Phone Number","Error",JOptionPane.ERROR_MESSAGE);
             return;
+            
         } else if (phoneNumber.matches("\\d+")){
+            //THIS BLOCK OF CODE HAPPENS WHEN THE ACCOUNT IS GOOD FOR APPLICATION
             accountRegistration(username,password,name,birthdate,phoneNumber,address);
-            AdminMain main = new AdminMain();
-            main.setVisible(true);
+            refreshAccountTables();
             setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Error: Phone number must only contain numbers.","Error",JOptionPane.ERROR_MESSAGE);
@@ -270,8 +271,14 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
     }
+    
+    private void refreshAccountTables(){
+        AdminMain admin = new AdminMain();
+        admin.setVisible(true);
+        admin.loadAccountsForAccApplication("AccountApplications.csv");
+    }
+    
     /**
      * @param args the command line arguments
      */

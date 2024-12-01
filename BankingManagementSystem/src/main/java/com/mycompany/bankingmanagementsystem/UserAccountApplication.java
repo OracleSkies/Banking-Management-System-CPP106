@@ -271,7 +271,8 @@ public class UserAccountApplication extends javax.swing.JFrame {
         RNGforAccountNumber();
         accountApplicationWriteOnFile(usernameVar,passwordVar,name,birthdate,phoneNumber,address);
         deleteAccountFromFile(row);
-        returnToAdmin();
+        refreshAccountTables();
+        setVisible(false);
     }//GEN-LAST:event_APPROVEActionPerformed
 
     private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
@@ -332,8 +333,8 @@ public class UserAccountApplication extends javax.swing.JFrame {
     
     private void refreshAccountTables(){
         AdminMain admin = new AdminMain();
-        admin.loadAccountsForAccApplication("AccountApplications.csv");
         admin.setVisible(true);
+        admin.loadAccountsForAccApplication("AccountApplications.csv");
     }
     
     private void accountApplicationWriteOnFile(String username,String password,String name,String birthdate,String phoneNumber,String address){
