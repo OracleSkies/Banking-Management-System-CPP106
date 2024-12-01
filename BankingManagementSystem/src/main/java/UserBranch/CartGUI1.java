@@ -41,7 +41,7 @@ public class CartGUI1 extends javax.swing.JFrame {
         Confirm = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        DisTotal = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,10 +114,10 @@ public class CartGUI1 extends javax.swing.JFrame {
         jLabel3.setText("Total:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 90, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("000000");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 150, 30));
+        DisTotal.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        DisTotal.setForeground(new java.awt.Color(255, 255, 255));
+        DisTotal.setText("000000");
+        getContentPane().add(DisTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 150, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bills.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -201,10 +201,10 @@ public class CartGUI1 extends javax.swing.JFrame {
     private javax.swing.JTable BillsTable;
     private javax.swing.JButton Confirm;
     private javax.swing.JButton Decline;
+    private javax.swing.JLabel DisTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
