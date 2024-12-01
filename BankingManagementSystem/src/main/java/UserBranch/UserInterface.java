@@ -1455,6 +1455,7 @@ public class UserInterface extends javax.swing.JFrame {
         FoodScroll.setDoubleBuffered(true);
         FoodScroll.setOpaque(false);
 
+        Foods.setOpaque(false);
         Foods.setPreferredSize(new java.awt.Dimension(1170, 873));
         Foods.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1702,6 +1703,7 @@ public class UserInterface extends javax.swing.JFrame {
         ClothingsScroll.setBorder(null);
         ClothingsScroll.setOpaque(false);
 
+        Clothings.setOpaque(false);
         Clothings.setPreferredSize(new java.awt.Dimension(1170, 873));
         Clothings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2030,6 +2032,7 @@ public class UserInterface extends javax.swing.JFrame {
         AppliancesScroll.setBorder(null);
         AppliancesScroll.setOpaque(false);
 
+        Appliances.setOpaque(false);
         Appliances.setPreferredSize(new java.awt.Dimension(1170, 873));
         Appliances.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
