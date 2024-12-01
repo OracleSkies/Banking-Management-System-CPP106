@@ -9,25 +9,13 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
-import javax.swing.text.DocumentFilter.FilterBypass;
-import javax.swing.text.PlainDocument;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
@@ -71,7 +59,6 @@ public class UserInterface extends javax.swing.JFrame {
         
         Dashboard.setVisible(true);
         TransacHis.setVisible(false);
-        AccReg.setVisible(false);
         CheckCardY.setVisible(false);
         CheckCardN.setVisible(false);
         bills.setVisible(false);
@@ -283,11 +270,10 @@ public class UserInterface extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Transhis = new javax.swing.JTable();
         GenRep = new javax.swing.JButton();
-        AccReg = new javax.swing.JPanel();
         CheckCardY = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        AccNumDis = new javax.swing.JLabel();
+        CardNameDis = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         CheckCardN = new javax.swing.JPanel();
@@ -981,34 +967,21 @@ public class UserInterface extends javax.swing.JFrame {
 
         jPanel9.add(TransacHis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
-        javax.swing.GroupLayout AccRegLayout = new javax.swing.GroupLayout(AccReg);
-        AccReg.setLayout(AccRegLayout);
-        AccRegLayout.setHorizontalGroup(
-            AccRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
-        );
-        AccRegLayout.setVerticalGroup(
-            AccRegLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(AccReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
-
         CheckCardY.setOpaque(false);
         CheckCardY.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chip.png"))); // NOI18N
         CheckCardY.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, 100));
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("Account Number");
-        CheckCardY.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 200, 30));
+        AccNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AccNumDis.setForeground(new java.awt.Color(255, 255, 255));
+        AccNumDis.setText("Account Number");
+        CheckCardY.add(AccNumDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 200, 30));
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("Name");
-        CheckCardY.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 90, 30));
+        CardNameDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CardNameDis.setForeground(new java.awt.Color(255, 255, 255));
+        CardNameDis.setText("Name");
+        CheckCardY.add(CardNameDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 90, 30));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QP.png"))); // NOI18N
         CheckCardY.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 390, 140, 93));
@@ -2797,8 +2770,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void DashbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashbActionPerformed
         // TODO add your handling code here:
         Dashboard.setVisible(true);
-        TransacHis.setVisible(false);
-        AccReg.setVisible(false);
+        TransacHis.setVisible(false);      
         CheckCardY.setVisible(false);
         CheckCardN.setVisible(false);
         bills.setVisible(false);
@@ -2809,8 +2781,7 @@ public class UserInterface extends javax.swing.JFrame {
     private void TransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransActionPerformed
         // TODO add your handling code here:
         Dashboard.setVisible(false);
-        TransacHis.setVisible(true);
-        AccReg.setVisible(false);
+        TransacHis.setVisible(true);        
         CheckCardY.setVisible(false);
         CheckCardN.setVisible(false);
         bills.setVisible(false);
@@ -2865,7 +2836,6 @@ public class UserInterface extends javax.swing.JFrame {
         Application.setVisible(true);
         Dashboard.setVisible(false);
         TransacHis.setVisible(false);
-        AccReg.setVisible(false);
         CheckCardY.setVisible(false);
         CheckCardN.setVisible(false);
         bills.setVisible(false);
@@ -2877,7 +2847,6 @@ public class UserInterface extends javax.swing.JFrame {
         Application.setVisible(false);
         Dashboard.setVisible(false);
         TransacHis.setVisible(false);
-        AccReg.setVisible(false);
         CheckCardY.setVisible(false);
         CheckCardN.setVisible(true);
         bills.setVisible(false);
@@ -2940,7 +2909,6 @@ public class UserInterface extends javax.swing.JFrame {
         Application.setVisible(false);
         Dashboard.setVisible(false);
         TransacHis.setVisible(false);
-        AccReg.setVisible(false);
         CheckCardY.setVisible(false);
         CheckCardN.setVisible(false);
         bills.setVisible(false);
@@ -2951,8 +2919,7 @@ public class UserInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         Application.setVisible(false);
         Dashboard.setVisible(false);
-        TransacHis.setVisible(false);
-        AccReg.setVisible(false);
+        TransacHis.setVisible(false);     
         CheckCardY.setVisible(false);
         CheckCardN.setVisible(false);
         bills.setVisible(true);
@@ -3210,7 +3177,8 @@ public class UserInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void GenRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRepActionPerformed
-        // TODO add your handling code here:
+        BankStatement banks = new BankStatement();
+        banks.setVisible(true);
     }//GEN-LAST:event_GenRepActionPerformed
 
     /**
@@ -3250,7 +3218,7 @@ public class UserInterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccDEts;
-    private javax.swing.JPanel AccReg;
+    private javax.swing.JLabel AccNumDis;
     private javax.swing.JButton Accreg;
     private javax.swing.JLabel ActionDis;
     private javax.swing.JLabel ActionLabel1;
@@ -3271,6 +3239,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton Bills;
     private javax.swing.JScrollPane BillsScroll;
     private javax.swing.JToggleButton CARD;
+    private javax.swing.JLabel CardNameDis;
     private javax.swing.JPanel CheckCardN;
     private javax.swing.JPanel CheckCardY;
     private javax.swing.JPanel Clothings;
@@ -3428,8 +3397,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel235;
     private javax.swing.JLabel jLabel236;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
