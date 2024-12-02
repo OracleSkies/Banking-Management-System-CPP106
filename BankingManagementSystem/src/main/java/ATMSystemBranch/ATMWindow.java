@@ -1425,6 +1425,7 @@ public class ATMWindow extends javax.swing.JFrame {
 
     private void transAccKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKeyOKActionPerformed
         // TODO add your handling code here:
+        transferMoney(transferAmountNumber, transferAccountNumber, balance);
     }//GEN-LAST:event_transAccKeyOKActionPerformed
 
     private void transAccBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccBackActionPerformed
@@ -1437,10 +1438,28 @@ public class ATMWindow extends javax.swing.JFrame {
     
     // </editor-fold> 
     
-    
-     
     // </editor-fold>   
     
+    private void transferMoney(String amountToTransfer, String accountRecepient, int balance){
+        //SUBTRACT MONEY FROM SENDER ACCOUNT NUMBER
+        int transferToInt = Integer.parseInt(amountToTransfer);
+        if(balance < transferToInt){
+            JOptionPane.showMessageDialog(this, "Cannot transfer money. Insufficient balance", "Insufficient Balance", JOptionPane.ERROR_MESSAGE);
+            writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
+            return;
+        }
+        balance = balance - transferToInt;
+        deleteLine(accNumber);
+        writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
+        this.balance = balance;
+        
+        
+        //FIND RECEPIENT IN DATABASE
+        
+        
+        //ADD MONEY TO RECEPIENT ACCOUNT NUMBER
+        
+    }
     private void showCurrentBalance(int balance){
         String balanceDisplay = "₱" +Integer.toString(balance);
         DisplayBalance.setText(balanceDisplay);
@@ -1449,11 +1468,11 @@ public class ATMWindow extends javax.swing.JFrame {
         int witToInt = Integer.parseInt(withdrawNumber);
         if(balance < witToInt){
             JOptionPane.showMessageDialog(this, "Cannot withdraw money. Insufficient balance", "Insufficient Balance", JOptionPane.ERROR_MESSAGE);
-            writeLine(balance);
+            writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
             return;
         }
         balance = balance - witToInt;
-        writeLine(balance);
+        writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         this.balance = balance;
         JOptionPane.showMessageDialog(this,  "₱" + witToInt+" successfully withdrew from account number: " + accNumber + "!");
         returnToATMHome(); 
@@ -1463,12 +1482,23 @@ public class ATMWindow extends javax.swing.JFrame {
         int depToInt = Integer.parseInt(depositNumber);
         balance = balance + depToInt;
         this.balance = balance;
-        writeLine(balance);
+        writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         JOptionPane.showMessageDialog(this,  "₱" + depToInt+" successfully deposited in account number: " + accNumber + "!");
         returnToATMHome(); 
     }
     
-    private void writeLine(int balanceToDB){
+    
+    private void writeLine(String username,
+            String password,
+            String name,
+            String birthdate,
+            String phoneNumber,
+            String address,
+            String accNumber,
+            String type,
+            String card,
+            String pin,
+            int balanceToDB){
         
          try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
             writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + type + "," + card + "," + pin + "," + balanceToDB);
@@ -1478,6 +1508,7 @@ public class ATMWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
     private void deleteLine(String accNum){
         
         
