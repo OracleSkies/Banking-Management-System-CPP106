@@ -54,7 +54,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
         this.username = username;
         this.password = password;
         this.name = name;
@@ -113,12 +114,10 @@ public class ATMWindow extends javax.swing.JFrame {
         WithdrawBG = new javax.swing.JLabel();
         headerPanel = new javax.swing.JPanel();
         headerLabel = new javax.swing.JLabel();
-        TransferCash = new javax.swing.JPanel();
+        TransferAmount = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        transferAmountField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -135,6 +134,26 @@ public class ATMWindow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         transferBackButton = new javax.swing.JButton();
         TransferBG = new javax.swing.JLabel();
+        TransferAccount = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        transferAccNumField1 = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
+        jButton22 = new javax.swing.JButton();
+        jButton23 = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        transferBackButton1 = new javax.swing.JButton();
+        TransferBG1 = new javax.swing.JLabel();
         DepositCash = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -428,30 +447,22 @@ public class ATMWindow extends javax.swing.JFrame {
 
         MainPanel.add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 120));
 
-        TransferCash.setBackground(new java.awt.Color(255, 102, 102));
-        TransferCash.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        TransferAmount.setBackground(new java.awt.Color(255, 102, 102));
+        TransferAmount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("TRANSFER CASH");
-        TransferCash.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 39, 300, -1));
+        TransferAmount.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 39, 300, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Enter Amount");
-        TransferCash.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 300, -1));
+        TransferAmount.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 300, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        TransferCash.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 167, 300, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Enter Account Number");
-        TransferCash.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 300, -1));
-
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        TransferCash.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 300, -1));
+        transferAmountField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        TransferAmount.add(transferAmountField, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 167, 300, -1));
 
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -493,7 +504,7 @@ public class ATMWindow extends javax.swing.JFrame {
         jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 155, 75, 50));
 
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton10.setText("X");
+        jButton10.setText("aaa");
         jPanel3.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 223, 75, 50));
 
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -504,14 +515,14 @@ public class ATMWindow extends javax.swing.JFrame {
         jButton12.setText("OK");
         jPanel3.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 223, 75, 50));
 
-        TransferCash.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 329, 300, 296));
+        TransferAmount.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 329, 300, 296));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 204, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Back");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        TransferCash.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 553, 113, -1));
+        TransferAmount.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 553, 113, -1));
 
         transferBackButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         transferBackButton.setText("1");
@@ -525,12 +536,108 @@ public class ATMWindow extends javax.swing.JFrame {
                 transferBackButtonActionPerformed(evt);
             }
         });
-        TransferCash.add(transferBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 553, 75, 52));
+        TransferAmount.add(transferBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 553, 75, 52));
 
         TransferBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATMPanel_BG.png"))); // NOI18N
-        TransferCash.add(TransferBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 680));
+        TransferAmount.add(TransferBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 680));
 
-        MainPanel.add(TransferCash, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 800, 680));
+        MainPanel.add(TransferAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 800, 680));
+
+        TransferAccount.setBackground(new java.awt.Color(255, 102, 102));
+        TransferAccount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("TRANSFER CASH");
+        TransferAccount.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 39, 300, -1));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Enter Account Number");
+        TransferAccount.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 300, -1));
+
+        transferAccNumField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        TransferAccount.add(transferAccNumField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 300, -1));
+
+        jPanel4.setOpaque(false);
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton13.setText("1");
+        jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 19, 75, 50));
+
+        jButton14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton14.setText("2");
+        jPanel4.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 19, 75, 50));
+
+        jButton15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton15.setText("3");
+        jPanel4.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 19, 75, 50));
+
+        jButton16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton16.setText("4");
+        jPanel4.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 87, 75, 50));
+
+        jButton17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton17.setText("5");
+        jPanel4.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 87, 75, 50));
+
+        jButton18.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton18.setText("6");
+        jPanel4.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 87, 75, 50));
+
+        jButton19.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton19.setText("7");
+        jPanel4.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 155, 75, 50));
+
+        jButton20.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton20.setText("8");
+        jPanel4.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 155, 75, 50));
+
+        jButton21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton21.setText("9");
+        jPanel4.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 155, 75, 50));
+
+        jButton22.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton22.setText("an");
+        jPanel4.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 223, 75, 50));
+
+        jButton23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton23.setText("0");
+        jPanel4.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 223, 75, 50));
+
+        jButton24.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton24.setText("OK");
+        jPanel4.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 223, 75, 50));
+
+        TransferAccount.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 329, 300, 296));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Back");
+        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        TransferAccount.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 553, 113, -1));
+
+        transferBackButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        transferBackButton1.setText("1");
+        transferBackButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transferBackButton1MouseClicked(evt);
+            }
+        });
+        transferBackButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transferBackButton1ActionPerformed(evt);
+            }
+        });
+        TransferAccount.add(transferBackButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 553, 75, 52));
+
+        TransferBG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATMPanel_BG.png"))); // NOI18N
+        TransferAccount.add(TransferBG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 680));
+
+        MainPanel.add(TransferAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 800, 680));
 
         DepositCash.setBackground(new java.awt.Color(255, 204, 204));
         DepositCash.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -764,7 +871,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_balanceBackButtonMouseClicked
 
     private void depositBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositBackButtonMouseClicked
@@ -773,7 +881,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_depositBackButtonMouseClicked
 
     private void transferBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferBackButtonMouseClicked
@@ -782,7 +891,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_transferBackButtonMouseClicked
 
     private void BackWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackWithdrawActionPerformed
@@ -791,7 +901,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_BackWithdrawActionPerformed
 
     private void ButtonBalanceInquiryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBalanceInquiryActionPerformed
@@ -800,7 +911,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(true);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
         showCurrentBalance(balance);
     }//GEN-LAST:event_ButtonBalanceInquiryActionPerformed
 
@@ -810,7 +922,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(true);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
         depositNumber = "";
         depositField.setText(depositNumber);
     }//GEN-LAST:event_ButtonDepositActionPerformed
@@ -821,7 +934,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(true);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
         withdrawNumber = "";
         withdrawField.setText(withdrawNumber);
     }//GEN-LAST:event_ButtonWithdrawActionPerformed
@@ -832,7 +946,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(true);
+        TransferAmount.setVisible(true);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_ButtonTransferActionPerformed
 
     private void ButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBackActionPerformed
@@ -846,7 +961,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_transferBackButtonActionPerformed
 
     private void depositBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositBackButtonActionPerformed
@@ -855,7 +971,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_depositBackButtonActionPerformed
 
     private void balanceBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceBackButtonActionPerformed
@@ -864,7 +981,8 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }//GEN-LAST:event_balanceBackButtonActionPerformed
 
     // </editor-fold>
@@ -1025,6 +1143,14 @@ public class ATMWindow extends javax.swing.JFrame {
         withdraw(balance);
     }//GEN-LAST:event_witKeyOKActionPerformed
 
+    private void transferBackButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferBackButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferBackButton1MouseClicked
+
+    private void transferBackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferBackButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transferBackButton1ActionPerformed
+
     // </editor-fold>
     // </editor-fold>   
     
@@ -1112,7 +1238,7 @@ public class ATMWindow extends javax.swing.JFrame {
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
-        TransferCash.setVisible(false);
+        TransferAmount.setVisible(false);
     }
     /**
      * @param args the command line arguments
@@ -1164,8 +1290,10 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JLabel HomepageBG;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JButton PrintBalance;
+    private javax.swing.JPanel TransferAccount;
+    private javax.swing.JPanel TransferAmount;
     private javax.swing.JLabel TransferBG;
-    private javax.swing.JPanel TransferCash;
+    private javax.swing.JLabel TransferBG1;
     private javax.swing.JLabel WithdrawBG;
     private javax.swing.JPanel WithdrawCash;
     private javax.swing.JLabel backLabel;
@@ -1192,7 +1320,19 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1207,21 +1347,25 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel keypadPanel;
+    private javax.swing.JTextField transferAccNumField1;
+    private javax.swing.JTextField transferAmountField;
     private javax.swing.JButton transferBackButton;
+    private javax.swing.JButton transferBackButton1;
     private javax.swing.JButton witKey0;
     private javax.swing.JButton witKey1;
     private javax.swing.JButton witKey2;
