@@ -9,14 +9,20 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.PlainDocument;
 
 /**
  *
@@ -37,6 +43,13 @@ public class UserInterface extends javax.swing.JFrame {
         computeMoneyAndUpdateLabels(filePath);
         // Example usage of displayLastRow
         displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
+        
+        // Set character limit for each text field
+        setTextFieldLimit(UserName, 20); // Set limit for UserName to 20 characters
+        setTextFieldLimit(AccNum, 12);    // Set limit for Account Number to 12 characters
+        setTextFieldLimit(PhoneNum, 11);  // Set limit for Phone Number to 11 characters
+        setTextFieldLimit(PinNum, 8);     // Set limit for Pin Number to 4 characters
+        setTextFieldLimit(CPinNum, 8);    // Set limit for Confirm Pin Number to 4 characters
         
         cards.setVisible(false);
         payments.setVisible(false);
@@ -538,7 +551,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        ApplyButton = new javax.swing.JButton();
+        ApplyBut = new javax.swing.JButton();
         UserName = new javax.swing.JTextField();
         AccNum = new javax.swing.JTextField();
         PhoneNum = new javax.swing.JTextField();
@@ -2333,23 +2346,23 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("PIN Number:");
 
-        ApplyButton.setBackground(new java.awt.Color(0, 0, 204));
-        ApplyButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        ApplyButton.setForeground(new java.awt.Color(255, 255, 255));
-        ApplyButton.setText("APPLY");
-        ApplyButton.setBorderPainted(false);
-        ApplyButton.setContentAreaFilled(false);
-        ApplyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        ApplyBut.setBackground(new java.awt.Color(0, 0, 204));
+        ApplyBut.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        ApplyBut.setForeground(new java.awt.Color(255, 255, 255));
+        ApplyBut.setText("APPLY");
+        ApplyBut.setBorderPainted(false);
+        ApplyBut.setContentAreaFilled(false);
+        ApplyBut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ApplyButtonMouseEntered(evt);
+                ApplyButMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                ApplyButtonMouseExited(evt);
+                ApplyButMouseExited(evt);
             }
         });
-        ApplyButton.addActionListener(new java.awt.event.ActionListener() {
+        ApplyBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ApplyButtonActionPerformed(evt);
+                ApplyButActionPerformed(evt);
             }
         });
 
@@ -2400,8 +2413,8 @@ public class UserInterface extends javax.swing.JFrame {
                                             .addComponent(CPinNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addContainerGap(268, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ApplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 474, Short.MAX_VALUE)
+                .addComponent(ApplyBut, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(466, 466, 466))
         );
         ApplicationLayout.setVerticalGroup(
@@ -2431,8 +2444,8 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(ApplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(ApplyBut, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
 
@@ -2923,27 +2936,138 @@ public class UserInterface extends javax.swing.JFrame {
         bills.setVisible(true);
         shopping.setVisible(false);   
     }//GEN-LAST:event_BillsActionPerformed
+    
+    // Method to set character limit on a JTextField
+    private void setTextFieldLimit(JTextField textField, int limit) {
+        PlainDocument doc = (PlainDocument) textField.getDocument();
+        doc.setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
+                if (fb.getDocument().getLength() + string.length() <= limit) {
+                    super.insertString(fb, offset, string, attr);
+                }
+            }
 
-    private void ApplyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ApplyButtonActionPerformed
+            @Override
+            public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+                if (fb.getDocument().getLength() + text.length() - length <= limit) {
+                    super.replace(fb, offset, length, text, attrs);
+                }
+            }
+        });
+    }
+    
+    private void ApplyButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyButActionPerformed
+        // Retrieve user inputs
+        String username = UserName.getText().trim();
+        String accountNumber = AccNum.getText().trim();
+        String phoneNumber = PhoneNum.getText().trim();
+        String pin = PinNum.getText().trim();
+        String confirmPin = CPinNum.getText().trim();
+        
+        UserName.setText("");
+        AccNum.setText("");
+        PhoneNum.setText("");
+        PinNum.setText("");
+        CPinNum.setText("");
+        // Validate input fields
+        String validationMessage = validateInputs(username, accountNumber, phoneNumber, pin, confirmPin);
+        if (validationMessage != null) {
+            showMessage(validationMessage, Color.RED);
+            return;
+        }
 
+        // Show success message and save application
+        showMessage("Application Submitted Successfully!", Color.GREEN);
+        if (saveApplication1(username, accountNumber, phoneNumber, pin)) {
+            System.out.println("Application successfully saved.");
+        } else {
+            showMessage("Failed to save application. Please try again.", Color.RED);
+        }
+    }
+
+    private String validateInputs(String username, String accountNumber, String phoneNumber, String pin, String confirmPin) {
+        if (username.isEmpty() || accountNumber.isEmpty() || phoneNumber.isEmpty() || pin.isEmpty() || confirmPin.isEmpty()) {
+            return "All fields are required.";
+        }
+        if (username.length() < 3 || username.length() > 20) {
+            return "Username must be between 3 and 20 characters.";
+        }
+        if (!pin.equals(confirmPin)) {
+            return "PIN numbers do not match.";
+        }
+        if (!phoneNumber.matches("\\d{11}")) {
+            return "Invalid phone number format. It must be exactly 11 digits.";
+        }
+        if (pin.length() < 4 || pin.length() > 8) {
+            return "PIN must be between 4 to 8 characters.";
+        }
+        if (!accountNumber.matches("\\d{10,12}")) {
+            return "Invalid account number format. It must be 10 to 12 digits.";
+        }
+        return null; // All validations passed
+    }
+
+    // Method to display messages as a popup window
+    private void showMessage(String message, Color color) {
+        int messageType;
+        if (color.equals(Color.RED)) {
+            messageType = JOptionPane.ERROR_MESSAGE;
+        } else if (color.equals(Color.GREEN)) {
+            messageType = JOptionPane.INFORMATION_MESSAGE;
+        } else {
+            messageType = JOptionPane.PLAIN_MESSAGE;
+        }
+        JOptionPane.showMessageDialog(null, message, "Application Status", messageType);
+    }
+
+    // Method to save application data to a CSV file
+    private boolean saveApplication1(String username, String accountNumber, String phoneNumber, String pin) {
+        String csvFile = "CardApplications.csv";
+        boolean isNewFile = !(new File(csvFile).exists());
+
+        try (FileWriter writer = new FileWriter(csvFile, true)) {
+            if (isNewFile) {
+                writer.append("Name,AccNum,PhNum,PIN\n");
+            }
+            writer.append(String.format("%s,%s,%s,%s\n", escapeCsv(username), escapeCsv(accountNumber), escapeCsv(phoneNumber), escapeCsv(pin)));
+            return true;
+        } catch (IOException e) {
+            System.err.println("Error saving application: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Helper method to escape CSV values
+    private String escapeCsv(String value) {
+        if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
+            value = value.replace("\"", "\"\"");
+            return "\"" + value + "\"";
+            
+        }
+        
+        return value;
+        
+    }//GEN-LAST:event_ApplyButActionPerformed
+    
+    
+    
     private void AccNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccNumActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AccNumActionPerformed
 
-    private void ApplyButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButtonMouseEntered
+    private void ApplyButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButMouseEntered
         // TODO add your handling code here:
-        ApplyButton.setContentAreaFilled(true);
-        ApplyButton.setBackground(Color.cyan);
-        ApplyButton.setForeground(Color.black);
-    }//GEN-LAST:event_ApplyButtonMouseEntered
+        ApplyBut.setContentAreaFilled(true);
+        ApplyBut.setBackground(Color.cyan);
+        ApplyBut.setForeground(Color.black);
+    }//GEN-LAST:event_ApplyButMouseEntered
 
-    private void ApplyButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButtonMouseExited
+    private void ApplyButMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButMouseExited
         // TODO add your handling code here:
-        ApplyButton.setContentAreaFilled(false);
-        ApplyButton.setForeground(Color.white);
-    }//GEN-LAST:event_ApplyButtonMouseExited
+        ApplyBut.setContentAreaFilled(false);
+        ApplyBut.setForeground(Color.white);
+    }//GEN-LAST:event_ApplyButMouseExited
 
     private void ApplicationMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplicationMouseEntered
         // TODO add your handling code here:
@@ -3231,7 +3355,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel Appliances;
     private javax.swing.JScrollPane AppliancesScroll;
     private javax.swing.JPanel Application;
-    private javax.swing.JButton ApplyButton;
+    private javax.swing.JButton ApplyBut;
     private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
     private javax.swing.JLabel BalanceLabel;
