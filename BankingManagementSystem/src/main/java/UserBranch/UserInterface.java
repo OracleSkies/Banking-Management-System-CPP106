@@ -538,12 +538,12 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        ApplyButton = new javax.swing.JButton();
+        UserName = new javax.swing.JTextField();
+        AccNum = new javax.swing.JTextField();
+        PhoneNum = new javax.swing.JTextField();
+        PinNum = new javax.swing.JTextField();
+        CPinNum = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         payments = new javax.swing.JPanel();
         Shopping = new javax.swing.JButton();
@@ -2333,40 +2333,40 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("PIN Number:");
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("APPLY");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ApplyButton.setBackground(new java.awt.Color(0, 0, 204));
+        ApplyButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        ApplyButton.setForeground(new java.awt.Color(255, 255, 255));
+        ApplyButton.setText("APPLY");
+        ApplyButton.setBorderPainted(false);
+        ApplyButton.setContentAreaFilled(false);
+        ApplyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                ApplyButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                ApplyButtonMouseExited(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ApplyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ApplyButtonActionPerformed(evt);
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        UserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        AccNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        AccNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                AccNumActionPerformed(evt);
             }
         });
 
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PhoneNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PinNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        CPinNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout ApplicationLayout = new javax.swing.GroupLayout(Application);
         Application.setLayout(ApplicationLayout);
@@ -2380,7 +2380,7 @@ public class UserInterface extends javax.swing.JFrame {
                     .addGroup(ApplicationLayout.createSequentialGroup()
                         .addGap(285, 285, 285)
                         .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AccNum, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ApplicationLayout.createSequentialGroup()
                                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2391,17 +2391,17 @@ public class UserInterface extends javax.swing.JFrame {
                                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(ApplicationLayout.createSequentialGroup()
                                         .addGap(70, 70, 70)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                            .addComponent(PhoneNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(PinNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CPinNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addContainerGap(268, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ApplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(466, 466, 466))
         );
         ApplicationLayout.setVerticalGroup(
@@ -2414,25 +2414,25 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ApplicationLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
+                    .addComponent(AccNum)
                     .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3)
+                    .addComponent(PhoneNum)
                     .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4))
+                    .addComponent(PinNum))
                 .addGap(13, 13, 13)
                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ApplyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
 
@@ -2924,26 +2924,26 @@ public class UserInterface extends javax.swing.JFrame {
         shopping.setVisible(false);   
     }//GEN-LAST:event_BillsActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ApplyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ApplyButtonActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void AccNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_AccNumActionPerformed
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+    private void ApplyButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButtonMouseEntered
         // TODO add your handling code here:
-        jButton1.setContentAreaFilled(true);
-        jButton1.setBackground(Color.cyan);
-        jButton1.setForeground(Color.black);
-    }//GEN-LAST:event_jButton1MouseEntered
+        ApplyButton.setContentAreaFilled(true);
+        ApplyButton.setBackground(Color.cyan);
+        ApplyButton.setForeground(Color.black);
+    }//GEN-LAST:event_ApplyButtonMouseEntered
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+    private void ApplyButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButtonMouseExited
         // TODO add your handling code here:
-        jButton1.setContentAreaFilled(false);
-        jButton1.setForeground(Color.white);
-    }//GEN-LAST:event_jButton1MouseExited
+        ApplyButton.setContentAreaFilled(false);
+        ApplyButton.setForeground(Color.white);
+    }//GEN-LAST:event_ApplyButtonMouseExited
 
     private void ApplicationMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplicationMouseEntered
         // TODO add your handling code here:
@@ -3218,6 +3218,7 @@ public class UserInterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccDEts;
+    private javax.swing.JTextField AccNum;
     private javax.swing.JLabel AccNumDis;
     private javax.swing.JButton Accreg;
     private javax.swing.JLabel ActionDis;
@@ -3230,6 +3231,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel Appliances;
     private javax.swing.JScrollPane AppliancesScroll;
     private javax.swing.JPanel Application;
+    private javax.swing.JButton ApplyButton;
     private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
     private javax.swing.JLabel BalanceLabel;
@@ -3239,6 +3241,7 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton Bills;
     private javax.swing.JScrollPane BillsScroll;
     private javax.swing.JToggleButton CARD;
+    private javax.swing.JTextField CPinNum;
     private javax.swing.JLabel CardNameDis;
     private javax.swing.JPanel CheckCardN;
     private javax.swing.JPanel CheckCardY;
@@ -3259,20 +3262,22 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JButton Notifs;
     private javax.swing.JButton PayB;
     private javax.swing.JToggleButton Payments;
+    private javax.swing.JTextField PhoneNum;
     private javax.swing.JLabel PhoneNumDis;
     private javax.swing.JLabel PhoneNumDis1;
     private javax.swing.JLabel PhoneNumLabel;
+    private javax.swing.JTextField PinNum;
     private javax.swing.JButton Profile;
     private javax.swing.JPanel RecentTrans;
     private javax.swing.JButton Shopping;
     private javax.swing.JButton Trans;
     private javax.swing.JPanel TransacHis;
     private javax.swing.JTable Transhis;
+    private javax.swing.JTextField UserName;
     private javax.swing.JButton application;
     private javax.swing.JPanel bills;
     private javax.swing.JPanel cards;
     private javax.swing.JButton checkcard;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3460,7 +3465,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -3471,7 +3475,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
@@ -3482,7 +3485,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
@@ -3493,10 +3495,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField37;
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField40;
     private javax.swing.JTextField jTextField41;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
