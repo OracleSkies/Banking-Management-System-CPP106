@@ -589,11 +589,21 @@ public class PinWindow extends javax.swing.JFrame {
                   String[] parts = line.split(",");
                   if(parts[6].equals(acctNum) && parts[9].equals(pin)){
                       accountFound = true;
+                      String username = parts[0];
+                      String password = parts[1];
+                      String name = parts[2];
+                      String birthdate = parts[3];
+                      String phoneNumber = parts[4];
+                      String address = parts[5];
+//                      String accNumber;
+                      String type = parts[7];
+                      String card = parts[8];
+//                      String pin;
                       getBalance = parts[10];
                       balance = Integer.parseInt(getBalance);
                       java.awt.EventQueue.invokeLater(new Runnable() {
                         public void run() {
-                            new ATMWindow(acctNum,pin,balance).setVisible(true);
+                            new ATMWindow(username,password,name,birthdate,phoneNumber,address,acctNum,type,card,pin,balance).setVisible(true);
                         }
                     });
                       setVisible(false);

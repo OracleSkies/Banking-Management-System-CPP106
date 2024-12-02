@@ -25,19 +25,45 @@ public class ATMWindow extends javax.swing.JFrame {
      */
     private String username;
     private String password;
-    private String acctNum;
+    private String name;
+    private String birthdate;
+    private String phoneNumber;
+    private String address;
+    private String accNumber;
+    private String type;
+    private String card;
     private String pin;
     private int balance;
     
     private String depositNumber = "";
-    public ATMWindow(String acctNum, String pin, int balance) {
+    private String withdrawNumber = "";
+    public ATMWindow(String username,
+            String password,
+            String name,
+            String birthdate,
+            String phoneNumber,
+            String address, 
+            String accNumber,
+            String type,
+            String card, 
+            String pin, 
+            int balance) {
+        
         initComponents();
         ATMHomepage.setVisible(true);
         BalanceCheck.setVisible(false);
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
         TransferCash.setVisible(false);
-        this.acctNum = acctNum;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.accNumber = accNumber;
+        this.type = type;
+        this.card = card;
         this.pin = pin;
         this.balance = balance;
         
@@ -70,18 +96,18 @@ public class ATMWindow extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         withdrawField = new javax.swing.JTextField();
         keypadPanel = new javax.swing.JPanel();
-        keyButton1 = new javax.swing.JButton();
-        keyButton2 = new javax.swing.JButton();
-        keyButton3 = new javax.swing.JButton();
-        keyButton4 = new javax.swing.JButton();
-        keyButton5 = new javax.swing.JButton();
-        keyButton6 = new javax.swing.JButton();
-        keyButton7 = new javax.swing.JButton();
-        keyButton8 = new javax.swing.JButton();
-        keyButton9 = new javax.swing.JButton();
-        keyButtonX = new javax.swing.JButton();
-        keyButton0 = new javax.swing.JButton();
-        keyButtonOK = new javax.swing.JButton();
+        witKey1 = new javax.swing.JButton();
+        witKey2 = new javax.swing.JButton();
+        witKey3 = new javax.swing.JButton();
+        witKey4 = new javax.swing.JButton();
+        witKey5 = new javax.swing.JButton();
+        witKey6 = new javax.swing.JButton();
+        witKey7 = new javax.swing.JButton();
+        witKey8 = new javax.swing.JButton();
+        witKey9 = new javax.swing.JButton();
+        witKeyX = new javax.swing.JButton();
+        witKey0 = new javax.swing.JButton();
+        witKeyOK = new javax.swing.JButton();
         backLabel = new javax.swing.JLabel();
         BackWithdraw = new javax.swing.JButton();
         WithdrawBG = new javax.swing.JLabel();
@@ -251,53 +277,113 @@ public class ATMWindow extends javax.swing.JFrame {
         keypadPanel.setOpaque(false);
         keypadPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        keyButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton1.setText("1");
-        keypadPanel.add(keyButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 17, 75, 50));
+        witKey1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey1.setText("1");
+        witKey1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey1ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 17, 75, 50));
 
-        keyButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton2.setText("2");
-        keypadPanel.add(keyButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 17, 75, 50));
+        witKey2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey2.setText("2");
+        witKey2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey2ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey2, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 17, 75, 50));
 
-        keyButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton3.setText("3");
-        keypadPanel.add(keyButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 17, 75, 50));
+        witKey3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey3.setText("3");
+        witKey3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey3ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey3, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 17, 75, 50));
 
-        keyButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton4.setText("4");
-        keypadPanel.add(keyButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 85, 75, 50));
+        witKey4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey4.setText("4");
+        witKey4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey4ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey4, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 85, 75, 50));
 
-        keyButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton5.setText("5");
-        keypadPanel.add(keyButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 85, 75, 50));
+        witKey5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey5.setText("5");
+        witKey5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey5ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey5, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 85, 75, 50));
 
-        keyButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton6.setText("6");
-        keypadPanel.add(keyButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 85, 75, 50));
+        witKey6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey6.setText("6");
+        witKey6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey6ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey6, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 85, 75, 50));
 
-        keyButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton7.setText("7");
-        keypadPanel.add(keyButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 153, 75, 50));
+        witKey7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey7.setText("7");
+        witKey7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey7ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey7, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 153, 75, 50));
 
-        keyButton8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton8.setText("8");
-        keypadPanel.add(keyButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 153, 75, 50));
+        witKey8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey8.setText("8");
+        witKey8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey8ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey8, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 153, 75, 50));
 
-        keyButton9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton9.setText("9");
-        keypadPanel.add(keyButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 153, 75, 50));
+        witKey9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey9.setText("9");
+        witKey9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey9ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey9, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 153, 75, 50));
 
-        keyButtonX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButtonX.setText("X");
-        keypadPanel.add(keyButtonX, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 221, 75, 50));
+        witKeyX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKeyX.setText("X");
+        witKeyX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKeyXActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKeyX, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 221, 75, 50));
 
-        keyButton0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButton0.setText("0");
-        keypadPanel.add(keyButton0, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 221, 75, 50));
+        witKey0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKey0.setText("0");
+        witKey0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKey0ActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKey0, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 221, 75, 50));
 
-        keyButtonOK.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        keyButtonOK.setText("OK");
-        keypadPanel.add(keyButtonOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 221, 75, 50));
+        witKeyOK.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        witKeyOK.setText("OK");
+        witKeyOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                witKeyOKActionPerformed(evt);
+            }
+        });
+        keypadPanel.add(witKeyOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 221, 75, 50));
 
         WithdrawCash.add(keypadPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 311, 300));
 
@@ -849,8 +935,77 @@ public class ATMWindow extends javax.swing.JFrame {
 
     private void depKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depKeyOKActionPerformed
         // TODO add your handling code here:
-        deleteLine(acctNum,balance);
+        deleteLine(accNumber);
+        deposit(balance);
     }//GEN-LAST:event_depKeyOKActionPerformed
+
+    private void witKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey1ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "1";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey1ActionPerformed
+
+    private void witKey2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey2ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "2";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey2ActionPerformed
+
+    private void witKey3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey3ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "3";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey3ActionPerformed
+
+    private void witKey4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey4ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "4";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey4ActionPerformed
+
+    private void witKey5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey5ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "5";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey5ActionPerformed
+
+    private void witKey6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey6ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "6";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey6ActionPerformed
+
+    private void witKey7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey7ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "7";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey7ActionPerformed
+
+    private void witKey8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey8ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "8";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey8ActionPerformed
+
+    private void witKey9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey9ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "9";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey9ActionPerformed
+
+    private void witKey0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey0ActionPerformed
+        // TODO add your handling code here:
+        withdrawNumber = withdrawNumber+ "0";
+        withdrawField.setText(withdrawNumber);
+    }//GEN-LAST:event_witKey0ActionPerformed
+
+    private void witKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKeyXActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_witKeyXActionPerformed
+
+    private void witKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKeyOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_witKeyOKActionPerformed
 
     // </editor-fold>   
     
@@ -859,13 +1014,28 @@ public class ATMWindow extends javax.swing.JFrame {
         DisplayBalance.setText(balanceDisplay);
     }
     
-    private void writeLine(){
-    
-    }
-    private void deleteLine(String accNum,int balance){
+    private void deposit(int balance){
         int depToInt = Integer.parseInt(depositNumber);
-        balance = depToInt + depToInt;
-        String balToString = Integer.toString(balance);
+        balance = balance + depToInt;
+        this.balance = balance;
+        writeLine(balance);
+    }
+    
+    private void writeLine(int balanceToDB){
+        
+         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + type + "," + card + "," + pin + "," + balanceToDB);
+            writer.newLine();
+
+            JOptionPane.showMessageDialog(this,  "Successful deposit on account number: " + accNumber + "!");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        returnToATMHome(); 
+         
+    }
+    private void deleteLine(String accNum){
+        
         
         File originalFile = new File("Accounts.csv");
         File tempFile = new File("accTemp.csv");
@@ -893,22 +1063,25 @@ public class ATMWindow extends javax.swing.JFrame {
         if (isRemoved) {
             if (originalFile.delete()) {
                 tempFile.renameTo(originalFile);
-//                JOptionPane.showMessageDialog(this, "Transaction removed successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Error updating the file.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             tempFile.delete(); // Cleanup temp file
-//            JOptionPane.showMessageDialog(this, bookId + " is not found in the library or currently borrowed.", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
-        
-    
         
     }
     private void returnToPin(){
         PinWindow pin = new PinWindow();
         pin.setVisible(true);
         setVisible(false);
+    }
+    private void returnToATMHome(){
+        ATMHomepage.setVisible(true);
+        BalanceCheck.setVisible(false);
+        DepositCash.setVisible(false);
+        WithdrawCash.setVisible(false);
+        TransferCash.setVisible(false);
     }
     /**
      * @param args the command line arguments
@@ -1016,20 +1189,20 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton keyButton0;
-    private javax.swing.JButton keyButton1;
-    private javax.swing.JButton keyButton2;
-    private javax.swing.JButton keyButton3;
-    private javax.swing.JButton keyButton4;
-    private javax.swing.JButton keyButton5;
-    private javax.swing.JButton keyButton6;
-    private javax.swing.JButton keyButton7;
-    private javax.swing.JButton keyButton8;
-    private javax.swing.JButton keyButton9;
-    private javax.swing.JButton keyButtonOK;
-    private javax.swing.JButton keyButtonX;
     private javax.swing.JPanel keypadPanel;
     private javax.swing.JButton transferBackButton;
+    private javax.swing.JButton witKey0;
+    private javax.swing.JButton witKey1;
+    private javax.swing.JButton witKey2;
+    private javax.swing.JButton witKey3;
+    private javax.swing.JButton witKey4;
+    private javax.swing.JButton witKey5;
+    private javax.swing.JButton witKey6;
+    private javax.swing.JButton witKey7;
+    private javax.swing.JButton witKey8;
+    private javax.swing.JButton witKey9;
+    private javax.swing.JButton witKeyOK;
+    private javax.swing.JButton witKeyX;
     private javax.swing.JTextField withdrawField;
     // End of variables declaration//GEN-END:variables
 }
