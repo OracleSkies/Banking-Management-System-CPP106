@@ -142,8 +142,6 @@ public class UserInterface extends javax.swing.JFrame {
             double totalBalance = totalDeposits + totalWithdrawals;
 
             // Format totals
-            String formattedDeposits = "$" + df.format(totalDeposits);
-            String formattedWithdrawals = "$" + df.format(totalWithdrawals);
             String formattedBalance = "$" + df.format(totalBalance);
 
             // Update the JLabels (replace with your actual JLabel names)
