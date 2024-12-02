@@ -1,5 +1,5 @@
-username,password,name,birthdate,phone number,address,Account Number,type,Card,Pin
-admin,pass,DONT DELETE,111,113,12312,11111,admin,no,no
-user,pass,DONT DELETE,birthdate,PHONE 123,ADDRESS,ACC11111,user,yes,7685
-USER,USER,USER,USER,12313,USER,10023814,user,no,
-jayjay,jayjay,DONASCO,JUNEE,55234234,SHEESH,10013274,user,no
+username,password,name,birthdate,phone number,address,Account Number,type,Card,Pin,balance
+admin,pass,DONT DELETE,111,113,12312,11111,admin,no,no,1
+user,pass,DONT DELETE,birthdate,PHONE 123,ADDRESS,ACC11111,user,yes,7685,2
+USER,USER,USER,USER,12313,USER,10023814,user,no,,3
+jayjay,jayjay,DONASCO,JUNEE,55234234,SHEESH,10013274,user,no,,4
