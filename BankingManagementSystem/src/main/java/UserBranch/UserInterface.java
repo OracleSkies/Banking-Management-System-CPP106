@@ -115,10 +115,10 @@ public class UserInterface extends javax.swing.JFrame {
                     continue;
                 }
 
-                String action = values[0].trim();
-                String date = values[1].trim();
-                String amountStr = values[2].trim();
-                String description = values[3].trim();
+                String action = values[4].trim();
+                String date = values[0].trim();
+                String amountStr = values[3].trim();
+                String description = values[5].trim();
 
                 // Display the row data
                 System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
