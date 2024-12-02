@@ -504,7 +504,7 @@ public class ATMWindow extends javax.swing.JFrame {
         jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 155, 75, 50));
 
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton10.setText("aaa");
+        jButton10.setText("<--");
         jPanel3.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 223, 75, 50));
 
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -600,7 +600,7 @@ public class ATMWindow extends javax.swing.JFrame {
         jPanel4.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 155, 75, 50));
 
         jButton22.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton22.setText("an");
+        jButton22.setText("<--");
         jPanel4.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 223, 75, 50));
 
         jButton23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
