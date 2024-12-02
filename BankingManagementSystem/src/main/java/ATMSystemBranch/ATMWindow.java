@@ -756,6 +756,8 @@ public class ATMWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // <editor-fold defaultstate="collapsed" desc="Events">
+    
+    // <editor-fold defaultstate="collapsed" desc="Panel Buttons">
     private void balanceBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_balanceBackButtonMouseClicked
         // TODO add your handling code here:
         ATMHomepage.setVisible(true);
@@ -820,6 +822,8 @@ public class ATMWindow extends javax.swing.JFrame {
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(true);
         TransferCash.setVisible(false);
+        withdrawNumber = "";
+        withdrawField.setText(withdrawNumber);
     }//GEN-LAST:event_ButtonWithdrawActionPerformed
 
     private void ButtonTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTransferActionPerformed
@@ -863,6 +867,9 @@ public class ATMWindow extends javax.swing.JFrame {
         TransferCash.setVisible(false);
     }//GEN-LAST:event_balanceBackButtonActionPerformed
 
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Deposit Key Buttons">
     private void depKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depKey1ActionPerformed
         // TODO add your handling code here:
         depositNumber = depositNumber+ "1";
@@ -939,6 +946,9 @@ public class ATMWindow extends javax.swing.JFrame {
         deposit(balance);
     }//GEN-LAST:event_depKeyOKActionPerformed
 
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Withdraw Key Buttons">
     private void witKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKey1ActionPerformed
         // TODO add your handling code here:
         withdrawNumber = withdrawNumber+ "1";
@@ -1001,17 +1011,39 @@ public class ATMWindow extends javax.swing.JFrame {
 
     private void witKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKeyXActionPerformed
         // TODO add your handling code here:
+        if ("".equals(withdrawNumber)){
+            
+        }else{
+            withdrawNumber = withdrawNumber.substring(0, withdrawNumber.length() - 1);
+            withdrawField.setText(withdrawNumber);
+        }
     }//GEN-LAST:event_witKeyXActionPerformed
 
     private void witKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_witKeyOKActionPerformed
         // TODO add your handling code here:
+        deleteLine(accNumber);
+        withdraw(balance);
     }//GEN-LAST:event_witKeyOKActionPerformed
 
+    // </editor-fold>
     // </editor-fold>   
     
     private void showCurrentBalance(int balance){
-        String balanceDisplay = Integer.toString(balance);
+        String balanceDisplay = "₱" +Integer.toString(balance);
         DisplayBalance.setText(balanceDisplay);
+    }
+    private void withdraw(int balance){
+        int witToInt = Integer.parseInt(withdrawNumber);
+        if(balance < witToInt){
+            JOptionPane.showMessageDialog(this, "Cannot withdraw money. Insufficient balance", "Insufficient Balance", JOptionPane.ERROR_MESSAGE);
+            writeLine(balance);
+            return;
+        }
+        balance = balance - witToInt;
+        writeLine(balance);
+        this.balance = balance;
+        JOptionPane.showMessageDialog(this,  "₱" + witToInt+" successfully withdrew from account number: " + accNumber + "!");
+        returnToATMHome(); 
     }
     
     private void deposit(int balance){
@@ -1019,6 +1051,8 @@ public class ATMWindow extends javax.swing.JFrame {
         balance = balance + depToInt;
         this.balance = balance;
         writeLine(balance);
+        JOptionPane.showMessageDialog(this,  "₱" + depToInt+" successfully deposited in account number: " + accNumber + "!");
+        returnToATMHome(); 
     }
     
     private void writeLine(int balanceToDB){
@@ -1027,12 +1061,9 @@ public class ATMWindow extends javax.swing.JFrame {
             writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + type + "," + card + "," + pin + "," + balanceToDB);
             writer.newLine();
 
-            JOptionPane.showMessageDialog(this,  "Successful deposit on account number: " + accNumber + "!");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        returnToATMHome(); 
-         
     }
     private void deleteLine(String accNum){
         
