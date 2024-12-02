@@ -141,11 +141,11 @@ public class UserInterface extends javax.swing.JFrame {
                     double money = Double.parseDouble(amountStr);
 
                     // Add deposits and withdrawals to their respective totals
-                    if (action.equalsIgnoreCase("Deposited")) {
+                    if (action.equalsIgnoreCase("Deposit")) {
                         totalDeposits += money;
                     } else if (action.equalsIgnoreCase("Withdraw")) {
-                        totalWithdrawals += money; // Withdrawals are added positively
-                    }
+                        totalWithdrawals -= money; // Withdrawals are added positively
+                    }   
                 } catch (NumberFormatException e) {
                     System.out.println("Skipping invalid money value: " + amountStr);
                 }
