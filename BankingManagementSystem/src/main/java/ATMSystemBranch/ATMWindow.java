@@ -359,7 +359,7 @@ public class ATMWindow extends javax.swing.JFrame {
         keypadPanel.add(witKey9, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 153, 75, 50));
 
         witKeyX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        witKeyX.setText("X");
+        witKeyX.setText("<--");
         witKeyX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 witKeyXActionPerformed(evt);
