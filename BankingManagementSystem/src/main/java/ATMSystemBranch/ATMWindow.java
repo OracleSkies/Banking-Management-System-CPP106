@@ -1441,6 +1441,58 @@ public class ATMWindow extends javax.swing.JFrame {
     // </editor-fold>   
     
     private void transferMoney(String amountToTransfer, String accountRecepient, int balance){
+        String rUsername = null;
+        String rPassword = null;
+        String rName = null;
+        String rBirthdate = null;
+        String rPhoneNumber = null;
+        String rAddress = null;
+        String rAccNumber = null;
+        String rType = null;
+        String rCard = null;
+        String rPin = null;
+        String rBalance = null;
+        
+        //FIND RECEPIENT IN DATABASE
+        
+         try (BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"))) {
+            String line;
+            
+            boolean found = false;
+            // Read each line of the CSV file
+            while ((line = br.readLine()) != null) {
+                // Split the line into columns (name, age, number)
+                String[] columns = line.split(",");
+
+                // Check if the name in the CSV matches the user input
+                if (columns[6].equalsIgnoreCase(accountRecepient)) {
+                    found = true;
+                    rUsername = columns[0];
+                    rPassword = columns[1];
+                    rName = columns[2];
+                    rBirthdate = columns[3];
+                    rPhoneNumber = columns[4];
+                    rAddress = columns[5];
+                    rAccNumber = columns[6];
+                    rType = columns[7];
+                    rCard = columns[8];
+                    rPin = columns[9];
+                    rBalance = columns[10];
+                    break;
+                }
+            }
+
+            // If no match is found, print a message
+            if (!found) {
+                JOptionPane.showMessageDialog(this, "Account number is not available", "Invalid Account Number", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+
         //SUBTRACT MONEY FROM SENDER ACCOUNT NUMBER
         int transferToInt = Integer.parseInt(amountToTransfer);
         if(balance < transferToInt){
@@ -1454,10 +1506,14 @@ public class ATMWindow extends javax.swing.JFrame {
         this.balance = balance;
         
         
-        //FIND RECEPIENT IN DATABASE
-        
-        
         //ADD MONEY TO RECEPIENT ACCOUNT NUMBER
+        int amtTransToInt = Integer.parseInt(amountToTransfer);
+        int balRecepient = Integer.parseInt(rBalance);
+        balRecepient = balRecepient + amtTransToInt;
+        deleteLine(accountRecepient);
+        writeLine(rUsername,rPassword,rName,rBirthdate,rPhoneNumber,rAddress,rAccNumber,rType,rCard,rPin,balRecepient);
+        JOptionPane.showMessageDialog(this,  "₱" + amtTransToInt+" successfully transferred to account number: " + accountRecepient + "!");
+        returnToATMHome();
         
     }
     private void showCurrentBalance(int balance){
