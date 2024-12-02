@@ -6,11 +6,13 @@ package ATMSystemBranch;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +23,8 @@ public class ATMWindow extends javax.swing.JFrame {
     /**
      * Creates new form ATMWindow
      */
+    private String username;
+    private String password;
     private String acctNum;
     private String pin;
     private int balance;
@@ -665,6 +669,7 @@ public class ATMWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="Events">
     private void balanceBackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_balanceBackButtonMouseClicked
         // TODO add your handling code here:
         ATMHomepage.setVisible(true);
@@ -844,53 +849,61 @@ public class ATMWindow extends javax.swing.JFrame {
 
     private void depKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depKeyOKActionPerformed
         // TODO add your handling code here:
-        deposit(acctNum,balance);
+        deleteLine(acctNum,balance);
     }//GEN-LAST:event_depKeyOKActionPerformed
 
     // </editor-fold>   
     
     private void showCurrentBalance(int balance){
-        System.out.println(balance);
         String balanceDisplay = Integer.toString(balance);
         DisplayBalance.setText(balanceDisplay);
     }
-    private void deposit(String accNum,int balance){
+    
+    private void writeLine(){
+    
+    }
+    private void deleteLine(String accNum,int balance){
         int depToInt = Integer.parseInt(depositNumber);
         balance = depToInt + depToInt;
         String balToString = Integer.toString(balance);
         
-        List<String> updatedLines = new ArrayList<>();
-        
-        try (BufferedReader br = new BufferedReader(new FileReader("Accounts.csv"))) {
+        File originalFile = new File("Accounts.csv");
+        File tempFile = new File("accTemp.csv");
+
+        boolean isRemoved = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
             String line;
-            
-            // Read the CSV file line by line
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                
-                // Assuming the CSV format is: Name, Age, Number
-                if (values.length == 10 && values[6].trim().equals(accNum)) {
-                    // If name matches, update the number
-                    values[10] = balToString;
+            while ((line = reader.readLine()) != null) {
+                // Check if the line contains the book ID
+                if (line.contains(accNum)) {
+                    isRemoved = true; // Mark as removed
+                    continue; // Skip writing this line to the temp file
                 }
-                
-                // Rebuild the line and add it to the list
-                updatedLines.add(String.join(",", values));
+                writer.write(line);
+                writer.newLine();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error processing file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
-        // Write the updated data back to the file
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Accounts.csv"))) {
-            for (String updatedLine : updatedLines) {
-                bw.write(updatedLine);
-                bw.newLine();
+         // Replace the original file with the temp file
+        if (isRemoved) {
+            if (originalFile.delete()) {
+                tempFile.renameTo(originalFile);
+//                JOptionPane.showMessageDialog(this, "Transaction removed successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error updating the file.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            System.out.println("CSV file updated successfully!");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            tempFile.delete(); // Cleanup temp file
+//            JOptionPane.showMessageDialog(this, bookId + " is not found in the library or currently borrowed.", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
+        
+    
+        
     }
     private void returnToPin(){
         PinWindow pin = new PinWindow();
