@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -24,6 +25,8 @@ public class BankStatement extends javax.swing.JFrame {
     public BankStatement() {
         initComponents();
         loadDataFromCSVFiles(); // Call the method to load data
+        String filePath = "Transactions.csv";
+        displayAllTransactionsAndUpdateLabels(filePath);
     }
     
     // Method to load and count word occurrences from CSV files
@@ -70,7 +73,98 @@ public class BankStatement extends javax.swing.JFrame {
         return wordCountMap.getOrDefault("Deposit", 0) - wordCountMap.getOrDefault("Withdraw", 0);
     }
 
-    
+    public void displayAllTransactionsAndUpdateLabels(String filePath) {
+        double totalDeposits = 0.0;
+        double totalWithdrawals = 0.0;
+        double totalBills = 0.0;
+        double totalExpense = 0.0;
+
+        // Create a DecimalFormat for formatting money values
+        DecimalFormat df = new DecimalFormat("#");
+
+        // Validate the file path
+        if (filePath == null || filePath.isEmpty()) {
+            System.out.println("Invalid file path.");
+            return;
+        }
+
+        System.out.println("Displaying all transactions:");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    // Skip the header if present
+                    isFirstLine = false;
+                    continue;
+                }
+
+                // Split the line by commas (columns: Action, Date, Amount, Description)
+                String[] values = line.split(",");
+                if (values.length < 4) {
+                    continue;
+                }
+
+                String action = values[4].trim();
+                String date = values[0].trim();
+                String amountStr = values[3].trim();
+                String description = values[5].trim();
+
+                // Display the row data
+                System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
+
+                try {
+                    // Parse the amount
+                    double money = Double.parseDouble(amountStr);
+
+                    // Add deposits and withdrawals to their respective totals
+                    if (action.equalsIgnoreCase("Deposit")) {
+                        totalDeposits += money;
+                    }  else if (action.equalsIgnoreCase("Bill")) {
+                        totalBills += money;
+                    } else if (action.equalsIgnoreCase("Expense")) {
+                        totalExpense += money;
+                    }else if (action.equalsIgnoreCase("Withdraw")) {
+                        totalWithdrawals += money; // Withdrawals are added positively
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Skipping invalid money value: " + amountStr);
+                }
+            }
+
+            // Calculate the total balance (sum of deposits, withdrawals, bills, and expenses)
+            double totalBalance = totalDeposits + totalBills + totalBills - totalExpense + totalExpense - totalWithdrawals - totalWithdrawals;
+
+            // Format totals
+            String formattedDeposits = "$" + df.format(totalDeposits);
+            String formattedWithdrawals = "$" + df.format(totalWithdrawals);
+            String formattedBills = "$" + df.format(totalBills);
+            String formattedExpense = "$" + df.format(totalExpense);
+            String formattedBalance = "$" + df.format(totalBalance);
+
+            // Display summary totals in the console
+            System.out.println("\nSummary:");
+            System.out.println("Total Deposits: " + formattedDeposits);
+            System.out.println("Total Withdrawals: " + formattedWithdrawals);
+            System.out.println("Total Bills: " + formattedBills);
+            System.out.println("Total Expenses: " + formattedExpense);
+            System.out.println("Total Balance: " + formattedBalance);
+
+            // Update the JLabels (replace with your actual JLabel names)
+            ExpTotal1.setText(formattedExpense);   
+            BillTotal1.setText(formattedBills);
+            WidTotal1.setText(formattedWithdrawals);
+            DepTotal1.setText(formattedDeposits);
+            TotalBal.setText(formattedBalance);
+
+        } catch (IOException e) {
+            System.out.println("Error reading the file: " + filePath);
+            e.printStackTrace();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,16 +197,17 @@ public class BankStatement extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
         jLabel105 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jPanel1.setMinimumSize(new java.awt.Dimension(1490, 800));
         jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(1490, 800));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -196,7 +291,7 @@ public class BankStatement extends javax.swing.JFrame {
         WidTotal1.setBackground(new java.awt.Color(255, 255, 255));
         WidTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         WidTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        WidTotal1.setText("0");
+        WidTotal1.setText("  ");
 
         TotalBal.setBackground(new java.awt.Color(255, 255, 255));
         TotalBal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -206,17 +301,17 @@ public class BankStatement extends javax.swing.JFrame {
         BillTotal1.setBackground(new java.awt.Color(255, 255, 255));
         BillTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         BillTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        BillTotal1.setText("0");
+        BillTotal1.setText("  ");
 
         DepTotal1.setBackground(new java.awt.Color(255, 255, 255));
         DepTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         DepTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        DepTotal1.setText("0");
+        DepTotal1.setText("  ");
 
         ExpTotal1.setBackground(new java.awt.Color(255, 255, 255));
         ExpTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         ExpTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        ExpTotal1.setText("0");
+        ExpTotal1.setText("  ");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -265,7 +360,7 @@ public class BankStatement extends javax.swing.JFrame {
                                             .addComponent(DepDis)
                                             .addComponent(ExpDis)))
                                     .addComponent(jLabel132))
-                                .addGap(311, 311, 311)
+                                .addGap(303, 303, 303)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TotalBal)
                                     .addComponent(ExpTotal1)
@@ -323,48 +418,18 @@ public class BankStatement extends javax.swing.JFrame {
                         .addComponent(jLabel123)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel132)))
-                .addGap(343, 399, Short.MAX_VALUE))
+                .addGap(343, 396, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 1200, 960));
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1500, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 610, 1500, -1));
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1460, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 1460, -1));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 1200, 960));
 
         jLabel105.setBackground(new java.awt.Color(255, 255, 255));
         jLabel105.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel105.setForeground(new java.awt.Color(255, 255, 255));
         jLabel105.setText("Bank Statement");
-        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, -1, -1));
+        jPanel1.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 1500, 800));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 1290, 750));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled design.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, -1, -1));
@@ -457,7 +522,5 @@ public class BankStatement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables
 }
