@@ -140,21 +140,21 @@ public class ATMWindow extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         transferAccountField = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
+        transferAccountKeypad = new javax.swing.JPanel();
+        transAccKey1 = new javax.swing.JButton();
+        transAccKey2 = new javax.swing.JButton();
+        transAccKey3 = new javax.swing.JButton();
+        transAccKey4 = new javax.swing.JButton();
+        transAccKey5 = new javax.swing.JButton();
+        transAccKey6 = new javax.swing.JButton();
+        transAccKey7 = new javax.swing.JButton();
+        transAccKey8 = new javax.swing.JButton();
+        transAccKey9 = new javax.swing.JButton();
+        transAccKeyX = new javax.swing.JButton();
+        transAccKey0 = new javax.swing.JButton();
+        transAccKeyOK = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
-        transferBackButton1 = new javax.swing.JButton();
+        transAccBack = new javax.swing.JButton();
         TransferBG1 = new javax.swing.JLabel();
         DepositCash = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -622,58 +622,118 @@ public class ATMWindow extends javax.swing.JFrame {
         transferAccountField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         TransferAccount.add(transferAccountField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 300, -1));
 
-        jPanel4.setOpaque(false);
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        transferAccountKeypad.setOpaque(false);
+        transferAccountKeypad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton13.setText("1");
-        jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 19, 75, 50));
+        transAccKey1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey1.setText("1");
+        transAccKey1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey1ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 19, 75, 50));
 
-        jButton14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton14.setText("2");
-        jPanel4.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 19, 75, 50));
+        transAccKey2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey2.setText("2");
+        transAccKey2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey2ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 19, 75, 50));
 
-        jButton15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton15.setText("3");
-        jPanel4.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 19, 75, 50));
+        transAccKey3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey3.setText("3");
+        transAccKey3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey3ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey3, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 19, 75, 50));
 
-        jButton16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton16.setText("4");
-        jPanel4.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 87, 75, 50));
+        transAccKey4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey4.setText("4");
+        transAccKey4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey4ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey4, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 87, 75, 50));
 
-        jButton17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton17.setText("5");
-        jPanel4.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 87, 75, 50));
+        transAccKey5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey5.setText("5");
+        transAccKey5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey5ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 87, 75, 50));
 
-        jButton18.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton18.setText("6");
-        jPanel4.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 87, 75, 50));
+        transAccKey6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey6.setText("6");
+        transAccKey6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey6ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey6, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 87, 75, 50));
 
-        jButton19.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton19.setText("7");
-        jPanel4.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 155, 75, 50));
+        transAccKey7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey7.setText("7");
+        transAccKey7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey7ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey7, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 155, 75, 50));
 
-        jButton20.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton20.setText("8");
-        jPanel4.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 155, 75, 50));
+        transAccKey8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey8.setText("8");
+        transAccKey8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey8ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 155, 75, 50));
 
-        jButton21.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton21.setText("9");
-        jPanel4.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 155, 75, 50));
+        transAccKey9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey9.setText("9");
+        transAccKey9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey9ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey9, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 155, 75, 50));
 
-        jButton22.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton22.setText("<--");
-        jPanel4.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 223, 75, 50));
+        transAccKeyX.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKeyX.setText("<--");
+        transAccKeyX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKeyXActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKeyX, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 223, 75, 50));
 
-        jButton23.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton23.setText("0");
-        jPanel4.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 223, 75, 50));
+        transAccKey0.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKey0.setText("0");
+        transAccKey0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKey0ActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKey0, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 223, 75, 50));
 
-        jButton24.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton24.setText("OK");
-        jPanel4.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 223, 75, 50));
+        transAccKeyOK.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        transAccKeyOK.setText("OK");
+        transAccKeyOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transAccKeyOKActionPerformed(evt);
+            }
+        });
+        transferAccountKeypad.add(transAccKeyOK, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 223, 75, 50));
 
-        TransferAccount.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 329, 300, 296));
+        TransferAccount.add(transferAccountKeypad, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 329, 300, 296));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(51, 204, 255));
@@ -682,19 +742,19 @@ public class ATMWindow extends javax.swing.JFrame {
         jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         TransferAccount.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 553, 113, -1));
 
-        transferBackButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        transferBackButton1.setText("1");
-        transferBackButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        transAccBack.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        transAccBack.setText("1");
+        transAccBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                transferBackButton1MouseClicked(evt);
+                transAccBackMouseClicked(evt);
             }
         });
-        transferBackButton1.addActionListener(new java.awt.event.ActionListener() {
+        transAccBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transferBackButton1ActionPerformed(evt);
+                transAccBackActionPerformed(evt);
             }
         });
-        TransferAccount.add(transferBackButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 553, 75, 52));
+        TransferAccount.add(transAccBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(702, 553, 75, 52));
 
         TransferBG1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ATMPanel_BG.png"))); // NOI18N
         TransferAccount.add(TransferBG1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 680));
@@ -1205,19 +1265,14 @@ public class ATMWindow extends javax.swing.JFrame {
         withdraw(balance);
     }//GEN-LAST:event_witKeyOKActionPerformed
 
-    private void transferBackButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transferBackButton1MouseClicked
+    private void transAccBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transAccBackMouseClicked
         // TODO add your handling code here:
         withdrawNumber = withdrawNumber+ "9";
         withdrawField.setText(withdrawNumber);
-    }//GEN-LAST:event_transferBackButton1MouseClicked
+    }//GEN-LAST:event_transAccBackMouseClicked
 // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Transfer Amount Key Buttons">
-    private void transferBackButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferBackButton1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_transferBackButton1ActionPerformed
-
+    // <editor-fold defaultstate="collapsed" desc="Transfer Amount Key">
     private void transAmtKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAmtKey1ActionPerformed
         // TODO add your handling code here:
         transferAmountNumber = transferAmountNumber+ "1";
@@ -1295,9 +1350,95 @@ public class ATMWindow extends javax.swing.JFrame {
         transferAccountField.setText(transferAccountNumber);
     }//GEN-LAST:event_transAmtKeyOKActionPerformed
 
+    // </editor-fold>  
+    
+    // <editor-fold defaultstate="collapsed" desc="Transfer Account Key Buttons">
+    private void transAccKey1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey1ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "1";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey1ActionPerformed
+
+    private void transAccKey2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey2ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "2";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey2ActionPerformed
+
+    private void transAccKey3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey3ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "3";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey3ActionPerformed
+
+    private void transAccKey4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey4ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "4";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey4ActionPerformed
+
+    private void transAccKey5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey5ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "5";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey5ActionPerformed
+
+    private void transAccKey6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey6ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "6";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey6ActionPerformed
+
+    private void transAccKey7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey7ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "7";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey7ActionPerformed
+
+    private void transAccKey8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey8ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "8";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey8ActionPerformed
+
+    private void transAccKey9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey9ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "9";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey9ActionPerformed
+
+    private void transAccKey0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKey0ActionPerformed
+        // TODO add your handling code here:
+        transferAccountNumber = transferAccountNumber+ "0";
+        transferAccountField.setText(transferAccountNumber);
+    }//GEN-LAST:event_transAccKey0ActionPerformed
+
+    private void transAccKeyXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKeyXActionPerformed
+        // TODO add your handling code here:
+        if ("".equals(transferAccountNumber)){
+            
+        }else{
+            transferAccountNumber = transferAccountNumber.substring(0, transferAccountNumber.length() - 1);
+            transferAccountField.setText(transferAccountNumber);
+        }
+    }//GEN-LAST:event_transAccKeyXActionPerformed
+
+    private void transAccKeyOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccKeyOKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transAccKeyOKActionPerformed
+
+    private void transAccBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transAccBackActionPerformed
+        // TODO add your handling code here:
+        TransferAmount.setVisible(true);
+        TransferAccount.setVisible(false);
+        transferAmountField.setText(transferAmountNumber);
+    }//GEN-LAST:event_transAccBackActionPerformed
+
+    
     // </editor-fold> 
     
     
+     
     // </editor-fold>   
     
     private void showCurrentBalance(int balance){
@@ -1462,18 +1603,6 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JPanel depositKeypad;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1493,8 +1622,20 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel keypadPanel;
+    private javax.swing.JButton transAccBack;
+    private javax.swing.JButton transAccKey0;
+    private javax.swing.JButton transAccKey1;
+    private javax.swing.JButton transAccKey2;
+    private javax.swing.JButton transAccKey3;
+    private javax.swing.JButton transAccKey4;
+    private javax.swing.JButton transAccKey5;
+    private javax.swing.JButton transAccKey6;
+    private javax.swing.JButton transAccKey7;
+    private javax.swing.JButton transAccKey8;
+    private javax.swing.JButton transAccKey9;
+    private javax.swing.JButton transAccKeyOK;
+    private javax.swing.JButton transAccKeyX;
     private javax.swing.JPanel transAmntKeypad;
     private javax.swing.JButton transAmtBack;
     private javax.swing.JButton transAmtKey0;
@@ -1510,8 +1651,8 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JButton transAmtKeyOK;
     private javax.swing.JButton transAmtKeyX;
     private javax.swing.JTextField transferAccountField;
+    private javax.swing.JPanel transferAccountKeypad;
     private javax.swing.JTextField transferAmountField;
-    private javax.swing.JButton transferBackButton1;
     private javax.swing.JButton witKey0;
     private javax.swing.JButton witKey1;
     private javax.swing.JButton witKey2;
