@@ -1440,6 +1440,7 @@ public class ATMWindow extends javax.swing.JFrame {
     
     // </editor-fold>   
     
+    // <editor-fold defaultstate="collapsed" desc="Functionalities">
     private void transferMoney(String amountToTransfer, String accountRecepient, int balance){
         String rUsername = null;
         String rPassword = null;
@@ -1513,9 +1514,10 @@ public class ATMWindow extends javax.swing.JFrame {
         deleteLine(accountRecepient);
         writeLine(rUsername,rPassword,rName,rBirthdate,rPhoneNumber,rAddress,rAccNumber,rType,rCard,rPin,balRecepient);
         JOptionPane.showMessageDialog(this,  "₱" + amtTransToInt+" successfully transferred to account number: " + accountRecepient + "!");
+        writeToTransaction("date",name, accNumber, amtTransToInt,"MONEY TRANSFER","Money transfer to account number: "+accountRecepient);
         returnToATMHome();
-        
     }
+    
     private void showCurrentBalance(int balance){
         String balanceDisplay = "₱" +Integer.toString(balance);
         DisplayBalance.setText(balanceDisplay);
@@ -1531,6 +1533,7 @@ public class ATMWindow extends javax.swing.JFrame {
         writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         this.balance = balance;
         JOptionPane.showMessageDialog(this,  "₱" + witToInt+" successfully withdrew from account number: " + accNumber + "!");
+        writeToTransaction("date",name, accNumber, witToInt,"WITHDRAW","Bank Transaction");
         returnToATMHome(); 
     }
     
@@ -1540,9 +1543,9 @@ public class ATMWindow extends javax.swing.JFrame {
         this.balance = balance;
         writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         JOptionPane.showMessageDialog(this,  "₱" + depToInt+" successfully deposited in account number: " + accNumber + "!");
+        writeToTransaction("date",name, accNumber, depToInt,"DEPOSIT","Bank Transaction");
         returnToATMHome(); 
     }
-    
     
     private void writeLine(String username,
             String password,
@@ -1565,9 +1568,22 @@ public class ATMWindow extends javax.swing.JFrame {
         }
     }
     
+    private void writeToTransaction(String date, 
+            String name, 
+            String accNum, 
+            int amount, 
+            String action, 
+            String description){
+        try (var writer = new BufferedWriter(new FileWriter("Transactions.csv", true))){
+            writer.write(date + "," + name + "," + accNum + "," + amount + "," + action + "," + description);
+            writer.newLine();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     private void deleteLine(String accNum){
-        
-        
         File originalFile = new File("Accounts.csv");
         File tempFile = new File("accTemp.csv");
 
@@ -1613,7 +1629,9 @@ public class ATMWindow extends javax.swing.JFrame {
         DepositCash.setVisible(false);
         WithdrawCash.setVisible(false);
         TransferAmount.setVisible(false);
+        TransferAccount.setVisible(false);
     }
+    // </editor-fold> 
     /**
      * @param args the command line arguments
      */
