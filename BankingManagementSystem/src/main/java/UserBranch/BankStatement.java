@@ -135,7 +135,7 @@ public class BankStatement extends javax.swing.JFrame {
             }
 
             // Calculate the total balance (sum of deposits, withdrawals, bills, and expenses)
-            double totalBalance = totalDeposits + totalBills + totalBills - totalExpense + totalExpense - totalWithdrawals - totalWithdrawals;
+            double totalBalance = totalDeposits + totalBills + totalBills - totalExpense + totalExpense - totalWithdrawals;
 
             // Format totals
             String formattedDeposits = "$" + df.format(totalDeposits);
