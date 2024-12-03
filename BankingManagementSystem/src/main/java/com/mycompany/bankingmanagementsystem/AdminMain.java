@@ -1050,7 +1050,7 @@ public class AdminMain extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) accApplicationTableDash.getModel();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            model.setRowCount(0);
+            
             boolean isFirstRow = true;
             while ((line = br.readLine()) != null) {
                 if (isFirstRow){
@@ -1072,6 +1072,7 @@ public class AdminMain extends javax.swing.JFrame {
         //Creates a dynamic table that add rows depending on the number of rows in Transaction.csv
         //Displays information from Transaction.csv row by row
         DefaultTableModel model = (DefaultTableModel) TransactionTable.getModel();
+        model.setRowCount(0);
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             boolean isFirstRow = true;
