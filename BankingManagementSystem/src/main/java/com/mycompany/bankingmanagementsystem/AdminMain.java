@@ -1143,14 +1143,7 @@ public class AdminMain extends javax.swing.JFrame {
         }
     }
     private void editUserInfo(int row){
-//        username = "";
-//        password = "";
-//        name = "";
-//        birthdate = "";
-//        phoneNumber = "";
-//        address = "";
-//        type = "";
-//        rowNum = 0;
+
         
         File file = new File("Accounts.csv");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
