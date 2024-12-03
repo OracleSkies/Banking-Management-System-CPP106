@@ -656,6 +656,7 @@ public class AdminMain extends javax.swing.JFrame {
 
         Transactions.setBackground(new java.awt.Color(255, 0, 0));
         Transactions.setForeground(new java.awt.Color(255, 255, 255));
+        Transactions.setOpaque(false);
         Transactions.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -1049,6 +1050,7 @@ public class AdminMain extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) accApplicationTableDash.getModel();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
+            model.setRowCount(0);
             boolean isFirstRow = true;
             while ((line = br.readLine()) != null) {
                 if (isFirstRow){
@@ -1094,7 +1096,7 @@ public class AdminMain extends javax.swing.JFrame {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             model.setRowCount(0);
             String line;
-             boolean isFirstRow = true;
+            boolean isFirstRow = true;
             while ((line = br.readLine()) != null) {
                 if (isFirstRow){
                     isFirstRow = false;
