@@ -205,9 +205,9 @@ public class AdminMain extends javax.swing.JFrame {
         filterButton = new javax.swing.JButton();
         AuditAndReport = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        BankReservePanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        GraphPanel = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         SubTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -732,7 +732,8 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel8.setText("AUDIT AND REPORT");
         AuditAndReport.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 6, 469, -1));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        BankReservePanel.setBackground(new java.awt.Color(102, 255, 204));
+        BankReservePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -740,40 +741,24 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("BANK RESERVE");
         jLabel9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        BankReservePanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 568, 218));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1158, Short.MAX_VALUE)
-                .addContainerGap())
+        AuditAndReport.add(BankReservePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 580, 470));
+
+        GraphPanel.setBackground(new java.awt.Color(255, 51, 51));
+
+        javax.swing.GroupLayout GraphPanelLayout = new javax.swing.GroupLayout(GraphPanel);
+        GraphPanel.setLayout(GraphPanelLayout);
+        GraphPanelLayout.setHorizontalGroup(
+            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        AuditAndReport.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 1170, 230));
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
+        GraphPanelLayout.setVerticalGroup(
+            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
 
-        AuditAndReport.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1170, 230));
+        AuditAndReport.add(GraphPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 580, 470));
 
         jButton6.setBackground(new java.awt.Color(0, 0, 204));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -1377,10 +1362,12 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton AudRepbutton;
     private javax.swing.JPanel AuditAndReport;
     private javax.swing.JLabel BackgroundImage;
+    private javax.swing.JPanel BankReservePanel;
     private javax.swing.JScrollPane CardAppScrPane;
     public javax.swing.JTable CardApplicationTable;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Dashboardbutton;
+    private javax.swing.JPanel GraphPanel;
     private javax.swing.JPanel MasterPanel;
     private javax.swing.JLabel SubTitle;
     private javax.swing.JLabel Title;
@@ -1411,8 +1398,6 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
