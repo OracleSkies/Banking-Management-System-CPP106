@@ -673,7 +673,7 @@ public class AdminMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Timestamp", "Name", "Account Number", "Amount", "Type of Transaction", "Description"
+                "Timestamp", "Name", "Account Number", "Amount", "Transaction Type", "Description"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -691,7 +691,7 @@ public class AdminMain extends javax.swing.JFrame {
 
         filterCombo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         filterCombo.setMaximumRowCount(4);
-        filterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Account Number", "Type of transaction", "Description" }));
+        filterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Account Number", "Transaction Type", "Description" }));
         Transactions.add(filterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 270, 40));
 
         filterField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -977,39 +977,7 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
         // TODO add your handling code here:
-//        String filePath = "Transactions.csv";
-//        File file = new File(filePath);
-//
-//        if (!file.exists()) {
-//            JOptionPane.showMessageDialog(this, "File not found at " + filePath, "File Error", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-//            DefaultTableModel model = (DefaultTableModel) transaction_inventory.getModel();
-//
-//            // Clear any existing rows in the table
-//            model.setRowCount(0);
-//
-//            // Read each line from the file and process it
-//            String line;
-//            while ((line = bufferedReader.readLine()) != null) {
-//                String[] row = line.split(",");  // Adjust delimiter if necessary
-//
-//                // Debug: print row data
-//                System.out.println("Row read: " + Arrays.toString(row));
-//
-//                // Check if the transaction belongs to the logged-in user (assumes username is in the first column)
-//                if (row[1].equals(uname)) {
-//                    model.addRow(row);  // Add the row to the table if the username matches
-//                }
-//            }
-//
-//        } catch (IOException e) {
-//            // Display an error message if something goes wrong
-//            JOptionPane.showMessageDialog(this, "THERE'S AN ERROR: " + e.getMessage(), "Error In Table", JOptionPane.ERROR_MESSAGE);
-//        }
-
+        filterTransactionTable(filterField.getText());
     }//GEN-LAST:event_filterButtonActionPerformed
 
     private void showAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
@@ -1020,6 +988,56 @@ public class AdminMain extends javax.swing.JFrame {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
+    
+    private void filterTransactionTable(String field){
+        String filePath = "Transactions.csv";
+        File file = new File(filePath);
+        Object comboSelect = filterCombo.getSelectedItem();
+        String comboString = comboSelect.toString();
+        if (!file.exists()) {
+            JOptionPane.showMessageDialog(this, "File not found at " + filePath, "File Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+            DefaultTableModel model = (DefaultTableModel) TransactionTable.getModel();
+
+            // Clear any existing rows in the table
+            model.setRowCount(0);
+            String fieldLower = field.toLowerCase();
+            // Read each line from the file and process it
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] row = line.split(",");
+                switch (comboString){
+                    case "Name":
+                        if (row[1].toLowerCase().equals(fieldLower)) {
+                            //Add the row to the table if the Name matches
+                            System.out.println(row[1].toLowerCase());
+                            model.addRow(row); 
+                        }
+                    case "Account Number":
+                        if (row[2].toLowerCase().equals(fieldLower)) {
+                            //Add the row to the table if the Account Number matches
+                            model.addRow(row);
+                        }
+                    case "Transaction Type":
+                        if (row[4].toLowerCase().equals(fieldLower)) {
+                            //Add the row to the table if the Transaction Type matches
+                            model.addRow(row);
+                        }
+                    case "Description":
+                        if (row[5].toLowerCase().equals(fieldLower)) {
+                            //Add the row to the table if the Description matches
+                            model.addRow(row);
+                        }
+                }
+            }
+
+        } catch (IOException e) {
+            // Display an error message if something goes wrong
+            JOptionPane.showMessageDialog(this, "THERE'S AN ERROR: " + e.getMessage(), "Error In Table", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
     private void loadTransactionDataForDashboard(String filePath){
         //Loads all data from Transaction.csv to transaction table in dashboard. 
