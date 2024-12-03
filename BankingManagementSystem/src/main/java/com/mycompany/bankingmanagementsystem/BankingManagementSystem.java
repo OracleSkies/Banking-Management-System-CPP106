@@ -4,7 +4,7 @@
 
 package com.mycompany.bankingmanagementsystem;
 
-import LoginBranch.Login;
+import ATMSystemBranch.StartingWindow;
 
 /**
  *
@@ -13,7 +13,7 @@ import LoginBranch.Login;
 public class BankingManagementSystem {
 
     public static void main(String[] args) {
-        Login login = new Login();
-        login.setVisible(true);
+        StartingWindow start = new StartingWindow();
+        start.setVisible(true);
     }
 }
