@@ -341,7 +341,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
         //ADDS THE ACCOUNT TO ACCOUNT DATABASE
         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
             int accountNumber = RNGforAccountNumber();
-            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accountNumber + "," + "user" + "," + "no");
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accountNumber + "," + "user" + "," + "no" + "," + "null" + "," + "0");
             writer.newLine();
 
             JOptionPane.showMessageDialog(this, "Account Verified!");
@@ -352,7 +352,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
     private int RNGforAccountNumber(){
         Random random = new Random();
         // Generate a random 7-digit number
-        int randomNumber = 10000000 + random.nextInt(90000); // Ensures the number is always 7 digits
+        int randomNumber = 100000000 + random.nextInt(9000000); // Ensures the number is always 7 digits
         return randomNumber;
     }
     
