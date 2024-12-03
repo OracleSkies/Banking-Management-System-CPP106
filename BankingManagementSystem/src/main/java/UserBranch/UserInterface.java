@@ -241,7 +241,7 @@ public class UserInterface extends javax.swing.JFrame {
         Profile = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         Notifs = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
+        MasterPanelScreen = new javax.swing.JPanel();
         Dashboard = new javax.swing.JPanel();
         RecentTrans = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -557,7 +557,7 @@ public class UserInterface extends javax.swing.JFrame {
         PhoneNum = new javax.swing.JTextField();
         PinNum = new javax.swing.JTextField();
         CPinNum = new javax.swing.JTextField();
-        jPanel11 = new javax.swing.JPanel();
+        MasterPanelButtons = new javax.swing.JPanel();
         payments = new javax.swing.JPanel();
         Shopping = new javax.swing.JButton();
         Bills = new javax.swing.JButton();
@@ -608,9 +608,9 @@ public class UserInterface extends javax.swing.JFrame {
         });
         getContentPane().add(Notifs, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 50));
 
-        jPanel9.setBackground(new java.awt.Color(0, 153, 102));
-        jPanel9.setOpaque(false);
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MasterPanelScreen.setBackground(new java.awt.Color(0, 153, 102));
+        MasterPanelScreen.setOpaque(false);
+        MasterPanelScreen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Dashboard.setBackground(new java.awt.Color(204, 204, 204, 80));
         Dashboard.setOpaque(false);
@@ -911,7 +911,7 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(Hist, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jPanel9.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+        MasterPanelScreen.add(Dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
         TransacHis.setBackground(new java.awt.Color(204, 204, 204, 80));
         TransacHis.setOpaque(false);
@@ -976,7 +976,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel9.add(TransacHis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+        MasterPanelScreen.add(TransacHis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
         CheckCardY.setOpaque(false);
         CheckCardY.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1000,7 +1000,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Card.png"))); // NOI18N
         CheckCardY.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 89, -1, -1));
 
-        jPanel9.add(CheckCardY, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+        MasterPanelScreen.add(CheckCardY, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
         CheckCardN.setOpaque(false);
         CheckCardN.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1019,7 +1019,7 @@ public class UserInterface extends javax.swing.JFrame {
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Card.png"))); // NOI18N
         CheckCardN.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 794, 423));
 
-        jPanel9.add(CheckCardN, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+        MasterPanelScreen.add(CheckCardN, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
         bills.setOpaque(false);
 
@@ -1441,7 +1441,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(BillsScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel9.add(bills, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+        MasterPanelScreen.add(bills, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
         shopping.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         shopping.setOpaque(false);
@@ -2313,7 +2313,7 @@ public class UserInterface extends javax.swing.JFrame {
                 .addComponent(shoppingTab, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
         );
 
-        jPanel9.add(shopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+        MasterPanelScreen.add(shopping, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
         Application.setOpaque(false);
         Application.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2449,12 +2449,12 @@ public class UserInterface extends javax.swing.JFrame {
                 .addGap(61, 61, 61))
         );
 
-        jPanel9.add(Application, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
+        MasterPanelScreen.add(Application, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 1170, 600));
+        getContentPane().add(MasterPanelScreen, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 1170, 600));
 
-        jPanel11.setOpaque(false);
-        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MasterPanelButtons.setOpaque(false);
+        MasterPanelButtons.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         payments.setBackground(new java.awt.Color(5, 22, 80));
         payments.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2499,7 +2499,7 @@ public class UserInterface extends javax.swing.JFrame {
         });
         payments.add(Bills, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 278, 75));
 
-        jPanel11.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        MasterPanelButtons.add(payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         cards.setBackground(new java.awt.Color(5, 22, 80));
         cards.setForeground(new java.awt.Color(255, 255, 255));
@@ -2547,7 +2547,7 @@ public class UserInterface extends javax.swing.JFrame {
         });
         cards.add(checkcard, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 75, 278, 75));
 
-        jPanel11.add(cards, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        MasterPanelButtons.add(cards, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         Trans.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Trans.setForeground(new java.awt.Color(255, 255, 255));
@@ -2567,7 +2567,7 @@ public class UserInterface extends javax.swing.JFrame {
                 TransActionPerformed(evt);
             }
         });
-        jPanel11.add(Trans, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 305, 74));
+        MasterPanelButtons.add(Trans, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 305, 74));
 
         Dashb.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Dashb.setForeground(new java.awt.Color(255, 255, 255));
@@ -2587,7 +2587,7 @@ public class UserInterface extends javax.swing.JFrame {
                 DashbActionPerformed(evt);
             }
         });
-        jPanel11.add(Dashb, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 305, 74));
+        MasterPanelButtons.add(Dashb, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 305, 74));
 
         Accreg.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Accreg.setForeground(new java.awt.Color(255, 255, 255));
@@ -2607,7 +2607,7 @@ public class UserInterface extends javax.swing.JFrame {
                 AccregActionPerformed(evt);
             }
         });
-        jPanel11.add(Accreg, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 320, -1, 74));
+        MasterPanelButtons.add(Accreg, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 320, -1, 74));
 
         Payments.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Payments.setForeground(new java.awt.Color(255, 255, 255));
@@ -2626,7 +2626,7 @@ public class UserInterface extends javax.swing.JFrame {
                 PaymentsActionPerformed(evt);
             }
         });
-        jPanel11.add(Payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, 305, 74));
+        MasterPanelButtons.add(Payments, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, 305, 74));
 
         CARD.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         CARD.setForeground(new java.awt.Color(255, 255, 255));
@@ -2645,9 +2645,9 @@ public class UserInterface extends javax.swing.JFrame {
                 CARDActionPerformed(evt);
             }
         });
-        jPanel11.add(CARD, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 160, 305, 74));
+        MasterPanelButtons.add(CARD, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 160, 305, 74));
 
-        getContentPane().add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 310, 610));
+        getContentPane().add(MasterPanelButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 310, 610));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, 530, 10));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -3381,6 +3381,8 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel Foods;
     private javax.swing.JButton GenRep;
     private javax.swing.JPanel Hist;
+    private javax.swing.JPanel MasterPanelButtons;
+    private javax.swing.JPanel MasterPanelScreen;
     private javax.swing.JLabel NameDis;
     private javax.swing.JLabel NameLabel1;
     private javax.swing.JButton Notifs;
@@ -3580,8 +3582,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
