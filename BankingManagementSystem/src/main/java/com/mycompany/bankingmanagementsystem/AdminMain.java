@@ -198,10 +198,11 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         TransactionTable = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        filterCombo = new javax.swing.JComboBox<>();
+        filterField = new javax.swing.JTextField();
+        showAllButton = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        filterButton = new javax.swing.JButton();
         AuditAndReport = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -655,7 +656,6 @@ public class AdminMain extends javax.swing.JFrame {
 
         Transactions.setBackground(new java.awt.Color(255, 0, 0));
         Transactions.setForeground(new java.awt.Color(255, 255, 255));
-        Transactions.setOpaque(false);
         Transactions.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -688,17 +688,22 @@ public class AdminMain extends javax.swing.JFrame {
 
         Transactions.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1160, 450));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jComboBox1.setMaximumRowCount(4);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Account Number", "Type of transaction", "Description" }));
-        Transactions.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 270, 40));
+        filterCombo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        filterCombo.setMaximumRowCount(4);
+        filterCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Account Number", "Type of transaction", "Description" }));
+        Transactions.add(filterCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 270, 40));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        Transactions.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 500, 40));
+        filterField.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Transactions.add(filterField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 500, 40));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Filter");
-        Transactions.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 50, 210, 40));
+        showAllButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        showAllButton.setText("Show All");
+        showAllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAllButtonActionPerformed(evt);
+            }
+        });
+        Transactions.add(showAllButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, 120, 40));
 
         jButton7.setBackground(new java.awt.Color(0, 0, 204));
         jButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -706,6 +711,15 @@ public class AdminMain extends javax.swing.JFrame {
         jButton7.setText("GENERATE REPORT");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Transactions.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, 302, 59));
+
+        filterButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        filterButton.setText("Filter");
+        filterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterButtonActionPerformed(evt);
+            }
+        });
+        Transactions.add(filterButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 50, 120, 40));
 
         AuditAndReport.setBackground(new java.awt.Color(51, 255, 51));
         AuditAndReport.setOpaque(false);
@@ -959,6 +973,48 @@ public class AdminMain extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
+        // TODO add your handling code here:
+//        String filePath = "Transactions.csv";
+//        File file = new File(filePath);
+//
+//        if (!file.exists()) {
+//            JOptionPane.showMessageDialog(this, "File not found at " + filePath, "File Error", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }
+//
+//        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+//            DefaultTableModel model = (DefaultTableModel) transaction_inventory.getModel();
+//
+//            // Clear any existing rows in the table
+//            model.setRowCount(0);
+//
+//            // Read each line from the file and process it
+//            String line;
+//            while ((line = bufferedReader.readLine()) != null) {
+//                String[] row = line.split(",");  // Adjust delimiter if necessary
+//
+//                // Debug: print row data
+//                System.out.println("Row read: " + Arrays.toString(row));
+//
+//                // Check if the transaction belongs to the logged-in user (assumes username is in the first column)
+//                if (row[1].equals(uname)) {
+//                    model.addRow(row);  // Add the row to the table if the username matches
+//                }
+//            }
+//
+//        } catch (IOException e) {
+//            // Display an error message if something goes wrong
+//            JOptionPane.showMessageDialog(this, "THERE'S AN ERROR: " + e.getMessage(), "Error In Table", JOptionPane.ERROR_MESSAGE);
+//        }
+
+    }//GEN-LAST:event_filterButtonActionPerformed
+
+    private void showAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAllButtonActionPerformed
+        // TODO add your handling code here:
+        loadTransactionDataForTransaction("Transactions.csv");
+    }//GEN-LAST:event_showAllButtonActionPerformed
 
     // </editor-fold>
     
@@ -1322,10 +1378,11 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton accountButton;
     private javax.swing.JButton createNewAdminAccButton;
     private javax.swing.JPanel createNewAdminPanel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton filterButton;
+    private javax.swing.JComboBox<String> filterCombo;
+    private javax.swing.JTextField filterField;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1345,9 +1402,9 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton newUserAccountButton;
     private javax.swing.JButton notificationButton;
+    private javax.swing.JButton showAllButton;
     private javax.swing.JTable transactionTableDash;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
