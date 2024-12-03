@@ -7,7 +7,9 @@ import cellAction.TableActionCellEditorView;
 import cellAction.TableActionCellRenderer;
 import cellAction.TableActionCellRendererView;
 import cellAction.TableActionEvent;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Panel;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,8 +19,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -57,6 +66,12 @@ public class AdminMain extends javax.swing.JFrame {
         loadAccountsForAccManagement("Accounts.csv");
         loadAccountsForAccApplication("AccountApplications.csv");
         loadAccountsApplicationForDashboard("AccountApplications.csv");
+//        createTransactionPieChart();
+        showPieChart(GraphPanelDashboard);
+        
+       
+
+        
         
         
         TableActionEvent event = new TableActionEvent(){
@@ -187,7 +202,7 @@ public class AdminMain extends javax.swing.JFrame {
         AccAppDashScrPane = new javax.swing.JScrollPane();
         accApplicationTableDash = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        GraphPanelDashboard = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -586,20 +601,9 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel1.setText("DASHBOARD");
         Dashboard.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 300, 40));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        Dashboard.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 850, 300));
+        GraphPanelDashboard.setBackground(new java.awt.Color(255, 255, 255));
+        GraphPanelDashboard.setLayout(new java.awt.BorderLayout());
+        Dashboard.add(GraphPanelDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 850, 300));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -746,18 +750,7 @@ public class AdminMain extends javax.swing.JFrame {
         AuditAndReport.add(BankReservePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 580, 470));
 
         GraphPanel.setBackground(new java.awt.Color(255, 51, 51));
-
-        javax.swing.GroupLayout GraphPanelLayout = new javax.swing.GroupLayout(GraphPanel);
-        GraphPanel.setLayout(GraphPanelLayout);
-        GraphPanelLayout.setHorizontalGroup(
-            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 580, Short.MAX_VALUE)
-        );
-        GraphPanelLayout.setVerticalGroup(
-            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
-
+        GraphPanel.setLayout(new java.awt.BorderLayout());
         AuditAndReport.add(GraphPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 580, 470));
 
         jButton6.setBackground(new java.awt.Color(0, 0, 204));
@@ -912,6 +905,7 @@ public class AdminMain extends javax.swing.JFrame {
         AccountManagement.setVisible(false);
         Transactions.setVisible(false);
         AuditAndReport.setVisible(true);
+        showPieChart(GraphPanel);
     }//GEN-LAST:event_AudRepbuttonActionPerformed
 
     private void createNewAdminAccButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createNewAdminAccButtonMouseEntered
@@ -1311,6 +1305,78 @@ public class AdminMain extends javax.swing.JFrame {
         
     }
     
+    public void showPieChart(JPanel panel){
+        
+        //create dataset
+        DefaultPieDataset barDataset = new DefaultPieDataset( );
+        barDataset.setValue("IPhone 5s" , Double.valueOf(20));  
+        barDataset.setValue("SamSung Grand" , Double.valueOf(20));   
+        barDataset.setValue("MotoG" , Double.valueOf(40));    
+        barDataset.setValue("Nokia Lumia" , Double.valueOf(10));  
+      
+        //create chart
+        JFreeChart piechart = ChartFactory.createPieChart("mobile sales",barDataset, false,true,false);//explain
+        piechart.setBackgroundPaint(new java.awt.Color(0,0,255));
+      
+        PiePlot piePlot =(PiePlot) piechart.getPlot();
+      
+        //changing pie chart blocks colors
+        piePlot.setSectionPaint("IPhone 5s", new Color(255,255,102));
+        piePlot.setSectionPaint("SamSung Grand", new Color(102,255,102));
+        piePlot.setSectionPaint("MotoG", new Color(255,102,153));
+        piePlot.setSectionPaint("Nokia Lumia", new Color(0,204,204));
+      
+       
+        piePlot.setBackgroundPaint(new java.awt.Color(0, 0, 255));
+        
+        //create chartPanel to display chart(graph)
+        ChartPanel barChartPanel = new ChartPanel(piechart);
+        panel.removeAll();
+        panel.add(barChartPanel, BorderLayout.CENTER);
+        panel.validate();
+    }
+//    private void createTransactionPieChart() {
+//        DefaultPieDataset dataset = new DefaultPieDataset();
+//        List<Transaction> userTransactions = bank.findAllTransaction(currentUser.getUID(), "source");
+//        int depositcount = 0, withdrawalcount = 0, transfercount = 0;
+//
+//        for (Transaction transaction : userTransactions) {
+//            switch (transaction.getTransactionType()) {
+//                case "DEPOSIT" :
+//                    depositcount++;
+//                    break;
+//                case "WITHDRAWAL" : 
+//                    withdrawalcount++;
+//                    break;
+//                case "TRANSFER" : 
+//                    transfercount++;
+//                    break;
+//            }
+//        }
+//
+//        dataset.setValue("Deposit", depositcount);
+//        dataset.setValue("Withdrawal", withdrawalcount);
+//        dataset.setValue("Transfer", transfercount);
+//
+//        JFreeChart pieChart = ChartFactory.createPieChart("Transaction Breakdown", dataset, true, true, false);
+//        PiePlot plot = (PiePlot) pieChart.getPlot();
+//
+//        plot.setSectionPaint("Deposit", new Color(64, 93, 144));
+//        plot.setSectionPaint("Withdrawal", new Color(117, 134, 148));
+//        plot.setSectionPaint("Transfer", new Color(243, 198, 35));
+//        plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: {1} ({2})"));
+//
+//        ChartPanel chartPanel = new ChartPanel(pieChart);
+//        chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
+//
+//        
+//        GraphPanel gPanel = new GraphPanel(new BorderLayout());
+//        
+//        JPanel panel = new JPanel(new BorderLayout());
+//        panel.add(chartPanel, BorderLayout.CENTER);
+//        return panel;
+//    }
+    
     // </editor-fold>
 
     /**
@@ -1368,6 +1434,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Dashboardbutton;
     private javax.swing.JPanel GraphPanel;
+    private javax.swing.JPanel GraphPanelDashboard;
     private javax.swing.JPanel MasterPanel;
     private javax.swing.JLabel SubTitle;
     private javax.swing.JLabel Title;
@@ -1396,7 +1463,6 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
@@ -1406,5 +1472,9 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton showAllButton;
     private javax.swing.JTable transactionTableDash;
     // End of variables declaration//GEN-END:variables
+
+    private void GraphPanel(BorderLayout borderLayout) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     //</editor-fold>
 }

@@ -92,7 +92,6 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel112.setForeground(new java.awt.Color(255, 255, 255));
         jLabel112.setText("0");
 
-        Confirm.setBackground(new java.awt.Color(255, 255, 255));
         Confirm.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Confirm.setForeground(new java.awt.Color(255, 255, 255));
         Confirm.setText("CONFIRM");
