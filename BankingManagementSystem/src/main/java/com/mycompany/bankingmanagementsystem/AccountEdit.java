@@ -5,22 +5,42 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Laurence
  */
-public class AdminAccountRegistration extends javax.swing.JFrame {
+public class AccountEdit extends javax.swing.JFrame {
 
+    //=================== Naka EME pa ang acct number, Ayusin yon
+    
     /**
      * Creates new form USERACCOUNTADMINISTRATION
      */
-    public AdminAccountRegistration() {
+    private int row;
+    private String type;
+    private String accNumber;
+    private String card;
+    public AccountEdit(String username, String password,String name,String birthdate,String phoneNumber,String address,String accNumber,String type,String card,int row) {
         initComponents();
+        usernameField.setText(username);
+        passwordField.setText(password);
+        nameField.setText(name);
+        birthdateField.setText(birthdate);
+        phoneNumField.setText(phoneNumber);
+        addressField.setText(address);
+        this.accNumber = accNumber;
+        this.type = type;
+        this.card = card;
+        this.row = row;
     }
 
     /**
@@ -57,7 +77,7 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         confirmPassField = new javax.swing.JPasswordField();
         passwordField = new javax.swing.JPasswordField();
         backButton = new javax.swing.JButton();
-        SIGNUP = new javax.swing.JButton();
+        ConfirmButton = new javax.swing.JButton();
         usernameField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
@@ -77,8 +97,8 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Administrator Account Registration");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 610, -1));
+        jLabel8.setText("Account Edit Information");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 440, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setOpaque(false);
@@ -89,7 +109,7 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Address:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 510, 170, 90));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 170, 90));
 
         username.setBackground(new java.awt.Color(255, 255, 255));
         username.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -113,7 +133,7 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         Name.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
         Name.setText("Name:");
-        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 120, 80));
+        jPanel1.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 120, 80));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -159,25 +179,25 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         });
         jPanel1.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 210, 80));
 
-        SIGNUP.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        SIGNUP.setForeground(new java.awt.Color(255, 255, 255));
-        SIGNUP.setText("SIGN-UP");
-        SIGNUP.setBorderPainted(false);
-        SIGNUP.setContentAreaFilled(false);
-        SIGNUP.addMouseListener(new java.awt.event.MouseAdapter() {
+        ConfirmButton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        ConfirmButton.setForeground(new java.awt.Color(255, 255, 255));
+        ConfirmButton.setText("CONFIRM");
+        ConfirmButton.setBorderPainted(false);
+        ConfirmButton.setContentAreaFilled(false);
+        ConfirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                SIGNUPMouseEntered(evt);
+                ConfirmButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                SIGNUPMouseExited(evt);
+                ConfirmButtonMouseExited(evt);
             }
         });
-        SIGNUP.addActionListener(new java.awt.event.ActionListener() {
+        ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SIGNUPActionPerformed(evt);
+                ConfirmButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(SIGNUP, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 600, 210, 80));
+        jPanel1.add(ConfirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 600, 210, 80));
         jPanel1.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 340, 50));
         usernameField.getAccessibleContext().setAccessibleDescription("");
 
@@ -192,12 +212,12 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        AdminMain main = new AdminMain();
-        main.setVisible(true);
+        AdminMain admin = new AdminMain();
+        admin.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void SIGNUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIGNUPActionPerformed
+    private void ConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmButtonActionPerformed
         // TODO add your handling code here:
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -206,7 +226,6 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         String birthdate = birthdateField.getText();
         String phoneNumber = phoneNumField.getText();
         String address = addressField.getText();
-        
         
         //Registration Error Handling
         if (username.isEmpty()|| password.isEmpty()|| confirmPassword.isEmpty()|| name.isEmpty()|| birthdate.isEmpty()|| phoneNumber.isEmpty()|| address.isEmpty()){
@@ -220,33 +239,34 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         if (phoneNumber.matches(".*[a-zA-Z].*")){
             JOptionPane.showMessageDialog(this,"Invalid Phone Number","Error",JOptionPane.ERROR_MESSAGE);
             return;
-            
         } else if (phoneNumber.matches("\\d+")){
-            //THIS BLOCK OF CODE HAPPENS WHEN THE ACCOUNT IS GOOD FOR APPLICATION
-            accountRegistration(username,password,name,birthdate,phoneNumber,address);
-            refreshAccountTables();
+            deleteAccount(row);
+            accountEditWriteOnFile(username,password,name,birthdate,phoneNumber,address,accNumber,type,card);
+            AdminMain admin = new AdminMain();
+            admin.setVisible(true);
             setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Error: Phone number must only contain numbers.","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-    }//GEN-LAST:event_SIGNUPActionPerformed
+    }//GEN-LAST:event_ConfirmButtonActionPerformed
 
-    private void SIGNUPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SIGNUPMouseEntered
+    // <editor-fold defaultstate="collapsed" desc="MOUSE HOVER CODE">  
+    private void ConfirmButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmButtonMouseEntered
         // TODO add your handling code here:
-        SIGNUP.setContentAreaFilled(true);
-        SIGNUP.setForeground(Color.black);
-        SIGNUP.setBackground(Color.cyan);
-    }//GEN-LAST:event_SIGNUPMouseEntered
+        ConfirmButton.setContentAreaFilled(true);
+        ConfirmButton.setForeground(Color.black);
+        ConfirmButton.setBackground(Color.cyan);
+    }//GEN-LAST:event_ConfirmButtonMouseEntered
 
-    private void SIGNUPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SIGNUPMouseExited
+    private void ConfirmButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmButtonMouseExited
         // TODO add your handling code here:
-        SIGNUP.setContentAreaFilled(false);
-        SIGNUP.setForeground(Color.white);
+        ConfirmButton.setContentAreaFilled(false);
+        ConfirmButton.setForeground(Color.white);
         
       
-    }//GEN-LAST:event_SIGNUPMouseExited
+    }//GEN-LAST:event_ConfirmButtonMouseExited
 
     private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
         // TODO add your handling code here:
@@ -262,64 +282,97 @@ public class AdminAccountRegistration extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backButtonMouseExited
 
-    private void accountRegistration(String username, String password, String name, String birthdate, String phoneNumber, String address) {
+    //</editor-fold>
+    
+    //=================== Naka EME pa ang acct number, Ayusin yon
+    private void accountEditWriteOnFile(String username, String password, String name, String birthdate, String phoneNumber, String address, String accNumber, String type, String card) {
         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
-            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address + "," + "-----" + "," + "admin" + "," + "no");
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + type + "," + card);
             writer.newLine();
 
-            JOptionPane.showMessageDialog(this, "Administrator account created successfully!");
+            JOptionPane.showMessageDialog(this, "Account edited successfully!");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
     }
     
-    private void refreshAccountTables(){
-        AdminMain admin = new AdminMain();
-        admin.setVisible(true);
-        admin.loadAccountsForAccApplication("AccountApplications.csv");
+    private void deleteAccount(int row){
+        String filePath = "Accounts.csv";  // Change to your CSV file path
+        int rowToDelete = row; // Index of the row to delete (0-based index)
+
+        // Read the CSV file into a List of Strings (rows)
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);  // Add each line to the list
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Remove the specific row (if it exists)
+        if (rowToDelete >= 0 && rowToDelete < lines.size()) {
+            lines.remove(rowToDelete); // Remove the row at the specified index
+        } else {
+            System.out.println("Row index is out of bounds.");
+            return;
+        }
+
+        // Write the updated content back to the CSV file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            for (String line : lines) {
+                bw.write(line);
+                bw.newLine();  // Write each line back into the file
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminAccountRegistration().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(AccountEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(AccountEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(AccountEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(AccountEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new AccountEdit().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ConfirmButton;
     private javax.swing.JLabel Name;
-    private javax.swing.JButton SIGNUP;
     private javax.swing.JTextField addressField;
     private javax.swing.JButton backButton;
     private javax.swing.JTextField birthdateField;

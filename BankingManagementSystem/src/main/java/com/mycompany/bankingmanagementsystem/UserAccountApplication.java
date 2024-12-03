@@ -6,11 +6,16 @@ package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,13 +26,19 @@ public class UserAccountApplication extends javax.swing.JFrame {
     /**
      * Creates new form USERACCOUNTAPPLICATION_ADMIN___
      */
+    private String username;
+    private String password;
+    private int row;
     
-    public UserAccountApplication(String name, String birthdate, String phoneNumber, String address) {
+    public UserAccountApplication(String username, String password,String name,String birthdate,String phoneNumber,String address,int row) {
         initComponents();
+        this.username = username;
+        this.password = password;
         nameLabel.setText(name);
         birthLabel.setText(birthdate);
         phoneLabel.setText(phoneNumber);
         addressLabel.setText(address);
+        this.row = row;
     }
 
     /**
@@ -198,6 +209,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="EVENTS">
     private void DECLINEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DECLINEMouseEntered
         // TODO add your handling code here:
         DECLINE.setContentAreaFilled(true);
@@ -214,6 +226,21 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void DECLINEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DECLINEActionPerformed
         // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(
+            this, // Parent component (current frame)
+            "Are you sure you want to decline this account application?", // Message
+            "Confirm Account Decline", // Title of the dialog
+            JOptionPane.YES_NO_OPTION, // Option type
+            JOptionPane.QUESTION_MESSAGE // Icon type
+        );
+
+        if (response == JOptionPane.YES_OPTION) {
+            deleteAccountFromFile(row);
+            JOptionPane.showMessageDialog(this, "Account application declined!");
+            refreshAccountTables();
+            this.dispose(); // Close the current window
+        }
+        
     }//GEN-LAST:event_DECLINEActionPerformed
 
     private void APPROVEMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_APPROVEMouseEntered
@@ -232,6 +259,20 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void APPROVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_APPROVEActionPerformed
         // TODO add your handling code here:
+        String usernameVar;
+        String passwordVar;
+        usernameVar = this.username;
+        passwordVar = this.password;
+        String name = nameLabel.getText();
+        String birthdate = birthLabel.getText();
+        String phoneNumber = phoneLabel.getText();
+        String address = addressLabel.getText();
+//        String type = this.type;
+        RNGforAccountNumber();
+        accountApplicationWriteOnFile(usernameVar,passwordVar,name,birthdate,phoneNumber,address);
+        deleteAccountFromFile(row);
+        refreshAccountTables();
+        setVisible(false);
     }//GEN-LAST:event_APPROVEActionPerformed
 
     private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
@@ -249,53 +290,121 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        AdminMain main = new AdminMain();
-//        main.setVisible(true);
-        setVisible(false);
+        returnToAdmin();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
+    private void deleteAccountFromFile(int row){
+        //THIS METHOD DECLINES THE APPLICATION OF THE USER. IT REMOVES ITS INFORMATION IN THE CSV
+        String filePath = "AccountApplications.csv";  // Change to your CSV file path
+        int rowToDelete = row; // Index of the row to delete (0-based index)
 
-    public void updateLabel(String name, String birthdate, String phoneNumber, String address){
-        
+        // Read the CSV file into a List of Strings (rows)
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);  // Add each line to the list
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Remove the specific row (if it exists)
+        if (rowToDelete >= 0 && rowToDelete < lines.size()) {
+            lines.remove(rowToDelete); // Remove the row at the specified index
+        } else {
+            System.out.println("Row index is out of bounds.");
+            return;
+        }
+
+        // Write the updated content back to the CSV file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            for (String line : lines) {
+                bw.write(line);
+                bw.newLine();  // Write each line back into the file
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+    
+    private void refreshAccountTables(){
+        AdminMain admin = new AdminMain();
+        admin.setVisible(true);
+        admin.loadAccountsForAccApplication("AccountApplications.csv");
+    }
+    
+    private void accountApplicationWriteOnFile(String username,String password,String name,String birthdate,String phoneNumber,String address){
+        //ADDS THE ACCOUNT TO ACCOUNT DATABASE
+        try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
+            int accountNumber = RNGforAccountNumber();
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accountNumber + "," + "user" + "," + "no");
+            writer.newLine();
+
+            JOptionPane.showMessageDialog(this, "Account Verified!");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private int RNGforAccountNumber(){
+        Random random = new Random();
+        // Generate a random 7-digit number
+        int randomNumber = 10000000 + random.nextInt(90000); // Ensures the number is always 7 digits
+        return randomNumber;
+    }
+    
+    private void returnToAdmin(){
+        AdminMain admin = new AdminMain();
+        admin.setVisible(true);
+        setVisible(false);
+    }
+    
+    //</editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="MAIN(Nonfunctional)">
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new UserAccountApplication().setVisible(true);
+    
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
 //            }
-//        });
-
-    }
-
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(UserAccountApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        
+//
+//        /* Create and display the form */
+////        java.awt.EventQueue.invokeLater(new Runnable() {
+////            public void run() {
+////                new UserAccountApplication().setVisible(true);
+////            }
+////        });
+//
+//    }
+    //</editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="WIDGET VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton APPROVE;
     private javax.swing.JButton DECLINE;
@@ -315,3 +424,4 @@ public class UserAccountApplication extends javax.swing.JFrame {
     private javax.swing.JLabel phoneLabel;
     // End of variables declaration//GEN-END:variables
 }
+//</editor-fold>

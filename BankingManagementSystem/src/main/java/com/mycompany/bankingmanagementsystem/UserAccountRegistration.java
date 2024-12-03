@@ -192,7 +192,7 @@ public class UserAccountRegistration extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        setVisible(false);
+        returnToAdmin();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void SIGNUPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIGNUPActionPerformed
@@ -219,7 +219,10 @@ public class UserAccountRegistration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Invalid Phone Number","Error",JOptionPane.ERROR_MESSAGE);
             return;
         } else if (phoneNumber.matches("\\d+")){
-            accountRegistration(username,password,name,birthdate,phoneNumber,address);
+            userAccountRegistration(username,password,name,birthdate,phoneNumber,address);
+            returnToAdmin();
+//            refreshAccountTables();
+
             setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Error: Phone number must only contain numbers.","Error",JOptionPane.ERROR_MESSAGE);
@@ -257,7 +260,7 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backButtonMouseExited
 
-    private void accountRegistration(String username, String password, String name, String birthdate, String phoneNumber, String address) {
+    private void userAccountRegistration(String username, String password, String name, String birthdate, String phoneNumber, String address) {
         try (var writer = new BufferedWriter(new FileWriter("AccountApplications.csv", true))){
             writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address);
             writer.newLine();
@@ -267,6 +270,17 @@ public class UserAccountRegistration extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    private void refreshAccountTables(){
+        AdminMain admin = new AdminMain();
+        admin.setVisible(true);
+        admin.loadAccountsForAccApplication("AccountApplications.csv");
+    }
+    private void returnToAdmin(){
+        AdminMain admin = new AdminMain();
+        admin.setVisible(true);
+        setVisible(false);
     }
     /**
      * @param args the command line arguments
