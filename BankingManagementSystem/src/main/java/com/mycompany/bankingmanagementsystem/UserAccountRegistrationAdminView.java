@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Laurence
  */
-public class UserAccountRegistration extends javax.swing.JFrame {
+public class UserAccountRegistrationAdminView extends javax.swing.JFrame {
 
     /**
      * Creates new form USERACCOUNTADMINISTRATION
      */
-    public UserAccountRegistration() {
+    public UserAccountRegistrationAdminView() {
         initComponents();
     }
 
@@ -272,11 +272,7 @@ public class UserAccountRegistration extends javax.swing.JFrame {
         
     }
     
-    private void refreshAccountTables(){
-        AdminMain admin = new AdminMain();
-        admin.setVisible(true);
-        admin.loadAccountsForAccApplication("AccountApplications.csv");
-    }
+    
     private void returnToAdmin(){
         AdminMain admin = new AdminMain();
         admin.setVisible(true);
@@ -299,21 +295,23 @@ public class UserAccountRegistration extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistrationAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistrationAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistrationAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserAccountRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserAccountRegistrationAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UserAccountRegistration().setVisible(true);
+                new UserAccountRegistrationAdminView().setVisible(true);
             }
         });
     }

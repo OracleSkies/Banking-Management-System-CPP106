@@ -4,8 +4,9 @@
  */
 package LoginBranch;
 
+import ATMSystemBranch.StartingWindow;
 import com.mycompany.bankingmanagementsystem.AdminMain;
-import UserBranch.UserInterface;
+import UserBranch.UserInterfaceMain;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -42,6 +43,7 @@ public class Login extends javax.swing.JFrame {
         passwordField = new javax.swing.JPasswordField();
         LoginButton = new javax.swing.JButton();
         showPassword = new javax.swing.JCheckBox();
+        loginBackButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -92,7 +94,7 @@ public class Login extends javax.swing.JFrame {
                 LoginButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 540, 250, 50));
+        getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 550, 250, 50));
 
         showPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         showPassword.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,10 +107,29 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 490, 190, 50));
 
+        loginBackButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        loginBackButton.setForeground(new java.awt.Color(255, 255, 255));
+        loginBackButton.setText("BACK");
+        loginBackButton.setBorderPainted(false);
+        loginBackButton.setContentAreaFilled(false);
+        loginBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                loginBackButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                loginBackButtonMouseExited(evt);
+            }
+        });
+        loginBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBackButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(loginBackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 630, 250, 50));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Log in BG.png"))); // NOI18N
-        jLabel1.setText("USERNAME");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1530, 800));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 800));
 
         pack();
         setLocationRelativeTo(null);
@@ -144,6 +165,26 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_showPasswordActionPerformed
 
+    private void loginBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBackButtonMouseEntered
+        // TODO add your handling code here:
+        loginBackButton.setContentAreaFilled(true);
+        loginBackButton.setBackground(Color.cyan);
+        loginBackButton.setForeground(Color.black);
+    }//GEN-LAST:event_loginBackButtonMouseEntered
+
+    private void loginBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBackButtonMouseExited
+        // TODO add your handling code here:
+        loginBackButton.setContentAreaFilled(false);
+        loginBackButton.setForeground(Color.white);
+    }//GEN-LAST:event_loginBackButtonMouseExited
+
+    private void loginBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBackButtonActionPerformed
+        // TODO add your handling code here:
+        StartingWindow start = new StartingWindow();
+        start.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_loginBackButtonActionPerformed
+
     private String loginAccount(String UserName, String Pass){
 
           try (BufferedReader reader = new BufferedReader(new FileReader("Accounts.csv"))){
@@ -158,7 +199,7 @@ public class Login extends javax.swing.JFrame {
                           admin.setVisible(true);
                           setVisible(false);
                       }else if (parts[7].equals("user")){
-                          UserInterface user = new UserInterface();
+                          UserInterfaceMain user = new UserInterfaceMain();
                           user.setVisible(true);
                           setVisible(false);
                       }
@@ -215,6 +256,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loginBackButton;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JCheckBox showPassword;
     private javax.swing.JTextField usernameField;

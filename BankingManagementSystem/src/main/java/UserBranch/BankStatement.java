@@ -453,7 +453,7 @@ public class BankStatement extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmMouseExited
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        UserInterface user = new UserInterface();
+        UserInterfaceMain user = new UserInterfaceMain();
         user.setVisible(true);
         setVisible(false);
 

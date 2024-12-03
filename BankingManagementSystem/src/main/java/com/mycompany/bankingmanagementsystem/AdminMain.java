@@ -936,7 +936,7 @@ public class AdminMain extends javax.swing.JFrame {
 
     private void newUserAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newUserAccountButtonActionPerformed
         // TODO add your handling code here:
-        UserAccountRegistration registration = new UserAccountRegistration();
+        UserAccountRegistrationAdminView registration = new UserAccountRegistrationAdminView();
         registration.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_newUserAccountButtonActionPerformed

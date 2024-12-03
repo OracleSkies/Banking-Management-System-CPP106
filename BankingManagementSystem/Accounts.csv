@@ -1,5 +1,5 @@
 username,password,name,birthdate,phone number,address,Account Number,type,card,pin,balance
-jayjay,jayjay,jayjay,jayjay,jayjay,jayjay,111,jayjay,jayjay,111,789
-donasco,donasco,donasco,donasco,donasco,donasco,222,donasco,donasco,222,0
 admin,pass,ADMIN,ADMIN,ADMIN,ADMIN,null,admin,null,null,null
 user,pass,USER NAME,USER BIRTH,USER PHONE,USER ADDRESS,88491,user,no,null,0
+jayjay,jayjay,jayjay,jayjay,jayjay,jayjay,111,jayjay,jayjay,111,89
+donasco,donasco,donasco,donasco,donasco,donasco,222,donasco,donasco,222,100

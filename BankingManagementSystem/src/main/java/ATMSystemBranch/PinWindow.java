@@ -4,8 +4,7 @@
  */
 package ATMSystemBranch;
 
-import UserBranch.UserInterface;
-import com.mycompany.bankingmanagementsystem.AdminMain;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -567,8 +566,9 @@ public class PinWindow extends javax.swing.JFrame {
 
     private void accBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accBackButtonActionPerformed
         // TODO add your handling code here:
-//        AccountNumberPanel.setVisible(false);
-//        PinPanel.setVisible(true);
+        StartingWindow start = new StartingWindow();
+        start.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_accBackButtonActionPerformed
 
     private void pinBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinBackButtonActionPerformed
