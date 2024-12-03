@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -1441,6 +1443,12 @@ public class ATMWindow extends javax.swing.JFrame {
     // </editor-fold>   
     
     // <editor-fold defaultstate="collapsed" desc="Functionalities">
+    private String dateTime(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTimeNow = LocalDateTime.now();
+        String currentDateTime = dateTimeNow.format(formatter);
+        return currentDateTime;
+    }
     private void transferMoney(String amountToTransfer, String accountRecepient, int balance){
         String rUsername = null;
         String rPassword = null;
@@ -1453,6 +1461,7 @@ public class ATMWindow extends javax.swing.JFrame {
         String rCard = null;
         String rPin = null;
         String rBalance = null;
+        String currDateTime = dateTime();
         
         //FIND RECEPIENT IN DATABASE
         
@@ -1514,7 +1523,7 @@ public class ATMWindow extends javax.swing.JFrame {
         deleteLine(accountRecepient);
         writeLine(rUsername,rPassword,rName,rBirthdate,rPhoneNumber,rAddress,rAccNumber,rType,rCard,rPin,balRecepient);
         JOptionPane.showMessageDialog(this,  "₱" + amtTransToInt+" successfully transferred to account number: " + accountRecepient + "!");
-        writeToTransaction("date",name, accNumber, amtTransToInt,"MONEY TRANSFER","Money transfer to account number: "+accountRecepient);
+        writeToTransaction(currDateTime,name, accNumber, amtTransToInt,"MONEY TRANSFER","Money transfer to account number: "+accountRecepient);
         returnToATMHome();
     }
     
@@ -1523,6 +1532,7 @@ public class ATMWindow extends javax.swing.JFrame {
         DisplayBalance.setText(balanceDisplay);
     }
     private void withdraw(int balance){
+        String currDateTime = dateTime();
         int witToInt = Integer.parseInt(withdrawNumber);
         if(balance < witToInt){
             JOptionPane.showMessageDialog(this, "Cannot withdraw money. Insufficient balance", "Insufficient Balance", JOptionPane.ERROR_MESSAGE);
@@ -1533,17 +1543,18 @@ public class ATMWindow extends javax.swing.JFrame {
         writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         this.balance = balance;
         JOptionPane.showMessageDialog(this,  "₱" + witToInt+" successfully withdrew from account number: " + accNumber + "!");
-        writeToTransaction("date",name, accNumber, witToInt,"WITHDRAW","Bank Transaction");
+        writeToTransaction(currDateTime,name, accNumber, witToInt,"WITHDRAW","Bank Transaction");
         returnToATMHome(); 
     }
     
     private void deposit(int balance){
+        String currDateTime = dateTime();
         int depToInt = Integer.parseInt(depositNumber);
         balance = balance + depToInt;
         this.balance = balance;
         writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         JOptionPane.showMessageDialog(this,  "₱" + depToInt+" successfully deposited in account number: " + accNumber + "!");
-        writeToTransaction("date",name, accNumber, depToInt,"DEPOSIT","Bank Transaction");
+        writeToTransaction(currDateTime,name, accNumber, depToInt,"DEPOSIT","Bank Transaction");
         returnToATMHome(); 
     }
     
@@ -1666,7 +1677,7 @@ public class ATMWindow extends javax.swing.JFrame {
 ////            }
 ////        });
 //    }
-
+// <editor-fold defaultstate="collapsed" desc="VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ATMHomepage;
     private javax.swing.JButton BackWithdraw;
@@ -1772,4 +1783,5 @@ public class ATMWindow extends javax.swing.JFrame {
     private javax.swing.JButton witKeyX;
     private javax.swing.JTextField withdrawField;
     // End of variables declaration//GEN-END:variables
+    // </editor-fold>
 }
