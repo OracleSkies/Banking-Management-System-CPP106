@@ -22,6 +22,17 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    private String username;
+    private String password;
+    private String name;
+    private String birthdate;
+    private String phoneNumber;
+    private String address;
+    private String accNumber;
+    private String type;
+    private String card;
+    private int balance;
     public Login() {
         initComponents();
     }
@@ -199,8 +210,44 @@ public class Login extends javax.swing.JFrame {
                           admin.setVisible(true);
                           setVisible(false);
                       }else if (parts[7].equals("user")){
-                          UserInterfaceMain user = new UserInterfaceMain();
-                          user.setVisible(true);
+                          
+                          //DITO IRURUN UNG USER VIEW
+                          this.username = parts[0];
+                          this.password = parts[1];
+                          this.name = parts[2];
+                          this.birthdate = parts[3];
+                          this.phoneNumber = parts[4];
+                          this.address = parts[5];
+                          this.accNumber = parts[6];
+                          this.type = parts[7];
+                          this.card = parts[8];
+                          this.balance = Integer.parseInt(parts[10]);
+                          //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(UserInterfaceMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(UserInterfaceMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(UserInterfaceMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(UserInterfaceMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+                          java.awt.EventQueue.invokeLater(new Runnable() {
+                            public void run() {
+                                new UserInterfaceMain(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,balance).setVisible(true);
+                            }
+                        });
                           setVisible(false);
                       }
                      break;

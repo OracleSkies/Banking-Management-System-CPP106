@@ -13,10 +13,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.text.AttributeSet;
@@ -33,23 +35,61 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     /**
      * Creates new form UserInterface
      */
-    public UserInterfaceMain() {
+    
+    private String username;
+    private String password;
+    private String name;
+    private String birthdate;
+    private String phoneNumber;
+    private String address;
+    private String accNumber;
+    private String type;
+    private String card;
+    private int balance;
+    
+    
+    public UserInterfaceMain(String username,
+            String password,
+            String name,
+            String birthdate,
+            String phoneNumber,
+            String address,
+            String accNumber,
+            String type,
+            String card,
+            int balance) {
+        
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.accNumber = accNumber;
+        this.type = type;
+        this.card = card;
+        this.balance = balance;
+        
         initComponents();
-//        restrictInputToNumbersOnly(AmountLabel);//To restrict the text field for only number 
-//        restrictInputToNumbersOnly2(DepositText);//To restrict the text field for only number 
-//        restrictInputToNumbersOnly3(AmountLabel2);//To restrict the text field for only number 
         loadCSV(); // Automatically load the CSV file when the JFrame is created
-        String filePath = "Transactions.csv";
-        computeMoneyAndUpdateLabels(filePath);
+        balanceDisplay.setText("₱" + Integer.toString(balance));
+        NameDisplay.setText(name);
+        bdayDisplay.setText(birthdate);
+        phoneDisplay.setText(phoneNumber);
+        addressDisplay.setText(address);
+        accountDisplay.setText(accNumber);
         // Example usage of displayLastRow
         displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
         
+        
+        
         // Set character limit for each text field
-        setTextFieldLimit(UserName, 20); // Set limit for UserName to 20 characters
-        setTextFieldLimit(AccNum, 12);    // Set limit for Account Number to 12 characters
-        setTextFieldLimit(PhoneNum, 11);  // Set limit for Phone Number to 11 characters
-        setTextFieldLimit(PinNum, 8);     // Set limit for Pin Number to 4 characters
-        setTextFieldLimit(CPinNum, 8);    // Set limit for Confirm Pin Number to 4 characters
+        // PARA TO SA CARD APPLICATION
+//        setTextFieldLimit(UserName, 20); // Set limit for UserName to 20 characters
+//        setTextFieldLimit(AccNum, 12);    // Set limit for Account Number to 12 characters
+//        setTextFieldLimit(PhoneNum, 11);  // Set limit for Phone Number to 11 characters
+//        setTextFieldLimit(PinNum, 8);     // Set limit for Pin Number to 4 characters
+//        setTextFieldLimit(CPinNum, 8);    // Set limit for Confirm Pin Number to 4 characters
         
         cards.setVisible(false);
         payments.setVisible(false);
@@ -91,82 +131,198 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jScrollPane2.setOpaque(false);
         jScrollPane2.getViewport().setOpaque(false);
         DashHis.setShowGrid(false);
+        
+        NotifWindow.setVisible(false);
     }
         
-    public void computeMoneyAndUpdateLabels(String filePath) {
+
+
+    public void computeMoneyAndUpdateLabels(String transactionsFilePath, String accountsFilePath, String username, String password, String name) {
         double totalDeposits = 0.0;
         double totalWithdrawals = 0.0;
 
         // Create a DecimalFormat for formatting money values
-        DecimalFormat df = new DecimalFormat("#");
+        DecimalFormat df = new DecimalFormat("#.00");
 
-        // Validate the file path
-        if (filePath == null || filePath.isEmpty()) {
-            System.out.println("Invalid file path.");
+        // Validate the file paths
+        if (transactionsFilePath == null || transactionsFilePath.isEmpty() || accountsFilePath == null || accountsFilePath.isEmpty()) {
+            System.out.println("Invalid file paths.");
             return;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        // Validate user credentials
+        if (!validateUserCredentials(accountsFilePath, username, password, name)) {
+            System.out.println("User credentials do not match.");
+            return;
+        }
+
+        // Process transactions
+        try (BufferedReader br = new BufferedReader(new FileReader(transactionsFilePath))) {
             String line;
             boolean isFirstLine = true;
 
-            // Display the file content in the console or GUI
-            System.out.println("Reading CSV file:");
-            System.out.printf("%-15s %-15s %-10s %-30s%n", "Action", "Date", "Amount", "Description");
+            // Display headers
+            System.out.println("Reading Transactions CSV file:");
+            System.out.printf("%-15s %-15s %-10s %-30s %-15s%n", "Action", "Date", "Amount", "Description", "Username");
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    // Skip the header if present
                     isFirstLine = false;
-                    continue;
+                    continue; // Skip the header line
                 }
 
-                // Split the line by commas (columns: Action, Date, Amount, Description)
                 String[] values = line.split(",");
-                if (values.length < 4) {
+                if (values.length < 5) { // Ensure the correct number of columns
                     System.out.println("Skipping invalid line: " + line);
                     continue;
                 }
 
-                String action = values[4].trim();
-                String date = values[0].trim();
-                String amountStr = values[3].trim();
-                String description = values[5].trim();
+                String action = values[4].trim();         // Adjusted index for "Action"
+                String date = values[0].trim();           // Adjusted index for "Date"
+                String amountStr = values[3].trim();      // Adjusted index for "Amount"
+                String description = values[5].trim();   // Adjusted index for "Description"
+                String transactionUsername = values[1].trim(); // Adjusted index for "Username"
 
-                // Display the row data
-                System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
+                if (!transactionUsername.equals(username.trim())) {
+                    continue; // Skip lines not related to the logged-in user
+                }
+
+                // Display the transaction row
+                System.out.printf("%-15s %-15s %-10s %-30s %-15s%n", action, date, amountStr, description, transactionUsername);
 
                 try {
-                    // Parse the amount
                     double money = Double.parseDouble(amountStr);
 
-                    // Add deposits and withdrawals to their respective totals
-                    if (action.equalsIgnoreCase("Deposit")) {
+                    if (action.equalsIgnoreCase("DEPOSIT")) {
                         totalDeposits += money;
-                    } else if (action.equalsIgnoreCase("Withdraw")) {
-                        totalWithdrawals -= money; // Withdrawals are added positively
-                    }   
+                    } else if (action.equalsIgnoreCase("WITHDRAW")) {
+                        totalWithdrawals += money;
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("Skipping invalid money value: " + amountStr);
                 }
             }
 
-            // Calculate the total balance (sum of deposits and withdrawals)
-            double totalBalance = totalDeposits + totalWithdrawals;
-
-            // Format totals
+            double totalBalance = totalDeposits - totalWithdrawals;
             String formattedBalance = "$" + df.format(totalBalance);
 
-            // Update the JLabels (replace with your actual JLabel names)
-//            CurrentBal.setText(formattedBalance);
-            BalDis.setText(formattedBalance);
-
-
+            // Update JLabel safely
+            SwingUtilities.invokeLater(() -> balanceDisplay.setText(formattedBalance));
         } catch (IOException e) {
-            System.out.println("Error reading the file: " + filePath);
+            System.out.println("Error reading the file: " + transactionsFilePath);
             e.printStackTrace();
         }
     }
+
+
+    private boolean validateUserCredentials(String accountsFilePath, String username, String password, String name) {
+        try (BufferedReader br = new BufferedReader(new FileReader(accountsFilePath))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    isFirstLine = false;
+                    continue; // Skip the header line
+                }
+
+                String[] values = line.split(",");
+                if (values.length < 3) { // Ensure valid columns
+                    System.out.println("Skipping invalid account line: " + line);
+                    continue;
+                }
+
+                String accountUsername = values[0].trim();
+                String accountPassword = values[1].trim();
+                String accountName = values[2].trim();
+
+                if (accountUsername.equals(username.trim()) && accountPassword.equals(password.trim()) && accountName.equals(name.trim())) {
+                    System.out.println("User match found!");
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading Accounts.csv file.");
+            e.printStackTrace();
+        }
+
+        System.out.println("No match found for the user credentials.");
+        return false;
+    }
+
+
+
+    private void loadCSV() {
+        String transactionsFilePath = "Transactions.csv";
+        String accountsFilePath = "Accounts.csv";
+
+        try {
+            BufferedReader accountsReader = new BufferedReader(new FileReader(accountsFilePath));
+            HashSet<String> validUsernames = new HashSet<>();
+
+            String accountsLine;
+            while ((accountsLine = accountsReader.readLine()) != null) {
+                String[] accountData = accountsLine.split(",");
+                if (accountData.length >= 3) {
+                    validUsernames.add(accountData[2].trim());
+                }
+            }
+            accountsReader.close();
+
+            if (validUsernames.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No valid usernames found in Accounts.csv.");
+                return;
+            }
+
+            BufferedReader transactionsReader = new BufferedReader(new FileReader(transactionsFilePath));
+            ArrayList<String[]> data = new ArrayList<>();
+            String transactionsLine;
+
+            transactionsReader.readLine(); // Skip header
+
+            while ((transactionsLine = transactionsReader.readLine()) != null) {
+                String[] transactionData = transactionsLine.split(",");
+                if (transactionData.length >= 5) {
+                    String transactionUsername = transactionData[1].trim();
+
+                    if (validUsernames.contains(transactionUsername)) {
+                        data.add(new String[]{
+                            transactionData[0], // Timestamp
+                            transactionData[3], // Amount
+                            transactionData[4], // Action
+                            transactionData[5]  // Description
+                        });
+                    }
+                }
+            }
+            transactionsReader.close();
+
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            model.addColumn("Timestamp");
+            model.addColumn("Amount");
+            model.addColumn("Action");
+            model.addColumn("Description");
+
+            for (String[] row : data) {
+                model.addRow(row);
+            }
+
+            Transhis.setModel(model);
+            DashHis.setModel(model);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    
     public void displayLastRow(String filePath, JLabel ActionDis, JLabel DateDis, JLabel Amountdis, JLabel DescrDis) {
         File file = new File(filePath);
 
@@ -222,8 +378,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         }
     } 
 
-
-
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -241,6 +396,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         Profile = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         Notifs = new javax.swing.JButton();
+        NotifWindow = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         MasterPanelScreen = new javax.swing.JPanel();
         Dashboard = new javax.swing.JPanel();
         RecentTrans = new javax.swing.JPanel();
@@ -257,21 +415,21 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         Balance = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        BalDis = new javax.swing.JLabel();
+        balanceDisplay = new javax.swing.JLabel();
         BalanceLabel = new javax.swing.JLabel();
         AccDEts = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        NameDis = new javax.swing.JLabel();
-        PhoneNumDis = new javax.swing.JLabel();
+        NameDisplay = new javax.swing.JLabel();
+        phoneDisplay = new javax.swing.JLabel();
         BdayLabel = new javax.swing.JLabel();
         NameLabel1 = new javax.swing.JLabel();
         PhoneNumLabel = new javax.swing.JLabel();
-        BdayDis1 = new javax.swing.JLabel();
+        bdayDisplay = new javax.swing.JLabel();
         AddressLabel = new javax.swing.JLabel();
-        AddressDis = new javax.swing.JLabel();
+        addressDisplay = new javax.swing.JLabel();
         BankAccNumLabel = new javax.swing.JLabel();
-        PhoneNumDis1 = new javax.swing.JLabel();
+        accountDisplay = new javax.swing.JLabel();
         Hist = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
@@ -283,7 +441,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         GenRep = new javax.swing.JButton();
         CheckCardY = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        AccNumDis = new javax.swing.JLabel();
+        CardNumDis = new javax.swing.JLabel();
         CardNameDis = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -294,10 +452,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         bills = new javax.swing.JPanel();
         BillsScroll = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
+        Water = new javax.swing.JToggleButton();
+        Cable = new javax.swing.JToggleButton();
+        Insurance = new javax.swing.JToggleButton();
+        Electric = new javax.swing.JToggleButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -306,10 +464,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
-        jToggleButton7 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
+        Credit = new javax.swing.JToggleButton();
+        Govern = new javax.swing.JToggleButton();
+        Loans = new javax.swing.JToggleButton();
+        Telecommunicatioon = new javax.swing.JToggleButton();
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -318,10 +476,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jToggleButton9 = new javax.swing.JToggleButton();
-        jToggleButton10 = new javax.swing.JToggleButton();
-        jToggleButton11 = new javax.swing.JToggleButton();
-        jToggleButton12 = new javax.swing.JToggleButton();
+        Transport = new javax.swing.JToggleButton();
+        RealState = new javax.swing.JToggleButton();
+        HealthCare = new javax.swing.JToggleButton();
+        School = new javax.swing.JToggleButton();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -330,7 +488,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jToggleButton13 = new javax.swing.JToggleButton();
+        PaymentSolu = new javax.swing.JToggleButton();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -546,17 +704,11 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         Application = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         ApplyBut = new javax.swing.JButton();
-        UserName = new javax.swing.JTextField();
-        AccNum = new javax.swing.JTextField();
-        PhoneNum = new javax.swing.JTextField();
-        PinNum = new javax.swing.JTextField();
-        CPinNum = new javax.swing.JTextField();
+        CPinNum = new javax.swing.JPasswordField();
+        PinNum = new javax.swing.JPasswordField();
         MasterPanelButtons = new javax.swing.JPanel();
         payments = new javax.swing.JPanel();
         Shopping = new javax.swing.JButton();
@@ -582,7 +734,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jToggleButton15.setText("jToggleButton15");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -601,12 +752,45 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 530, 70));
 
         Notifs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
+        Notifs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NotifsMouseClicked(evt);
+            }
+        });
         Notifs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotifsActionPerformed(evt);
             }
         });
         getContentPane().add(Notifs, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 50));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("NOTIFICATION");
+
+        javax.swing.GroupLayout NotifWindowLayout = new javax.swing.GroupLayout(NotifWindow);
+        NotifWindow.setLayout(NotifWindowLayout);
+        NotifWindowLayout.setHorizontalGroup(
+            NotifWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NotifWindowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(NotifWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
+        );
+        NotifWindowLayout.setVerticalGroup(
+            NotifWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NotifWindowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(NotifWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 90, 240, 500));
 
         MasterPanelScreen.setBackground(new java.awt.Color(0, 153, 102));
         MasterPanelScreen.setOpaque(false);
@@ -624,24 +808,32 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel4.setText("RECENT TRANSACTION");
 
         DateLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DateLabel.setForeground(new java.awt.Color(255, 255, 255));
         DateLabel.setText("DATE:");
 
         ActionLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ActionLabel1.setForeground(new java.awt.Color(255, 255, 255));
         ActionLabel1.setText("ACTION:");
 
         AmountLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AmountLabel1.setForeground(new java.awt.Color(255, 255, 255));
         AmountLabel1.setText("DESCRIPTION:");
 
         AmountLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AmountLabel3.setForeground(new java.awt.Color(255, 255, 255));
         AmountLabel3.setText("AMOUNT:");
 
         DateDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DateDis.setForeground(new java.awt.Color(255, 255, 255));
 
         ActionDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ActionDis.setForeground(new java.awt.Color(255, 255, 255));
 
         DescrDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DescrDis.setForeground(new java.awt.Color(255, 255, 255));
 
         Amountdis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Amountdis.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout RecentTransLayout = new javax.swing.GroupLayout(RecentTrans);
         RecentTrans.setLayout(RecentTransLayout);
@@ -710,9 +902,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
-        BalDis.setBackground(new java.awt.Color(255, 255, 255));
-        BalDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        BalDis.setForeground(new java.awt.Color(255, 255, 255));
+        balanceDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        balanceDisplay.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        balanceDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        balanceDisplay.setText("Balance");
 
         BalanceLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         BalanceLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -736,7 +929,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(balanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         BalanceLayout.setVerticalGroup(
@@ -749,7 +942,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(balanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -761,30 +954,45 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        NameDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NameDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        NameDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        NameDisplay.setText("asd");
 
-        PhoneNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        phoneDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        phoneDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        phoneDisplay.setText("asd");
 
-        BdayLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BdayLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BdayLabel.setForeground(new java.awt.Color(255, 255, 255));
         BdayLabel.setText("Birthday:");
 
-        NameLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NameLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NameLabel1.setForeground(new java.awt.Color(255, 255, 255));
         NameLabel1.setText("Name:");
 
-        PhoneNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        PhoneNumLabel.setText("PhoneNumer:");
+        PhoneNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PhoneNumLabel.setForeground(new java.awt.Color(255, 255, 255));
+        PhoneNumLabel.setText("PhoneNumber:");
 
-        BdayDis1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        bdayDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        bdayDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        bdayDisplay.setText("asd");
 
-        AddressLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AddressLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        AddressLabel.setForeground(new java.awt.Color(255, 255, 255));
         AddressLabel.setText("Address:");
 
-        AddressDis.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        addressDisplay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        addressDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        addressDisplay.setText("asd");
 
-        BankAccNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BankAccNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BankAccNumLabel.setForeground(new java.awt.Color(255, 255, 255));
         BankAccNumLabel.setText("Bank Account Number:");
 
-        PhoneNumDis1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        accountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        accountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        accountDisplay.setText("asd");
 
         javax.swing.GroupLayout AccDEtsLayout = new javax.swing.GroupLayout(AccDEts);
         AccDEts.setLayout(AccDEtsLayout);
@@ -794,10 +1002,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator4)
-                    .addComponent(AddressDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BdayDis1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PhoneNumDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NameDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addressDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bdayDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(phoneDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NameDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(AccDEtsLayout.createSequentialGroup()
                         .addGroup(AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AccDEtsLayout.createSequentialGroup()
@@ -809,7 +1017,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                             .addComponent(AddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 58, Short.MAX_VALUE))
-                    .addComponent(PhoneNumDis1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(accountDisplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         AccDEtsLayout.setVerticalGroup(
@@ -822,24 +1030,24 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(NameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NameDis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addComponent(NameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(BdayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BdayDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bdayDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(PhoneNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PhoneNumDis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(phoneDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(AddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddressDis, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addressDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PhoneNumDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(accountDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         Hist.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -863,7 +1071,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "TimeStamp", "Aciotn", "Amount", "Description"
+                "TimeStamp", "Action", "Amount", "Description"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -874,6 +1082,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DashHis.setRowHeight(40);
         jScrollPane2.setViewportView(DashHis);
         if (DashHis.getColumnModel().getColumnCount() > 0) {
             DashHis.getColumnModel().getColumn(0).setResizable(false);
@@ -938,6 +1147,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             }
         });
         Transhis.setGridColor(new java.awt.Color(255, 255, 255));
+        Transhis.setRowHeight(40);
         jScrollPane1.setViewportView(Transhis);
         if (Transhis.getColumnModel().getColumnCount() > 0) {
             Transhis.getColumnModel().getColumn(0).setResizable(false);
@@ -945,8 +1155,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             Transhis.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        GenRep.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        GenRep.setText("Genrate Report");
+        GenRep.setBackground(new java.awt.Color(0, 0, 255));
+        GenRep.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        GenRep.setForeground(new java.awt.Color(255, 255, 255));
+        GenRep.setText("Generate Report");
         GenRep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenRepActionPerformed(evt);
@@ -961,19 +1173,19 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransacHisLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(TransacHisLayout.createSequentialGroup()
+                .addGap(435, 435, 435)
                 .addComponent(GenRep)
-                .addGap(504, 504, 504))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TransacHisLayout.setVerticalGroup(
             TransacHisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TransacHisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GenRep, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         MasterPanelScreen.add(TransacHis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
@@ -984,15 +1196,15 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chip.png"))); // NOI18N
         CheckCardY.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, 100));
 
-        AccNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        AccNumDis.setForeground(new java.awt.Color(255, 255, 255));
-        AccNumDis.setText("Account Number");
-        CheckCardY.add(AccNumDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 200, 30));
+        CardNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CardNumDis.setForeground(new java.awt.Color(255, 255, 255));
+        CardNumDis.setText("Account Number");
+        CheckCardY.add(CardNumDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 410, 30));
 
         CardNameDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         CardNameDis.setForeground(new java.awt.Color(255, 255, 255));
         CardNameDis.setText("Name");
-        CheckCardY.add(CardNameDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 90, 30));
+        CheckCardY.add(CardNameDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 380, 30));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QP.png"))); // NOI18N
         CheckCardY.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 390, 140, 93));
@@ -1028,18 +1240,33 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/water.png"))); // NOI18N
-
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/int.png"))); // NOI18N
-
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/insurance.png"))); // NOI18N
-        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+        Water.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/water.png"))); // NOI18N
+        Water.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton3ActionPerformed(evt);
+                WaterActionPerformed(evt);
             }
         });
 
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/electric.png"))); // NOI18N
+        Cable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/int.png"))); // NOI18N
+        Cable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CableActionPerformed(evt);
+            }
+        });
+
+        Insurance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/insurance.png"))); // NOI18N
+        Insurance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsuranceActionPerformed(evt);
+            }
+        });
+
+        Electric.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/electric.png"))); // NOI18N
+        Electric.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ElectricActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -1073,26 +1300,31 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Cable/Internet");
 
-        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cards.png"))); // NOI18N
-        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+        Credit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cards.png"))); // NOI18N
+        Credit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton5ActionPerformed(evt);
+                CreditActionPerformed(evt);
             }
         });
 
-        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Government.png"))); // NOI18N
-
-        jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loans.png"))); // NOI18N
-        jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
+        Govern.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Government.png"))); // NOI18N
+        Govern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton7ActionPerformed(evt);
+                GovernActionPerformed(evt);
             }
         });
 
-        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tele.png"))); // NOI18N
-        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+        Loans.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loans.png"))); // NOI18N
+        Loans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton8ActionPerformed(evt);
+                LoansActionPerformed(evt);
+            }
+        });
+
+        Telecommunicatioon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tele.png"))); // NOI18N
+        Telecommunicatioon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TelecommunicatioonActionPerformed(evt);
             }
         });
 
@@ -1128,31 +1360,31 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setText(" ₱ 15, 000");
 
-        jToggleButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Transportation.png"))); // NOI18N
-        jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
+        Transport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Transportation.png"))); // NOI18N
+        Transport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton9ActionPerformed(evt);
+                TransportActionPerformed(evt);
             }
         });
 
-        jToggleButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RealEstate.png"))); // NOI18N
-        jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
+        RealState.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RealEstate.png"))); // NOI18N
+        RealState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton10ActionPerformed(evt);
+                RealStateActionPerformed(evt);
             }
         });
 
-        jToggleButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Healthcare.png"))); // NOI18N
-        jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
+        HealthCare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Healthcare.png"))); // NOI18N
+        HealthCare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton11ActionPerformed(evt);
+                HealthCareActionPerformed(evt);
             }
         });
 
-        jToggleButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Schools.png"))); // NOI18N
-        jToggleButton12.addActionListener(new java.awt.event.ActionListener() {
+        School.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Schools.png"))); // NOI18N
+        School.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton12ActionPerformed(evt);
+                SchoolActionPerformed(evt);
             }
         });
 
@@ -1188,10 +1420,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("Schools");
 
-        jToggleButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PaymentSol.png"))); // NOI18N
-        jToggleButton13.addActionListener(new java.awt.event.ActionListener() {
+        PaymentSolu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PaymentSol.png"))); // NOI18N
+        PaymentSolu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton13ActionPerformed(evt);
+                PaymentSoluActionPerformed(evt);
             }
         });
 
@@ -1211,9 +1443,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Electric, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Water, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(jLabel10)
@@ -1234,9 +1466,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                         .addGap(174, 174, 174))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Cable, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Telecommunicatioon, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(52, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1301,22 +1533,22 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Credit, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Loans, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Govern, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Insurance, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Transport, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(RealState, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(HealthCare, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jToggleButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(School, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PaymentSolu, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(jLabel47))
@@ -1330,10 +1562,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton8)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Telecommunicatioon)
+                    .addComponent(Water, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Electric, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cable, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1353,10 +1585,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jToggleButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Credit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Loans, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(Govern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Insurance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1370,10 +1602,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jToggleButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(HealthCare, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(School, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RealState, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Transport, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1386,7 +1618,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addComponent(jToggleButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(PaymentSolu, javax.swing.GroupLayout.PREFERRED_SIZE, 244, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -2326,18 +2558,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("CARD APPLICATION");
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Name:");
-
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setText("Account Number:");
-
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Phone Number:");
-
         jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Confirm PIN Number:");
@@ -2366,85 +2586,43 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             }
         });
 
-        UserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        AccNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        AccNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccNumActionPerformed(evt);
-            }
-        });
-
-        PhoneNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        PinNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        CPinNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
         javax.swing.GroupLayout ApplicationLayout = new javax.swing.GroupLayout(Application);
         Application.setLayout(ApplicationLayout);
         ApplicationLayout.setHorizontalGroup(
             ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ApplicationLayout.createSequentialGroup()
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ApplicationLayout.createSequentialGroup()
-                        .addGap(425, 425, 425)
-                        .addComponent(jLabel31))
-                    .addGroup(ApplicationLayout.createSequentialGroup()
-                        .addGap(285, 285, 285)
-                        .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(AccNum, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ApplicationLayout.createSequentialGroup()
-                                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel35))
-                                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ApplicationLayout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
-                                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PhoneNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(PinNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CPinNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGap(425, 425, 425)
+                .addComponent(jLabel31)
+                .addContainerGap(425, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
                 .addGap(0, 474, Short.MAX_VALUE)
                 .addComponent(ApplyBut, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(466, 466, 466))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel35))
+                .addGap(70, 70, 70)
+                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(258, 258, 258))
         );
         ApplicationLayout.setVerticalGroup(
             ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ApplicationLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel31)
-                .addGap(88, 88, 88)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ApplicationLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AccNum)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PhoneNum)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PinNum))
-                .addGap(13, 13, 13)
+                .addGap(142, 142, 142)
                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(ApplyBut, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
@@ -2703,67 +2881,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         Trans.setForeground(Color.white);
     }//GEN-LAST:event_TransMouseExited
     
-    private void loadCSV() {
-        // Specify the path to the CSV file (you can change this to your file's path)
-        String filePath = "Transactions.csv";  // Update this to your actual file path
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
-            String line;
-            ArrayList<String[]> data = new ArrayList<>();
-
-            // Skip the first line (headers) since we already defined them in the JTable
-            br.readLine();
-
-            // Read the rest of the data
-            while ((line = br.readLine()) != null) {
-                // Split each line by comma
-                String[] columns = line.split(",");
-
-                // Ensure we have enough columns to avoid ArrayIndexOutOfBoundsException
-                if (columns.length >= 6) {
-                    // Extract only the needed columns: Timestamp, Amount, Action, Description
-                    String timestamp = columns[0];       // Timestamp
-                    String amount = columns[3];          // Amount
-                    String action = columns[4];          // Action
-                    String description = columns[5];     // Description
-
-                    // Add the filtered data row to the list
-                    data.add(new String[]{timestamp, amount, action, description});
-                }
-            }
-
-            // Create a DefaultTableModel to hold the data
-            DefaultTableModel model = new DefaultTableModel() {
-                // Override isCellEditable to make cells non-editable
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;  // Make all cells non-editable
-                }
-            };
-
-            // Add the required columns to the model
-            model.addColumn("Timestamp");
-            model.addColumn("Amount");
-            model.addColumn("Action");
-            model.addColumn("Description");
-
-            // Add data rows to the model
-            for (String[] row : data) {
-                model.addRow(row);
-            }
-
-            // Set the model to the JTable
-            Transhis.setModel(model);
-            DashHis.setModel(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
-        }
-    }
-
-
-
+    
     
     private void AccregMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccregMouseEntered
         // TODO add your handling code here:
@@ -2809,7 +2927,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 //        TransCash.setVisible(false);
 //        AccReg.setVisible(true);
         
-        UserAccountRegistrationAdminView register = new UserAccountRegistrationAdminView();
+        UserAccountRegistrationUserView register = new UserAccountRegistrationUserView();
         register.setVisible(true);
     }//GEN-LAST:event_AccregActionPerformed
     
@@ -2855,13 +2973,27 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
     private void checkcardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkcardActionPerformed
         // TODO add your handling code here:
-        Application.setVisible(false);
-        Dashboard.setVisible(false);
-        TransacHis.setVisible(false);
-        CheckCardY.setVisible(false);
-        CheckCardN.setVisible(true);
-        bills.setVisible(false);
-        shopping.setVisible(false);   
+        
+        if(this.card.equals("yes")){
+            Application.setVisible(false);
+            Dashboard.setVisible(false);
+            TransacHis.setVisible(false);
+            CheckCardY.setVisible(true);
+            CheckCardN.setVisible(false);
+            bills.setVisible(false);
+            shopping.setVisible(false); 
+            CardNameDis.setText(this.name);
+            CardNumDis.setText(this.accNumber);
+        } else{
+            Application.setVisible(false);
+            Dashboard.setVisible(false);
+            TransacHis.setVisible(false);
+            CheckCardY.setVisible(false);
+            CheckCardN.setVisible(true);
+            bills.setVisible(false);
+            shopping.setVisible(false);
+            
+        }
     }//GEN-LAST:event_checkcardActionPerformed
 
     private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
@@ -2959,19 +3091,15 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     
     private void ApplyButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyButActionPerformed
         // Retrieve user inputs
-        String username = UserName.getText().trim();
-        String accountNumber = AccNum.getText().trim();
-        String phoneNumber = PhoneNum.getText().trim();
+        
         String pin = PinNum.getText().trim();
         String confirmPin = CPinNum.getText().trim();
         
-        UserName.setText("");
-        AccNum.setText("");
-        PhoneNum.setText("");
         PinNum.setText("");
         CPinNum.setText("");
         // Validate input fields
-        String validationMessage = validateInputs(username, accountNumber, phoneNumber, pin, confirmPin);
+        String validationMessage = validateInputs(pin, confirmPin);
+//        username, accountNumber, phoneNumber, pin, confirmPin
         if (validationMessage != null) {
             showMessage(validationMessage, Color.RED);
             return;
@@ -2979,31 +3107,25 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         // Show success message and save application
         showMessage("Application Submitted Successfully!", Color.GREEN);
-        if (saveApplication1(username, accountNumber, phoneNumber, pin)) {
+        if (saveApplication1(this.name, this.accNumber, this.phoneNumber, pin)) {
             System.out.println("Application successfully saved.");
         } else {
             showMessage("Failed to save application. Please try again.", Color.RED);
         }
     }
 
-    private String validateInputs(String username, String accountNumber, String phoneNumber, String pin, String confirmPin) {
-        if (username.isEmpty() || accountNumber.isEmpty() || phoneNumber.isEmpty() || pin.isEmpty() || confirmPin.isEmpty()) {
+    private String validateInputs(String pin, String confirmPin) {
+        if (pin.isEmpty() || confirmPin.isEmpty()) {
             return "All fields are required.";
-        }
-        if (username.length() < 3 || username.length() > 20) {
-            return "Username must be between 3 and 20 characters.";
         }
         if (!pin.equals(confirmPin)) {
             return "PIN numbers do not match.";
         }
-        if (!phoneNumber.matches("\\d{11}")) {
-            return "Invalid phone number format. It must be exactly 11 digits.";
+        if (!pin.matches("\\d+")) {
+            return "Invalid PIN format.";
         }
         if (pin.length() < 4 || pin.length() > 8) {
             return "PIN must be between 4 to 8 characters.";
-        }
-        if (!accountNumber.matches("\\d{10,12}")) {
-            return "Invalid account number format. It must be 10 to 12 digits.";
         }
         return null; // All validations passed
     }
@@ -3052,10 +3174,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     
     
     
-    private void AccNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AccNumActionPerformed
-
     private void ApplyButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButMouseEntered
         // TODO add your handling code here:
         ApplyBut.setContentAreaFilled(true);
@@ -3099,41 +3217,194 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         checkcard.setForeground(Color.white);
     }//GEN-LAST:event_checkcardMouseExited
 
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton3ActionPerformed
+    private void InsuranceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsuranceActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
 
-    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton5ActionPerformed
+        // Data to be written to the CSV file
+        String[] data = {"Insurance", "15000", "Success"};
 
-    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton8ActionPerformed
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
 
-    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton7ActionPerformed
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_InsuranceActionPerformed
 
-    private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton9ActionPerformed
+    private void CreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditActionPerformed
+    // Define the file path for the CSV file
+        String filePath = "output.csv";
 
-    private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton10ActionPerformed
+        // Data to be written to the CSV file
+        String[] data = {"Credit Card", "10000", "Success"};
 
-    private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton11ActionPerformed
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
 
-    private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton12ActionPerformed
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_CreditActionPerformed
 
-    private void jToggleButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton13ActionPerformed
+    private void TelecommunicatioonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TelecommunicatioonActionPerformed
+         // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Telecommunication", "100", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_TelecommunicatioonActionPerformed
+
+    private void LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoansActionPerformed
+         // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Loan", "5000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_LoansActionPerformed
+
+    private void TransportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransportActionPerformed
+    // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Trabsportation", "800", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_TransportActionPerformed
+
+    private void RealStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealStateActionPerformed
+       // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Real State", "25000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_RealStateActionPerformed
+
+    private void HealthCareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HealthCareActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"health Care", "19000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_HealthCareActionPerformed
+
+    private void SchoolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SchoolActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"School", "18000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_SchoolActionPerformed
+
+    private void PaymentSoluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentSoluActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Payment Solution", "20000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_PaymentSoluActionPerformed
 
     private void PayBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PayBMouseEntered
         // TODO add your handling code here:
@@ -3299,11 +3570,128 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void GenRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRepActionPerformed
-        BankStatement banks = new BankStatement();       
-        banks.setVisible(true);
-        setVisible(false);
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BankStatement(name, accNumber,address).setVisible(true);
+            }
+        });
         
     }//GEN-LAST:event_GenRepActionPerformed
+
+    private void ElectricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElectricActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Electric", "1000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_ElectricActionPerformed
+
+    private void GovernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GovernActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Government", "600", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_GovernActionPerformed
+
+    private void WaterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WaterActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Water", "500", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+
+    }//GEN-LAST:event_WaterActionPerformed
+
+    private void CableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CableActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Cable/Internet", "800", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_CableActionPerformed
+
+    private void NotifsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotifsMouseClicked
+        // TODO add your handling code here:
+        NotifWindow.setVisible(!NotifWindow.isVisible());
+    }//GEN-LAST:event_NotifsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -3331,24 +3719,21 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UserInterfaceMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserInterfaceMain().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UserInterfaceMain().setVisible(true);
+//            }
+//        });
     }
-
+//<editor-fold defaultstate="collapsed" desc="VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccDEts;
-    private javax.swing.JTextField AccNum;
-    private javax.swing.JLabel AccNumDis;
     private javax.swing.JButton Accreg;
     private javax.swing.JLabel ActionDis;
     private javax.swing.JLabel ActionLabel1;
-    private javax.swing.JLabel AddressDis;
     private javax.swing.JLabel AddressLabel;
     private javax.swing.JLabel AmountLabel1;
     private javax.swing.JLabel AmountLabel3;
@@ -3357,51 +3742,64 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane AppliancesScroll;
     private javax.swing.JPanel Application;
     private javax.swing.JButton ApplyBut;
-    private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
     private javax.swing.JLabel BalanceLabel;
     private javax.swing.JLabel BankAccNumLabel;
-    private javax.swing.JLabel BdayDis1;
     private javax.swing.JLabel BdayLabel;
     private javax.swing.JButton Bills;
     private javax.swing.JScrollPane BillsScroll;
     private javax.swing.JToggleButton CARD;
-    private javax.swing.JTextField CPinNum;
+    private javax.swing.JPasswordField CPinNum;
+    private javax.swing.JToggleButton Cable;
     private javax.swing.JLabel CardNameDis;
+    private javax.swing.JLabel CardNumDis;
     private javax.swing.JPanel CheckCardN;
     private javax.swing.JPanel CheckCardY;
     private javax.swing.JPanel Clothings;
     private javax.swing.JScrollPane ClothingsScroll;
+    private javax.swing.JToggleButton Credit;
     private javax.swing.JTable DashHis;
     private javax.swing.JButton Dashb;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JLabel DateDis;
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DescrDis;
+    private javax.swing.JToggleButton Electric;
     private javax.swing.JScrollPane FoodScroll;
     private javax.swing.JPanel Foods;
     private javax.swing.JButton GenRep;
+    private javax.swing.JToggleButton Govern;
+    private javax.swing.JToggleButton HealthCare;
     private javax.swing.JPanel Hist;
+    private javax.swing.JToggleButton Insurance;
+    private javax.swing.JToggleButton Loans;
     private javax.swing.JPanel MasterPanelButtons;
     private javax.swing.JPanel MasterPanelScreen;
-    private javax.swing.JLabel NameDis;
+    private javax.swing.JLabel NameDisplay;
     private javax.swing.JLabel NameLabel1;
+    private javax.swing.JPanel NotifWindow;
     private javax.swing.JButton Notifs;
     private javax.swing.JButton PayB;
+    private javax.swing.JToggleButton PaymentSolu;
     private javax.swing.JToggleButton Payments;
-    private javax.swing.JTextField PhoneNum;
-    private javax.swing.JLabel PhoneNumDis;
-    private javax.swing.JLabel PhoneNumDis1;
     private javax.swing.JLabel PhoneNumLabel;
-    private javax.swing.JTextField PinNum;
+    private javax.swing.JPasswordField PinNum;
     private javax.swing.JButton Profile;
+    private javax.swing.JToggleButton RealState;
     private javax.swing.JPanel RecentTrans;
+    private javax.swing.JToggleButton School;
     private javax.swing.JButton Shopping;
+    private javax.swing.JToggleButton Telecommunicatioon;
     private javax.swing.JButton Trans;
     private javax.swing.JPanel TransacHis;
     private javax.swing.JTable Transhis;
-    private javax.swing.JTextField UserName;
+    private javax.swing.JToggleButton Transport;
+    private javax.swing.JToggleButton Water;
+    private javax.swing.JLabel accountDisplay;
+    private javax.swing.JLabel addressDisplay;
     private javax.swing.JButton application;
+    private javax.swing.JLabel balanceDisplay;
+    private javax.swing.JLabel bdayDisplay;
     private javax.swing.JPanel bills;
     private javax.swing.JPanel cards;
     private javax.swing.JButton checkcard;
@@ -3529,15 +3927,13 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel235;
     private javax.swing.JLabel jLabel236;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -3585,6 +3981,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -3626,15 +4023,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton10;
-    private javax.swing.JToggleButton jToggleButton11;
-    private javax.swing.JToggleButton jToggleButton12;
-    private javax.swing.JToggleButton jToggleButton13;
     private javax.swing.JToggleButton jToggleButton14;
     private javax.swing.JToggleButton jToggleButton15;
     private javax.swing.JToggleButton jToggleButton19;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton22;
     private javax.swing.JToggleButton jToggleButton23;
     private javax.swing.JToggleButton jToggleButton24;
@@ -3643,16 +4034,12 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton27;
     private javax.swing.JToggleButton jToggleButton28;
     private javax.swing.JToggleButton jToggleButton29;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton30;
     private javax.swing.JToggleButton jToggleButton31;
     private javax.swing.JToggleButton jToggleButton32;
     private javax.swing.JToggleButton jToggleButton33;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton58;
     private javax.swing.JToggleButton jToggleButton59;
-    private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton60;
     private javax.swing.JToggleButton jToggleButton61;
     private javax.swing.JToggleButton jToggleButton62;
@@ -3663,7 +4050,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton67;
     private javax.swing.JToggleButton jToggleButton68;
     private javax.swing.JToggleButton jToggleButton69;
-    private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton jToggleButton70;
     private javax.swing.JToggleButton jToggleButton71;
     private javax.swing.JToggleButton jToggleButton72;
@@ -3674,11 +4060,11 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton77;
     private javax.swing.JToggleButton jToggleButton78;
     private javax.swing.JToggleButton jToggleButton79;
-    private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JToggleButton jToggleButton80;
-    private javax.swing.JToggleButton jToggleButton9;
     private javax.swing.JPanel payments;
+    private javax.swing.JLabel phoneDisplay;
     private javax.swing.JPanel shopping;
     private javax.swing.JTabbedPane shoppingTab;
     // End of variables declaration//GEN-END:variables
+//</editor-fold>
 }

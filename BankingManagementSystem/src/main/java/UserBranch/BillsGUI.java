@@ -5,7 +5,11 @@
 package UserBranch;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,8 +28,47 @@ public class BillsGUI extends javax.swing.JFrame {
         jScrollPane1.setOpaque(false);
         jScrollPane1.getViewport().setOpaque(false);
         BillsTable.setShowGrid(false);
+        
+        // Example usage of the loadCSV function
+        loadCSV("output.csv");
+        calculateTotal();
+
+    }
+    
+    private void loadCSV(String filePath) {
+        DefaultTableModel model = (DefaultTableModel) BillsTable.getModel();
+        model.setRowCount(0); // Clear existing rows
+        
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(","); // Assuming CSV is comma-separated
+                model.addRow(values);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void calculateTotal() {
+        DefaultTableModel model = (DefaultTableModel) BillsTable.getModel();
+        double total = 0;
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            try {
+                // Parse the value in the second column as a double
+                double amount = Double.parseDouble(model.getValueAt(i, 1).toString());
+                total += amount;
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid number format in row " + (i + 1) + ": " + e.getMessage());
+            }
+        }
+
+        // Display the total in the BillDis label
+        BillDis.setText(String.format("%.2f", total));
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +92,7 @@ public class BillsGUI extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
+        BillsTable.setForeground(new java.awt.Color(255, 255, 255));
         BillsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -127,12 +171,59 @@ public class BillsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineActionPerformed
-        // TODO add your handling code here:
+        // Clear the table
+        DefaultTableModel model = (DefaultTableModel) BillsTable.getModel();
+        model.setRowCount(0); // Clear table rows
+
+        // Clear the CSV file
+        try (java.io.FileWriter fw = new java.io.FileWriter("output.csv", false)) {
+            fw.write(""); // Overwrite with an empty string
+            System.out.println("CSV file cleared successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Clear the total display
+        BillDis.setText("000000");
+
+        // Optionally hide the form
         setVisible(false);
     }//GEN-LAST:event_DeclineActionPerformed
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        // TODO add your handling code here:
+        // Get the total amount from the BillDis label
+        String totalAmount = BillDis.getText();
+
+        // Prepare the data to write
+        String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+        String name = "username"; // Replace with dynamic input if needed
+        String bankAccountNumber = "11111"; // Replace with dynamic input if available
+        String action = "Bills";
+        String description = "Payment of bills"; // Replace with specific or dynamic input if needed
+
+        String csvLine = String.format("%s,%s,%s,%s,%s,%s%n", 
+                                       timestamp, 
+                                       name, 
+                                       bankAccountNumber, 
+                                       totalAmount, 
+                                       action, 
+                                       description);
+
+        // Write to the Transaction.csv file
+        try (java.io.FileWriter fw = new java.io.FileWriter("Transactions.csv", true)) {
+            // Check if the file is empty to write the header first
+            java.io.File file = new java.io.File("Transactions.csv");
+            if (file.length() == 0) {
+                fw.write("Timestamp,Name,Bank Account number,Amount,Action,Description\n");
+            }
+            fw.write(csvLine);
+            System.out.println("Transaction recorded successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Optionally provide user feedback
+        javax.swing.JOptionPane.showMessageDialog(this, "Transaction confirmed and recorded!");
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void ConfirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseEntered

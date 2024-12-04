@@ -20,6 +20,9 @@ public class UserAccountRegistrationUserView extends javax.swing.JFrame {
     /**
      * Creates new form USERACCOUNTADMINISTRATION
      */
+    
+    
+    
     public UserAccountRegistrationUserView() {
         initComponents();
     }
@@ -45,7 +48,7 @@ public class UserAccountRegistrationUserView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
         pass = new javax.swing.JLabel();
         cpass = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
@@ -92,11 +95,11 @@ public class UserAccountRegistrationUserView extends javax.swing.JFrame {
         jLabel3.setText("Address:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 500, 170, 90));
 
-        username.setBackground(new java.awt.Color(255, 255, 255));
-        username.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        username.setForeground(new java.awt.Color(255, 255, 255));
-        username.setText("Username:");
-        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 88, 210, 80));
+        usernameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        usernameLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        usernameLabel.setText("Username:");
+        jPanel1.add(usernameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 88, 210, 80));
 
         pass.setBackground(new java.awt.Color(255, 255, 255));
         pass.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
@@ -273,8 +276,6 @@ public class UserAccountRegistrationUserView extends javax.swing.JFrame {
     
     
     private void returnToUserMain(){
-        UserInterfaceMain user = new UserInterfaceMain();
-        user.setVisible(true);
         setVisible(false);
     }
     /**
@@ -346,7 +347,7 @@ public class UserAccountRegistrationUserView extends javax.swing.JFrame {
     private javax.swing.JLabel pass;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField phoneNumField;
-    private javax.swing.JLabel username;
     private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }
