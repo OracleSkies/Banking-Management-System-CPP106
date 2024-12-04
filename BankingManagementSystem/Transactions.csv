@@ -1,5 +1,5 @@
 Timestamp,Name,Bank Account number,Amount,Action,Description
-123123,jayjay,sadfasdf,123123,withdraw,sadfasdf
+,,,,,
 date,jayjay,111,123,DEPOSIT,Bank Transaction
 date,jayjay,111,100,WITHDRAW,Bank Transaction
 date,jayjay,111,100,DEPOSIT,Bank Transaction
@@ -7,6 +7,7 @@ date,jayjay,111,100,MONEY TRANSFER,Money transfer to account number: 222
 date,jayjay,111,800,DEPOSIT,Bank Transaction
 date,jayjay,111,14,MONEY TRANSFER,Money transfer to account number: 222
 date,donasco,222,183,WITHDRAW,Bank Transaction
-date,donasco,222,1,WITHDRAW,Bank Transaction
-2024-12-03 16:29,jayjay,111,700,WITHDRAW,Bank Transaction
-2024-12-03 16:40,donasco,222,100,DEPOSIT,Bank Transaction
+date,ian,222,1,WITHDRAW,Bank Transaction
+03/12/2024 16:29,jayjay,111,700,WITHDRAW,Bank Transaction
+03/12/2024 16:40,donasco,222,100,DEPOSIT,Bank Transaction
+2024-12-04 17:33:06,Resty Mapalad Elopre,1000.00,CONFIRMED
