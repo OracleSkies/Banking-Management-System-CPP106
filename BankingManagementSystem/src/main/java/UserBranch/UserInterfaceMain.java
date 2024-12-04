@@ -168,6 +168,8 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
+    
     public void displayLastRow(String filePath, JLabel ActionDis, JLabel DateDis, JLabel Amountdis, JLabel DescrDis) {
         File file = new File(filePath);
 
