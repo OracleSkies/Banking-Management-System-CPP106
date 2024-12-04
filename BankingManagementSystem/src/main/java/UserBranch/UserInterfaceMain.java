@@ -704,17 +704,11 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         Application = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         ApplyBut = new javax.swing.JButton();
-        UserName = new javax.swing.JTextField();
-        AccNum = new javax.swing.JTextField();
-        PhoneNum = new javax.swing.JTextField();
-        PinNum = new javax.swing.JTextField();
-        CPinNum = new javax.swing.JTextField();
+        CPinNum = new javax.swing.JPasswordField();
+        PinNum = new javax.swing.JPasswordField();
         MasterPanelButtons = new javax.swing.JPanel();
         payments = new javax.swing.JPanel();
         Shopping = new javax.swing.JButton();
@@ -1162,7 +1156,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         }
 
         GenRep.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        GenRep.setText("Genrate Report");
+        GenRep.setText("Generate Report");
         GenRep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenRepActionPerformed(evt);
@@ -2562,18 +2556,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("CARD APPLICATION");
 
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Name:");
-
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setText("Account Number:");
-
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Phone Number:");
-
         jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("Confirm PIN Number:");
@@ -2602,85 +2584,43 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             }
         });
 
-        UserName.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        AccNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        AccNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccNumActionPerformed(evt);
-            }
-        });
-
-        PhoneNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        PinNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        CPinNum.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
         javax.swing.GroupLayout ApplicationLayout = new javax.swing.GroupLayout(Application);
         Application.setLayout(ApplicationLayout);
         ApplicationLayout.setHorizontalGroup(
             ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ApplicationLayout.createSequentialGroup()
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ApplicationLayout.createSequentialGroup()
-                        .addGap(425, 425, 425)
-                        .addComponent(jLabel31))
-                    .addGroup(ApplicationLayout.createSequentialGroup()
-                        .addGap(285, 285, 285)
-                        .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(AccNum, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ApplicationLayout.createSequentialGroup()
-                                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel35))
-                                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ApplicationLayout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
-                                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(PhoneNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(PinNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CPinNum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGap(425, 425, 425)
+                .addComponent(jLabel31)
+                .addContainerGap(425, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
                 .addGap(0, 474, Short.MAX_VALUE)
                 .addComponent(ApplyBut, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(466, 466, 466))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ApplicationLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel35))
+                .addGap(70, 70, 70)
+                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(258, 258, 258))
         );
         ApplicationLayout.setVerticalGroup(
             ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ApplicationLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel31)
-                .addGap(88, 88, 88)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ApplicationLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AccNum)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PhoneNum)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PinNum))
-                .addGap(13, 13, 13)
+                .addGap(142, 142, 142)
                 .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ApplicationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CPinNum, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(ApplyBut, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
         );
@@ -3135,19 +3075,15 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     
     private void ApplyButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApplyButActionPerformed
         // Retrieve user inputs
-        String username = UserName.getText().trim();
-        String accountNumber = AccNum.getText().trim();
-        String phoneNumber = PhoneNum.getText().trim();
+        
         String pin = PinNum.getText().trim();
         String confirmPin = CPinNum.getText().trim();
         
-        UserName.setText("");
-        AccNum.setText("");
-        PhoneNum.setText("");
         PinNum.setText("");
         CPinNum.setText("");
         // Validate input fields
-        String validationMessage = validateInputs(username, accountNumber, phoneNumber, pin, confirmPin);
+        String validationMessage = validateInputs(pin, confirmPin);
+//        username, accountNumber, phoneNumber, pin, confirmPin
         if (validationMessage != null) {
             showMessage(validationMessage, Color.RED);
             return;
@@ -3155,31 +3091,25 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         // Show success message and save application
         showMessage("Application Submitted Successfully!", Color.GREEN);
-        if (saveApplication1(username, accountNumber, phoneNumber, pin)) {
+        if (saveApplication1(this.name, this.accNumber, this.phoneNumber, pin)) {
             System.out.println("Application successfully saved.");
         } else {
             showMessage("Failed to save application. Please try again.", Color.RED);
         }
     }
 
-    private String validateInputs(String username, String accountNumber, String phoneNumber, String pin, String confirmPin) {
-        if (username.isEmpty() || accountNumber.isEmpty() || phoneNumber.isEmpty() || pin.isEmpty() || confirmPin.isEmpty()) {
+    private String validateInputs(String pin, String confirmPin) {
+        if (pin.isEmpty() || confirmPin.isEmpty()) {
             return "All fields are required.";
-        }
-        if (username.length() < 3 || username.length() > 20) {
-            return "Username must be between 3 and 20 characters.";
         }
         if (!pin.equals(confirmPin)) {
             return "PIN numbers do not match.";
         }
-        if (!phoneNumber.matches("\\d{11}")) {
-            return "Invalid phone number format. It must be exactly 11 digits.";
+        if (!pin.matches("\\d+")) {
+            return "Invalid PIN format.";
         }
         if (pin.length() < 4 || pin.length() > 8) {
             return "PIN must be between 4 to 8 characters.";
-        }
-        if (!accountNumber.matches("\\d{10,12}")) {
-            return "Invalid account number format. It must be 10 to 12 digits.";
         }
         return null; // All validations passed
     }
@@ -3228,10 +3158,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     
     
     
-    private void AccNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccNumActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AccNumActionPerformed
-
     private void ApplyButMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ApplyButMouseEntered
         // TODO add your handling code here:
         ApplyBut.setContentAreaFilled(true);
@@ -3761,7 +3687,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 //<editor-fold defaultstate="collapsed" desc="VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccDEts;
-    private javax.swing.JTextField AccNum;
     private javax.swing.JLabel AccNumDis;
     private javax.swing.JButton Accreg;
     private javax.swing.JLabel ActionDis;
@@ -3781,7 +3706,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JButton Bills;
     private javax.swing.JScrollPane BillsScroll;
     private javax.swing.JToggleButton CARD;
-    private javax.swing.JTextField CPinNum;
+    private javax.swing.JPasswordField CPinNum;
     private javax.swing.JToggleButton Cable;
     private javax.swing.JLabel CardNameDis;
     private javax.swing.JPanel CheckCardN;
@@ -3813,9 +3738,8 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JButton PayB;
     private javax.swing.JToggleButton PaymentSolu;
     private javax.swing.JToggleButton Payments;
-    private javax.swing.JTextField PhoneNum;
     private javax.swing.JLabel PhoneNumLabel;
-    private javax.swing.JTextField PinNum;
+    private javax.swing.JPasswordField PinNum;
     private javax.swing.JButton Profile;
     private javax.swing.JToggleButton RealState;
     private javax.swing.JPanel RecentTrans;
@@ -3826,7 +3750,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JPanel TransacHis;
     private javax.swing.JTable Transhis;
     private javax.swing.JToggleButton Transport;
-    private javax.swing.JTextField UserName;
     private javax.swing.JToggleButton Water;
     private javax.swing.JLabel accountDisplay;
     private javax.swing.JLabel addressDisplay;
@@ -3967,9 +3890,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
