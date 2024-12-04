@@ -1557,8 +1557,15 @@ public class ATMWindow extends javax.swing.JFrame {
         DisplayBalance.setText(balanceDisplay);
     }
     private void withdraw(int balance){
+        getReserve();
         String currDateTime = dateTime();
         int witToInt = Integer.parseInt(withdrawNumber);
+        int reserveCheck = this.reserve + witToInt; // This line of code add the current reserve with the withdraw amount to compare if the withdraw amount will overflow the bank reserve
+        
+        if (reserveCheck > 1000000){
+            JOptionPane.showMessageDialog(this, "Cannot withdraw money. Bank reserve will reach maximum capacity", "Bank Reserve Issue", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if(balance < witToInt){
             JOptionPane.showMessageDialog(this, "Cannot withdraw money. Insufficient balance", "Insufficient Balance", JOptionPane.ERROR_MESSAGE);
             writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
@@ -1569,7 +1576,7 @@ public class ATMWindow extends javax.swing.JFrame {
         this.balance = balance;
         JOptionPane.showMessageDialog(this,  "₱" + witToInt+" successfully withdrew from account number: " + accNumber + "!");
         writeToTransaction(currDateTime,name, accNumber, witToInt,"WITHDRAW","Bank Transaction");
-        getReserve();
+        
         this.reserve = reserve + witToInt;
         updateReserve();
         returnToATMHome(); 
@@ -1578,15 +1585,17 @@ public class ATMWindow extends javax.swing.JFrame {
     private void deposit(int balance){
         String currDateTime = dateTime();
         int depToInt = Integer.parseInt(depositNumber);
+        getReserve();
         if (this.reserve < depToInt){
             JOptionPane.showMessageDialog(this, "Cannot deposit money. Insufficient bank reserve", "Bank Reserve Issue", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         balance = balance + depToInt;
         this.balance = balance;
         writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         JOptionPane.showMessageDialog(this,  "₱" + depToInt+" successfully deposited in account number: " + accNumber + "!");
         writeToTransaction(currDateTime,name, accNumber, depToInt,"DEPOSIT","Bank Transaction");
-        getReserve();
+        
         this.reserve = reserve - depToInt;
         updateReserve();
         returnToATMHome(); 
