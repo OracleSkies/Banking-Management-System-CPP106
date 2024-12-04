@@ -40,7 +40,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         loadCSV(); // Automatically load the CSV file when the JFrame is created
        
         // Example usage of displayLastRow
-        displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
+        //displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
         
         
         
@@ -91,6 +91,8 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jScrollPane2.setOpaque(false);
         jScrollPane2.getViewport().setOpaque(false);
         DashHis.setShowGrid(false);
+        
+        NotifWindow.setVisible(false);
     }
         
 
@@ -354,6 +356,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         Profile = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         Notifs = new javax.swing.JButton();
+        NotifWindow = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         MasterPanelScreen = new javax.swing.JPanel();
         Dashboard = new javax.swing.JPanel();
         RecentTrans = new javax.swing.JPanel();
@@ -713,12 +718,45 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 530, 70));
 
         Notifs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
+        Notifs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NotifsMouseClicked(evt);
+            }
+        });
         Notifs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotifsActionPerformed(evt);
             }
         });
         getContentPane().add(Notifs, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 50));
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(51, 204, 255));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("NOTIFICATION");
+
+        javax.swing.GroupLayout NotifWindowLayout = new javax.swing.GroupLayout(NotifWindow);
+        NotifWindow.setLayout(NotifWindowLayout);
+        NotifWindowLayout.setHorizontalGroup(
+            NotifWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NotifWindowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(NotifWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
+        );
+        NotifWindowLayout.setVerticalGroup(
+            NotifWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NotifWindowLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(NotifWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 90, 240, 500));
 
         MasterPanelScreen.setBackground(new java.awt.Color(0, 153, 102));
         MasterPanelScreen.setOpaque(false);
@@ -3615,6 +3653,11 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CableActionPerformed
 
+    private void NotifsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NotifsMouseClicked
+        // TODO add your handling code here:
+        NotifWindow.setVisible(!NotifWindow.isVisible());
+    }//GEN-LAST:event_NotifsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3703,6 +3746,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JPanel MasterPanelScreen;
     private javax.swing.JLabel NameDis;
     private javax.swing.JLabel NameLabel1;
+    private javax.swing.JPanel NotifWindow;
     private javax.swing.JButton Notifs;
     private javax.swing.JButton PayB;
     private javax.swing.JToggleButton PaymentSolu;
@@ -3852,6 +3896,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel235;
     private javax.swing.JLabel jLabel236;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -3908,6 +3953,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
