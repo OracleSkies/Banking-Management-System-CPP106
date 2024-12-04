@@ -1,3 +1,0 @@
-username,password,name,birthdate,phone number,address,Account Number,type,card,pin,balance
-admin,pass,ADMIN,ADMIN,ADMIN,ADMIN,null,admin,null,null,null
-user,pass,jayjay,USER BIRTH,USER PHONE,USER ADDRESS,111,user,yes,null,100
