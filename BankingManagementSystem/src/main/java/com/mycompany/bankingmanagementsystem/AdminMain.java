@@ -60,6 +60,7 @@ public class AdminMain extends javax.swing.JFrame {
     private String pin;
     private int balance;
     private int rowNum;
+    private int reserve;
     
     public AdminMain() {
        
@@ -75,6 +76,7 @@ public class AdminMain extends javax.swing.JFrame {
         loadAccountsForAccApplication("AccountApplications.csv");
         loadAccountsApplicationForDashboard("AccountApplications.csv");
         loadCardApplication("CardApplications.csv");
+        displayBankReserves();
         showPieChart(GraphPanelDashboard);
         
        
@@ -131,7 +133,7 @@ public class AdminMain extends javax.swing.JFrame {
         CardApplicationTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRendererCardView());
         CardApplicationTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditorCardView(event));
         
-        
+        BankReservePanel.setBackground(new java.awt.Color(204, 204, 204, 80));
         CardApplicationTable.setOpaque(false);
         CardApplicationTable.setBackground(new java.awt.Color(204, 204, 204, 80));
         ((DefaultTableCellRenderer)CardApplicationTable.getDefaultRenderer(Object.class)).setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -221,6 +223,7 @@ public class AdminMain extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        bankReserveDisplayDash = new javax.swing.JLabel();
         Transactions = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -233,7 +236,8 @@ public class AdminMain extends javax.swing.JFrame {
         AuditAndReport = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         BankReservePanel = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        bankReserveDisplay = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         GraphPanel = new javax.swing.JPanel();
         GenRep = new javax.swing.JButton();
         SubTitle = new javax.swing.JLabel();
@@ -688,18 +692,27 @@ public class AdminMain extends javax.swing.JFrame {
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
 
+        bankReserveDisplayDash.setBackground(new java.awt.Color(255, 255, 255));
+        bankReserveDisplayDash.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        bankReserveDisplayDash.setForeground(new java.awt.Color(255, 255, 255));
+        bankReserveDisplayDash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bankReserveDisplayDash.setText("Bank Reserve");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addComponent(jLabel11)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                    .addComponent(bankReserveDisplayDash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -708,7 +721,9 @@ public class AdminMain extends javax.swing.JFrame {
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(bankReserveDisplayDash, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
 
         Dashboard.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 50, 300, 340));
@@ -796,20 +811,27 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel8.setText("AUDIT AND REPORT");
         AuditAndReport.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 6, 469, -1));
 
-        BankReservePanel.setBackground(new java.awt.Color(102, 255, 204));
+        BankReservePanel.setBackground(new java.awt.Color(204, 204, 204));
         BankReservePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("BANK RESERVE");
-        jLabel9.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        BankReservePanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 568, 218));
+        bankReserveDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        bankReserveDisplay.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
+        bankReserveDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        bankReserveDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bankReserveDisplay.setText("BANK RESERVE");
+        BankReservePanel.add(bankReserveDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 580, 120));
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("BANK RESERVE");
+        BankReservePanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 568, 70));
 
         AuditAndReport.add(BankReservePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 580, 470));
 
         GraphPanel.setBackground(new java.awt.Color(39, 146, 248));
+        GraphPanel.setOpaque(false);
         GraphPanel.setLayout(new java.awt.BorderLayout());
         AuditAndReport.add(GraphPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 580, 470));
 
@@ -1050,6 +1072,26 @@ public class AdminMain extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
     
+    private void displayBankReserves(){
+        getReserve();
+        bankReserveDisplayDash.setText("₱"+ Integer.toString(this.reserve));
+        bankReserveDisplay.setText("₱"+Integer.toString(this.reserve));
+    }
+    private void getReserve(){
+        // THIS METHOD READS THE INTEGER IN THE FILE
+        try (BufferedReader br = new BufferedReader(new FileReader("bankReserve.csv"))) {
+            String line;
+            // Read the CSV file line by line
+            if ((line = br.readLine()) != null) {
+                this.reserve = Integer.parseInt(line.trim());
+                // Check if the first column (fruit) is "lemon"
+            }
+            br.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void filterTransactionTable(String field){
         String filePath = "Transactions.csv";
         File file = new File(filePath);
@@ -1599,6 +1641,8 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton Transactionsbutton;
     private javax.swing.JTable accApplicationTableDash;
     private javax.swing.JButton accountButton;
+    private javax.swing.JLabel bankReserveDisplay;
+    private javax.swing.JLabel bankReserveDisplayDash;
     private javax.swing.JButton createNewAdminAccButton;
     private javax.swing.JPanel createNewAdminPanel;
     private javax.swing.JButton filterButton;
@@ -1607,6 +1651,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1615,7 +1660,6 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane5;
