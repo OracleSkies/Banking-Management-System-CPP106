@@ -1302,10 +1302,10 @@ public class AdminMain extends javax.swing.JFrame {
         PiePlot piePlot =(PiePlot) piechart.getPlot();
       
         //changing pie chart blocks colors
-        piePlot.setSectionPaint("IPhone 5s", new Color(255,255,102));
-        piePlot.setSectionPaint("SamSung Grand", new Color(102,255,102));
-        piePlot.setSectionPaint("MotoG", new Color(255,102,153));
-        piePlot.setSectionPaint("Nokia Lumia", new Color(0,204,204));
+        piePlot.setSectionPaint("DEPOSIT", new Color(255,255,102));
+        piePlot.setSectionPaint("WITHDRAW", new Color(102,255,102));
+        piePlot.setSectionPaint("TRANSFER", new Color(255,102,153));
+        piePlot.setSectionPaint("PAYMENTS", new Color(0,204,204));
       
        
         piePlot.setBackgroundPaint(new java.awt.Color(39,146,248));
