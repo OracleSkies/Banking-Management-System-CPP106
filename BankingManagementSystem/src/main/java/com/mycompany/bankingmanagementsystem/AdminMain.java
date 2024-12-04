@@ -9,6 +9,7 @@ import cellAction.TableActionCellRendererView;
 import cellAction.TableActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Panel;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,6 +28,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.title.TextTitle;
 import org.jfree.data.general.DefaultPieDataset;
 
 /*
@@ -66,14 +68,9 @@ public class AdminMain extends javax.swing.JFrame {
         loadAccountsForAccManagement("Accounts.csv");
         loadAccountsForAccApplication("AccountApplications.csv");
         loadAccountsApplicationForDashboard("AccountApplications.csv");
-//        createTransactionPieChart();
         showPieChart(GraphPanelDashboard);
         
        
-
-        
-        
-        
         TableActionEvent event = new TableActionEvent(){
             @Override 
             public void onEdit(int row){
@@ -749,7 +746,7 @@ public class AdminMain extends javax.swing.JFrame {
 
         AuditAndReport.add(BankReservePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, 580, 470));
 
-        GraphPanel.setBackground(new java.awt.Color(255, 51, 51));
+        GraphPanel.setBackground(new java.awt.Color(39, 146, 248));
         GraphPanel.setLayout(new java.awt.BorderLayout());
         AuditAndReport.add(GraphPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 580, 470));
 
@@ -1139,9 +1136,9 @@ public class AdminMain extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    
     private void editUserInfo(int row){
 
-        
         File file = new File("Accounts.csv");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
@@ -1217,18 +1214,7 @@ public class AdminMain extends javax.swing.JFrame {
     }
     
     private void viewAccountInformation(int row){
-       
-//        username = "";
-//        password = "";
-//        name = "";
-//        birthdate = "";
-//        phoneNumber = "";
-//        address = "";
-//        accNumber = "";
-//        type = "";
-//        
-//        rowNum = 0;
-        
+     
         File file = new File("Accounts.csv");
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
@@ -1262,12 +1248,6 @@ public class AdminMain extends javax.swing.JFrame {
         }
         
         
-//        setVisible(false);
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new AccountInformationView().setVisible(true);
-//            }
-//        });
     }
     
     private void deleteAccount(int row){
@@ -1306,17 +1286,22 @@ public class AdminMain extends javax.swing.JFrame {
     }
     
     public void showPieChart(JPanel panel){
+        //CREATES PIE CHART
         
         //create dataset
         DefaultPieDataset barDataset = new DefaultPieDataset( );
-        barDataset.setValue("IPhone 5s" , Double.valueOf(20));  
-        barDataset.setValue("SamSung Grand" , Double.valueOf(20));   
-        barDataset.setValue("MotoG" , Double.valueOf(40));    
-        barDataset.setValue("Nokia Lumia" , Double.valueOf(10));  
+        barDataset.setValue("DEPOSIT" , Double.valueOf(10));  
+        barDataset.setValue("WITHDRAW" , Double.valueOf(10));   
+        barDataset.setValue("TRANSFER" , Double.valueOf(10));    
+        barDataset.setValue("PAYMENTS" , Double.valueOf(10));  
       
         //create chart
-        JFreeChart piechart = ChartFactory.createPieChart("mobile sales",barDataset, false,true,false);//explain
-        piechart.setBackgroundPaint(new java.awt.Color(0,0,255));
+        JFreeChart piechart = ChartFactory.createPieChart("CASH TRANSACTIONS",barDataset, false,true,false);//explain
+        piechart.setBackgroundPaint(new java.awt.Color(39,146,248));
+        //change title color
+        TextTitle chartTitle = piechart.getTitle();
+        chartTitle.setPaint(Color.WHITE);
+        chartTitle.setFont(new Font("Segoe UI",Font.BOLD,20));
       
         PiePlot piePlot =(PiePlot) piechart.getPlot();
       
@@ -1327,12 +1312,13 @@ public class AdminMain extends javax.swing.JFrame {
         piePlot.setSectionPaint("Nokia Lumia", new Color(0,204,204));
       
        
-        piePlot.setBackgroundPaint(new java.awt.Color(0, 0, 255));
+        piePlot.setBackgroundPaint(new java.awt.Color(39,146,248));
         
         //create chartPanel to display chart(graph)
-        ChartPanel barChartPanel = new ChartPanel(piechart);
+        ChartPanel pieChartPanel = new ChartPanel(piechart);
         panel.removeAll();
-        panel.add(barChartPanel, BorderLayout.CENTER);
+        panel.add(pieChartPanel, BorderLayout.CENTER);
+        panel.setOpaque(false);
         panel.validate();
     }
 //    private void createTransactionPieChart() {
