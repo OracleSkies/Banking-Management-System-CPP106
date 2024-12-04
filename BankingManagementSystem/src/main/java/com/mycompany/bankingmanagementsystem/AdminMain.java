@@ -1115,7 +1115,6 @@ public class AdminMain extends javax.swing.JFrame {
                     case "Name":
                         if (row[1].toLowerCase().equals(fieldLower)) {
                             //Add the row to the table if the Name matches
-                            System.out.println(row[1].toLowerCase());
                             model.addRow(row); 
                         }
                     case "Account Number":
@@ -1453,7 +1452,6 @@ public class AdminMain extends javax.swing.JFrame {
         if (rowToDelete >= 0 && rowToDelete < lines.size()) {
             lines.remove(rowToDelete +1); // Remove the row at the specified index
         } else {
-            System.out.println("Row index is out of bounds.");
             return;
         }
 
@@ -1525,11 +1523,6 @@ public class AdminMain extends javax.swing.JFrame {
             return;
         }
 
-        // Debug: Log totals for verification
-        System.out.println("Transaction Totals - Deposits: " + totalDeposits +
-                           ", Withdrawals: " + totalWithdrawals +
-                           ", Transfers: " + totalTransfers +
-                           ", Payments: " + totalPayments);
 
         // If no data available, show a message and return
         if (totalDeposits == 0 && totalWithdrawals == 0 && totalTransfers == 0 && totalPayments == 0) {
