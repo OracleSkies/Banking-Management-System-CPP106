@@ -1024,9 +1024,9 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jToggleButton4" min="-2" pref="269" max="-2" attributes="0"/>
+                                      <Component id="Electric" min="-2" pref="269" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jToggleButton1" min="-2" pref="269" max="-2" attributes="0"/>
+                                      <Component id="Water" min="-2" pref="269" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
@@ -1052,9 +1052,9 @@
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="jToggleButton2" min="-2" pref="269" max="-2" attributes="0"/>
+                                      <Component id="Cable" min="-2" pref="269" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jToggleButton8" min="-2" pref="269" max="-2" attributes="0"/>
+                                      <Component id="Telecommunicatioon" min="-2" pref="269" max="-2" attributes="0"/>
                                       <EmptySpace pref="52" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -1141,24 +1141,24 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="jToggleButton5" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="Credit" min="-2" pref="269" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jToggleButton7" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="Loans" min="-2" pref="269" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jToggleButton6" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="Govern" min="-2" pref="269" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jToggleButton3" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="Insurance" min="-2" pref="269" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jToggleButton9" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="Transport" min="-2" pref="269" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jToggleButton10" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="RealState" min="-2" pref="269" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jToggleButton11" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="HealthCare" min="-2" pref="269" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jToggleButton12" min="-2" pref="269" max="-2" attributes="0"/>
+                                              <Component id="School" min="-2" pref="269" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jToggleButton13" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
+                                          <Component id="PaymentSolu" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -1179,10 +1179,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jToggleButton8" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jToggleButton1" min="-2" pref="223" max="-2" attributes="0"/>
-                                  <Component id="jToggleButton4" min="-2" pref="223" max="-2" attributes="0"/>
-                                  <Component id="jToggleButton2" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
+                                  <Component id="Telecommunicatioon" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Water" min="-2" pref="223" max="-2" attributes="0"/>
+                                  <Component id="Electric" min="-2" pref="223" max="-2" attributes="0"/>
+                                  <Component id="Cable" alignment="0" min="-2" pref="223" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1210,10 +1210,10 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jToggleButton5" max="32767" attributes="0"/>
-                                  <Component id="jToggleButton7" pref="0" max="32767" attributes="0"/>
-                                  <Component id="jToggleButton6" max="32767" attributes="0"/>
-                                  <Component id="jToggleButton3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Credit" max="32767" attributes="0"/>
+                                  <Component id="Loans" pref="0" max="32767" attributes="0"/>
+                                  <Component id="Govern" max="32767" attributes="0"/>
+                                  <Component id="Insurance" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel18" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
@@ -1231,10 +1231,10 @@
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jToggleButton11" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jToggleButton12" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
-                                  <Component id="jToggleButton10" max="32767" attributes="0"/>
-                                  <Component id="jToggleButton9" pref="0" max="32767" attributes="0"/>
+                                  <Component id="HealthCare" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="School" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
+                                  <Component id="RealState" max="32767" attributes="0"/>
+                                  <Component id="Transport" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -1250,7 +1250,7 @@
                                   <Component id="jLabel43" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="jToggleButton13" pref="244" max="32767" attributes="0"/>
+                              <Component id="PaymentSolu" pref="244" max="32767" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="jLabel47" min="-2" pref="14" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -1260,36 +1260,45 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+                    <Component class="javax.swing.JToggleButton" name="Water">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/water.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="WaterActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton2">
+                    <Component class="javax.swing.JToggleButton" name="Cable">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/int.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CableActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton3">
+                    <Component class="javax.swing.JToggleButton" name="Insurance">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/insurance.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton3ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InsuranceActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton4">
+                    <Component class="javax.swing.JToggleButton" name="Electric">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/electric.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ElectricActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
@@ -1379,41 +1388,44 @@
                         <Property name="text" type="java.lang.String" value="Cable/Internet"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton5">
+                    <Component class="javax.swing.JToggleButton" name="Credit">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/cards.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreditActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton6">
+                    <Component class="javax.swing.JToggleButton" name="Govern">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/Government.png"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GovernActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton7">
+                    <Component class="javax.swing.JToggleButton" name="Loans">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/loans.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton7ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoansActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton8">
+                    <Component class="javax.swing.JToggleButton" name="Telecommunicatioon">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/tele.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton8ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TelecommunicatioonActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel18">
@@ -1504,44 +1516,44 @@
                         <Property name="text" type="java.lang.String" value=" &#x20b1; 15, 000"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton9">
+                    <Component class="javax.swing.JToggleButton" name="Transport">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/Transportation.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton9ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TransportActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton10">
+                    <Component class="javax.swing.JToggleButton" name="RealState">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/RealEstate.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton10ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RealStateActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton11">
+                    <Component class="javax.swing.JToggleButton" name="HealthCare">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/Healthcare.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton11ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HealthCareActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton12">
+                    <Component class="javax.swing.JToggleButton" name="School">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/Schools.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton12ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SchoolActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel39">
@@ -1632,14 +1644,14 @@
                         <Property name="text" type="java.lang.String" value="Schools"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JToggleButton" name="jToggleButton13">
+                    <Component class="javax.swing.JToggleButton" name="PaymentSolu">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/images/PaymentSol.png"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton13ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PaymentSoluActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel47">
