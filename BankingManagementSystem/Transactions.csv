@@ -1,5 +1,4 @@
 Timestamp,Name,Bank Account number,Amount,Action,Description
-123123,jayjay,sadfasdf,123123,withdraw,sadfasdf
 date,jayjay,111,123,DEPOSIT,Bank Transaction
 date,jayjay,111,100,WITHDRAW,Bank Transaction
 date,jayjay,111,100,DEPOSIT,Bank Transaction
@@ -10,5 +9,6 @@ date,donasco,222,183,WITHDRAW,Bank Transaction
 date,donasco,222,1,WITHDRAW,Bank Transaction
 03/12/2024 16:29,jayjay,111,700,WITHDRAW,Bank Transaction
 03/12/2024 16:40,donasco,222,10000,DEPOSIT,Bank Transaction
-date,presco,233,78000,PAYMENTS,Bank Transaction
+date,presco,233,100,PAYMENTS,Bank Transaction
 date,jayjay,111,1000,MONEY TRANSFER,Money transfer to account number: 222
+date,presco,233,200,PAYMENTS,Bank Transaction

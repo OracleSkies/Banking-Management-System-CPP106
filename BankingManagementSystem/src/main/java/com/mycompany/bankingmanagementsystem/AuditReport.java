@@ -24,153 +24,7 @@ public class AuditReport extends javax.swing.JFrame {
      */
     public AuditReport() {
         initComponents();
-        loadDataFromCSVFiles(); // Call the method to load data
-        String filePath = "Transactions.csv";
-        displayAllTransactionsAndUpdateLabels(filePath);
-    }
-    
-    
-        
-       
-    
-    
-    // Method to load and count word occurrences from CSV files
-    private void loadDataFromCSVFiles() {
-        // Define the list of CSV file paths
-        String[] csvFiles = {"Transactions.csv", "Accounts.csv", "AccountApplications.csv"}; 
-
-        // Define a map to store word counts
-        Map<String, Integer> wordCountMap = new HashMap<>();
-
-        // Loop through each CSV file
-        for (String csvFile : csvFiles) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    String[] words = line.split(","); // Assuming CSV is comma-separated
-                    for (String word : words) {
-                        word = word.trim(); // Remove any extra spaces
-                        wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
-                    }
-                }
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error reading file: " + csvFile);
-            }
-        }
-
-        // Now display the results in the labels
-        displayResults(wordCountMap);
-    }
-
-    // Method to update the JLabel components with the total count of words
-    private void displayResults(Map<String, Integer> wordCountMap) {
-        // Example: Display word counts in specific JLabels
-        depCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("DEPOSIT", 0)));
-        witCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("WITHDRAW", 0)));
-        transCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("MONEY TRANSFER", 0)));
-        payCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("EXPENSE", 0)));
-        payCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("PAYMENTS", 0)));
-        endBalanceDisplay.setText(String.valueOf(calculateTotalBalance(wordCountMap)));
-    }
-
-    // Calculate the total balance from word counts (Example calculation)
-    private int calculateTotalBalance(Map<String, Integer> wordCountMap) {
-        // Just an example: you can implement actual logic based on your requirements
-        return wordCountMap.getOrDefault("DEPOSIT", 0) - wordCountMap.getOrDefault("WITHDRAW", 0);
-    }
-
-    public void displayAllTransactionsAndUpdateLabels(String filePath) {
-        double totalDeposits = 0.0;
-        double totalWithdrawals = 0.0;
-        double totalTransfer = 0.0;
-        double totalPayments = 0.0;
-
-        // Create a DecimalFormat for formatting money values
-        DecimalFormat df = new DecimalFormat("#");
-
-        // Validate the file path
-        if (filePath == null || filePath.isEmpty()) {
-            System.out.println("Invalid file path.");
-            return;
-        }
-
-        System.out.println("Displaying all transactions:");
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            boolean isFirstLine = true;
-
-            while ((line = br.readLine()) != null) {
-                if (isFirstLine) {
-                    // Skip the header if present
-                    isFirstLine = false;
-                    continue;
-                }
-
-                // Split the line by commas (columns: Action, Date, Amount, Description)
-                String[] values = line.split(",");
-                if (values.length < 4) {
-                    continue;
-                }
-
-                String action = values[4].trim();
-                String date = values[0].trim();
-                String amountStr = values[3].trim();
-                String description = values[5].trim();
-
-                // Display the row data
-                System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
-
-                try {
-                    // Parse the amount
-                    double money = Double.parseDouble(amountStr);
-
-                    // Add deposits and withdrawals to their respective totals
-                    if (action.equalsIgnoreCase("DEPOSIT")) {
-                        totalDeposits += money;
-                    }  else if (action.equalsIgnoreCase("BILL")) {
-                        totalTransfer += money;
-                    } else if (action.equalsIgnoreCase("EPXENSE")) {
-                        totalPayments += money;
-                    } else if (action.equalsIgnoreCase("PAYMENTS")) {
-                        totalPayments += money;
-                    }else if (action.equalsIgnoreCase("WITHDRAW")) {
-                        totalWithdrawals += money; // Withdrawals are added positively
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Skipping invalid money value: " + amountStr);
-                }
-            }
-
-            // Calculate the total balance (sum of deposits, withdrawals, bills, and expenses)
-            double totalBalance = totalDeposits + totalTransfer + totalTransfer - totalPayments + totalPayments - totalWithdrawals;
-
-            // Format totals
-            String formattedDeposits = "$" + df.format(totalDeposits);
-            String formattedWithdrawals = "$" + df.format(totalWithdrawals);
-            String formattedBills = "$" + df.format(totalTransfer);
-            String formattedExpense = "$" + df.format(totalPayments);
-            String formattedBalance = "$" + df.format(totalBalance);
-
-            // Display summary totals in the console
-            System.out.println("\nSummary:");
-            System.out.println("Total Deposits: " + formattedDeposits);
-            System.out.println("Total Withdrawals: " + formattedWithdrawals);
-            System.out.println("Total Bills: " + formattedBills);
-            System.out.println("Total Expenses: " + formattedExpense);
-            System.out.println("Total Balance: " + formattedBalance);
-
-            // Update the JLabels (replace with your actual JLabel names)
-            paymentsTotalDisplay.setText(formattedExpense);   
-            transTotalDisplay.setText(formattedBills);
-            witTotalDisplay.setText(formattedWithdrawals);
-            depTotalDisplay.setText(formattedDeposits);
-            endBalanceDisplay.setText(formattedBalance);
-
-        } catch (IOException e) {
-            System.out.println("Error reading the file: " + filePath);
-            e.printStackTrace();
-        }
+        updateLabelsForAudit();
     }
     
     /**
@@ -486,6 +340,80 @@ public class AuditReport extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ConfirmMouseExited
 
+    
+    // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES"> 
+
+    private void updateLabelsForAudit(){
+        String deposit = Integer.toString(countByAction("DEPOSIT"));
+        String withdraw = Integer.toString(countByAction("WITHDRAW"));
+        String transfer = Integer.toString(countByAction("MONEY TRANSFER"));
+        String payment = Integer.toString(countByAction("PAYMENTS"));
+        depCountDisplay.setText(deposit);
+        witCountDisplay.setText(withdraw);
+        transCountDisplay.setText(transfer);
+        payCountDisplay.setText(payment);
+        String depositAmount = Integer.toString(addByAction("DEPOSIT"));
+        String withdrawAmount = Integer.toString(addByAction("WITHDRAW"));
+        String transferAmount = Integer.toString(addByAction("MONEY TRANSFER"));
+        String paymentAmount = Integer.toString(addByAction("PAYMENTS"));
+        depTotalDisplay.setText("₱" + depositAmount);
+        witTotalDisplay.setText("₱" +withdrawAmount);
+        transTotalDisplay.setText("₱" +transferAmount);
+        paymentsTotalDisplay.setText("₱" +paymentAmount);
+        String endBalance = Integer.toString(endingBalance(addByAction("DEPOSIT"),addByAction("WITHDRAW"),addByAction("PAYMENTS")));
+        endBalanceDisplay.setText("₱" + endBalance);
+    }
+    
+    private int countByAction(String action){
+        //Counts all the action done by the user
+        int actionCount = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("Transactions.csv"))) {
+            String line;
+            // Read the CSV file line by line
+            while ((line = br.readLine()) != null) {
+                // Split the line into columns by comma
+                String[] columns = line.split(",");
+                
+                // Check if the first column (fruit) is "lemon"
+                if (columns[4].trim().equalsIgnoreCase(action)) {
+                    actionCount++;
+                }
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return actionCount;
+    }
+    
+    private int addByAction(String action){
+        //gets the sum of amount per action done by the user
+        int actionAmount = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("Transactions.csv"))) {
+            String line;
+            // Read the CSV file line by line
+            while ((line = br.readLine()) != null) {
+                // Split the line into columns by comma
+                String[] columns = line.split(",");
+                
+                // Check if the first column (fruit) is "lemon"
+                if (columns[4].trim().equalsIgnoreCase(action)) {
+                    int amountToInt = Integer.parseInt(columns[3]);
+                    actionAmount = actionAmount + amountToInt;
+                }
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return actionAmount;
+    }
+    private int endingBalance(int deposit, int withdraw, int payments){
+        //This calculate the ending balance of the user
+        int endBalance = deposit - (withdraw + payments);
+        return endBalance;
+    }
+    // </editor-fold> 
     /**
      * @param args the command line arguments
      */

@@ -1386,7 +1386,6 @@ public class AdminMain extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         
-        
     }
     
     private void deleteAccount(int row){
