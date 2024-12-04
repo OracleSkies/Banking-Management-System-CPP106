@@ -36,14 +36,12 @@ public class UserInterfaceMain extends javax.swing.JFrame {
      */
     public UserInterfaceMain() {
         initComponents();
-//        restrictInputToNumbersOnly(AmountLabel);//To restrict the text field for only number 
-//        restrictInputToNumbersOnly2(DepositText);//To restrict the text field for only number 
-//        restrictInputToNumbersOnly3(AmountLabel2);//To restrict the text field for only number 
         loadCSV(); // Automatically load the CSV file when the JFrame is created
-        String filePath = "Transactions.csv";
-        computeMoneyAndUpdateLabels(filePath);
+       
         // Example usage of displayLastRow
         displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
+        
+        
         
         // Set character limit for each text field
         setTextFieldLimit(UserName, 20); // Set limit for UserName to 20 characters
@@ -94,26 +92,35 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         DashHis.setShowGrid(false);
     }
         
-    public void computeMoneyAndUpdateLabels(String filePath) {
+
+
+    public void computeMoneyAndUpdateLabels(String transactionsFilePath, String accountsFilePath, String username, String password, String name) {
         double totalDeposits = 0.0;
         double totalWithdrawals = 0.0;
 
         // Create a DecimalFormat for formatting money values
-        DecimalFormat df = new DecimalFormat("#");
+        DecimalFormat df = new DecimalFormat("#.00");
 
-        // Validate the file path
-        if (filePath == null || filePath.isEmpty()) {
-            System.out.println("Invalid file path.");
+        // Validate the file paths
+        if (transactionsFilePath == null || transactionsFilePath.isEmpty() || accountsFilePath == null || accountsFilePath.isEmpty()) {
+            System.out.println("Invalid file paths.");
             return;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        // Check if user credentials match in "Accounts.csv"
+        if (!validateUserCredentials(accountsFilePath, username, password, name)) {
+            System.out.println("User credentials do not match.");
+            return;
+        }
+
+        // Process the transactions in "Transactions.csv"
+        try (BufferedReader br = new BufferedReader(new FileReader(transactionsFilePath))) {
             String line;
             boolean isFirstLine = true;
 
             // Display the file content in the console or GUI
-            System.out.println("Reading CSV file:");
-            System.out.printf("%-15s %-15s %-10s %-30s%n", "Action", "Date", "Amount", "Description");
+            System.out.println("Reading Transactions CSV file:");
+            System.out.printf("%-15s %-15s %-10s %-30s %-15s%n", "Action", "Date", "Amount", "Description", "Username");
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
@@ -122,52 +129,101 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                     continue;
                 }
 
-                // Split the line by commas (columns: Action, Date, Amount, Description)
+                // Split the line by commas (columns: Action, Date, Amount, Description, Username)
                 String[] values = line.split(",");
-                if (values.length < 4) {
+                if (values.length < 5) { // Assuming we now have 5 columns (Action, Date, Amount, Description, Username)
                     System.out.println("Skipping invalid line: " + line);
                     continue;
                 }
 
-                String action = values[4].trim();
-                String date = values[0].trim();
-                String amountStr = values[3].trim();
-                String description = values[5].trim();
+                String action = values[0].trim();   // Action (DEPOSIT or WITHDRAW)
+                String date = values[1].trim();     // Date
+                String amountStr = values[2].trim(); // Amount
+                String description = values[3].trim(); // Description
+                String transactionUsername = values[4].trim(); // Username in transaction
+
+                // Only process rows for the logged-in user (checking username and name)
+                if (!transactionUsername.equals(username)) {
+                    continue; // Skip lines that do not match the logged-in username
+                }
 
                 // Display the row data
-                System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
+                System.out.printf("%-15s %-15s %-10s %-30s %-15s%n", action, date, amountStr, description, transactionUsername);
 
                 try {
                     // Parse the amount
                     double money = Double.parseDouble(amountStr);
 
                     // Add deposits and withdrawals to their respective totals
-                    if (action.equalsIgnoreCase("Deposit")) {
+                    if (action.equalsIgnoreCase("DEPOSIT")) {
                         totalDeposits += money;
-                    } else if (action.equalsIgnoreCase("Withdraw")) {
-                        totalWithdrawals -= money; // Withdrawals are added positively
-                    }   
+                    } else if (action.equalsIgnoreCase("WITHDRAW")) {
+                        totalWithdrawals += money; // Withdrawals are subtracted from the total balance
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("Skipping invalid money value: " + amountStr);
                 }
             }
 
             // Calculate the total balance (sum of deposits and withdrawals)
-            double totalBalance = totalDeposits + totalWithdrawals;
+            double totalBalance = totalDeposits - totalWithdrawals;
 
             // Format totals
             String formattedBalance = "$" + df.format(totalBalance);
 
-            // Update the JLabels (replace with your actual JLabel names)
-//            CurrentBal.setText(formattedBalance);
+            // Update the JLabel (replace with your actual JLabel name)
             BalDis.setText(formattedBalance);
 
-
         } catch (IOException e) {
-            System.out.println("Error reading the file: " + filePath);
+            System.out.println("Error reading the file: " + transactionsFilePath);
             e.printStackTrace();
         }
     }
+
+    // Validate user credentials in "Accounts.csv"
+    private boolean validateUserCredentials(String accountsFilePath, String username, String password, String name) {
+        try (BufferedReader br = new BufferedReader(new FileReader(accountsFilePath))) {
+            String line;
+            boolean isFirstLine = true;
+
+            // Read through the account file
+            while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    // Skip header line if present
+                    isFirstLine = false;
+                    continue;
+                }
+
+                // Split the line by commas (columns: Username, Password, Name)
+                String[] values = line.split(",");
+                if (values.length < 3) { // Only check for Username, Password, Name columns
+                    System.out.println("Skipping invalid account line: " + line);
+                    continue;
+                }
+
+                String accountUsername = values[0].trim();
+                String accountPassword = values[1].trim();
+                String accountName = values[2].trim();
+
+                // Debugging output
+                System.out.println("Checking credentials: Username=" + accountUsername + ", Password=" + accountPassword + ", Name=" + accountName);
+
+                // Check if the username, password, and name match
+                if (accountUsername.equals(username) && accountPassword.equals(password) && accountName.equals(name)) {
+                    System.out.println("User match found!");
+                    return true; // Match found
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading Accounts.csv file.");
+            e.printStackTrace();
+        }
+
+        System.out.println("No match found for the user credentials.");
+        return false; // No match found
+    }
+
+
     
     
     public void displayLastRow(String filePath, JLabel ActionDis, JLabel DateDis, JLabel Amountdis, JLabel DescrDis) {
