@@ -5,6 +5,13 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,8 +24,9 @@ public class AuditReport extends javax.swing.JFrame {
      */
     public AuditReport() {
         initComponents();
+        updateLabelsForAudit();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,20 +42,20 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
+        witCountDisplay = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
         jLabel122 = new javax.swing.JLabel();
-        jLabel123 = new javax.swing.JLabel();
+        Payments = new javax.swing.JLabel();
         jLabel125 = new javax.swing.JLabel();
         jLabel132 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jLabel117 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
+        depCountDisplay = new javax.swing.JLabel();
+        payCountDisplay = new javax.swing.JLabel();
+        transCountDisplay = new javax.swing.JLabel();
+        witTotalDisplay = new javax.swing.JLabel();
+        endBalanceDisplay = new javax.swing.JLabel();
+        transTotalDisplay = new javax.swing.JLabel();
+        depTotalDisplay = new javax.swing.JLabel();
+        paymentsTotalDisplay = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -59,7 +67,6 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel124.setText("Deposits");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1500, 800));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -87,12 +94,11 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel108.setForeground(new java.awt.Color(255, 255, 255));
         jLabel108.setText("Deposits");
 
-        jLabel112.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel112.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel112.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel112.setText("0");
+        witCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        witCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        witCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        witCountDisplay.setText("1");
 
-        Confirm.setBackground(new java.awt.Color(255, 255, 255));
         Confirm.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Confirm.setForeground(new java.awt.Color(255, 255, 255));
         Confirm.setText("CONFIRM");
@@ -115,12 +121,12 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel122.setBackground(new java.awt.Color(255, 255, 255));
         jLabel122.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel122.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel122.setText("Bills");
+        jLabel122.setText("Money Transfer");
 
-        jLabel123.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel123.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel123.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel123.setText("Expenditures");
+        Payments.setBackground(new java.awt.Color(255, 255, 255));
+        Payments.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Payments.setForeground(new java.awt.Color(255, 255, 255));
+        Payments.setText("Payments");
 
         jLabel125.setBackground(new java.awt.Color(255, 255, 255));
         jLabel125.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -132,89 +138,89 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel132.setForeground(new java.awt.Color(255, 255, 255));
         jLabel132.setText("Ending Balance");
 
-        jLabel114.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel114.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel114.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel114.setText("0");
+        depCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        depCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        depCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        depCountDisplay.setText("1");
 
-        jLabel115.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel115.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel115.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel115.setText("0");
+        payCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        payCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        payCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        payCountDisplay.setText("1");
 
-        jLabel116.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel116.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel116.setText("0");
+        transCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        transCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        transCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        transCountDisplay.setText("1");
 
-        jLabel117.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel117.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel117.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel117.setText("0");
+        witTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        witTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        witTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        witTotalDisplay.setText("1");
 
-        jLabel118.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel118.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel118.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel118.setText("0");
+        endBalanceDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        endBalanceDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        endBalanceDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        endBalanceDisplay.setText("1");
 
-        jLabel119.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel119.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel119.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel119.setText("0");
+        transTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        transTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        transTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        transTotalDisplay.setText("1");
 
-        jLabel120.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel120.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel120.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel120.setText("0");
+        depTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        depTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        depTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        depTotalDisplay.setText("1");
 
-        jLabel121.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel121.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel121.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel121.setText("0");
+        paymentsTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        paymentsTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        paymentsTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        paymentsTotalDisplay.setText("1");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(jLabel106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(256, 256, 256)
-                                .addComponent(jLabel106)
-                                .addGap(179, 179, 179)
-                                .addComponent(jLabel107))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel123)
-                                            .addComponent(jLabel125)
-                                            .addComponent(jLabel108)
-                                            .addComponent(jLabel122))
-                                        .addGap(93, 93, 93)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel112)
-                                            .addComponent(jLabel116)
-                                            .addComponent(jLabel114)
-                                            .addComponent(jLabel115)))
-                                    .addComponent(jLabel132))
-                                .addGap(311, 311, 311)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel118)
-                                    .addComponent(jLabel121)
-                                    .addComponent(jLabel120)
-                                    .addComponent(jLabel119)
-                                    .addComponent(jLabel117)))))
+                            .addComponent(jLabel132)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Payments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel108)
+                                .addComponent(jLabel122, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel125, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(94, 94, 94)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(depCountDisplay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(witCountDisplay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(transCountDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(payCountDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel107, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(witTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(transTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(paymentsTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(endBalanceDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(312, 312, 312))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(382, 382, 382)
                         .addComponent(jLabel105))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(426, 426, 426)
+                        .addGap(418, 418, 418)
                         .addComponent(Confirm)))
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,37 +233,40 @@ public class AuditReport extends javax.swing.JFrame {
                     .addComponent(jLabel107))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel108)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel114)
-                        .addComponent(jLabel120)))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel117)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel125)
-                        .addComponent(jLabel112)))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel122)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel116)
-                        .addComponent(jLabel119)))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel123)
-                    .addComponent(jLabel115)
-                    .addComponent(jLabel121))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel132)
-                    .addComponent(jLabel118))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel108)
+                            .addComponent(depCountDisplay))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel125)
+                            .addComponent(witCountDisplay))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel122)
+                            .addComponent(transCountDisplay))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Payments)
+                            .addComponent(payCountDisplay))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel132))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(depTotalDisplay)
+                        .addGap(30, 30, 30)
+                        .addComponent(witTotalDisplay)
+                        .addGap(29, 29, 29)
+                        .addComponent(transTotalDisplay)
+                        .addGap(29, 29, 29)
+                        .addComponent(paymentsTotalDisplay)
+                        .addGap(29, 29, 29)
+                        .addComponent(endBalanceDisplay)))
+                .addGap(75, 75, 75)
                 .addComponent(Confirm)
-                .addGap(343, 343, 343))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 1200, 960));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 1200, 690));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -289,7 +298,7 @@ public class AuditReport extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 1460, 5));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 1460, 5));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled design.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, -1, -1));
@@ -312,8 +321,9 @@ public class AuditReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        // TODO add your handling code here:     
-        
+        AdminMain main = new AdminMain();
+        main.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void ConfirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseEntered
@@ -330,6 +340,80 @@ public class AuditReport extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ConfirmMouseExited
 
+    
+    // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES"> 
+
+    private void updateLabelsForAudit(){
+        String deposit = Integer.toString(countByAction("DEPOSIT"));
+        String withdraw = Integer.toString(countByAction("WITHDRAW"));
+        String transfer = Integer.toString(countByAction("MONEY TRANSFER"));
+        String payment = Integer.toString(countByAction("PAYMENTS"));
+        depCountDisplay.setText(deposit);
+        witCountDisplay.setText(withdraw);
+        transCountDisplay.setText(transfer);
+        payCountDisplay.setText(payment);
+        String depositAmount = Integer.toString(addByAction("DEPOSIT"));
+        String withdrawAmount = Integer.toString(addByAction("WITHDRAW"));
+        String transferAmount = Integer.toString(addByAction("MONEY TRANSFER"));
+        String paymentAmount = Integer.toString(addByAction("PAYMENTS"));
+        depTotalDisplay.setText("₱" + depositAmount);
+        witTotalDisplay.setText("₱" +withdrawAmount);
+        transTotalDisplay.setText("₱" +transferAmount);
+        paymentsTotalDisplay.setText("₱" +paymentAmount);
+        String endBalance = Integer.toString(endingBalance(addByAction("DEPOSIT"),addByAction("WITHDRAW"),addByAction("PAYMENTS")));
+        endBalanceDisplay.setText("₱" + endBalance);
+    }
+    
+    private int countByAction(String action){
+        //Counts all the action done by the user
+        int actionCount = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("Transactions.csv"))) {
+            String line;
+            // Read the CSV file line by line
+            while ((line = br.readLine()) != null) {
+                // Split the line into columns by comma
+                String[] columns = line.split(",");
+                
+                // Check if the first column (fruit) is "lemon"
+                if (columns[4].trim().equalsIgnoreCase(action)) {
+                    actionCount++;
+                }
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return actionCount;
+    }
+    
+    private int addByAction(String action){
+        //gets the sum of amount per action done by the user
+        int actionAmount = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader("Transactions.csv"))) {
+            String line;
+            // Read the CSV file line by line
+            while ((line = br.readLine()) != null) {
+                // Split the line into columns by comma
+                String[] columns = line.split(",");
+                
+                // Check if the first column (fruit) is "lemon"
+                if (columns[4].trim().equalsIgnoreCase(action)) {
+                    int amountToInt = Integer.parseInt(columns[3]);
+                    actionAmount = actionAmount + amountToInt;
+                }
+            }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return actionAmount;
+    }
+    private int endingBalance(int deposit, int withdraw, int payments){
+        //This calculate the ending balance of the user
+        int endBalance = deposit - (withdraw + payments);
+        return endBalance;
+    }
+    // </editor-fold> 
     /**
      * @param args the command line arguments
      */
@@ -367,22 +451,16 @@ public class AuditReport extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Confirm;
+    private javax.swing.JLabel Payments;
+    private javax.swing.JLabel depCountDisplay;
+    private javax.swing.JLabel depTotalDisplay;
+    private javax.swing.JLabel endBalanceDisplay;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel124;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel132;
@@ -390,5 +468,11 @@ public class AuditReport extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel payCountDisplay;
+    private javax.swing.JLabel paymentsTotalDisplay;
+    private javax.swing.JLabel transCountDisplay;
+    private javax.swing.JLabel transTotalDisplay;
+    private javax.swing.JLabel witCountDisplay;
+    private javax.swing.JLabel witTotalDisplay;
     // End of variables declaration//GEN-END:variables
 }

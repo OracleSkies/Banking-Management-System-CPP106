@@ -17,4 +17,6 @@ public interface TableActionEvent {
     public void onView(int row);
     
     public void accOnView(int row);
+    
+    public void cardOnView(int row);
 }

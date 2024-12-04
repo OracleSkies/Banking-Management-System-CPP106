@@ -7,6 +7,7 @@ package com.mycompany.bankingmanagementsystem;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,23 +22,39 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Laurence
  */
-public class UserAccountApplication extends javax.swing.JFrame {
+public class UserCardApplication extends javax.swing.JFrame {
 
     /**
      * Creates new form USERACCOUNTAPPLICATION_ADMIN___
      */
+    
     private String username;
     private String password;
+    private String name;
+    private String birthdate;
+    private String phoneNumber;
+    private String address;
+    private String accNumber;
+    private String type;
+    private String card;
+    private String pin;
+    private int balance;
     private int row;
     
-    public UserAccountApplication(String username, String password,String name,String birthdate,String phoneNumber,String address,int row) {
+    public UserCardApplication(
+            String name,
+            String phoneNumber,
+            String accNumber,
+            String pin,
+            int row) {
         initComponents();
-        this.username = username;
-        this.password = password;
         nameLabel.setText(name);
-        birthLabel.setText(birthdate);
         phoneLabel.setText(phoneNumber);
-        addressLabel.setText(address);
+        accNumLabel.setText(accNumber);
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.accNumber = accNumber;
+        this.pin = pin;
         this.row = row;
     }
 
@@ -50,8 +67,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        MasterPanel = new javax.swing.JPanel();
         Name = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -60,38 +76,36 @@ public class UserAccountApplication extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         nameLabel = new javax.swing.JLabel();
-        birthLabel = new javax.swing.JLabel();
+        accNumLabel = new javax.swing.JLabel();
         phoneLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         addressLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
-        jPanel2.setOpaque(false);
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, -1));
+        MasterPanel.setBackground(new java.awt.Color(0, 102, 153));
+        MasterPanel.setOpaque(false);
+        MasterPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Name.setBackground(new java.awt.Color(255, 255, 255));
         Name.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         Name.setForeground(new java.awt.Color(255, 255, 255));
         Name.setText("Name:");
-        jPanel2.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, 120, 80));
+        MasterPanel.add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 120, 40));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("BirthDate:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 190, 90));
+        jLabel9.setText("Account Number:");
+        MasterPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 300, 50));
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Phone Number:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 270, 60));
+        MasterPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 270, 40));
 
         DECLINE.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         DECLINE.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,7 +125,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
                 DECLINEActionPerformed(evt);
             }
         });
-        jPanel2.add(DECLINE, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 210, 80));
+        MasterPanel.add(DECLINE, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 210, 80));
 
         APPROVE.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         APPROVE.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,7 +145,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
                 APPROVEActionPerformed(evt);
             }
         });
-        jPanel2.add(APPROVE, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 210, 80));
+        MasterPanel.add(APPROVE, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 210, 80));
 
         backButton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         backButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,7 +165,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 210, 80));
+        MasterPanel.add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 210, 80));
 
         jPanel1.setOpaque(false);
 
@@ -166,41 +180,38 @@ public class UserAccountApplication extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+        MasterPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
         nameLabel.setBackground(new java.awt.Color(255, 255, 255));
         nameLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         nameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, 350, 50));
+        nameLabel.setText("nem");
+        MasterPanel.add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 210, 350, 40));
 
-        birthLabel.setBackground(new java.awt.Color(255, 255, 255));
-        birthLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        birthLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(birthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 350, 50));
+        accNumLabel.setBackground(new java.awt.Color(255, 255, 255));
+        accNumLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        accNumLabel.setForeground(new java.awt.Color(255, 255, 255));
+        accNumLabel.setText("acc");
+        MasterPanel.add(accNumLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 350, 50));
 
         phoneLabel.setBackground(new java.awt.Color(255, 255, 255));
         phoneLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         phoneLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(phoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 350, 50));
+        phoneLabel.setText("phone");
+        MasterPanel.add(phoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 350, 50));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("User Account Application");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 440, -1));
-
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Address:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 330, 170, 90));
+        jLabel8.setText("User Card Application");
+        MasterPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 440, -1));
 
         addressLabel.setBackground(new java.awt.Color(255, 255, 255));
         addressLabel.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         addressLabel.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 350, 50));
+        MasterPanel.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 350, 350, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 1250, 710));
+        getContentPane().add(MasterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 1250, 710));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled design.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -237,7 +248,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION) {
             deleteAccountFromFile(row);
             JOptionPane.showMessageDialog(this, "Account application declined!");
-            refreshAccountTables();
+//            refreshAccountTables();
             this.dispose(); // Close the current window
         }
         
@@ -259,20 +270,11 @@ public class UserAccountApplication extends javax.swing.JFrame {
 
     private void APPROVEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_APPROVEActionPerformed
         // TODO add your handling code here:
-        String usernameVar;
-        String passwordVar;
-        usernameVar = this.username;
-        passwordVar = this.password;
-        String name = nameLabel.getText();
-        String birthdate = birthLabel.getText();
-        String phoneNumber = phoneLabel.getText();
-        String address = addressLabel.getText();
-//        String type = this.type;
-        RNGforAccountNumber();
-        accountApplicationWriteOnFile(usernameVar,passwordVar,name,birthdate,phoneNumber,address);
         deleteAccountFromFile(row);
-        refreshAccountTables();
-        setVisible(false);
+        findAccNumOnAccounts(accNumber);
+        deleteLineFromAccount(accNumber);
+        cardApplicationWriteOnAccount(username,password,birthdate,address,type,balance);
+        returnToAdmin();
     }//GEN-LAST:event_APPROVEActionPerformed
 
     private void backButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseEntered
@@ -298,7 +300,7 @@ public class UserAccountApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="FUNCTIONALITIES">
     private void deleteAccountFromFile(int row){
         //THIS METHOD DECLINES THE APPLICATION OF THE USER. IT REMOVES ITS INFORMATION IN THE CSV
-        String filePath = "AccountApplications.csv";  // Change to your CSV file path
+        String filePath = "CardApplications.csv";  // Change to your CSV file path
         int rowToDelete = row; // Index of the row to delete (0-based index)
 
         // Read the CSV file into a List of Strings (rows)
@@ -331,29 +333,78 @@ public class UserAccountApplication extends javax.swing.JFrame {
         }
     }
     
-    private void refreshAccountTables(){
-        AdminMain admin = new AdminMain();
-        admin.setVisible(true);
-        admin.loadAccountsForAccApplication("AccountApplications.csv");
+    private void deleteLineFromAccount(String accNum){
+        File originalFile = new File("Accounts.csv");
+        File tempFile = new File("accTemp.csv");
+
+        boolean isRemoved = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(originalFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Check if the line contains the book ID
+                if (line.contains(accNum)) {
+                    isRemoved = true; // Mark as removed
+                    continue; // Skip writing this line to the temp file
+                }
+                writer.write(line);
+                writer.newLine();
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error processing file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+         // Replace the original file with the temp file
+        if (isRemoved) {
+            if (originalFile.delete()) {
+                tempFile.renameTo(originalFile);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error updating the file.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            tempFile.delete(); // Cleanup temp file
+        }
     }
     
-    private void accountApplicationWriteOnFile(String username,String password,String name,String birthdate,String phoneNumber,String address){
+    private void findAccNumOnAccounts(String accountNumber){
+        File file = new File("Accounts.csv");
+        
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+
+            // Clear any existing rows in the table
+            // Read each line from the file and process it
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] row = line.split(",");
+                if (row[6].equals(accountNumber)){
+                    this.username = row[0];
+                    this.password = row[1];
+                    this.birthdate = row[3];
+                    this.address = row[5];
+                    this.type = row[7];
+                    this.balance = Integer.parseInt(row[10]);
+                    break;
+                }
+            }
+            
+        } catch (IOException e) {
+            // Display an error message if something goes wrong
+            JOptionPane.showMessageDialog(this, "THERE'S AN ERROR: " + e.getMessage(), "Error In Table", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void cardApplicationWriteOnAccount(String username,String password, String birthdate, String address,String accType,int balance){
         //ADDS THE ACCOUNT TO ACCOUNT DATABASE
         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
-            int accountNumber = RNGforAccountNumber();
-            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accountNumber + "," + "user" + "," + "no" + "," + "null" + "," + "0");
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + accType + "," + "yes" + "," + pin + "," + balance);
             writer.newLine();
 
-            JOptionPane.showMessageDialog(this, "Account Verified!");
+            JOptionPane.showMessageDialog(this, "Congratulations, Card Verified!");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
-    private int RNGforAccountNumber(){
-        Random random = new Random();
-        // Generate a random 7-digit number
-        int randomNumber = 100000000 + random.nextInt(9000000); // Ensures the number is always 7 digits
-        return randomNumber;
     }
     
     private void returnToAdmin(){
@@ -408,18 +459,16 @@ public class UserAccountApplication extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton APPROVE;
     private javax.swing.JButton DECLINE;
+    private javax.swing.JPanel MasterPanel;
     private javax.swing.JLabel Name;
+    private javax.swing.JLabel accNumLabel;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel birthLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel phoneLabel;
     // End of variables declaration//GEN-END:variables
