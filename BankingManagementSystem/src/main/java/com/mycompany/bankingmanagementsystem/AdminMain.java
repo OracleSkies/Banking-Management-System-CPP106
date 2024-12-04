@@ -1281,42 +1281,142 @@ public class AdminMain extends javax.swing.JFrame {
         
     }
     
-    public void showPieChart(JPanel panel){
-        //CREATES PIE CHART
-        
-        //create dataset
-        DefaultPieDataset barDataset = new DefaultPieDataset( );
-        barDataset.setValue("DEPOSIT" , Double.valueOf(10));  
-        barDataset.setValue("WITHDRAW" , Double.valueOf(10));   
-        barDataset.setValue("TRANSFER" , Double.valueOf(10));    
-        barDataset.setValue("PAYMENTS" , Double.valueOf(10));  
-      
-        //create chart
-        JFreeChart piechart = ChartFactory.createPieChart("CASH TRANSACTIONS",barDataset, false,true,false);//explain
-        piechart.setBackgroundPaint(new java.awt.Color(39,146,248));
-        //change title color
+//    public void showPieChart(JPanel panel){
+//        //CREATES PIE CHART
+//        
+//        //create dataset
+//        DefaultPieDataset barDataset = new DefaultPieDataset( );
+//        barDataset.setValue("DEPOSIT" , Double.valueOf(10));  
+//        barDataset.setValue("WITHDRAW" , Double.valueOf(10));   
+//        barDataset.setValue("TRANSFER" , Double.valueOf(10));    
+//        barDataset.setValue("PAYMENTS" , Double.valueOf(10));  
+//      
+//        //create chart
+//        JFreeChart piechart = ChartFactory.createPieChart("CASH TRANSACTIONS",barDataset, false,true,false);//explain
+//        piechart.setBackgroundPaint(new java.awt.Color(39,146,248));
+//        //change title color
+//        TextTitle chartTitle = piechart.getTitle();
+//        chartTitle.setPaint(Color.WHITE);
+//        chartTitle.setFont(new Font("Segoe UI",Font.BOLD,20));
+//      
+//        PiePlot piePlot =(PiePlot) piechart.getPlot();
+//      
+//        //changing pie chart blocks colors
+//        piePlot.setSectionPaint("DEPOSIT", new Color(255,255,102));
+//        piePlot.setSectionPaint("WITHDRAW", new Color(102,255,102));
+//        piePlot.setSectionPaint("TRANSFER", new Color(255,102,153));
+//        piePlot.setSectionPaint("PAYMENTS", new Color(0,204,204));
+//      
+//       
+//        piePlot.setBackgroundPaint(new java.awt.Color(39,146,248));
+//        
+//        //create chartPanel to display chart(graph)
+//        ChartPanel pieChartPanel = new ChartPanel(piechart);
+//        panel.removeAll();
+//        panel.add(pieChartPanel, BorderLayout.CENTER);
+//        panel.setOpaque(false);
+//        panel.validate();
+//    }
+    
+    public void showPieChart(JPanel panel) {
+        String filePath = "Transactions.csv";
+        double totalDeposits = 0, totalWithdrawals = 0, totalTransfers = 0, totalPayments = 0;
+
+        // Read and process transaction data
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            boolean isFirstRow = true;
+
+            while ((line = br.readLine()) != null) {
+                if (isFirstRow) {
+                    isFirstRow = false; // Skip header row
+                    continue;
+                }
+
+                String[] data = line.split(",");
+                if (data.length < 5) {
+                    System.out.println("Skipping malformed row: " + line);
+                    continue;
+                }
+
+                String action = data[4].trim().toUpperCase(); // Convert to uppercase
+                double amount;
+                try {
+                    amount = Double.parseDouble(data[3].trim()); // Amount column
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid amount in row: " + line);
+                    continue;
+                }
+
+                // Aggregate amounts by transaction type
+                switch (action) {
+                    case "DEPOSIT":
+                        totalDeposits += amount;
+                        break;
+                    case "WITHDRAW":
+                    case "WITHDRAWAL":
+                        totalWithdrawals += amount;
+                        break;
+                    case "TRANSFER":
+                    case "MONEY TRANSFER":
+                        totalTransfers += amount;
+                        break;
+                    case "PAYMENTS":
+                        totalPayments += amount;
+                        break;
+                    default:
+                        System.out.println("Unknown transaction type: " + action);
+                }
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(panel, "Error reading transaction data: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Debug: Log totals for verification
+        System.out.println("Transaction Totals - Deposits: " + totalDeposits +
+                           ", Withdrawals: " + totalWithdrawals +
+                           ", Transfers: " + totalTransfers +
+                           ", Payments: " + totalPayments);
+
+        // If no data available, show a message and return
+        if (totalDeposits == 0 && totalWithdrawals == 0 && totalTransfers == 0 && totalPayments == 0) {
+            JOptionPane.showMessageDialog(panel, "No transaction data available to display.", "No Data", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        // Create dataset
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        if (totalDeposits > 0) dataset.setValue("DEPOSIT", totalDeposits);
+        if (totalWithdrawals > 0) dataset.setValue("WITHDRAW", totalWithdrawals);
+        if (totalTransfers > 0) dataset.setValue("MONEY TRANSFER", totalTransfers);
+        if (totalPayments > 0) dataset.setValue("PAYMENTS", totalPayments);
+
+        // Create pie chart
+        JFreeChart piechart = ChartFactory.createPieChart("CASH TRANSACTIONS", dataset, false, true, false);
+        piechart.setBackgroundPaint(new java.awt.Color(39, 146, 248));
+
+        // Customize title
         TextTitle chartTitle = piechart.getTitle();
         chartTitle.setPaint(Color.WHITE);
-        chartTitle.setFont(new Font("Segoe UI",Font.BOLD,20));
-      
-        PiePlot piePlot =(PiePlot) piechart.getPlot();
-      
-        //changing pie chart blocks colors
-        piePlot.setSectionPaint("DEPOSIT", new Color(255,255,102));
-        piePlot.setSectionPaint("WITHDRAW", new Color(102,255,102));
-        piePlot.setSectionPaint("TRANSFER", new Color(255,102,153));
-        piePlot.setSectionPaint("PAYMENTS", new Color(0,204,204));
-      
-       
-        piePlot.setBackgroundPaint(new java.awt.Color(39,146,248));
-        
-        //create chartPanel to display chart(graph)
+        chartTitle.setFont(new Font("Segoe UI", Font.BOLD, 20));
+
+        // Customize pie chart plot
+        PiePlot piePlot = (PiePlot) piechart.getPlot();
+        piePlot.setSectionPaint("DEPOSIT", new Color(255, 255, 102));
+        piePlot.setSectionPaint("WITHDRAW", new Color(102, 255, 102));
+        piePlot.setSectionPaint("MONEY TRANSFER", new Color(255, 102, 153));
+        piePlot.setSectionPaint("PAYMENTS", new Color(0, 204, 204));
+        piePlot.setBackgroundPaint(new java.awt.Color(39, 146, 248));
+
+        // Display pie chart in the panel
         ChartPanel pieChartPanel = new ChartPanel(piechart);
         panel.removeAll();
         panel.add(pieChartPanel, BorderLayout.CENTER);
         panel.setOpaque(false);
         panel.validate();
     }
+
 //    private void createTransactionPieChart() {
 //        DefaultPieDataset dataset = new DefaultPieDataset();
 //        List<Transaction> userTransactions = bank.findAllTransaction(currentUser.getUID(), "source");
