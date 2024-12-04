@@ -284,7 +284,6 @@ public class AccountEdit extends javax.swing.JFrame {
 
     //</editor-fold>
     
-    //=================== Naka EME pa ang acct number, Ayusin yon
     private void accountEditWriteOnFile(String username, String password, String name, String birthdate, String phoneNumber, String address, String accNumber, String type, String card) {
         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
             writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + type + "," + card);

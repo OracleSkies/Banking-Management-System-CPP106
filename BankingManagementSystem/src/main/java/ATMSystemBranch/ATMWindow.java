@@ -36,6 +36,7 @@ public class ATMWindow extends javax.swing.JFrame {
     private String card;
     private String pin;
     private int balance;
+    private int reserve;
     
     private String depositNumber = "";
     private String withdrawNumber = "";
@@ -1443,6 +1444,30 @@ public class ATMWindow extends javax.swing.JFrame {
     // </editor-fold>   
     
     // <editor-fold defaultstate="collapsed" desc="Functionalities">
+    private void getReserve(){
+        // THIS METHOD READS THE INTEGER IN THE FILE
+        try (BufferedReader br = new BufferedReader(new FileReader("bankReserve.csv"))) {
+            String line;
+            // Read the CSV file line by line
+            if ((line = br.readLine()) != null) {
+                this.reserve = Integer.parseInt(line.trim());
+                // Check if the first column (fruit) is "lemon"
+            }
+            br.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void updateReserve(){
+        
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("bankReserve.csv"))){
+            writer.write(String.valueOf(this.reserve));  // Convert the integer to a string and write it to the file
+            writer.close();
+            } catch (IOException e) {
+                System.out.println("Error reading or writing to file: " + e.getMessage());
+            }
+    }
     private String dateTime(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTimeNow = LocalDateTime.now();
@@ -1523,7 +1548,7 @@ public class ATMWindow extends javax.swing.JFrame {
         deleteLine(accountRecepient);
         writeLine(rUsername,rPassword,rName,rBirthdate,rPhoneNumber,rAddress,rAccNumber,rType,rCard,rPin,balRecepient);
         JOptionPane.showMessageDialog(this,  "₱" + amtTransToInt+" successfully transferred to account number: " + accountRecepient + "!");
-        writeToTransaction(currDateTime,name, accNumber, amtTransToInt,"MONEY TRANSFER","Money transfer to account number: "+accountRecepient);
+        writeToTransaction(currDateTime,name, accNumber, amtTransToInt,"MONEY TRANSFER","Recepient Account: "+accountRecepient);
         returnToATMHome();
     }
     
@@ -1544,17 +1569,26 @@ public class ATMWindow extends javax.swing.JFrame {
         this.balance = balance;
         JOptionPane.showMessageDialog(this,  "₱" + witToInt+" successfully withdrew from account number: " + accNumber + "!");
         writeToTransaction(currDateTime,name, accNumber, witToInt,"WITHDRAW","Bank Transaction");
+        getReserve();
+        this.reserve = reserve + witToInt;
+        updateReserve();
         returnToATMHome(); 
     }
     
     private void deposit(int balance){
         String currDateTime = dateTime();
         int depToInt = Integer.parseInt(depositNumber);
+        if (this.reserve < depToInt){
+            JOptionPane.showMessageDialog(this, "Cannot deposit money. Insufficient bank reserve", "Bank Reserve Issue", JOptionPane.ERROR_MESSAGE);
+        }
         balance = balance + depToInt;
         this.balance = balance;
         writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
         JOptionPane.showMessageDialog(this,  "₱" + depToInt+" successfully deposited in account number: " + accNumber + "!");
         writeToTransaction(currDateTime,name, accNumber, depToInt,"DEPOSIT","Bank Transaction");
+        getReserve();
+        this.reserve = reserve - depToInt;
+        updateReserve();
         returnToATMHome(); 
     }
     
