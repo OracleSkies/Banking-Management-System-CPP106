@@ -814,24 +814,32 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel4.setText("RECENT TRANSACTION");
 
         DateLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DateLabel.setForeground(new java.awt.Color(255, 255, 255));
         DateLabel.setText("DATE:");
 
         ActionLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ActionLabel1.setForeground(new java.awt.Color(255, 255, 255));
         ActionLabel1.setText("ACTION:");
 
         AmountLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AmountLabel1.setForeground(new java.awt.Color(255, 255, 255));
         AmountLabel1.setText("DESCRIPTION:");
 
         AmountLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AmountLabel3.setForeground(new java.awt.Color(255, 255, 255));
         AmountLabel3.setText("AMOUNT:");
 
         DateDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DateDis.setForeground(new java.awt.Color(255, 255, 255));
 
         ActionDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ActionDis.setForeground(new java.awt.Color(255, 255, 255));
 
         DescrDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        DescrDis.setForeground(new java.awt.Color(255, 255, 255));
 
         Amountdis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Amountdis.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout RecentTransLayout = new javax.swing.GroupLayout(RecentTrans);
         RecentTrans.setLayout(RecentTransLayout);
@@ -953,33 +961,43 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
         NameDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        NameDisplay.setForeground(new java.awt.Color(255, 255, 255));
         NameDisplay.setText("asd");
 
         phoneDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        phoneDisplay.setForeground(new java.awt.Color(255, 255, 255));
         phoneDisplay.setText("asd");
 
         BdayLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BdayLabel.setForeground(new java.awt.Color(255, 255, 255));
         BdayLabel.setText("Birthday:");
 
         NameLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        NameLabel1.setForeground(new java.awt.Color(255, 255, 255));
         NameLabel1.setText("Name:");
 
         PhoneNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PhoneNumLabel.setForeground(new java.awt.Color(255, 255, 255));
         PhoneNumLabel.setText("PhoneNumber:");
 
         bdayDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        bdayDisplay.setForeground(new java.awt.Color(255, 255, 255));
         bdayDisplay.setText("asd");
 
         AddressLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        AddressLabel.setForeground(new java.awt.Color(255, 255, 255));
         AddressLabel.setText("Address:");
 
         addressDisplay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        addressDisplay.setForeground(new java.awt.Color(255, 255, 255));
         addressDisplay.setText("asd");
 
         BankAccNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        BankAccNumLabel.setForeground(new java.awt.Color(255, 255, 255));
         BankAccNumLabel.setText("Bank Account Number:");
 
         accountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        accountDisplay.setForeground(new java.awt.Color(255, 255, 255));
         accountDisplay.setText("asd");
 
         javax.swing.GroupLayout AccDEtsLayout = new javax.swing.GroupLayout(AccDEts);
@@ -1070,6 +1088,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        DashHis.setRowHeight(40);
         jScrollPane2.setViewportView(DashHis);
         if (DashHis.getColumnModel().getColumnCount() > 0) {
             DashHis.getColumnModel().getColumn(0).setResizable(false);
@@ -1134,6 +1153,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             }
         });
         Transhis.setGridColor(new java.awt.Color(255, 255, 255));
+        Transhis.setRowHeight(40);
         jScrollPane1.setViewportView(Transhis);
         if (Transhis.getColumnModel().getColumnCount() > 0) {
             Transhis.getColumnModel().getColumn(0).setResizable(false);
