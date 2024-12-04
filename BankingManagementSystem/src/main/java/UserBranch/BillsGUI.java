@@ -197,7 +197,7 @@ public class BillsGUI extends javax.swing.JFrame {
         // Prepare the data to write
         String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
         String name = "username"; // Replace with dynamic input if needed
-        String bankAccountNumber = "1234567890"; // Replace with dynamic input if available
+        String bankAccountNumber = "11111"; // Replace with dynamic input if available
         String action = "Bills";
         String description = "Payment of bills"; // Replace with specific or dynamic input if needed
 
