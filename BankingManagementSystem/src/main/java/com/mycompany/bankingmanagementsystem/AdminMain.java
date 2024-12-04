@@ -1424,42 +1424,6 @@ public class AdminMain extends javax.swing.JFrame {
         
     }
     
-//    public void showPieChart(JPanel panel){
-//        //CREATES PIE CHART
-//        
-//        //create dataset
-//        DefaultPieDataset barDataset = new DefaultPieDataset( );
-//        barDataset.setValue("DEPOSIT" , Double.valueOf(10));  
-//        barDataset.setValue("WITHDRAW" , Double.valueOf(10));   
-//        barDataset.setValue("TRANSFER" , Double.valueOf(10));    
-//        barDataset.setValue("PAYMENTS" , Double.valueOf(10));  
-//      
-//        //create chart
-//        JFreeChart piechart = ChartFactory.createPieChart("CASH TRANSACTIONS",barDataset, false,true,false);//explain
-//        piechart.setBackgroundPaint(new java.awt.Color(39,146,248));
-//        //change title color
-//        TextTitle chartTitle = piechart.getTitle();
-//        chartTitle.setPaint(Color.WHITE);
-//        chartTitle.setFont(new Font("Segoe UI",Font.BOLD,20));
-//      
-//        PiePlot piePlot =(PiePlot) piechart.getPlot();
-//      
-//        //changing pie chart blocks colors
-//        piePlot.setSectionPaint("DEPOSIT", new Color(255,255,102));
-//        piePlot.setSectionPaint("WITHDRAW", new Color(102,255,102));
-//        piePlot.setSectionPaint("TRANSFER", new Color(255,102,153));
-//        piePlot.setSectionPaint("PAYMENTS", new Color(0,204,204));
-//      
-//       
-//        piePlot.setBackgroundPaint(new java.awt.Color(39,146,248));
-//        
-//        //create chartPanel to display chart(graph)
-//        ChartPanel pieChartPanel = new ChartPanel(piechart);
-//        panel.removeAll();
-//        panel.add(pieChartPanel, BorderLayout.CENTER);
-//        panel.setOpaque(false);
-//        panel.validate();
-//    }
     
     public void showPieChart(JPanel panel) {
         String filePath = "Transactions.csv";
@@ -1560,47 +1524,7 @@ public class AdminMain extends javax.swing.JFrame {
         panel.validate();
     }
 
-//    private void createTransactionPieChart() {
-//        DefaultPieDataset dataset = new DefaultPieDataset();
-//        List<Transaction> userTransactions = bank.findAllTransaction(currentUser.getUID(), "source");
-//        int depositcount = 0, withdrawalcount = 0, transfercount = 0;
-//
-//        for (Transaction transaction : userTransactions) {
-//            switch (transaction.getTransactionType()) {
-//                case "DEPOSIT" :
-//                    depositcount++;
-//                    break;
-//                case "WITHDRAWAL" : 
-//                    withdrawalcount++;
-//                    break;
-//                case "TRANSFER" : 
-//                    transfercount++;
-//                    break;
-//            }
-//        }
-//
-//        dataset.setValue("Deposit", depositcount);
-//        dataset.setValue("Withdrawal", withdrawalcount);
-//        dataset.setValue("Transfer", transfercount);
-//
-//        JFreeChart pieChart = ChartFactory.createPieChart("Transaction Breakdown", dataset, true, true, false);
-//        PiePlot plot = (PiePlot) pieChart.getPlot();
-//
-//        plot.setSectionPaint("Deposit", new Color(64, 93, 144));
-//        plot.setSectionPaint("Withdrawal", new Color(117, 134, 148));
-//        plot.setSectionPaint("Transfer", new Color(243, 198, 35));
-//        plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: {1} ({2})"));
-//
-//        ChartPanel chartPanel = new ChartPanel(pieChart);
-//        chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
-//
-//        
-//        GraphPanel gPanel = new GraphPanel(new BorderLayout());
-//        
-//        JPanel panel = new JPanel(new BorderLayout());
-//        panel.add(chartPanel, BorderLayout.CENTER);
-//        return panel;
-//    }
+
     
     // </editor-fold>
 

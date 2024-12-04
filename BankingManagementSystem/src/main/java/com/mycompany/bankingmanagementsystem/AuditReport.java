@@ -65,12 +65,12 @@ public class AuditReport extends javax.swing.JFrame {
     // Method to update the JLabel components with the total count of words
     private void displayResults(Map<String, Integer> wordCountMap) {
         // Example: Display word counts in specific JLabels
-        DepDis.setText(String.valueOf(wordCountMap.getOrDefault("DEPOSIT", 0)));
-        WidDis.setText(String.valueOf(wordCountMap.getOrDefault("WITHDRAW", 0)));
-        BilDIs.setText(String.valueOf(wordCountMap.getOrDefault("BILL", 0)));
-        ExpDis.setText(String.valueOf(wordCountMap.getOrDefault("EXPENSE", 0)));
-        ExpDis.setText(String.valueOf(wordCountMap.getOrDefault("PAYMENTS", 0)));
-        TotalBal.setText(String.valueOf(calculateTotalBalance(wordCountMap)));
+        depCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("DEPOSIT", 0)));
+        witCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("WITHDRAW", 0)));
+        transCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("MONEY TRANSFER", 0)));
+        payCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("EXPENSE", 0)));
+        payCountDisplay.setText(String.valueOf(wordCountMap.getOrDefault("PAYMENTS", 0)));
+        endBalanceDisplay.setText(String.valueOf(calculateTotalBalance(wordCountMap)));
     }
 
     // Calculate the total balance from word counts (Example calculation)
@@ -82,8 +82,8 @@ public class AuditReport extends javax.swing.JFrame {
     public void displayAllTransactionsAndUpdateLabels(String filePath) {
         double totalDeposits = 0.0;
         double totalWithdrawals = 0.0;
-        double totalBills = 0.0;
-        double totalExpense = 0.0;
+        double totalTransfer = 0.0;
+        double totalPayments = 0.0;
 
         // Create a DecimalFormat for formatting money values
         DecimalFormat df = new DecimalFormat("#");
@@ -129,11 +129,11 @@ public class AuditReport extends javax.swing.JFrame {
                     if (action.equalsIgnoreCase("DEPOSIT")) {
                         totalDeposits += money;
                     }  else if (action.equalsIgnoreCase("BILL")) {
-                        totalBills += money;
+                        totalTransfer += money;
                     } else if (action.equalsIgnoreCase("EPXENSE")) {
-                        totalExpense += money;
+                        totalPayments += money;
                     } else if (action.equalsIgnoreCase("PAYMENTS")) {
-                        totalExpense += money;
+                        totalPayments += money;
                     }else if (action.equalsIgnoreCase("WITHDRAW")) {
                         totalWithdrawals += money; // Withdrawals are added positively
                     }
@@ -143,13 +143,13 @@ public class AuditReport extends javax.swing.JFrame {
             }
 
             // Calculate the total balance (sum of deposits, withdrawals, bills, and expenses)
-            double totalBalance = totalDeposits + totalBills + totalBills - totalExpense + totalExpense - totalWithdrawals;
+            double totalBalance = totalDeposits + totalTransfer + totalTransfer - totalPayments + totalPayments - totalWithdrawals;
 
             // Format totals
             String formattedDeposits = "$" + df.format(totalDeposits);
             String formattedWithdrawals = "$" + df.format(totalWithdrawals);
-            String formattedBills = "$" + df.format(totalBills);
-            String formattedExpense = "$" + df.format(totalExpense);
+            String formattedBills = "$" + df.format(totalTransfer);
+            String formattedExpense = "$" + df.format(totalPayments);
             String formattedBalance = "$" + df.format(totalBalance);
 
             // Display summary totals in the console
@@ -161,11 +161,11 @@ public class AuditReport extends javax.swing.JFrame {
             System.out.println("Total Balance: " + formattedBalance);
 
             // Update the JLabels (replace with your actual JLabel names)
-            ExpTotal1.setText(formattedExpense);   
-            BillTotal1.setText(formattedBills);
-            WidTotal1.setText(formattedWithdrawals);
-            DepTotal1.setText(formattedDeposits);
-            TotalBal.setText(formattedBalance);
+            paymentsTotalDisplay.setText(formattedExpense);   
+            transTotalDisplay.setText(formattedBills);
+            witTotalDisplay.setText(formattedWithdrawals);
+            depTotalDisplay.setText(formattedDeposits);
+            endBalanceDisplay.setText(formattedBalance);
 
         } catch (IOException e) {
             System.out.println("Error reading the file: " + filePath);
@@ -188,20 +188,20 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
-        WidDis = new javax.swing.JLabel();
+        witCountDisplay = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
         jLabel122 = new javax.swing.JLabel();
-        jLabel123 = new javax.swing.JLabel();
+        Payments = new javax.swing.JLabel();
         jLabel125 = new javax.swing.JLabel();
         jLabel132 = new javax.swing.JLabel();
-        DepDis = new javax.swing.JLabel();
-        ExpDis = new javax.swing.JLabel();
-        BilDIs = new javax.swing.JLabel();
-        WidTotal1 = new javax.swing.JLabel();
-        TotalBal = new javax.swing.JLabel();
-        BillTotal1 = new javax.swing.JLabel();
-        DepTotal1 = new javax.swing.JLabel();
-        ExpTotal1 = new javax.swing.JLabel();
+        depCountDisplay = new javax.swing.JLabel();
+        payCountDisplay = new javax.swing.JLabel();
+        transCountDisplay = new javax.swing.JLabel();
+        witTotalDisplay = new javax.swing.JLabel();
+        endBalanceDisplay = new javax.swing.JLabel();
+        transTotalDisplay = new javax.swing.JLabel();
+        depTotalDisplay = new javax.swing.JLabel();
+        paymentsTotalDisplay = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -240,10 +240,10 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel108.setForeground(new java.awt.Color(255, 255, 255));
         jLabel108.setText("Deposits");
 
-        WidDis.setBackground(new java.awt.Color(255, 255, 255));
-        WidDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        WidDis.setForeground(new java.awt.Color(255, 255, 255));
-        WidDis.setText("  ");
+        witCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        witCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        witCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        witCountDisplay.setText("1");
 
         Confirm.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Confirm.setForeground(new java.awt.Color(255, 255, 255));
@@ -267,12 +267,12 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel122.setBackground(new java.awt.Color(255, 255, 255));
         jLabel122.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel122.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel122.setText("Bills");
+        jLabel122.setText("Money Transfer");
 
-        jLabel123.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel123.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel123.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel123.setText("Expenditures");
+        Payments.setBackground(new java.awt.Color(255, 255, 255));
+        Payments.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Payments.setForeground(new java.awt.Color(255, 255, 255));
+        Payments.setText("Payments");
 
         jLabel125.setBackground(new java.awt.Color(255, 255, 255));
         jLabel125.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -284,89 +284,89 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel132.setForeground(new java.awt.Color(255, 255, 255));
         jLabel132.setText("Ending Balance");
 
-        DepDis.setBackground(new java.awt.Color(255, 255, 255));
-        DepDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        DepDis.setForeground(new java.awt.Color(255, 255, 255));
-        DepDis.setText("  ");
+        depCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        depCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        depCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        depCountDisplay.setText("1");
 
-        ExpDis.setBackground(new java.awt.Color(255, 255, 255));
-        ExpDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        ExpDis.setForeground(new java.awt.Color(255, 255, 255));
-        ExpDis.setText("  ");
+        payCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        payCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        payCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        payCountDisplay.setText("1");
 
-        BilDIs.setBackground(new java.awt.Color(255, 255, 255));
-        BilDIs.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        BilDIs.setForeground(new java.awt.Color(255, 255, 255));
-        BilDIs.setText("  ");
+        transCountDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        transCountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        transCountDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        transCountDisplay.setText("1");
 
-        WidTotal1.setBackground(new java.awt.Color(255, 255, 255));
-        WidTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        WidTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        WidTotal1.setText("  ");
+        witTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        witTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        witTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        witTotalDisplay.setText("1");
 
-        TotalBal.setBackground(new java.awt.Color(255, 255, 255));
-        TotalBal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        TotalBal.setForeground(new java.awt.Color(255, 255, 255));
-        TotalBal.setText("  ");
+        endBalanceDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        endBalanceDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        endBalanceDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        endBalanceDisplay.setText("1");
 
-        BillTotal1.setBackground(new java.awt.Color(255, 255, 255));
-        BillTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        BillTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        BillTotal1.setText("  ");
+        transTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        transTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        transTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        transTotalDisplay.setText("1");
 
-        DepTotal1.setBackground(new java.awt.Color(255, 255, 255));
-        DepTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        DepTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        DepTotal1.setText("  ");
+        depTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        depTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        depTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        depTotalDisplay.setText("1");
 
-        ExpTotal1.setBackground(new java.awt.Color(255, 255, 255));
-        ExpTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        ExpTotal1.setForeground(new java.awt.Color(255, 255, 255));
-        ExpTotal1.setText("  ");
+        paymentsTotalDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        paymentsTotalDisplay.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        paymentsTotalDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        paymentsTotalDisplay.setText("1");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(jLabel106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(256, 256, 256)
-                                .addComponent(jLabel106)
-                                .addGap(179, 179, 179)
-                                .addComponent(jLabel107))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel123)
-                                            .addComponent(jLabel125)
-                                            .addComponent(jLabel108)
-                                            .addComponent(jLabel122))
-                                        .addGap(93, 93, 93)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(WidDis)
-                                            .addComponent(BilDIs)
-                                            .addComponent(DepDis)
-                                            .addComponent(ExpDis)))
-                                    .addComponent(jLabel132))
-                                .addGap(311, 311, 311)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TotalBal)
-                                    .addComponent(ExpTotal1)
-                                    .addComponent(DepTotal1)
-                                    .addComponent(BillTotal1)
-                                    .addComponent(WidTotal1)))))
+                            .addComponent(jLabel132)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Payments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel108)
+                                .addComponent(jLabel122, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel125, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(94, 94, 94)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(depCountDisplay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(witCountDisplay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(transCountDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(payCountDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel107, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(depTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(witTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(transTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(paymentsTotalDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(endBalanceDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(312, 312, 312))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(382, 382, 382)
                         .addComponent(jLabel105))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(426, 426, 426)
+                        .addGap(418, 418, 418)
                         .addComponent(Confirm)))
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,34 +379,37 @@ public class AuditReport extends javax.swing.JFrame {
                     .addComponent(jLabel107))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel108)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(DepDis)
-                        .addComponent(DepTotal1)))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(WidTotal1)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel125)
-                        .addComponent(WidDis)))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel122)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BilDIs)
-                        .addComponent(BillTotal1)))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel123)
-                    .addComponent(ExpDis)
-                    .addComponent(ExpTotal1))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel132)
-                    .addComponent(TotalBal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel108)
+                            .addComponent(depCountDisplay))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel125)
+                            .addComponent(witCountDisplay))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel122)
+                            .addComponent(transCountDisplay))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Payments)
+                            .addComponent(payCountDisplay))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel132))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(depTotalDisplay)
+                        .addGap(30, 30, 30)
+                        .addComponent(witTotalDisplay)
+                        .addGap(29, 29, 29)
+                        .addComponent(transTotalDisplay)
+                        .addGap(29, 29, 29)
+                        .addComponent(paymentsTotalDisplay)
+                        .addGap(29, 29, 29)
+                        .addComponent(endBalanceDisplay)))
+                .addGap(75, 75, 75)
                 .addComponent(Confirm)
-                .addGap(343, 343, 343))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 1200, 690));
@@ -441,7 +444,7 @@ public class AuditReport extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 1460, 5));
+        getContentPane().add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 1460, 5));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Untitled design.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, -1, -1));
@@ -519,23 +522,17 @@ public class AuditReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BilDIs;
-    private javax.swing.JLabel BillTotal1;
     private javax.swing.JButton Confirm;
-    private javax.swing.JLabel DepDis;
-    private javax.swing.JLabel DepTotal1;
-    private javax.swing.JLabel ExpDis;
-    private javax.swing.JLabel ExpTotal1;
-    private javax.swing.JLabel TotalBal;
-    private javax.swing.JLabel WidDis;
-    private javax.swing.JLabel WidTotal1;
+    private javax.swing.JLabel Payments;
+    private javax.swing.JLabel depCountDisplay;
+    private javax.swing.JLabel depTotalDisplay;
+    private javax.swing.JLabel endBalanceDisplay;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel124;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel132;
@@ -543,5 +540,11 @@ public class AuditReport extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JLabel payCountDisplay;
+    private javax.swing.JLabel paymentsTotalDisplay;
+    private javax.swing.JLabel transCountDisplay;
+    private javax.swing.JLabel transTotalDisplay;
+    private javax.swing.JLabel witCountDisplay;
+    private javax.swing.JLabel witTotalDisplay;
     // End of variables declaration//GEN-END:variables
 }
