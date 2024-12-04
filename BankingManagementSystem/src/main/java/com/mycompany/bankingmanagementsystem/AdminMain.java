@@ -234,7 +234,7 @@ public class AdminMain extends javax.swing.JFrame {
         BankReservePanel = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         GraphPanel = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        GenRep = new javax.swing.JButton();
         SubTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         notificationButton = new javax.swing.JButton();
@@ -410,7 +410,7 @@ public class AdminMain extends javax.swing.JFrame {
             createNewAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createNewAdminPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(createNewAdminAccButton, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(createNewAdminAccButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         createNewAdminPanelLayout.setVerticalGroup(
@@ -575,7 +575,7 @@ public class AdminMain extends javax.swing.JFrame {
                         .addComponent(CardAppScrPane, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ActiveAccScrPane, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(newUserAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(newUserAccountButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -806,17 +806,17 @@ public class AdminMain extends javax.swing.JFrame {
         GraphPanel.setLayout(new java.awt.BorderLayout());
         AuditAndReport.add(GraphPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 580, 470));
 
-        jButton6.setBackground(new java.awt.Color(0, 0, 204));
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("GENERATE REPORT");
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        GenRep.setBackground(new java.awt.Color(0, 0, 204));
+        GenRep.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        GenRep.setForeground(new java.awt.Color(255, 255, 255));
+        GenRep.setText("GENERATE REPORT");
+        GenRep.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        GenRep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                GenRepActionPerformed(evt);
             }
         });
-        AuditAndReport.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 302, 59));
+        AuditAndReport.add(GenRep, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 560, 302, 59));
 
         javax.swing.GroupLayout MasterPanelLayout = new javax.swing.GroupLayout(MasterPanel);
         MasterPanel.setLayout(MasterPanelLayout);
@@ -1008,9 +1008,11 @@ public class AdminMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_accountButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void GenRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRepActionPerformed
+        AuditReport Genrep = new AuditReport();
+        Genrep.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_GenRepActionPerformed
 
     private void filterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterButtonActionPerformed
         // TODO add your handling code here:
@@ -1644,6 +1646,7 @@ public class AdminMain extends javax.swing.JFrame {
     public javax.swing.JTable CardApplicationTable;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Dashboardbutton;
+    private javax.swing.JButton GenRep;
     private javax.swing.JPanel GraphPanel;
     private javax.swing.JPanel GraphPanelDashboard;
     private javax.swing.JPanel MasterPanel;
@@ -1661,7 +1664,6 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton filterButton;
     private javax.swing.JComboBox<String> filterCombo;
     private javax.swing.JTextField filterField;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
