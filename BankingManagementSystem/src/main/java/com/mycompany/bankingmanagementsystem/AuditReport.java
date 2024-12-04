@@ -5,6 +5,13 @@
 package com.mycompany.bankingmanagementsystem;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,8 +24,155 @@ public class AuditReport extends javax.swing.JFrame {
      */
     public AuditReport() {
         initComponents();
+        loadDataFromCSVFiles(); // Call the method to load data
+        String filePath = "Transactions.csv";
+        displayAllTransactionsAndUpdateLabels(filePath);
+    }
+    
+    
+        
+       
+    
+    
+    // Method to load and count word occurrences from CSV files
+    private void loadDataFromCSVFiles() {
+        // Define the list of CSV file paths
+        String[] csvFiles = {"Transactions.csv", "Accounts.csv", "AccountApplications.csv"}; 
+
+        // Define a map to store word counts
+        Map<String, Integer> wordCountMap = new HashMap<>();
+
+        // Loop through each CSV file
+        for (String csvFile : csvFiles) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] words = line.split(","); // Assuming CSV is comma-separated
+                    for (String word : words) {
+                        word = word.trim(); // Remove any extra spaces
+                        wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+                    }
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error reading file: " + csvFile);
+            }
+        }
+
+        // Now display the results in the labels
+        displayResults(wordCountMap);
     }
 
+    // Method to update the JLabel components with the total count of words
+    private void displayResults(Map<String, Integer> wordCountMap) {
+        // Example: Display word counts in specific JLabels
+        DepDis.setText(String.valueOf(wordCountMap.getOrDefault("DEPOSIT", 0)));
+        WidDis.setText(String.valueOf(wordCountMap.getOrDefault("WITHDRAW", 0)));
+        BilDIs.setText(String.valueOf(wordCountMap.getOrDefault("BILL", 0)));
+        ExpDis.setText(String.valueOf(wordCountMap.getOrDefault("EXPENSE", 0)));
+        ExpDis.setText(String.valueOf(wordCountMap.getOrDefault("PAYMENTS", 0)));
+        TotalBal.setText(String.valueOf(calculateTotalBalance(wordCountMap)));
+    }
+
+    // Calculate the total balance from word counts (Example calculation)
+    private int calculateTotalBalance(Map<String, Integer> wordCountMap) {
+        // Just an example: you can implement actual logic based on your requirements
+        return wordCountMap.getOrDefault("DEPOSIT", 0) - wordCountMap.getOrDefault("WITHDRAW", 0);
+    }
+
+    public void displayAllTransactionsAndUpdateLabels(String filePath) {
+        double totalDeposits = 0.0;
+        double totalWithdrawals = 0.0;
+        double totalBills = 0.0;
+        double totalExpense = 0.0;
+
+        // Create a DecimalFormat for formatting money values
+        DecimalFormat df = new DecimalFormat("#");
+
+        // Validate the file path
+        if (filePath == null || filePath.isEmpty()) {
+            System.out.println("Invalid file path.");
+            return;
+        }
+
+        System.out.println("Displaying all transactions:");
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    // Skip the header if present
+                    isFirstLine = false;
+                    continue;
+                }
+
+                // Split the line by commas (columns: Action, Date, Amount, Description)
+                String[] values = line.split(",");
+                if (values.length < 4) {
+                    continue;
+                }
+
+                String action = values[4].trim();
+                String date = values[0].trim();
+                String amountStr = values[3].trim();
+                String description = values[5].trim();
+
+                // Display the row data
+                System.out.printf("%-15s %-15s %-10s %-30s%n", action, date, amountStr, description);
+
+                try {
+                    // Parse the amount
+                    double money = Double.parseDouble(amountStr);
+
+                    // Add deposits and withdrawals to their respective totals
+                    if (action.equalsIgnoreCase("DEPOSIT")) {
+                        totalDeposits += money;
+                    }  else if (action.equalsIgnoreCase("BILL")) {
+                        totalBills += money;
+                    } else if (action.equalsIgnoreCase("EPXENSE")) {
+                        totalExpense += money;
+                    } else if (action.equalsIgnoreCase("PAYMENTS")) {
+                        totalExpense += money;
+                    }else if (action.equalsIgnoreCase("WITHDRAW")) {
+                        totalWithdrawals += money; // Withdrawals are added positively
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Skipping invalid money value: " + amountStr);
+                }
+            }
+
+            // Calculate the total balance (sum of deposits, withdrawals, bills, and expenses)
+            double totalBalance = totalDeposits + totalBills + totalBills - totalExpense + totalExpense - totalWithdrawals;
+
+            // Format totals
+            String formattedDeposits = "$" + df.format(totalDeposits);
+            String formattedWithdrawals = "$" + df.format(totalWithdrawals);
+            String formattedBills = "$" + df.format(totalBills);
+            String formattedExpense = "$" + df.format(totalExpense);
+            String formattedBalance = "$" + df.format(totalBalance);
+
+            // Display summary totals in the console
+            System.out.println("\nSummary:");
+            System.out.println("Total Deposits: " + formattedDeposits);
+            System.out.println("Total Withdrawals: " + formattedWithdrawals);
+            System.out.println("Total Bills: " + formattedBills);
+            System.out.println("Total Expenses: " + formattedExpense);
+            System.out.println("Total Balance: " + formattedBalance);
+
+            // Update the JLabels (replace with your actual JLabel names)
+            ExpTotal1.setText(formattedExpense);   
+            BillTotal1.setText(formattedBills);
+            WidTotal1.setText(formattedWithdrawals);
+            DepTotal1.setText(formattedDeposits);
+            TotalBal.setText(formattedBalance);
+
+        } catch (IOException e) {
+            System.out.println("Error reading the file: " + filePath);
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,20 +188,20 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         jLabel108 = new javax.swing.JLabel();
-        jLabel112 = new javax.swing.JLabel();
+        WidDis = new javax.swing.JLabel();
         Confirm = new javax.swing.JButton();
         jLabel122 = new javax.swing.JLabel();
         jLabel123 = new javax.swing.JLabel();
         jLabel125 = new javax.swing.JLabel();
         jLabel132 = new javax.swing.JLabel();
-        jLabel114 = new javax.swing.JLabel();
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
-        jLabel117 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
-        jLabel119 = new javax.swing.JLabel();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel121 = new javax.swing.JLabel();
+        DepDis = new javax.swing.JLabel();
+        ExpDis = new javax.swing.JLabel();
+        BilDIs = new javax.swing.JLabel();
+        WidTotal1 = new javax.swing.JLabel();
+        TotalBal = new javax.swing.JLabel();
+        BillTotal1 = new javax.swing.JLabel();
+        DepTotal1 = new javax.swing.JLabel();
+        ExpTotal1 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -59,7 +213,6 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel124.setText("Deposits");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1500, 800));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -87,10 +240,10 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel108.setForeground(new java.awt.Color(255, 255, 255));
         jLabel108.setText("Deposits");
 
-        jLabel112.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel112.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel112.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel112.setText("0");
+        WidDis.setBackground(new java.awt.Color(255, 255, 255));
+        WidDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        WidDis.setForeground(new java.awt.Color(255, 255, 255));
+        WidDis.setText("  ");
 
         Confirm.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Confirm.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,45 +284,45 @@ public class AuditReport extends javax.swing.JFrame {
         jLabel132.setForeground(new java.awt.Color(255, 255, 255));
         jLabel132.setText("Ending Balance");
 
-        jLabel114.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel114.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel114.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel114.setText("0");
+        DepDis.setBackground(new java.awt.Color(255, 255, 255));
+        DepDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        DepDis.setForeground(new java.awt.Color(255, 255, 255));
+        DepDis.setText("  ");
 
-        jLabel115.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel115.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel115.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel115.setText("0");
+        ExpDis.setBackground(new java.awt.Color(255, 255, 255));
+        ExpDis.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        ExpDis.setForeground(new java.awt.Color(255, 255, 255));
+        ExpDis.setText("  ");
 
-        jLabel116.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel116.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel116.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel116.setText("0");
+        BilDIs.setBackground(new java.awt.Color(255, 255, 255));
+        BilDIs.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        BilDIs.setForeground(new java.awt.Color(255, 255, 255));
+        BilDIs.setText("  ");
 
-        jLabel117.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel117.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel117.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel117.setText("0");
+        WidTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        WidTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        WidTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        WidTotal1.setText("  ");
 
-        jLabel118.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel118.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel118.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel118.setText("0");
+        TotalBal.setBackground(new java.awt.Color(255, 255, 255));
+        TotalBal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        TotalBal.setForeground(new java.awt.Color(255, 255, 255));
+        TotalBal.setText("  ");
 
-        jLabel119.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel119.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel119.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel119.setText("0");
+        BillTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        BillTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        BillTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        BillTotal1.setText("  ");
 
-        jLabel120.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel120.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel120.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel120.setText("0");
+        DepTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        DepTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        DepTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        DepTotal1.setText("  ");
 
-        jLabel121.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel121.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel121.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel121.setText("0");
+        ExpTotal1.setBackground(new java.awt.Color(255, 255, 255));
+        ExpTotal1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        ExpTotal1.setForeground(new java.awt.Color(255, 255, 255));
+        ExpTotal1.setText("  ");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -195,18 +348,18 @@ public class AuditReport extends javax.swing.JFrame {
                                             .addComponent(jLabel122))
                                         .addGap(93, 93, 93)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel112)
-                                            .addComponent(jLabel116)
-                                            .addComponent(jLabel114)
-                                            .addComponent(jLabel115)))
+                                            .addComponent(WidDis)
+                                            .addComponent(BilDIs)
+                                            .addComponent(DepDis)
+                                            .addComponent(ExpDis)))
                                     .addComponent(jLabel132))
                                 .addGap(311, 311, 311)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel118)
-                                    .addComponent(jLabel121)
-                                    .addComponent(jLabel120)
-                                    .addComponent(jLabel119)
-                                    .addComponent(jLabel117)))))
+                                    .addComponent(TotalBal)
+                                    .addComponent(ExpTotal1)
+                                    .addComponent(DepTotal1)
+                                    .addComponent(BillTotal1)
+                                    .addComponent(WidTotal1)))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(382, 382, 382)
                         .addComponent(jLabel105))
@@ -228,35 +381,35 @@ public class AuditReport extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel108)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel114)
-                        .addComponent(jLabel120)))
+                        .addComponent(DepDis)
+                        .addComponent(DepTotal1)))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel117)
+                    .addComponent(WidTotal1)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel125)
-                        .addComponent(jLabel112)))
+                        .addComponent(WidDis)))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel122)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel116)
-                        .addComponent(jLabel119)))
+                        .addComponent(BilDIs)
+                        .addComponent(BillTotal1)))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel123)
-                    .addComponent(jLabel115)
-                    .addComponent(jLabel121))
+                    .addComponent(ExpDis)
+                    .addComponent(ExpTotal1))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel132)
-                    .addComponent(jLabel118))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                    .addComponent(TotalBal))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Confirm)
                 .addGap(343, 343, 343))
         );
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 1200, 960));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 1200, 690));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -311,8 +464,9 @@ public class AuditReport extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        // TODO add your handling code here:     
-        
+        AdminMain main = new AdminMain();
+        main.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void ConfirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseEntered
@@ -365,21 +519,21 @@ public class AuditReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BilDIs;
+    private javax.swing.JLabel BillTotal1;
     private javax.swing.JButton Confirm;
+    private javax.swing.JLabel DepDis;
+    private javax.swing.JLabel DepTotal1;
+    private javax.swing.JLabel ExpDis;
+    private javax.swing.JLabel ExpTotal1;
+    private javax.swing.JLabel TotalBal;
+    private javax.swing.JLabel WidDis;
+    private javax.swing.JLabel WidTotal1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
-    private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel124;
