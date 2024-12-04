@@ -441,7 +441,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         GenRep = new javax.swing.JButton();
         CheckCardY = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        AccNumDis = new javax.swing.JLabel();
+        CardNumDis = new javax.swing.JLabel();
         CardNameDis = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -1194,15 +1194,15 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/chip.png"))); // NOI18N
         CheckCardY.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, 100));
 
-        AccNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        AccNumDis.setForeground(new java.awt.Color(255, 255, 255));
-        AccNumDis.setText("Account Number");
-        CheckCardY.add(AccNumDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 200, 30));
+        CardNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        CardNumDis.setForeground(new java.awt.Color(255, 255, 255));
+        CardNumDis.setText("Account Number");
+        CheckCardY.add(CardNumDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, 410, 30));
 
         CardNameDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         CardNameDis.setForeground(new java.awt.Color(255, 255, 255));
         CardNameDis.setText("Name");
-        CheckCardY.add(CardNameDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 90, 30));
+        CheckCardY.add(CardNameDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 380, 30));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QP.png"))); // NOI18N
         CheckCardY.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 390, 140, 93));
@@ -2971,13 +2971,27 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
     private void checkcardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkcardActionPerformed
         // TODO add your handling code here:
-        Application.setVisible(false);
-        Dashboard.setVisible(false);
-        TransacHis.setVisible(false);
-        CheckCardY.setVisible(false);
-        CheckCardN.setVisible(true);
-        bills.setVisible(false);
-        shopping.setVisible(false);   
+        
+        if(this.card.equals("yes")){
+            Application.setVisible(false);
+            Dashboard.setVisible(false);
+            TransacHis.setVisible(false);
+            CheckCardY.setVisible(true);
+            CheckCardN.setVisible(false);
+            bills.setVisible(false);
+            shopping.setVisible(false); 
+            CardNameDis.setText(this.name);
+            CardNumDis.setText(this.accNumber);
+        } else{
+            Application.setVisible(false);
+            Dashboard.setVisible(false);
+            TransacHis.setVisible(false);
+            CheckCardY.setVisible(false);
+            CheckCardN.setVisible(true);
+            bills.setVisible(false);
+            shopping.setVisible(false);
+            
+        }
     }//GEN-LAST:event_checkcardActionPerformed
 
     private void CARDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CARDActionPerformed
@@ -3687,7 +3701,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 //<editor-fold defaultstate="collapsed" desc="VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccDEts;
-    private javax.swing.JLabel AccNumDis;
     private javax.swing.JButton Accreg;
     private javax.swing.JLabel ActionDis;
     private javax.swing.JLabel ActionLabel1;
@@ -3709,6 +3722,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JPasswordField CPinNum;
     private javax.swing.JToggleButton Cable;
     private javax.swing.JLabel CardNameDis;
+    private javax.swing.JLabel CardNumDis;
     private javax.swing.JPanel CheckCardN;
     private javax.swing.JPanel CheckCardY;
     private javax.swing.JPanel Clothings;
