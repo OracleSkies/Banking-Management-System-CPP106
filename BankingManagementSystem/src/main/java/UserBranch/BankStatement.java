@@ -22,11 +22,15 @@ public class BankStatement extends javax.swing.JFrame {
     /**
      * Creates new form BankStatement
      */
-    public BankStatement() {
+    public BankStatement(String name,String accNum, String address) {
         initComponents();
         loadDataFromCSVFiles(); // Call the method to load data
         String filePath = "Transactions.csv";
         displayAllTransactionsAndUpdateLabels(filePath);
+        nameDisplay.setText(name);
+        accNumberDisplay.setText(accNum);
+        addressDisplay.setText(address);
+        
     }
     
     // Method to load and count word occurrences from CSV files
@@ -194,9 +198,9 @@ public class BankStatement extends javax.swing.JFrame {
         BillTotal1 = new javax.swing.JLabel();
         DepTotal1 = new javax.swing.JLabel();
         ExpTotal1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        Name = new javax.swing.JLabel();
+        addressDisplay = new javax.swing.JLabel();
+        accNumberDisplay = new javax.swing.JLabel();
+        nameDisplay = new javax.swing.JLabel();
         jLabel105 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -313,20 +317,20 @@ public class BankStatement extends javax.swing.JFrame {
         ExpTotal1.setForeground(new java.awt.Color(255, 255, 255));
         ExpTotal1.setText("  ");
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Adress");
+        addressDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        addressDisplay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        addressDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        addressDisplay.setText("Adress");
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Account Number");
+        accNumberDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        accNumberDisplay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        accNumberDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        accNumberDisplay.setText("Account Number");
 
-        Name.setBackground(new java.awt.Color(255, 255, 255));
-        Name.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        Name.setForeground(new java.awt.Color(255, 255, 255));
-        Name.setText("Name");
+        nameDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        nameDisplay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nameDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        nameDisplay.setText("Name");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -338,50 +342,57 @@ public class BankStatement extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(261, 261, 261)
-                                .addComponent(jLabel106)
-                                .addGap(178, 178, 178)
-                                .addComponent(jLabel107))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel123)
-                                            .addComponent(jLabel125)
-                                            .addComponent(jLabel122)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel108)
-                                            .addComponent(jLabel3)
-                                            .addComponent(Name))
-                                        .addGap(93, 93, 93)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(WidDis)
-                                            .addComponent(BillDis)
-                                            .addComponent(DepDis)
-                                            .addComponent(ExpDis)))
-                                    .addComponent(jLabel132))
+                                .addComponent(jLabel132)
                                 .addGap(303, 303, 303)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(TotalBal)
                                     .addComponent(ExpTotal1)
                                     .addComponent(DepTotal1)
                                     .addComponent(BillTotal1)
-                                    .addComponent(WidTotal1)))))
+                                    .addComponent(WidTotal1)))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel123)
+                                    .addComponent(jLabel125)
+                                    .addComponent(jLabel122)
+                                    .addComponent(jLabel108))
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(93, 93, 93)
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(WidDis)
+                                            .addComponent(BillDis)
+                                            .addComponent(DepDis)
+                                            .addComponent(ExpDis)))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jLabel106)
+                                        .addGap(178, 178, 178)
+                                        .addComponent(jLabel107))))
+                            .addComponent(nameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(accNumberDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addressDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(404, 404, 404)
                         .addComponent(Confirm)))
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(412, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nameDisplay)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(accNumberDisplay)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addressDisplay)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel106)
                             .addComponent(jLabel107))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DepDis)
                             .addComponent(DepTotal1))
@@ -402,13 +413,7 @@ public class BankStatement extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Confirm))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(Name)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(56, 56, 56)
+                        .addGap(77, 77, 77)
                         .addComponent(jLabel108)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel125)
@@ -418,7 +423,7 @@ public class BankStatement extends javax.swing.JFrame {
                         .addComponent(jLabel123)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel132)))
-                .addGap(343, 396, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 1200, 960));
@@ -460,39 +465,39 @@ public class BankStatement extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BankStatement().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(BankStatement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new BankStatement().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BillDis;
@@ -502,10 +507,11 @@ public class BankStatement extends javax.swing.JFrame {
     private javax.swing.JLabel DepTotal1;
     private javax.swing.JLabel ExpDis;
     private javax.swing.JLabel ExpTotal1;
-    private javax.swing.JLabel Name;
     private javax.swing.JLabel TotalBal;
     private javax.swing.JLabel WidDis;
     private javax.swing.JLabel WidTotal1;
+    private javax.swing.JLabel accNumberDisplay;
+    private javax.swing.JLabel addressDisplay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel105;
@@ -516,9 +522,8 @@ public class BankStatement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel132;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel nameDisplay;
     // End of variables declaration//GEN-END:variables
 }
