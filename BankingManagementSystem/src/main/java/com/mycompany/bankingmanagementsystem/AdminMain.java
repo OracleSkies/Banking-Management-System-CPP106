@@ -227,7 +227,7 @@ public class AdminMain extends javax.swing.JFrame {
         filterCombo = new javax.swing.JComboBox<>();
         filterField = new javax.swing.JTextField();
         showAllButton = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        GenRep1 = new javax.swing.JButton();
         filterButton = new javax.swing.JButton();
         AuditAndReport = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -764,12 +764,17 @@ public class AdminMain extends javax.swing.JFrame {
         });
         Transactions.add(showAllButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 50, 120, 40));
 
-        jButton7.setBackground(new java.awt.Color(0, 0, 204));
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("GENERATE REPORT");
-        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Transactions.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, 302, 59));
+        GenRep1.setBackground(new java.awt.Color(0, 0, 204));
+        GenRep1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        GenRep1.setForeground(new java.awt.Color(255, 255, 255));
+        GenRep1.setText("GENERATE REPORT");
+        GenRep1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        GenRep1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenRep1ActionPerformed(evt);
+            }
+        });
+        Transactions.add(GenRep1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, 302, 59));
 
         filterButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         filterButton.setText("Filter");
@@ -1030,6 +1035,12 @@ public class AdminMain extends javax.swing.JFrame {
         NotificationPanel.setVisible(!NotificationPanel.isVisible());
 
     }//GEN-LAST:event_notificationButtonActionPerformed
+
+    private void GenRep1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRep1ActionPerformed
+        AuditReport Genrep = new AuditReport();
+        Genrep.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_GenRep1ActionPerformed
 
     // </editor-fold>
     
@@ -1648,6 +1659,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JPanel Dashboard;
     private javax.swing.JButton Dashboardbutton;
     private javax.swing.JButton GenRep;
+    private javax.swing.JButton GenRep1;
     private javax.swing.JPanel GraphPanel;
     private javax.swing.JPanel GraphPanelDashboard;
     private javax.swing.JPanel MasterPanel;
@@ -1665,7 +1677,6 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JButton filterButton;
     private javax.swing.JComboBox<String> filterCombo;
     private javax.swing.JTextField filterField;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
