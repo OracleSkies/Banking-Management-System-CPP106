@@ -407,10 +407,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         bills = new javax.swing.JPanel();
         BillsScroll = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
+        water = new javax.swing.JToggleButton();
+        CableInternet = new javax.swing.JToggleButton();
+        Insure = new javax.swing.JToggleButton();
+        Electric = new javax.swing.JToggleButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -419,10 +419,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
-        jToggleButton7 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
+        CreditCaard = new javax.swing.JToggleButton();
+        Govern = new javax.swing.JToggleButton();
+        Loans = new javax.swing.JToggleButton();
+        TeleCom = new javax.swing.JToggleButton();
         jLabel18 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -431,10 +431,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jToggleButton9 = new javax.swing.JToggleButton();
-        jToggleButton10 = new javax.swing.JToggleButton();
-        jToggleButton11 = new javax.swing.JToggleButton();
-        jToggleButton12 = new javax.swing.JToggleButton();
+        TransPort = new javax.swing.JToggleButton();
+        RealState = new javax.swing.JToggleButton();
+        HealthCare = new javax.swing.JToggleButton();
+        School = new javax.swing.JToggleButton();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -443,7 +443,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jToggleButton13 = new javax.swing.JToggleButton();
+        PaymentSolu = new javax.swing.JToggleButton();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -1140,18 +1140,33 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/water.png"))); // NOI18N
-
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/int.png"))); // NOI18N
-
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/insurance.png"))); // NOI18N
-        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+        water.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/water.png"))); // NOI18N
+        water.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton3ActionPerformed(evt);
+                waterActionPerformed(evt);
             }
         });
 
-        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/electric.png"))); // NOI18N
+        CableInternet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/int.png"))); // NOI18N
+        CableInternet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CableInternetActionPerformed(evt);
+            }
+        });
+
+        Insure.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/insurance.png"))); // NOI18N
+        Insure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InsureActionPerformed(evt);
+            }
+        });
+
+        Electric.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/electric.png"))); // NOI18N
+        Electric.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ElectricActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -1185,26 +1200,31 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Cable/Internet");
 
-        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cards.png"))); // NOI18N
-        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+        CreditCaard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cards.png"))); // NOI18N
+        CreditCaard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton5ActionPerformed(evt);
+                CreditCaardActionPerformed(evt);
             }
         });
 
-        jToggleButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Government.png"))); // NOI18N
-
-        jToggleButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loans.png"))); // NOI18N
-        jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
+        Govern.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Government.png"))); // NOI18N
+        Govern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton7ActionPerformed(evt);
+                GovernActionPerformed(evt);
             }
         });
 
-        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tele.png"))); // NOI18N
-        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+        Loans.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/loans.png"))); // NOI18N
+        Loans.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton8ActionPerformed(evt);
+                LoansActionPerformed(evt);
+            }
+        });
+
+        TeleCom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tele.png"))); // NOI18N
+        TeleCom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TeleComActionPerformed(evt);
             }
         });
 
@@ -1240,31 +1260,31 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setText(" ₱ 15, 000");
 
-        jToggleButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Transportation.png"))); // NOI18N
-        jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
+        TransPort.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Transportation.png"))); // NOI18N
+        TransPort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton9ActionPerformed(evt);
+                TransPortActionPerformed(evt);
             }
         });
 
-        jToggleButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RealEstate.png"))); // NOI18N
-        jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
+        RealState.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RealEstate.png"))); // NOI18N
+        RealState.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton10ActionPerformed(evt);
+                RealStateActionPerformed(evt);
             }
         });
 
-        jToggleButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Healthcare.png"))); // NOI18N
-        jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
+        HealthCare.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Healthcare.png"))); // NOI18N
+        HealthCare.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton11ActionPerformed(evt);
+                HealthCareActionPerformed(evt);
             }
         });
 
-        jToggleButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Schools.png"))); // NOI18N
-        jToggleButton12.addActionListener(new java.awt.event.ActionListener() {
+        School.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Schools.png"))); // NOI18N
+        School.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton12ActionPerformed(evt);
+                SchoolActionPerformed(evt);
             }
         });
 
@@ -1300,10 +1320,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("Schools");
 
-        jToggleButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PaymentSol.png"))); // NOI18N
-        jToggleButton13.addActionListener(new java.awt.event.ActionListener() {
+        PaymentSolu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PaymentSol.png"))); // NOI18N
+        PaymentSolu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton13ActionPerformed(evt);
+                PaymentSoluActionPerformed(evt);
             }
         });
 
@@ -1323,9 +1343,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Electric, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(water, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(jLabel10)
@@ -1346,9 +1366,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                         .addGap(174, 174, 174))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CableInternet, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TeleCom, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(52, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1413,22 +1433,22 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CreditCaard, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Loans, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Govern, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Insure, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TransPort, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(RealState, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(HealthCare, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jToggleButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jToggleButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(School, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PaymentSolu, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(jLabel47))
@@ -1442,10 +1462,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton8)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TeleCom)
+                    .addComponent(water, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Electric, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CableInternet, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1465,10 +1485,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jToggleButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CreditCaard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Loans, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(Govern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Insure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1482,10 +1502,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jToggleButton11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(HealthCare, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(School, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RealState, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TransPort, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1498,7 +1518,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addComponent(jToggleButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(PaymentSolu, javax.swing.GroupLayout.PREFERRED_SIZE, 244, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -3151,41 +3171,191 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         checkcard.setForeground(Color.white);
     }//GEN-LAST:event_checkcardMouseExited
 
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton3ActionPerformed
+    private void InsureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsureActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
 
-    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton5ActionPerformed
+        // Data to be written to the CSV file
+        String[] data = {"Insurance", "15000", "Success"};
 
-    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton8ActionPerformed
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
 
-    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton7ActionPerformed
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_InsureActionPerformed
 
-    private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton9ActionPerformed
+    private void CreditCaardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditCaardActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
 
-    private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton10ActionPerformed
+        // Data to be written to the CSV file
+        String[] data = {"Credit Card", "10000", "Success"};
 
-    private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton11ActionPerformed
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
 
-    private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton12ActionPerformed
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_CreditCaardActionPerformed
 
-    private void jToggleButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton13ActionPerformed
+    private void TeleComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeleComActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Telecommunication", "100", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_TeleComActionPerformed
+
+    private void LoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoansActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Loans", "5000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_LoansActionPerformed
+
+    private void TransPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransPortActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Transportation", "800", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_TransPortActionPerformed
+
+    private void RealStateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RealStateActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Real State", "25000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_RealStateActionPerformed
+
+    private void HealthCareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HealthCareActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Health Care", "19000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }    }//GEN-LAST:event_HealthCareActionPerformed
+
+    private void SchoolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SchoolActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"School Payment", "18000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }    }//GEN-LAST:event_SchoolActionPerformed
+
+    private void PaymentSoluActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentSoluActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Payment Solution", "20000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }    }//GEN-LAST:event_PaymentSoluActionPerformed
 
     private void PayBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PayBMouseEntered
         // TODO add your handling code here:
@@ -3357,6 +3527,90 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_GenRepActionPerformed
 
+    private void waterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waterActionPerformed
+       // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Water Utilities", "500", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_waterActionPerformed
+
+    private void ElectricActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElectricActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Electric Utilities", "1000", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_ElectricActionPerformed
+
+    private void CableInternetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CableInternetActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Cable/Internet", "800", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_CableInternetActionPerformed
+
+    private void GovernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GovernActionPerformed
+        // Define the file path for the CSV file
+        String filePath = "output.csv";
+
+        // Data to be written to the CSV file
+        String[] data = {"Goverment", "600", "Success"};
+
+        // Write data to the CSV file
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            // Convert the array to a comma-separated string
+            String csvLine = String.join(",", data);
+            // Write the line to the file with a newline character
+            writer.append(csvLine).append("\n");
+
+            System.out.println("Data written to CSV file successfully.");
+        } catch (IOException e) {
+            // Handle exceptions
+            System.err.println("An error occurred while writing to the CSV file: " + e.getMessage());
+        }
+    }//GEN-LAST:event_GovernActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3419,27 +3673,35 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane BillsScroll;
     private javax.swing.JToggleButton CARD;
     private javax.swing.JTextField CPinNum;
+    private javax.swing.JToggleButton CableInternet;
     private javax.swing.JLabel CardNameDis;
     private javax.swing.JPanel CheckCardN;
     private javax.swing.JPanel CheckCardY;
     private javax.swing.JPanel Clothings;
     private javax.swing.JScrollPane ClothingsScroll;
+    private javax.swing.JToggleButton CreditCaard;
     private javax.swing.JTable DashHis;
     private javax.swing.JButton Dashb;
     private javax.swing.JPanel Dashboard;
     private javax.swing.JLabel DateDis;
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DescrDis;
+    private javax.swing.JToggleButton Electric;
     private javax.swing.JScrollPane FoodScroll;
     private javax.swing.JPanel Foods;
     private javax.swing.JButton GenRep;
+    private javax.swing.JToggleButton Govern;
+    private javax.swing.JToggleButton HealthCare;
     private javax.swing.JPanel Hist;
+    private javax.swing.JToggleButton Insure;
+    private javax.swing.JToggleButton Loans;
     private javax.swing.JPanel MasterPanelButtons;
     private javax.swing.JPanel MasterPanelScreen;
     private javax.swing.JLabel NameDis;
     private javax.swing.JLabel NameLabel1;
     private javax.swing.JButton Notifs;
     private javax.swing.JButton PayB;
+    private javax.swing.JToggleButton PaymentSolu;
     private javax.swing.JToggleButton Payments;
     private javax.swing.JTextField PhoneNum;
     private javax.swing.JLabel PhoneNumDis;
@@ -3447,9 +3709,13 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JLabel PhoneNumLabel;
     private javax.swing.JTextField PinNum;
     private javax.swing.JButton Profile;
+    private javax.swing.JToggleButton RealState;
     private javax.swing.JPanel RecentTrans;
+    private javax.swing.JToggleButton School;
     private javax.swing.JButton Shopping;
+    private javax.swing.JToggleButton TeleCom;
     private javax.swing.JButton Trans;
+    private javax.swing.JToggleButton TransPort;
     private javax.swing.JPanel TransacHis;
     private javax.swing.JTable Transhis;
     private javax.swing.JTextField UserName;
@@ -3678,15 +3944,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton10;
-    private javax.swing.JToggleButton jToggleButton11;
-    private javax.swing.JToggleButton jToggleButton12;
-    private javax.swing.JToggleButton jToggleButton13;
     private javax.swing.JToggleButton jToggleButton14;
     private javax.swing.JToggleButton jToggleButton15;
     private javax.swing.JToggleButton jToggleButton19;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton22;
     private javax.swing.JToggleButton jToggleButton23;
     private javax.swing.JToggleButton jToggleButton24;
@@ -3695,16 +3955,12 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton27;
     private javax.swing.JToggleButton jToggleButton28;
     private javax.swing.JToggleButton jToggleButton29;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton30;
     private javax.swing.JToggleButton jToggleButton31;
     private javax.swing.JToggleButton jToggleButton32;
     private javax.swing.JToggleButton jToggleButton33;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton58;
     private javax.swing.JToggleButton jToggleButton59;
-    private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton60;
     private javax.swing.JToggleButton jToggleButton61;
     private javax.swing.JToggleButton jToggleButton62;
@@ -3715,7 +3971,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton67;
     private javax.swing.JToggleButton jToggleButton68;
     private javax.swing.JToggleButton jToggleButton69;
-    private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton jToggleButton70;
     private javax.swing.JToggleButton jToggleButton71;
     private javax.swing.JToggleButton jToggleButton72;
@@ -3726,11 +3981,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton77;
     private javax.swing.JToggleButton jToggleButton78;
     private javax.swing.JToggleButton jToggleButton79;
-    private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JToggleButton jToggleButton80;
-    private javax.swing.JToggleButton jToggleButton9;
     private javax.swing.JPanel payments;
     private javax.swing.JPanel shopping;
     private javax.swing.JTabbedPane shoppingTab;
+    private javax.swing.JToggleButton water;
     // End of variables declaration//GEN-END:variables
 }
