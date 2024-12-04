@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.text.AttributeSet;
@@ -107,96 +108,84 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             return;
         }
 
-        // Check if user credentials match in "Accounts.csv"
+        // Validate user credentials
         if (!validateUserCredentials(accountsFilePath, username, password, name)) {
             System.out.println("User credentials do not match.");
             return;
         }
 
-        // Process the transactions in "Transactions.csv"
+        // Process transactions
         try (BufferedReader br = new BufferedReader(new FileReader(transactionsFilePath))) {
             String line;
             boolean isFirstLine = true;
 
-            // Display the file content in the console or GUI
+            // Display headers
             System.out.println("Reading Transactions CSV file:");
             System.out.printf("%-15s %-15s %-10s %-30s %-15s%n", "Action", "Date", "Amount", "Description", "Username");
 
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    // Skip the header if present
                     isFirstLine = false;
-                    continue;
+                    continue; // Skip the header line
                 }
 
-                // Split the line by commas (columns: Action, Date, Amount, Description, Username)
                 String[] values = line.split(",");
-                if (values.length < 5) { // Assuming we now have 5 columns (Action, Date, Amount, Description, Username)
+                if (values.length < 5) { // Ensure the correct number of columns
                     System.out.println("Skipping invalid line: " + line);
                     continue;
                 }
 
-                String action = values[0].trim();   // Action (DEPOSIT or WITHDRAW)
-                String date = values[1].trim();     // Date
-                String amountStr = values[2].trim(); // Amount
-                String description = values[3].trim(); // Description
-                String transactionUsername = values[4].trim(); // Username in transaction
+                String action = values[4].trim();         // Adjusted index for "Action"
+                String date = values[0].trim();           // Adjusted index for "Date"
+                String amountStr = values[3].trim();      // Adjusted index for "Amount"
+                String description = values[5].trim();   // Adjusted index for "Description"
+                String transactionUsername = values[1].trim(); // Adjusted index for "Username"
 
-                // Only process rows for the logged-in user (checking username and name)
-                if (!transactionUsername.equals(username)) {
-                    continue; // Skip lines that do not match the logged-in username
+                if (!transactionUsername.equals(username.trim())) {
+                    continue; // Skip lines not related to the logged-in user
                 }
 
-                // Display the row data
+                // Display the transaction row
                 System.out.printf("%-15s %-15s %-10s %-30s %-15s%n", action, date, amountStr, description, transactionUsername);
 
                 try {
-                    // Parse the amount
                     double money = Double.parseDouble(amountStr);
 
-                    // Add deposits and withdrawals to their respective totals
                     if (action.equalsIgnoreCase("DEPOSIT")) {
                         totalDeposits += money;
                     } else if (action.equalsIgnoreCase("WITHDRAW")) {
-                        totalWithdrawals += money; // Withdrawals are subtracted from the total balance
+                        totalWithdrawals += money;
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Skipping invalid money value: " + amountStr);
                 }
             }
 
-            // Calculate the total balance (sum of deposits and withdrawals)
             double totalBalance = totalDeposits - totalWithdrawals;
-
-            // Format totals
             String formattedBalance = "$" + df.format(totalBalance);
 
-            // Update the JLabel (replace with your actual JLabel name)
-            BalDis.setText(formattedBalance);
-
+            // Update JLabel safely
+            SwingUtilities.invokeLater(() -> BalDis.setText(formattedBalance));
         } catch (IOException e) {
             System.out.println("Error reading the file: " + transactionsFilePath);
             e.printStackTrace();
         }
     }
 
-    // Validate user credentials in "Accounts.csv"
+
     private boolean validateUserCredentials(String accountsFilePath, String username, String password, String name) {
         try (BufferedReader br = new BufferedReader(new FileReader(accountsFilePath))) {
             String line;
             boolean isFirstLine = true;
 
-            // Read through the account file
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
-                    // Skip header line if present
                     isFirstLine = false;
-                    continue;
+                    continue; // Skip the header line
                 }
 
-                // Split the line by commas (columns: Username, Password, Name)
                 String[] values = line.split(",");
-                if (values.length < 3) { // Only check for Username, Password, Name columns
+                if (values.length < 3) { // Ensure valid columns
                     System.out.println("Skipping invalid account line: " + line);
                     continue;
                 }
@@ -205,13 +194,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 String accountPassword = values[1].trim();
                 String accountName = values[2].trim();
 
-                // Debugging output
-                System.out.println("Checking credentials: Username=" + accountUsername + ", Password=" + accountPassword + ", Name=" + accountName);
-
-                // Check if the username, password, and name match
-                if (accountUsername.equals(username) && accountPassword.equals(password) && accountName.equals(name)) {
+                if (accountUsername.equals(username.trim()) && accountPassword.equals(password.trim()) && accountName.equals(name.trim())) {
                     System.out.println("User match found!");
-                    return true; // Match found
+                    return true;
                 }
             }
         } catch (IOException e) {
@@ -220,11 +205,81 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         }
 
         System.out.println("No match found for the user credentials.");
-        return false; // No match found
+        return false;
     }
 
 
-    
+
+    private void loadCSV() {
+        String transactionsFilePath = "Transactions.csv";
+        String accountsFilePath = "Accounts.csv";
+
+        try {
+            BufferedReader accountsReader = new BufferedReader(new FileReader(accountsFilePath));
+            HashSet<String> validUsernames = new HashSet<>();
+
+            String accountsLine;
+            while ((accountsLine = accountsReader.readLine()) != null) {
+                String[] accountData = accountsLine.split(",");
+                if (accountData.length >= 3) {
+                    validUsernames.add(accountData[2].trim());
+                }
+            }
+            accountsReader.close();
+
+            if (validUsernames.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No valid usernames found in Accounts.csv.");
+                return;
+            }
+
+            BufferedReader transactionsReader = new BufferedReader(new FileReader(transactionsFilePath));
+            ArrayList<String[]> data = new ArrayList<>();
+            String transactionsLine;
+
+            transactionsReader.readLine(); // Skip header
+
+            while ((transactionsLine = transactionsReader.readLine()) != null) {
+                String[] transactionData = transactionsLine.split(",");
+                if (transactionData.length >= 5) {
+                    String transactionUsername = transactionData[1].trim();
+
+                    if (validUsernames.contains(transactionUsername)) {
+                        data.add(new String[]{
+                            transactionData[0], // Timestamp
+                            transactionData[3], // Amount
+                            transactionData[4], // Action
+                            transactionData[5]  // Description
+                        });
+                    }
+                }
+            }
+            transactionsReader.close();
+
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            model.addColumn("Timestamp");
+            model.addColumn("Amount");
+            model.addColumn("Action");
+            model.addColumn("Description");
+
+            for (String[] row : data) {
+                model.addRow(row);
+            }
+
+            Transhis.setModel(model);
+            DashHis.setModel(model);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
     
     public void displayLastRow(String filePath, JLabel ActionDis, JLabel DateDis, JLabel Amountdis, JLabel DescrDis) {
         File file = new File(filePath);
@@ -280,95 +335,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     } 
-
-    private void loadCSV() {
-        // Specify the paths to the CSV files
-        String transactionsFilePath = "Transactions.csv"; // Path to Transactions file
-        String accountsFilePath = "Accounts.csv";         // Path to Accounts file
-
-        try {
-            // Step 1: Read Accounts.csv to load valid usernames (username:password:name)
-            BufferedReader accountsReader = new BufferedReader(new FileReader(accountsFilePath));
-            HashSet<String> validUsernames = new HashSet<>(); // Store valid usernames
-
-            String accountsLine;
-            while ((accountsLine = accountsReader.readLine()) != null) {
-                String[] accountData = accountsLine.split(",");
-                if (accountData.length >= 3) {
-                    // Extract username (we are not interested in password or name for this case)
-                    String username = accountData[2].trim();  // Username column
-                    validUsernames.add(username);
-                    System.out.println("Loaded username: " + username); // Debug log
-                }
-            }
-            accountsReader.close();
-
-            if (validUsernames.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No valid usernames found in Accounts.csv.");
-                return;
-            }
-
-            // Step 2: Read Transactions.csv and filter data by matching username
-            BufferedReader transactionsReader = new BufferedReader(new FileReader(transactionsFilePath));
-            ArrayList<String[]> data = new ArrayList<>();
-            String transactionsLine;
-
-            // Skip the header line
-            transactionsReader.readLine();
-
-            while ((transactionsLine = transactionsReader.readLine()) != null) {
-                String[] transactionData = transactionsLine.split(",");
-                if (transactionData.length >= 6) {
-                    // Extract username from Transactions.csv 
-                    String transactionUsername = transactionData[1].trim();
-
-                    // Check if the transaction's username is in the valid list of usernames
-                    if (validUsernames.contains(transactionUsername)) {
-                        System.out.println("Match found for username: " + transactionUsername); // Debug log
-
-                        // Extract required fields
-                        String timestamp = transactionData[0];       // Timestamp
-                        String amount = transactionData[3];          // Amount
-                        String action = transactionData[4];          // Action
-                        String description = transactionData[5];     // Description
-
-                        // Add to the filtered data list
-                        data.add(new String[]{timestamp, amount, action, description});
-                    }
-                }
-            }
-            transactionsReader.close();
-
-            // Step 3: Create a DefaultTableModel for the filtered data
-            DefaultTableModel model = new DefaultTableModel() {
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // Make all cells non-editable
-                }
-            };
-
-            // Add columns to the model
-            model.addColumn("Timestamp");
-            model.addColumn("Amount");
-            model.addColumn("Action");
-            model.addColumn("Description");
-
-            // Add data rows to the model
-            for (String[] row : data) {
-                model.addRow(row);
-            }
-
-            // Set the model to the JTable
-            Transhis.setModel(model);
-            DashHis.setModel(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
-        }
-    }
-
-
-
 
     
 
