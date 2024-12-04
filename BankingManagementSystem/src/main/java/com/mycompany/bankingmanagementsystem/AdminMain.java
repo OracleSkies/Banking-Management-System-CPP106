@@ -2,6 +2,7 @@ package com.mycompany.bankingmanagementsystem;
 
 
 
+import ATMSystemBranch.StartingWindow;
 import cellAction.TableActionCellEditor;
 import cellAction.TableActionCellEditorCardView;
 import cellAction.TableActionCellEditorView;
@@ -1010,7 +1011,10 @@ public class AdminMain extends javax.swing.JFrame {
         );
 
         if (response == JOptionPane.YES_OPTION) {
-            this.dispose(); // Close the current window
+            // Close the current window
+            StartingWindow start = new StartingWindow();
+            start.setVisible(true);
+            setVisible(false);
         }
     }//GEN-LAST:event_accountButtonActionPerformed
 
