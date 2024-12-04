@@ -11,3 +11,4 @@ date,donasco,222,1,WITHDRAW,Bank Transaction
 03/12/2024 16:29,jayjay,111,700,WITHDRAW,Bank Transaction
 03/12/2024 16:40,donasco,222,10000,DEPOSIT,Bank Transaction
 date,presco,233,78000,PAYMENTS,Bank Transaction
+date,jayjay,111,1000,MONEY TRANSFER,Money transfer to account number: 222

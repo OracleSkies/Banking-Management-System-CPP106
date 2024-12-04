@@ -3,8 +3,10 @@ package com.mycompany.bankingmanagementsystem;
 
 
 import cellAction.TableActionCellEditor;
+import cellAction.TableActionCellEditorCardView;
 import cellAction.TableActionCellEditorView;
 import cellAction.TableActionCellRenderer;
+import cellAction.TableActionCellRendererCardView;
 import cellAction.TableActionCellRendererView;
 import cellAction.TableActionEvent;
 import java.awt.BorderLayout;
@@ -54,6 +56,8 @@ public class AdminMain extends javax.swing.JFrame {
     private String accNumber;
     private String type;
     private String card;
+    private String pin;
+    private int balance;
     private int rowNum;
     
     public AdminMain() {
@@ -68,6 +72,7 @@ public class AdminMain extends javax.swing.JFrame {
         loadAccountsForAccManagement("Accounts.csv");
         loadAccountsForAccApplication("AccountApplications.csv");
         loadAccountsApplicationForDashboard("AccountApplications.csv");
+        loadCardApplication("CardApplications.csv");
         showPieChart(GraphPanelDashboard);
         
        
@@ -103,8 +108,11 @@ public class AdminMain extends javax.swing.JFrame {
 
             @Override
             public void accOnView(int row) {
-                System.out.println("BUTTON CHECK");
                 viewAccountInformation(row);
+            }
+            @Override
+            public void cardOnView(int row) {
+                viewCardInformation(row);
             }
         };
         
@@ -117,6 +125,9 @@ public class AdminMain extends javax.swing.JFrame {
         
         ActiveAccountsTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRenderer());
         ActiveAccountsTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditor(event));
+        
+        CardApplicationTable.getColumnModel().getColumn(2).setCellRenderer(new TableActionCellRendererCardView());
+        CardApplicationTable.getColumnModel().getColumn(2).setCellEditor(new TableActionCellEditorCardView(event));
         
         
         CardApplicationTable.setOpaque(false);
@@ -446,11 +457,11 @@ public class AdminMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Action"
+                "Name", "Account Number", "Action"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1133,6 +1144,33 @@ public class AdminMain extends javax.swing.JFrame {
         }
     }
     
+    public void loadCardApplication(String filePath){
+        //Loads all data from Accounts.csv to transaction table in account management panel. 
+        //Creates a dynamic table that add rows depending on the number of rows in Accounts.csv
+        //Displays only the name and the type of account per row
+        DefaultTableModel model = (DefaultTableModel) CardApplicationTable.getModel();
+        model.setRowCount(0);
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            
+            String line;
+            boolean isFirstRow = true;
+            while ((line = br.readLine()) != null) {
+                if (isFirstRow){
+                    isFirstRow = false;
+                    continue;
+                }
+                String[] data = line.split(",");
+                String name = data[0];
+                String accNum = data[1];
+                // Create a new array with only 'name' and 'type' to add to the table
+                Object[] rowData = {name,accNum};
+                model.addRow(rowData);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void editUserInfo(int row){
 
         File file = new File("Accounts.csv");
@@ -1197,6 +1235,7 @@ public class AdminMain extends javax.swing.JFrame {
                 }
                 currentRow++;
             }
+            
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new UserAccountApplication(username,password, name, birthdate, phoneNumber, address, rowNum).setVisible(true);
@@ -1207,6 +1246,36 @@ public class AdminMain extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } 
+    }
+    private void viewCardInformation(int row){
+        File file = new File("CardApplications.csv");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            int currentRow = 0;
+            int rowNumber = row+1;
+            while ((line = reader.readLine()) != null) {
+                if (currentRow == rowNumber) {
+                    String[] data = line.split(",");
+                    name = data[0];
+                    accNumber = data[1];
+                    phoneNumber = data[2];
+                    pin = data[3];
+                    rowNum = currentRow;
+                    // Output all elements for the found name
+                    break;
+                }
+                currentRow++;
+            }
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new UserCardApplication(name, phoneNumber,accNumber,pin,rowNum).setVisible(true);
+                }
+            });
+            this.setVisible(false);
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error reading file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     private void viewAccountInformation(int row){
