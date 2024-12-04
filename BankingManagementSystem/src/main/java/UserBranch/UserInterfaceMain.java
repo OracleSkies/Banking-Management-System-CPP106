@@ -35,21 +35,61 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     /**
      * Creates new form UserInterface
      */
-    public UserInterfaceMain() {
+    
+    private String username;
+    private String password;
+    private String name;
+    private String birthdate;
+    private String phoneNumber;
+    private String address;
+    private String accNumber;
+    private String type;
+    private String card;
+    private int balance;
+    
+    
+    public UserInterfaceMain(String username,
+            String password,
+            String name,
+            String birthdate,
+            String phoneNumber,
+            String address,
+            String accNumber,
+            String type,
+            String card,
+            int balance) {
+        
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.accNumber = accNumber;
+        this.type = type;
+        this.card = card;
+        this.balance = balance;
+        
         initComponents();
         loadCSV(); // Automatically load the CSV file when the JFrame is created
-       
+        balanceDisplay.setText("₱" + Integer.toString(balance));
+        NameDisplay.setText(name);
+        bdayDisplay.setText(birthdate);
+        phoneDisplay.setText(phoneNumber);
+        addressDisplay.setText(address);
+        accountDisplay.setText(accNumber);
         // Example usage of displayLastRow
-        //displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
+        displayLastRow("Transactions.csv", ActionDis, DateDis, Amountdis, DescrDis);
         
         
         
         // Set character limit for each text field
-        setTextFieldLimit(UserName, 20); // Set limit for UserName to 20 characters
-        setTextFieldLimit(AccNum, 12);    // Set limit for Account Number to 12 characters
-        setTextFieldLimit(PhoneNum, 11);  // Set limit for Phone Number to 11 characters
-        setTextFieldLimit(PinNum, 8);     // Set limit for Pin Number to 4 characters
-        setTextFieldLimit(CPinNum, 8);    // Set limit for Confirm Pin Number to 4 characters
+        // PARA TO SA CARD APPLICATION
+//        setTextFieldLimit(UserName, 20); // Set limit for UserName to 20 characters
+//        setTextFieldLimit(AccNum, 12);    // Set limit for Account Number to 12 characters
+//        setTextFieldLimit(PhoneNum, 11);  // Set limit for Phone Number to 11 characters
+//        setTextFieldLimit(PinNum, 8);     // Set limit for Pin Number to 4 characters
+//        setTextFieldLimit(CPinNum, 8);    // Set limit for Confirm Pin Number to 4 characters
         
         cards.setVisible(false);
         payments.setVisible(false);
@@ -167,7 +207,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             String formattedBalance = "$" + df.format(totalBalance);
 
             // Update JLabel safely
-            SwingUtilities.invokeLater(() -> BalDis.setText(formattedBalance));
+            SwingUtilities.invokeLater(() -> balanceDisplay.setText(formattedBalance));
         } catch (IOException e) {
             System.out.println("Error reading the file: " + transactionsFilePath);
             e.printStackTrace();
@@ -375,21 +415,21 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         Balance = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        BalDis = new javax.swing.JLabel();
+        balanceDisplay = new javax.swing.JLabel();
         BalanceLabel = new javax.swing.JLabel();
         AccDEts = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        NameDis = new javax.swing.JLabel();
-        PhoneNumDis = new javax.swing.JLabel();
+        NameDisplay = new javax.swing.JLabel();
+        phoneDisplay = new javax.swing.JLabel();
         BdayLabel = new javax.swing.JLabel();
         NameLabel1 = new javax.swing.JLabel();
         PhoneNumLabel = new javax.swing.JLabel();
-        BdayDis1 = new javax.swing.JLabel();
+        bdayDisplay = new javax.swing.JLabel();
         AddressLabel = new javax.swing.JLabel();
-        AddressDis = new javax.swing.JLabel();
+        addressDisplay = new javax.swing.JLabel();
         BankAccNumLabel = new javax.swing.JLabel();
-        PhoneNumDis1 = new javax.swing.JLabel();
+        accountDisplay = new javax.swing.JLabel();
         Hist = new javax.swing.JPanel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
@@ -860,9 +900,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
-        BalDis.setBackground(new java.awt.Color(255, 255, 255));
-        BalDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        BalDis.setForeground(new java.awt.Color(255, 255, 255));
+        balanceDisplay.setBackground(new java.awt.Color(255, 255, 255));
+        balanceDisplay.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        balanceDisplay.setForeground(new java.awt.Color(255, 255, 255));
+        balanceDisplay.setText("Balance");
 
         BalanceLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         BalanceLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -886,7 +927,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(BalanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(balanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         BalanceLayout.setVerticalGroup(
@@ -899,7 +940,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BalDis, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(balanceDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -911,30 +952,35 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        NameDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NameDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        NameDisplay.setText("asd");
 
-        PhoneNumDis.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        phoneDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        phoneDisplay.setText("asd");
 
-        BdayLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BdayLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BdayLabel.setText("Birthday:");
 
-        NameLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NameLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         NameLabel1.setText("Name:");
 
-        PhoneNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        PhoneNumLabel.setText("PhoneNumer:");
+        PhoneNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        PhoneNumLabel.setText("PhoneNumber:");
 
-        BdayDis1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        bdayDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        bdayDisplay.setText("asd");
 
-        AddressLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        AddressLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         AddressLabel.setText("Address:");
 
-        AddressDis.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        addressDisplay.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        addressDisplay.setText("asd");
 
-        BankAccNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        BankAccNumLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         BankAccNumLabel.setText("Bank Account Number:");
 
-        PhoneNumDis1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        accountDisplay.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        accountDisplay.setText("asd");
 
         javax.swing.GroupLayout AccDEtsLayout = new javax.swing.GroupLayout(AccDEts);
         AccDEts.setLayout(AccDEtsLayout);
@@ -944,10 +990,10 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator4)
-                    .addComponent(AddressDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BdayDis1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PhoneNumDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NameDis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addressDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bdayDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(phoneDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NameDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(AccDEtsLayout.createSequentialGroup()
                         .addGroup(AccDEtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(AccDEtsLayout.createSequentialGroup()
@@ -959,7 +1005,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                             .addComponent(AddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 58, Short.MAX_VALUE))
-                    .addComponent(PhoneNumDis1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(accountDisplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         AccDEtsLayout.setVerticalGroup(
@@ -972,24 +1018,24 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(NameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NameDis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addComponent(NameDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(BdayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BdayDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bdayDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(PhoneNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PhoneNumDis, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(phoneDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(AddressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AddressDis, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addressDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BankAccNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PhoneNumDis1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(accountDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         Hist.setBackground(new java.awt.Color(204, 204, 204, 80));
@@ -1013,7 +1059,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
             },
             new String [] {
-                "TimeStamp", "Aciotn", "Amount", "Description"
+                "TimeStamp", "Action", "Amount", "Description"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -2919,7 +2965,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 //        TransCash.setVisible(false);
 //        AccReg.setVisible(true);
         
-        UserAccountRegistrationAdminView register = new UserAccountRegistrationAdminView();
+        UserAccountRegistrationUserView register = new UserAccountRegistrationUserView();
         register.setVisible(true);
     }//GEN-LAST:event_AccregActionPerformed
     
@@ -3564,7 +3610,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private void GenRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenRepActionPerformed
         BankStatement banks = new BankStatement();       
         banks.setVisible(true);
-        setVisible(false);
         
     }//GEN-LAST:event_GenRepActionPerformed
 
@@ -3687,13 +3732,13 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserInterfaceMain().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UserInterfaceMain().setVisible(true);
+//            }
+//        });
     }
-
+//<editor-fold defaultstate="collapsed" desc="VARIABLES">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccDEts;
     private javax.swing.JTextField AccNum;
@@ -3701,7 +3746,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JButton Accreg;
     private javax.swing.JLabel ActionDis;
     private javax.swing.JLabel ActionLabel1;
-    private javax.swing.JLabel AddressDis;
     private javax.swing.JLabel AddressLabel;
     private javax.swing.JLabel AmountLabel1;
     private javax.swing.JLabel AmountLabel3;
@@ -3710,11 +3754,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JScrollPane AppliancesScroll;
     private javax.swing.JPanel Application;
     private javax.swing.JButton ApplyBut;
-    private javax.swing.JLabel BalDis;
     private javax.swing.JPanel Balance;
     private javax.swing.JLabel BalanceLabel;
     private javax.swing.JLabel BankAccNumLabel;
-    private javax.swing.JLabel BdayDis1;
     private javax.swing.JLabel BdayLabel;
     private javax.swing.JButton Bills;
     private javax.swing.JScrollPane BillsScroll;
@@ -3744,7 +3786,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton Loans;
     private javax.swing.JPanel MasterPanelButtons;
     private javax.swing.JPanel MasterPanelScreen;
-    private javax.swing.JLabel NameDis;
+    private javax.swing.JLabel NameDisplay;
     private javax.swing.JLabel NameLabel1;
     private javax.swing.JPanel NotifWindow;
     private javax.swing.JButton Notifs;
@@ -3752,8 +3794,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton PaymentSolu;
     private javax.swing.JToggleButton Payments;
     private javax.swing.JTextField PhoneNum;
-    private javax.swing.JLabel PhoneNumDis;
-    private javax.swing.JLabel PhoneNumDis1;
     private javax.swing.JLabel PhoneNumLabel;
     private javax.swing.JTextField PinNum;
     private javax.swing.JButton Profile;
@@ -3768,7 +3808,11 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton Transport;
     private javax.swing.JTextField UserName;
     private javax.swing.JToggleButton Water;
+    private javax.swing.JLabel accountDisplay;
+    private javax.swing.JLabel addressDisplay;
     private javax.swing.JButton application;
+    private javax.swing.JLabel balanceDisplay;
+    private javax.swing.JLabel bdayDisplay;
     private javax.swing.JPanel bills;
     private javax.swing.JPanel cards;
     private javax.swing.JButton checkcard;
@@ -4034,7 +4078,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton79;
     private javax.swing.JToggleButton jToggleButton80;
     private javax.swing.JPanel payments;
+    private javax.swing.JLabel phoneDisplay;
     private javax.swing.JPanel shopping;
     private javax.swing.JTabbedPane shoppingTab;
     // End of variables declaration//GEN-END:variables
+//</editor-fold>
 }

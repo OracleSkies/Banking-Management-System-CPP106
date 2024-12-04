@@ -409,7 +409,7 @@
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="BalanceLabel" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="BalDis" min="-2" pref="344" max="-2" attributes="0"/>
+                              <Component id="balanceDisplay" min="-2" pref="344" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="67" max="32767" attributes="0"/>
                       </Group>
@@ -425,7 +425,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="BalanceLabel" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="BalDis" min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="balanceDisplay" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -450,17 +450,18 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="BalDis">
+                <Component class="javax.swing.JLabel" name="balanceDisplay">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="48" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="Balance"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="BalanceLabel">
@@ -490,10 +491,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jSeparator4" alignment="0" max="32767" attributes="0"/>
-                              <Component id="AddressDis" alignment="0" max="32767" attributes="0"/>
-                              <Component id="BdayDis1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PhoneNumDis" alignment="0" max="32767" attributes="0"/>
-                              <Component id="NameDis" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addressDisplay" alignment="0" max="32767" attributes="0"/>
+                              <Component id="bdayDisplay" alignment="0" max="32767" attributes="0"/>
+                              <Component id="phoneDisplay" alignment="0" max="32767" attributes="0"/>
+                              <Component id="NameDisplay" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
@@ -508,7 +509,7 @@
                                   </Group>
                                   <EmptySpace min="0" pref="58" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="PhoneNumDis1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="accountDisplay" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -524,24 +525,24 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="NameLabel1" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="NameDis" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Component id="NameDisplay" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
                           <Component id="BdayLabel" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="BdayDis1" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="bdayDisplay" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="PhoneNumLabel" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="PhoneNumDis" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="phoneDisplay" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="AddressLabel" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="AddressDis" min="-2" pref="116" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="addressDisplay" min="-2" pref="88" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="BankAccNumLabel" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="PhoneNumDis1" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace pref="69" max="32767" attributes="0"/>
+                          <Component id="accountDisplay" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -565,24 +566,26 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="NameDis">
+                <Component class="javax.swing.JLabel" name="NameDisplay">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="26" style="1"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="asd"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="PhoneNumDis">
+                <Component class="javax.swing.JLabel" name="phoneDisplay">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="26" style="1"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="asd"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="BdayLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Birthday:"/>
                   </Properties>
@@ -590,7 +593,7 @@
                 <Component class="javax.swing.JLabel" name="NameLabel1">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Name:"/>
                   </Properties>
@@ -598,46 +601,49 @@
                 <Component class="javax.swing.JLabel" name="PhoneNumLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="PhoneNumer:"/>
+                    <Property name="text" type="java.lang.String" value="PhoneNumber:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="BdayDis1">
+                <Component class="javax.swing.JLabel" name="bdayDisplay">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="26" style="1"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="asd"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="AddressLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Address:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="AddressDis">
+                <Component class="javax.swing.JLabel" name="addressDisplay">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="10" style="1"/>
+                      <Font name="Segoe UI" size="24" style="1"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="asd"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="BankAccNumLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="18" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Bank Account Number:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="PhoneNumDis1">
+                <Component class="javax.swing.JLabel" name="accountDisplay">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="24" style="1"/>
+                      <Font name="Segoe UI" size="26" style="1"/>
                     </Property>
+                    <Property name="text" type="java.lang.String" value="asd"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -712,7 +718,7 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="0">
                             <Column editable="false" title="TimeStamp" type="java.lang.Object"/>
-                            <Column editable="false" title="Aciotn" type="java.lang.Object"/>
+                            <Column editable="false" title="Action" type="java.lang.Object"/>
                             <Column editable="false" title="Amount" type="java.lang.Object"/>
                             <Column editable="false" title="Description" type="java.lang.Object"/>
                           </Table>
