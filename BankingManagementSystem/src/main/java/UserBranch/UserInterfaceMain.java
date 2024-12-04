@@ -45,6 +45,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
     private String accNumber;
     private String type;
     private String card;
+    private String pin;
     private int balance;
     
     
@@ -57,6 +58,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             String accNumber,
             String type,
             String card,
+            String pin,
             int balance) {
         
         this.username = username;
@@ -68,6 +70,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         this.accNumber = accNumber;
         this.type = type;
         this.card = card;
+        this.pin = pin;
         this.balance = balance;
         
         initComponents();
@@ -3447,8 +3450,35 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
     private void PayBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayBActionPerformed
         // TODO add your handling code here:
-        BillsGUI billsGUI = new BillsGUI();
-        billsGUI.setVisible(true);
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new BillsGUI(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance).setVisible(true);
+            }
+        });
+        //</editor-fold>
     }//GEN-LAST:event_PayBActionPerformed
 
     private void jToggleButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton32ActionPerformed

@@ -16,7 +16,8 @@ date,presco,233,200,PAYMENTS,Bank Transaction
 05/12/2024 00:48,nametest,111,500000,DEPOSIT,Bank Transaction
 05/12/2024 00:50,nametest,111,500,WITHDRAW,Bank Transaction
 05/12/2024 00:50,nametest,111,60000,DEPOSIT,Bank Transaction
-2024-12-05 00:59,nametest,111,150,DEPOSIT,Bank Transaction
-2024-12-05 01:06,nametest,111,200000,WITHDRAW,Bank Transaction
-2024-12-05 01:07,nametest,111,200000,WITHDRAW,Bank Transaction
-2024-12-05 01:17,nametest,111,50000,WITHDRAW,Bank Transaction
+05/12/2024 00:59,nametest,111,150,DEPOSIT,Bank Transaction
+05/12/2024 01:06,nametest,111,200000,WITHDRAW,Bank Transaction
+05/12/2024 01:07,nametest,111,200000,WITHDRAW,Bank Transaction
+05/12/2024 01:17,nametest,111,50000,WITHDRAW,Bank Transaction
+05/12/2024 01:54,username,11111,10900,PAYMENTS,Payment of Bills

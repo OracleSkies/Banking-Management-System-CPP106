@@ -32,6 +32,7 @@ public class Login extends javax.swing.JFrame {
     private String accNumber;
     private String type;
     private String card;
+    private String pin;
     private int balance;
     public Login() {
         initComponents();
@@ -247,6 +248,7 @@ public class Login extends javax.swing.JFrame {
                           this.accNumber = parts[6];
                           this.type = parts[7];
                           this.card = parts[8];
+                          this.pin = parts[9];
                           this.balance = Integer.parseInt(parts[10]);
                           //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -271,7 +273,7 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
                           java.awt.EventQueue.invokeLater(new Runnable() {
                             public void run() {
-                                new UserInterfaceMain(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,balance).setVisible(true);
+                                new UserInterfaceMain(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance).setVisible(true);
                             }
                         });
                           setVisible(false);

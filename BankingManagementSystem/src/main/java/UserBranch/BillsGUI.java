@@ -6,8 +6,11 @@ package UserBranch;
 
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,9 +23,43 @@ public class BillsGUI extends javax.swing.JFrame {
     /**
      * Creates new form BillsGUI
      */
-    public BillsGUI() {
+    
+    private String username;
+    private String password;
+    private String name;
+    private String birthdate;
+    private String phoneNumber;
+    private String address;
+    private String accNumber;
+    private String type;
+    private String card;
+    private String pin;
+    private int balance;
+    private int reserve;
+    public BillsGUI(String username,
+            String password,
+            String name,
+            String birthdate,
+            String phoneNumber,
+            String address,
+            String accNumber,
+            String type,
+            String card,
+            String pin,
+            int balance) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.birthdate = birthdate;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.accNumber = accNumber;
+        this.type = type;
+        this.card = card;
+        this.pin = pin;
+        this.balance = balance;
         initComponents();
-        
+       
         BillsTable.setOpaque(false);
         ((DefaultTableCellRenderer)BillsTable.getDefaultRenderer(Object.class)).setOpaque(false);
         jScrollPane1.setOpaque(false);
@@ -193,13 +230,16 @@ public class BillsGUI extends javax.swing.JFrame {
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         // Get the total amount from the BillDis label
         String totalAmount = BillDis.getText();
-
+        
+        if (subtractPaymentToBalance(totalAmount) == false){
+            return;
+        }
         // Prepare the data to write
         String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
-        String name = "username"; // Replace with dynamic input if needed
-        String bankAccountNumber = "11111"; // Replace with dynamic input if available
-        String action = "Bills";
-        String description = "Payment of bills"; // Replace with specific or dynamic input if needed
+        String name = this.name; // Replace with dynamic input if needed
+        String bankAccountNumber = this.accNumber; // Replace with dynamic input if available
+        String action = "PAYMENTS";
+        String description = "Payment of Bills"; // Replace with specific or dynamic input if needed
 
         String csvLine = String.format("%s,%s,%s,%s,%s,%s%n", 
                                        timestamp, 
@@ -217,15 +257,82 @@ public class BillsGUI extends javax.swing.JFrame {
                 fw.write("Timestamp,Name,Bank Account number,Amount,Action,Description\n");
             }
             fw.write(csvLine);
-            System.out.println("Transaction recorded successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // Optionally provide user feedback
         javax.swing.JOptionPane.showMessageDialog(this, "Transaction confirmed and recorded!");
+        setVisible(false);
     }//GEN-LAST:event_ConfirmActionPerformed
 
+    private boolean subtractPaymentToBalance(String paymentNumber){
+        getReserve();
+        int witToInt = Integer.parseInt(paymentNumber);
+        int reserveCheck = this.reserve + witToInt; // This line of code add the current reserve with the withdraw amount to compare if the withdraw amount will overflow the bank reserve
+        
+        if (reserveCheck > 1000000){
+            JOptionPane.showMessageDialog(this, "Cannot withdraw money. Bank reserve will reach maximum capacity", "Bank Reserve Issue", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(balance < witToInt){
+            JOptionPane.showMessageDialog(this, "Cannot withdraw money. Insufficient balance", "Insufficient Balance", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        balance = balance - witToInt;
+        writeLine(username,password,name,birthdate,phoneNumber,address,accNumber,type,card,pin,balance);
+        this.balance = balance;
+        this.reserve = reserve + witToInt;
+        updateReserve();
+        return true;
+    }
+    
+    private void writeLine(String username,
+            String password,
+            String name,
+            String birthdate,
+            String phoneNumber,
+            String address,
+            String accNumber,
+            String type,
+            String card,
+            String pin,
+            int balanceToDB){
+        
+         try (var writer = new BufferedWriter(new FileWriter("Accounts.csv", true))){
+            writer.write(username + "," + password + "," + name + "," + birthdate + "," + phoneNumber + "," + address+ "," + accNumber + "," + type + "," + card + "," + pin + "," + balanceToDB);
+            writer.newLine();
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error saving to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private void getReserve(){
+        // THIS METHOD READS THE INTEGER IN THE FILE
+        try (BufferedReader br = new BufferedReader(new FileReader("bankReserve.csv"))) {
+            String line;
+            // Read the CSV file line by line
+            if ((line = br.readLine()) != null) {
+                this.reserve = Integer.parseInt(line.trim());
+                // Check if the first column (fruit) is "lemon"
+            }
+            br.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void updateReserve(){
+        
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("bankReserve.csv"))){
+            writer.write(String.valueOf(this.reserve));  // Convert the integer to a string and write it to the file
+            writer.close();
+            } catch (IOException e) {
+                System.out.println("Error reading or writing to file: " + e.getMessage());
+            }
+    }
     private void ConfirmMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseEntered
         // TODO add your handling code here:
         Confirm.setContentAreaFilled(true);
@@ -255,37 +362,38 @@ public class BillsGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BillsGUI().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(BillsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new BillsGUI().setVisible(true);
+//            }
+//        });
+//        //</editor-fold>
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BillDis;
