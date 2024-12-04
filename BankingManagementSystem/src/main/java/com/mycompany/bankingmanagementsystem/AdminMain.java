@@ -205,7 +205,6 @@ public class AdminMain extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel12 = new javax.swing.JLabel();
         Transactions = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -527,6 +526,7 @@ public class AdminMain extends javax.swing.JFrame {
         TransacTableScrPane.setBorder(null);
         TransacTableScrPane.setOpaque(false);
 
+        transactionTableDash.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         transactionTableDash.setForeground(new java.awt.Color(255, 255, 255));
         transactionTableDash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -537,7 +537,7 @@ public class AdminMain extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -547,6 +547,7 @@ public class AdminMain extends javax.swing.JFrame {
         transactionTableDash.setGridColor(new java.awt.Color(255, 255, 255));
         transactionTableDash.setOpaque(false);
         transactionTableDash.setRowHeight(40);
+        transactionTableDash.getTableHeader().setReorderingAllowed(false);
         TransacTableScrPane.setViewportView(transactionTableDash);
 
         Dashboard.add(TransacTableScrPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 740, 210));
@@ -556,6 +557,7 @@ public class AdminMain extends javax.swing.JFrame {
         AccAppDashScrPane.setBorder(null);
         AccAppDashScrPane.setOpaque(false);
 
+        accApplicationTableDash.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         accApplicationTableDash.setForeground(new java.awt.Color(255, 255, 255));
         accApplicationTableDash.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -596,11 +598,11 @@ public class AdminMain extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("DASHBOARD");
-        Dashboard.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 300, 40));
+        Dashboard.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 300, 40));
 
         GraphPanelDashboard.setBackground(new java.awt.Color(255, 255, 255));
         GraphPanelDashboard.setLayout(new java.awt.BorderLayout());
-        Dashboard.add(GraphPanelDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 850, 300));
+        Dashboard.add(GraphPanelDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 850, 340));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -648,12 +650,6 @@ public class AdminMain extends javax.swing.JFrame {
         );
 
         Dashboard.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 50, 300, 340));
-
-        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Cash Flow");
-        Dashboard.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, 30));
 
         Transactions.setBackground(new java.awt.Color(255, 0, 0));
         Transactions.setForeground(new java.awt.Color(255, 255, 255));
@@ -1440,7 +1436,6 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
