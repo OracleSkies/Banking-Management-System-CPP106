@@ -67,6 +67,7 @@ public class AdminMain extends javax.swing.JFrame {
         AccountManagement.setVisible(false);
         Transactions.setVisible(false);
         AuditAndReport.setVisible(false);
+        NotificationPanel.setVisible(false);
         loadTransactionDataForDashboard("Transactions.csv");
         loadTransactionDataForTransaction("Transactions.csv");
         loadAccountsForAccManagement("Accounts.csv");
@@ -188,6 +189,9 @@ public class AdminMain extends javax.swing.JFrame {
         Transactionsbutton = new javax.swing.JButton();
         Dashboardbutton = new javax.swing.JButton();
         AudRepbutton = new javax.swing.JButton();
+        NotificationPanel = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         createNewAdminPanel = new javax.swing.JPanel();
         createNewAdminAccButton = new javax.swing.JButton();
         MasterPanel = new javax.swing.JPanel();
@@ -332,6 +336,51 @@ public class AdminMain extends javax.swing.JFrame {
             }
         });
         getContentPane().add(AudRepbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 290, 80));
+
+        NotificationPanel.setBackground(new java.awt.Color(0, 51, 153));
+        NotificationPanel.setForeground(new java.awt.Color(0, 51, 153));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 443, Short.MAX_VALUE)
+        );
+
+        jLabel2.setBackground(new java.awt.Color(0, 153, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel2.setText("NOTIFICATION");
+
+        javax.swing.GroupLayout NotificationPanelLayout = new javax.swing.GroupLayout(NotificationPanel);
+        NotificationPanel.setLayout(NotificationPanelLayout);
+        NotificationPanelLayout.setHorizontalGroup(
+            NotificationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NotificationPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(NotificationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
+        );
+        NotificationPanelLayout.setVerticalGroup(
+            NotificationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NotificationPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(NotificationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 70, 160, 500));
 
         createNewAdminPanel.setOpaque(false);
 
@@ -803,6 +852,11 @@ public class AdminMain extends javax.swing.JFrame {
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 810, -1));
 
         notificationButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/notif.png"))); // NOI18N
+        notificationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notificationButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(notificationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 20, 50, 47));
 
         accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/acc.png"))); // NOI18N
@@ -967,6 +1021,12 @@ public class AdminMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         loadTransactionDataForTransaction("Transactions.csv");
     }//GEN-LAST:event_showAllButtonActionPerformed
+
+    private void notificationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notificationButtonActionPerformed
+        // TODO add your handling code here:
+        NotificationPanel.setVisible(!NotificationPanel.isVisible());
+
+    }//GEN-LAST:event_notificationButtonActionPerformed
 
     // </editor-fold>
     
@@ -1587,6 +1647,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JPanel GraphPanel;
     private javax.swing.JPanel GraphPanelDashboard;
     private javax.swing.JPanel MasterPanel;
+    private javax.swing.JPanel NotificationPanel;
     private javax.swing.JLabel SubTitle;
     private javax.swing.JLabel Title;
     private javax.swing.JScrollPane TransacTableScrPane;
@@ -1606,6 +1667,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1614,6 +1676,7 @@ public class AdminMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
