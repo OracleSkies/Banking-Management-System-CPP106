@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -222,8 +223,96 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         }
     } 
 
+    private void loadCSV() {
+        // Specify the paths to the CSV files
+        String transactionsFilePath = "Transactions.csv"; // Path to Transactions file
+        String accountsFilePath = "Accounts.csv";         // Path to Accounts file
+
+        try {
+            // Step 1: Read Accounts.csv to load valid usernames (username:password:name)
+            BufferedReader accountsReader = new BufferedReader(new FileReader(accountsFilePath));
+            HashSet<String> validUsernames = new HashSet<>(); // Store valid usernames
+
+            String accountsLine;
+            while ((accountsLine = accountsReader.readLine()) != null) {
+                String[] accountData = accountsLine.split(",");
+                if (accountData.length >= 3) {
+                    // Extract username (we are not interested in password or name for this case)
+                    String username = accountData[2].trim();  // Username column
+                    validUsernames.add(username);
+                    System.out.println("Loaded username: " + username); // Debug log
+                }
+            }
+            accountsReader.close();
+
+            if (validUsernames.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No valid usernames found in Accounts.csv.");
+                return;
+            }
+
+            // Step 2: Read Transactions.csv and filter data by matching username
+            BufferedReader transactionsReader = new BufferedReader(new FileReader(transactionsFilePath));
+            ArrayList<String[]> data = new ArrayList<>();
+            String transactionsLine;
+
+            // Skip the header line
+            transactionsReader.readLine();
+
+            while ((transactionsLine = transactionsReader.readLine()) != null) {
+                String[] transactionData = transactionsLine.split(",");
+                if (transactionData.length >= 6) {
+                    // Extract username from Transactions.csv 
+                    String transactionUsername = transactionData[1].trim();
+
+                    // Check if the transaction's username is in the valid list of usernames
+                    if (validUsernames.contains(transactionUsername)) {
+                        System.out.println("Match found for username: " + transactionUsername); // Debug log
+
+                        // Extract required fields
+                        String timestamp = transactionData[0];       // Timestamp
+                        String amount = transactionData[3];          // Amount
+                        String action = transactionData[4];          // Action
+                        String description = transactionData[5];     // Description
+
+                        // Add to the filtered data list
+                        data.add(new String[]{timestamp, amount, action, description});
+                    }
+                }
+            }
+            transactionsReader.close();
+
+            // Step 3: Create a DefaultTableModel for the filtered data
+            DefaultTableModel model = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Make all cells non-editable
+                }
+            };
+
+            // Add columns to the model
+            model.addColumn("Timestamp");
+            model.addColumn("Amount");
+            model.addColumn("Action");
+            model.addColumn("Description");
+
+            // Add data rows to the model
+            for (String[] row : data) {
+                model.addRow(row);
+            }
+
+            // Set the model to the JTable
+            Transhis.setModel(model);
+            DashHis.setModel(model);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
+        }
+    }
 
 
+
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -582,7 +671,6 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         jToggleButton15.setText("jToggleButton15");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2703,67 +2791,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         Trans.setForeground(Color.white);
     }//GEN-LAST:event_TransMouseExited
     
-    private void loadCSV() {
-        // Specify the path to the CSV file (you can change this to your file's path)
-        String filePath = "Transactions.csv";  // Update this to your actual file path
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
-            String line;
-            ArrayList<String[]> data = new ArrayList<>();
-
-            // Skip the first line (headers) since we already defined them in the JTable
-            br.readLine();
-
-            // Read the rest of the data
-            while ((line = br.readLine()) != null) {
-                // Split each line by comma
-                String[] columns = line.split(",");
-
-                // Ensure we have enough columns to avoid ArrayIndexOutOfBoundsException
-                if (columns.length >= 6) {
-                    // Extract only the needed columns: Timestamp, Amount, Action, Description
-                    String timestamp = columns[0];       // Timestamp
-                    String amount = columns[3];          // Amount
-                    String action = columns[4];          // Action
-                    String description = columns[5];     // Description
-
-                    // Add the filtered data row to the list
-                    data.add(new String[]{timestamp, amount, action, description});
-                }
-            }
-
-            // Create a DefaultTableModel to hold the data
-            DefaultTableModel model = new DefaultTableModel() {
-                // Override isCellEditable to make cells non-editable
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;  // Make all cells non-editable
-                }
-            };
-
-            // Add the required columns to the model
-            model.addColumn("Timestamp");
-            model.addColumn("Amount");
-            model.addColumn("Action");
-            model.addColumn("Description");
-
-            // Add data rows to the model
-            for (String[] row : data) {
-                model.addRow(row);
-            }
-
-            // Set the model to the JTable
-            Transhis.setModel(model);
-            DashHis.setModel(model);
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage());
-        }
-    }
-
-
-
+    
     
     private void AccregMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccregMouseEntered
         // TODO add your handling code here:
