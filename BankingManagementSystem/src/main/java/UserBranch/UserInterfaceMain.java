@@ -1155,7 +1155,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
             Transhis.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        GenRep.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        GenRep.setBackground(new java.awt.Color(0, 0, 255));
+        GenRep.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        GenRep.setForeground(new java.awt.Color(255, 255, 255));
         GenRep.setText("Generate Report");
         GenRep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1171,19 +1173,19 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1146, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransacHisLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(TransacHisLayout.createSequentialGroup()
+                .addGap(435, 435, 435)
                 .addComponent(GenRep)
-                .addGap(504, 504, 504))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TransacHisLayout.setVerticalGroup(
             TransacHisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TransacHisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(GenRep, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         MasterPanelScreen.add(TransacHis, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1170, 600));
