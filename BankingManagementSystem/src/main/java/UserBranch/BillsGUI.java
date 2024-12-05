@@ -231,9 +231,9 @@ public class BillsGUI extends javax.swing.JFrame {
         // Get the total amount from the BillDis label
         String totalAmount = BillDis.getText();
         
-        if (subtractPaymentToBalance(totalAmount) == false){
-            return;
-        }
+//        if (subtractPaymentToBalance(totalAmount) == false){
+//            return;
+//        }
         // Prepare the data to write
         String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
         String name = this.name; // Replace with dynamic input if needed
