@@ -1,4 +1,5 @@
 username,password,name,birthdate,phone number,address,Account Number,type,card,pin,balance
 admin,pass,ADMIN,ADMIN,ADMIN,ADMIN,null,admin,null,null,null
-usert,pass,Name 2,MAYY,123123213,CABUYAO,101125718,user,no,null,0
-newuser,newuser,newuser,newuser,2323,newuser,100366291,user,yes,1111,44990
+usert,pass,Name 2,MAYY,123123213,CABUYAO,101125718,user,yes,1111,500
+user2,user2,freshie,bukas,123456789,jan lang,104319263,user,no,null,0
+user1,user1,kwason,kahapon,123456,new york,101592408,user,yes,2222,500

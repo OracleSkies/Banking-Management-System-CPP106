@@ -1,4 +1,5 @@
 Timestamp,Name,Bank Account number,Amount,Action,Description
-2024-12-05 16:04,newuser,100366291,50000,DEPOSIT,Bank Transaction
-2024-12-05 16:04,newuser,100366291,25000,WITHDRAW,Bank Transaction
-2024-12-05 16:06:42,newuser,100366291,1500.00,PAYMENTS,Payment of Bills
+2024-12-05 16:55,Name 2,101125718,1000,DEPOSIT,Bank Transaction
+2024-12-05 16:55,Name 2,101125718,500,WITHDRAW,Bank Transaction
+2024-12-05 17:17,kwason,101592408,1000,DEPOSIT,Bank Transaction
+2024-12-05 17:17,kwason,101592408,500,WITHDRAW,Bank Transaction

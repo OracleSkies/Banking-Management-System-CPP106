@@ -1525,10 +1525,10 @@ public class AdminMain extends javax.swing.JFrame {
 
 
         // If no data available, show a message and return
-        if (totalDeposits == 0 && totalWithdrawals == 0 && totalTransfers == 0 && totalPayments == 0) {
-            JOptionPane.showMessageDialog(panel, "No transaction data available to display.", "No Data", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+//        if (totalDeposits == 0 && totalWithdrawals == 0 && totalTransfers == 0 && totalPayments == 0) {
+//            JOptionPane.showMessageDialog(panel, "No transaction data available to display.", "No Data", JOptionPane.INFORMATION_MESSAGE);
+//            return;
+//        }
 
         // Create dataset
         DefaultPieDataset dataset = new DefaultPieDataset();

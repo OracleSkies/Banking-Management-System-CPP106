@@ -286,7 +286,8 @@ public class UserInterfaceMain extends javax.swing.JFrame {
 
             while ((transactionsLine = transactionsReader.readLine()) != null) {
                 String[] transactionData = transactionsLine.split(",");
-                if (transactionData.length >= 5) {
+                if (transactionData[2].trim().equals(this.accNumber)) {
+//                    transactionData.length >= 5)
                     String transactionUsername = transactionData[1].trim();
 
                     if (validUsernames.contains(transactionUsername)) {
@@ -307,6 +308,7 @@ public class UserInterfaceMain extends javax.swing.JFrame {
                     return false;
                 }
             };
+            model.setRowCount(0);
 
             model.addColumn("Timestamp");
             model.addColumn("Amount");
