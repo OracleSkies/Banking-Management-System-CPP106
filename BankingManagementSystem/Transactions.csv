@@ -1,24 +1,4 @@
 Timestamp,Name,Bank Account number,Amount,Action,Description
-date,jayjay,111,123,DEPOSIT,Bank Transaction
-date,jayjay,111,100,WITHDRAW,Bank Transaction
-date,jayjay,111,100,DEPOSIT,Bank Transaction
-date,jayjay,111,100,MONEY TRANSFER,Money transfer to account number: 222
-date,jayjay,111,800,DEPOSIT,Bank Transaction
-date,jayjay,111,14,MONEY TRANSFER,Money transfer to account number: 222
-date,donasco,222,183,WITHDRAW,Bank Transaction
-date,donasco,222,1,WITHDRAW,Bank Transaction
-03/12/2024 16:29,jayjay,111,700,WITHDRAW,Bank Transaction
-03/12/2024 16:40,donasco,222,10000,DEPOSIT,Bank Transaction
-date,presco,233,100,PAYMENTS,Bank Transaction
-date,jayjay,111,1000,MONEY TRANSFER,Money transfer to account number: 222
-date,presco,233,200,PAYMENTS,Bank Transaction
-05/12/2024 00:46,nametest,111,200,DEPOSIT,Bank Transaction
-05/12/2024 00:48,nametest,111,500000,DEPOSIT,Bank Transaction
-05/12/2024 00:50,nametest,111,500,WITHDRAW,Bank Transaction
-05/12/2024 00:50,nametest,111,60000,DEPOSIT,Bank Transaction
-05/12/2024 00:59,nametest,111,150,DEPOSIT,Bank Transaction
-05/12/2024 01:06,nametest,111,200000,WITHDRAW,Bank Transaction
-05/12/2024 01:07,nametest,111,200000,WITHDRAW,Bank Transaction
-05/12/2024 01:17,nametest,111,50000,WITHDRAW,Bank Transaction
-05/12/2024 01:54,username,11111,10900,PAYMENTS,Payment of Bills
-2024-12-05 02:30:22,nametest,111,500.00,PAYMENTS,Payment of Bills
+2024-12-05 16:04,newuser,100366291,50000,DEPOSIT,Bank Transaction
+2024-12-05 16:04,newuser,100366291,25000,WITHDRAW,Bank Transaction
+2024-12-05 16:06:42,newuser,100366291,1500.00,PAYMENTS,Payment of Bills

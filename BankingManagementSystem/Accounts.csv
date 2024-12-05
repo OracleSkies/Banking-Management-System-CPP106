@@ -1,6 +1,4 @@
 username,password,name,birthdate,phone number,address,Account Number,type,card,pin,balance
 admin,pass,ADMIN,ADMIN,ADMIN,ADMIN,null,admin,null,null,null
-user,pass,USER NAME,USER BIRTH,USER PHONE,USER ADDRESS,88491,user,no,null,0
-donasco,donasco,donasco,donasco,donasco,donasco,222,donasco,donasco,222,100
-user,pass,Nmae1,JUNE,12313,BANLIC,106412208,user,no,null,0
-usertest,passtest,nametest,birthtest,phonetest,addtest,111,user,yes,222,250000
+usert,pass,Name 2,MAYY,123123213,CABUYAO,101125718,user,no,null,0
+newuser,newuser,newuser,newuser,2323,newuser,100366291,user,yes,1111,44990

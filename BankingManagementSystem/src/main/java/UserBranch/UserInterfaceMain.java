@@ -4,6 +4,7 @@
  */
 package UserBranch;
 
+import ATMSystemBranch.StartingWindow;
 import com.mycompany.bankingmanagementsystem.UserAccountRegistrationAdminView;
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -2854,7 +2855,9 @@ public class UserInterfaceMain extends javax.swing.JFrame {
         );
 
         if (response == JOptionPane.YES_OPTION) {
-            this.dispose(); // Close the current window
+            StartingWindow start = new StartingWindow();
+            start.setVisible(true);
+            setVisible(false);
         }
     }//GEN-LAST:event_ProfileActionPerformed
 

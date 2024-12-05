@@ -400,7 +400,7 @@ public class BankStatement extends javax.swing.JFrame {
         String deposit = Integer.toString(countByAction("DEPOSIT",accNum));
         String withdraw = Integer.toString(countByAction("WITHDRAW",accNum));
         String transfer = Integer.toString(countByAction("MONEY TRANSFER",accNum));
-        String payment = Integer.toString(countByAction("PAYMENT",accNum));
+        String payment = Integer.toString(countByAction("PAYMENTS",accNum));
         depCountDisplay.setText(deposit);
         withCountDisplay.setText(withdraw);
         transCountDisplay.setText(transfer);
@@ -408,12 +408,12 @@ public class BankStatement extends javax.swing.JFrame {
         String depositAmount = Integer.toString(addByAction("DEPOSIT",accNum));
         String withdrawAmount = Integer.toString(addByAction("WITHDRAW",accNum));
         String transferAmount = Integer.toString(addByAction("MONEY TRANSFER",accNum));
-        String paymentAmount = Integer.toString(addByAction("PAYMENT",accNum));
+        String paymentAmount = Integer.toString(addByAction("PAYMENTS",accNum));
         depTotalDisplay.setText("₱" + depositAmount);
         withTotalDisplay.setText("₱" +withdrawAmount);
         transTotalDisplay.setText("₱" +transferAmount);
         payTotalDisplay.setText("₱" +paymentAmount);
-        String endBalance = Integer.toString(endingBalance(addByAction("DEPOSIT",accNum),addByAction("WITHDRAW",accNum),addByAction("MONEY TRANSFER",accNum),addByAction("PAYMENT",accNum)));
+        String endBalance = Integer.toString(endingBalance(addByAction("DEPOSIT",accNum),addByAction("WITHDRAW",accNum),addByAction("MONEY TRANSFER",accNum),addByAction("PAYMENTS",accNum)));
         endingBalanceDisplay.setText("₱" + endBalance);
     }
     
